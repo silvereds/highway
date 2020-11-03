@@ -59,6 +59,7 @@ class SplashScreen extends StatelessWidget {
                       Text(
                         "Send upto 50,000FCFA to your loved ones without charges. Oh ye, it is free!! ",
                         textAlign: TextAlign.left,
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),
@@ -94,6 +95,7 @@ class SplashScreen extends StatelessWidget {
                       Text(
                         "Manage your cards, your card readers. Assign them to your loved ones,to your acquaintances as you please and follow in real time all the transactions made on/with your devices. ",
                         textAlign: TextAlign.left,
+                         style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),
@@ -131,6 +133,7 @@ class SplashScreen extends StatelessWidget {
                       Text(
                         "View your balance and transaction history. Manage your expenses and revenues.Recharge your acccounts via your mobile money accounts(MTN,Orange,Express Union, etc) or directly via a HighWeh branch or even at a private individual near you.Make your cash withdrawals directly from a HighWeh branch or from an individual near you  ",
                         textAlign: TextAlign.left,
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),
@@ -145,7 +148,7 @@ class SplashScreen extends StatelessWidget {
                   onPressed: () {},
                   color: Colors.green,
                   textColor: Colors.white,
-                  child: Text("Next", style: TextStyle(fontSize: 18)),
+                  child: Text("Next", style: TextStyle(fontSize: 13)),
                 ),
               ]),
             ),
