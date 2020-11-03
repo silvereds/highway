@@ -141,14 +141,19 @@ class SplashScreen extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7.0),
-                      side: BorderSide(color: Colors.green)),
-                  onPressed: () {},
-                  color: Colors.green,
-                  textColor: Colors.white,
-                  child: Text("Next", style: TextStyle(fontSize: 13)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7.0),
+                          side: BorderSide(color: Colors.green)),
+                      onPressed: () {},
+                      color: Colors.green,
+                      textColor: Colors.white,
+                      child: Text("Next", style: TextStyle(fontSize: 13)),
+                    ),
+                  ),
                 ),
               ]),
             ),
