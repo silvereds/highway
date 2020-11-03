@@ -30,12 +30,11 @@ class SplashScreen extends StatelessWidget {
                   Row(
                     children: [
                       Align(
-                          alignment: Alignment.topLeft, child: Icon(Icons.star)),
+                          alignment: Alignment.center, child: Icon(Icons.star)),
                       SizedBox(
                         width: 15,
                       ),
                       Expanded(
-                        
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -101,7 +100,7 @@ class SplashScreen extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0),
