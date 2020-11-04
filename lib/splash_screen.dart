@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
         backgroundColor: ThemeColors.background,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 25),
             child: Container(
               height: 683,
               color: ThemeColors.white,
