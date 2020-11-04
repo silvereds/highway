@@ -44,6 +44,7 @@ class LoginEmail extends StatelessWidget {
                   color: Colors.green,
                   height: 100,
                   width: 250,
+                  child: Center(child: Text("Register", style: TextStyle(color: Colors.white, fontSize: 18),),),
                 ),
               ),
             ],
