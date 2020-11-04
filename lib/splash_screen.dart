@@ -5,6 +5,8 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 812,
+      width: 375,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -14,8 +16,9 @@ class SplashScreen extends StatelessWidget {
         backgroundColor: ThemeColors.background,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(25, 30, 25, 30),
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             child: Container(
+              height: 683,
               color: ThemeColors.white,
               child: Column(children: [
                 Padding(

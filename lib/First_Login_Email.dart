@@ -11,10 +11,22 @@ class LoginEmail extends StatelessWidget {
                 end: Alignment.bottomLeft,
                 colors: [Colors.blue, Colors.red])),
         child: Scaffold(
-            backgroundColor: ThemeColors.background,
-            body: SingleChildScrollView(
-                child: Padding(
-              padding: const EdgeInsets.fromLTRB(25, 30, 25, 30),
-            ))));
+          backgroundColor: ThemeColors.background,
+          appBar: AppBar(
+            title: Image.asset('assets/HIGHWEH_HORIZONTAL.png'),
+            backgroundColor: Colors.white,
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 150, horizontal: 20),
+            child: Container(
+              height: 436,
+              width: 327,
+              color: Colors.white,
+              child: Center(
+
+              )
+            ),
+          ),
+        ));
   }
 }
