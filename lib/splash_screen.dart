@@ -6,43 +6,48 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 700,
-        width: 327,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [Colors.blue, Colors.red])),
-        child: Scaffold(
-          backgroundColor: ThemeColors.background,
-          body: Container(
-              color: Colors.green,
-              padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
-              child: Center(
-                  child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      clipBehavior: Clip.none,
-                      children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.all(20.0),
-                      color: Colors.white,
-                      child: Column(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Center(
-                            child: Text(
-                              "WELCOME TO HIGHWEH",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: ThemeColors.background,
-                                fontFamily: "poppin",
-                              ),
-                            ),
-                          ),
+      height: 812,
+      width: 375,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.blue, Colors.red])),
+      child: Scaffold(
+        backgroundColor: ThemeColors.background,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 70, horizontal:30 ),
+            child: Container(
+               height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+              color: ThemeColors.white,
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Center(
+                    child: Text(
+                      "WELCOME TO HIGHWEH",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: ThemeColors.background,
+                        fontFamily: "poppin",
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.timeline,
+                          color: Colors.red,
                         ),
                         SizedBox(height: 10),
                         Row(
