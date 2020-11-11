@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 
 
-class LoginEmail extends StatelessWidget {
+class LoginEmail extends StatefulWidget {
+  @override
+  _LoginEmailState createState() => _LoginEmailState();
+}
+
+class _LoginEmailState extends State<LoginEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +25,14 @@ class LoginEmail extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+               
+               
                 
                 padding: EdgeInsets.all(20.0),
                 color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(height: 80),
                     Text(
@@ -41,7 +47,7 @@ class LoginEmail extends StatelessWidget {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                          children: <Widget>[
-                           new Row(
+                            Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Radio(value: 0, groupValue: 0, onChanged: null,),
@@ -52,16 +58,8 @@ class LoginEmail extends StatelessWidget {
                            ),
 
                         Container(
-                           child: Row(children: [
-                             Icon(Icons.mail),
                            
-                             
-
-                       
-                              
-
-                             
-                           ],),
+                           child: TextField(decoration:  InputDecoration(prefix: Icon(Icons.mail))),
                         )
 
 
@@ -74,16 +72,24 @@ class LoginEmail extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: -45,
-                left: 30,
-                child: Container(
-                  color: Colors.green,
-                  height: 100,
-                  width: 240,
-                  child: Center(
-                    child: Text(
-                      "Register",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                top: -40,
+                left: 15,
+                right: 15,
+                height: 80,
+                
+                child: Align(
+                  
+                                  child: Container(
+                                    width: 300,
+                    
+                   
+                    color: ThemeColors.Pcontainer,
+                   
+                    child: Center(
+                      child: Text(
+                        "Register",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                     ),
                   ),
                 ),
