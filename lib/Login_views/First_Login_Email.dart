@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 
+
 class LoginEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class LoginEmail extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        color: ThemeColors.background,
+        color: ThemeColors.Background,
         padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
         child: Center(
           child: Stack(
