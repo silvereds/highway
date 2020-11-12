@@ -145,7 +145,7 @@ class SplashScreen extends StatelessWidget {
                                         builder: (context) => LoginEmail()),
                                   );
                                 },
-                                color: Colors.green,
+                                color: ThemeColors.Buttons,
                                 textColor: Colors.white,
                                 child: Text("Next")),
                           ))

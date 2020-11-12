@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
+import 'package:gestures/gestures.dart';
 
 class LoginEmail extends StatefulWidget {
   @override
@@ -7,12 +9,18 @@ class LoginEmail extends StatefulWidget {
 }
 
 class _LoginEmailState extends State<LoginEmail> {
+  bool valuefirst = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Image.asset('assets/images/HIGHWEH_HORIZONTAL.png', fit: BoxFit.contain, height: 45,),
+        title: Image.asset(
+          'assets/images/HIGHWEH_HORIZONTAL.png',
+          fit: BoxFit.contain,
+          height: 45,
+        ),
         centerTitle: true,
       ),
       body: Container(
@@ -31,11 +39,11 @@ class _LoginEmailState extends State<LoginEmail> {
                 padding: EdgeInsets.all(20.0),
                 color: Colors.white,
                 child: SingleChildScrollView(
-                                  child: Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(height: 80),
+                      SizedBox(height: 120),
                       Text(
                         'Login with:',
                         style: TextStyle(
@@ -78,25 +86,78 @@ class _LoginEmailState extends State<LoginEmail> {
                                 ),
                               ],
                             ),
-                            Container(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    hintText: 'Email Address',
-                                    border: InputBorder.none,
-                                    prefix: Icon(Icons.mail)),
+                            SizedBox(height: 20),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                      hintText: 'Email Address',
+                                      border: InputBorder.none,
+                                      prefix: Icon(Icons.mail)),
+                                ),
                               ),
                             )
                           ],
                         ),
                       ),
+
                       SizedBox(height: 20),
 
-                           Column(
-                             children: [
-                               
-                               Text("I agree to the terms and condition"),
-                             ],
-                           )
+                      Row(
+                        children: [
+                          Checkbox(
+                              checkColor: ThemeColors.CheckColor,
+                              value: this.valuefirst,
+                              onChanged: (bool value) {
+                                setState(() {
+                                  this.valuefirst = value;
+                                });
+                              }),
+                          RichText(
+                            text: TextSpan(
+                                text: 'I agree to the',
+                                style: TextStyle(
+                                    color: ThemeColors.CheckText,
+                                    fontSize: 14,
+                                    fontFamily: 'Roboto'),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: '  terms and conditions.',
+                                    style: TextStyle(
+                                        color: ThemeColors.CheckColor,
+                                        fontSize: 14,
+                                        fontFamily: 'Roboto'),
+                                    recognizer: TapGestureRecognizer(),
+                                  )
+                                ]),
+                          )
+                        ],
+                      ),
+
+                      SizedBox(height: 50),
+
+                      Container(
+                        alignment: Alignment.bottomRight,
+                        child: FlatButton(
+                            minWidth: 133,
+                            height: 40.02,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                              side: BorderSide(color: ThemeColors.Buttons),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginEmail()),
+                              );
+                            },
+                            color: ThemeColors.Buttons,
+                            textColor: Colors.white,
+                            child: Text("Login")),
+                      ),
+
                       //CONTINUE BUILDING HERE
                     ],
                   ),
@@ -106,7 +167,7 @@ class _LoginEmailState extends State<LoginEmail> {
                 top: -40,
                 left: 15,
                 right: 15,
-                height: 80,
+                height: 120,
                 child: Align(
                   child: Container(
                     decoration: BoxDecoration(
