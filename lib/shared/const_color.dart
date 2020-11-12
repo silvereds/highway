@@ -11,7 +11,8 @@ class ThemeColors {
   static const Timeline = Color(0xFFE91E63);
   static const Code = Color(0xFF9C27B0);
   static const Group = Color(0xFF4CAF50);
-  static const Pcontainer = Color.fromRGBO(0, 205, 172, 9);
+  static const RegisterC = Color(0xFF00CDAC);
+  static const RegisterCl = Color(0xFF4EB181);
   static const white = Colors.white;
   
   static const black = Color(0xFF000000);
@@ -21,4 +22,12 @@ class ThemeColors {
       begin: Alignment.topRight,
       end: Alignment.bottomLeft,
       colors: [ThemeColors.Background, ThemeColors.LightBackground]);
+
+       static const RegisterContainer = LinearGradient(
+      begin: Alignment.topRight,
+      end: Alignment.bottomLeft,
+      colors: [ThemeColors.RegisterC, ThemeColors.RegisterCl]);
+
+
+
 }

@@ -29,6 +29,7 @@ class SplashScreen extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
+                          fontFamily: 'Poppins',
                           color: ThemeColors.Welcome,
                         ),
                       ),
@@ -54,7 +55,7 @@ class SplashScreen extends StatelessWidget {
                                 SizedBox(height: 20),
                                 Text(
                                   "Send upto 50,000 FCFA to your loved ones without charges.. oh yes, it is free!!",
-                                    style: TextStyle(color: ThemeColors.grey, fontSize: 12, ),
+                                    style: TextStyle(color: ThemeColors.grey, fontSize: 12,  height: 1.5,fontFamily: 'Roboto' ),
                                   textAlign: TextAlign.start,
                                 ),
                               ],
@@ -85,7 +86,7 @@ class SplashScreen extends StatelessWidget {
                                 Text(
                                   "Manage your cards, your card readers. Assign them to your loved ones, to your acquaintances as you please and follow in real time all the transactions made on/with your devices.",
                                   textAlign: TextAlign.start,
-                                   style: TextStyle(color: ThemeColors.grey, fontSize: 12, ),
+                                   style: TextStyle(color: ThemeColors.grey, fontSize: 12,  height: 1.5 ),
                                 ),
                               ],
                             ),
@@ -116,7 +117,8 @@ class SplashScreen extends StatelessWidget {
                                 Text(
                                   "View your balance and transaction history. Manage your expenses and revenues.Recharge your acccounts via your mobile money accounts(MTN,Orange,Express Union, etc) or directly via a HighWeh branch or even at a private individual near you.Make your cash withdrawals directly from a HighWeh branch or from an individual near you with better fees than HighWeh",
                                   textAlign: TextAlign.start,
-                                   style: TextStyle(color: ThemeColors.grey, fontSize: 12, ),
+                                  
+                                   style: TextStyle(color: ThemeColors.grey, fontSize: 12, height: 1.5  ),
                                 ),
                               ],
                             ),
