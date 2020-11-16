@@ -1,8 +1,7 @@
- import 'package:flutter/material.dart';
- import 'package:mobile/Login_views/First_Login_sms.dart';
- import 'package:mobile/shared/const_color.dart';
- import 'package:mobile/Login_views/Login_Email.dart';
+import 'package:flutter/material.dart';
 
+import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/Login_views/Login_Email.dart';
 
 class CreatePassword extends StatefulWidget {
   @override
@@ -12,7 +11,7 @@ class CreatePassword extends StatefulWidget {
 class _CreatePasswordState extends State<CreatePassword> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -42,9 +41,6 @@ class _CreatePasswordState extends State<CreatePassword> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                     
-                     
-                     
                       SizedBox(
                         height: 30,
                       ),
@@ -53,42 +49,42 @@ class _CreatePasswordState extends State<CreatePassword> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            Text( 'Create Password',
-                            style:TextStyle(fontSize: 24, color: ThemeColors.TextGreen,),),
+                            Text(
+                              'Create Password',
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: ThemeColors.TextGreen,
+                              ),
+                            ),
                             SizedBox(height: 30),
-
                             TextField(
-                                decoration: InputDecoration(
-                                      hintText: 'New Password',
-                                      hintStyle: TextStyle(fontSize: 14, color: ThemeColors.TextGreen, ),
-                                      border: InputBorder.none,
-                                     ),
-                                     
-
+                              decoration: InputDecoration(
+                                hintText: 'New Password',
+                                hintStyle: TextStyle(
+                                  fontSize: 14,
+                                  color: ThemeColors.TextGreen,
                                 ),
-                            Divider(color: Colors.grey ),
-
-                               SizedBox(height: 30),
-
+                                border: InputBorder.none,
+                              ),
+                            ),
+                            Divider(color: Colors.grey),
+                            SizedBox(height: 30),
                             TextField(
-                                decoration: InputDecoration(
-                                      hintText: 'Confirm password',
-                                       hintStyle: TextStyle(fontSize: 14, color: ThemeColors.TextGreen, ),
-                                      border: InputBorder.none,
-                                     ),
-                                     
-
+                              decoration: InputDecoration(
+                                hintText: 'Confirm password',
+                                hintStyle: TextStyle(
+                                  fontSize: 14,
+                                  color: ThemeColors.TextGreen,
                                 ),
-                            Divider(color: Colors.grey ),
-                           
+                                border: InputBorder.none,
+                              ),
+                            ),
+                            Divider(color: Colors.grey),
                           ],
                         ),
                       ),
 
                       SizedBox(height: 20),
-
-
-                     
 
                       SizedBox(height: 50),
 
@@ -101,13 +97,13 @@ class _CreatePasswordState extends State<CreatePassword> {
                               borderRadius: BorderRadius.circular(5.0),
                               side: BorderSide(color: ThemeColors.Buttons),
                             ),
-                         onPressed: (){
-                        Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginEmail()),
-                                  );
-                         },
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginEmail()),
+                              );
+                            },
                             color: ThemeColors.Buttons,
                             textColor: Colors.white,
                             child: Text("Save")),
@@ -118,29 +114,20 @@ class _CreatePasswordState extends State<CreatePassword> {
                   ),
                 ),
               ),
-             Positioned(
-               
-                top: -35,
-                left: 15,
-                right: 15,
-                height: 80,
-                child: Card(
-                 
-                 
-                  elevation: 10,
-                  color: ThemeColors.Buttons,
-                  child: Center(child: Icon(Icons.lock)),
-                  
-
-                  
-                )
-              
-              ),
+              Positioned(
+                  top: -35,
+                  left: 15,
+                  right: 15,
+                  height: 80,
+                  child: Card(
+                    elevation: 10,
+                    color: ThemeColors.Buttons,
+                    child: Center(child: Icon(Icons.lock)),
+                  )),
             ],
           ),
         ),
       ),
     );
-
   }
 }

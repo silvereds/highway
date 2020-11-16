@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 // We'll use this through out our project in other not to
 // use colors.() in our prject
 // Make sure to assign all colors here for refrerence
@@ -18,6 +19,7 @@ class ThemeColors {
   static const CheckText = Color(0xFFAAAAAA);
    static const Buttons = Color(0xFF4EB181);
    static const TextGreen = Color(0xFF14A09F);
+   static const ForgotPassword = Color(0xFF109CF1);
   
   static const black = Color(0xFF000000);
   static const grey = Color(0xFF999999);
