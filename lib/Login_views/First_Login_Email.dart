@@ -1,14 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:gestures/gestures.dart';
+import 'package:mobile/Login_views/First_Login_sms.dart';
 
-class LoginEmail extends StatefulWidget {
+
+class FirstLoginEmail extends StatefulWidget {
   @override
-  _LoginEmailState createState() => _LoginEmailState();
+  _FirstLoginEmailState createState() => _FirstLoginEmailState();
 }
 
-class _LoginEmailState extends State<LoginEmail> {
+class _FirstLoginEmailState extends State<FirstLoginEmail> {
   bool valuefirst = false;
 
   @override
@@ -150,7 +151,7 @@ class _LoginEmailState extends State<LoginEmail> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginEmail()),
+                                    builder: (context) => FirstLoginsms()),
                               );
                             },
                             color: ThemeColors.Buttons,

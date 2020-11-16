@@ -1,11 +1,15 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/splash_screen.dart';
 import 'package:mobile/Login_views/First_Login_Email.dart';
-// import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/shared/const_color.dart';
 
 void main() {
-  runApp(DevicePreview(builder: (context) => MyApp()));
+  runApp( MyApp());
+
+  runApp(DevicePreview(builder: (context) => MyApp()));    //<-- Comment  this line off if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
