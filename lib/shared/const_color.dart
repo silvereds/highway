@@ -17,6 +17,7 @@ class ThemeColors {
   static const CheckColor = Color(0xFF4EB181);
   static const CheckText = Color(0xFFAAAAAA);
    static const Buttons = Color(0xFF4EB181);
+   static const TextGreen = Color(0xFF14A09F);
   
   static const black = Color(0xFF000000);
   static const grey = Color(0xFF999999);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/Login_views/Create_password.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:flutter/gestures.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -104,11 +105,12 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                     },
 
                                     ignoreBlank: false,
-              autoValidateMode: AutovalidateMode.disabled,
-              selectorTextStyle: TextStyle(color: Colors.black),
-             initialValue: number,
-              textFieldController: controller,
-              // inputBorder: OutlineInputBorder(),
+                                    autoValidateMode: AutovalidateMode.disabled,
+                                    selectorTextStyle:
+                                        TextStyle(color: Colors.black),
+                                    initialValue: number,
+                                    textFieldController: controller,
+                                  
                                   )
                                 ],
                               ),
@@ -162,8 +164,11 @@ class _LoginsmsState extends State<FirstLoginsms> {
                               side: BorderSide(color: ThemeColors.Buttons),
                             ),
                             onPressed: () {
-                              
-                              
+                              Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CreatePassword()),
+                              );
                             },
                             color: ThemeColors.Buttons,
                             textColor: Colors.white,
