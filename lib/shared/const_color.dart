@@ -20,6 +20,8 @@ class ThemeColors {
    static const Buttons = Color(0xFF4EB181);
    static const TextGreen = Color(0xFF14A09F);
    static const ForgotPassword = Color(0xFF109CF1);
+   static const VerifyIdentityText = Color(0xFFCACACA);
+   static const ResendCode = Color(0xFF2AA694);
   
   static const black = Color(0xFF000000);
   static const grey = Color(0xFF999999);
