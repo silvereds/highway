@@ -1,5 +1,6 @@
  import 'package:flutter/material.dart';
  import 'package:mobile/shared/const_color.dart';
+ import 'package:mobile/Login_views/under_construction.dart';
  import 'package:flutter/gestures.dart';
 
 
@@ -56,7 +57,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                       ), 
                          SizedBox(height: 20),
 
-                      Text("A short code has been send to your phone number via SMS. Please enter the code below to verify your identity",   style: TextStyle(color: ThemeColors.VerifyIdentityText, fontSize: 20,  height: 1.5,fontFamily: 'Roboto', fontWeight: FontWeight.bold ),     textAlign: TextAlign.start, ),
+                      Text("A short code has been send to your phone number via SMS. Please enter the code below to verify your identity",   style: TextStyle(color: ThemeColors.VerifyIdentityText, fontSize: 20,  height: 1.5,fontFamily: 'Roboto', fontWeight: FontWeight.bold, ),     textAlign: TextAlign.start, ),
                       
                        SizedBox(height: 15),
                             Center(
@@ -93,11 +94,11 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                   side: BorderSide(color: ThemeColors.Buttons),
                                 ),
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => ()),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => UnderConstruction()),
+                                  );
                                 },
                                 color: ThemeColors.Buttons,
                                 textColor: Colors.white,
