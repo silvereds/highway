@@ -1,8 +1,8 @@
- import 'package:flutter/material.dart';
- import 'package:mobile/shared/const_color.dart';
- import 'package:mobile/Login_views/under_construction.dart';
- import 'package:flutter/gestures.dart';
-
+import 'package:flutter/material.dart';
+import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/Login_views/under_construction.dart';
+import 'package:flutter/gestures.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyIdentity extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class VerifyIdentity extends StatefulWidget {
 class _VerifyIdentityState extends State<VerifyIdentity> {
   @override
   Widget build(BuildContext context) {
-     return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -42,7 +42,6 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      
                       Center(
                         child: Text(
                           'Verify your Identity',
@@ -51,39 +50,73 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                             fontSize: 28, /*fontFamily:*/
                           ),
                         ),
-                        
-
-                         
-                      ), 
-                         SizedBox(height: 20),
-
-                      Text("A short code has been send to your phone number via SMS. Please enter the code below to verify your identity",   style: TextStyle(color: ThemeColors.VerifyIdentityText, fontSize: 20,  height: 1.5,fontFamily: 'Roboto', fontWeight: FontWeight.bold, ),     textAlign: TextAlign.center, ),
-                      
-                       SizedBox(height: 15),
-                            Center(
-                              child: RichText(
-                                text: TextSpan(children: <TextSpan>[
-                                  TextSpan(
-                                    text: '  Resend Code',
-                                    style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: ThemeColors.ResendCode,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Roboto'),
-                                    recognizer: TapGestureRecognizer(),
-                                  )
-                                ]),
-                              ),
-                            ),
-
-                     
-
+                      ),
                       SizedBox(height: 20),
-
+                      Text(
+                        "A short code has been sent to your phone number via SMS. Please enter the code below to verify your identity",
+                        style: TextStyle(
+                          color: ThemeColors.VerifyIdentityText,
+                          fontSize: 20,
+                          height: 1.5,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 15),
+                      Center(
+                        child: RichText(
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                              text: '  Resend Code',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: ThemeColors.ResendCode,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Roboto'),
+                              recognizer: TapGestureRecognizer(),
+                            )
+                          ]),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      PinCodeTextField(
+                        appContext: context,
+                        length: 5,
+                        onChanged: (valu) {
+                          print(valu);
+                        },
+                        pastedTextStyle: TextStyle(
+                          color: ThemeColors.CheckColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        obscureText: false,
+                        obscuringCharacter: '*',
+                        animationType: AnimationType.fade,
+                        pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(10),
+                            fieldHeight: 86,
+                            fieldWidth: 32,
+                            activeFillColor: Colors.orange),
+                        cursorColor: Colors.black,
+                        animationDuration: Duration(milliseconds: 300),
+                        validator: (v) {
+                          if (v.length < 5) {
+                            return "Not Complete";
+                          } else {
+                            return null;
+                          }
+                        },
+                        onCompleted: (v) {
+                          print("Completed");
+                        },
+                      ),
+                      SizedBox(height: 20),
                       SizedBox(height: 50),
                       Container(
-                        alignment: Alignment.bottomRight,
+                        alignment: Alignment.center,
                         child: Column(
                           children: [
                             FlatButton(
@@ -97,27 +130,27 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => UnderConstruction()),
+                                        builder: (context) =>
+                                            UnderConstruction()),
                                   );
                                 },
                                 color: ThemeColors.Buttons,
                                 textColor: Colors.white,
-                                child: Text("Verify",  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, ),)),
+                                child: Text(
+                                  "Verify",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
                             SizedBox(height: 15),
-                          
                           ],
                         ),
                       ),
-
-
-                      
-
-                      
                     ],
                   ),
                 ),
               ),
-              
             ],
           ),
         ),
