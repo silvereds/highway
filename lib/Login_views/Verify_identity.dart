@@ -57,7 +57,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                       ), 
                          SizedBox(height: 20),
 
-                      Text("A short code has been send to your phone number via SMS. Please enter the code below to verify your identity",   style: TextStyle(color: ThemeColors.VerifyIdentityText, fontSize: 20,  height: 1.5,fontFamily: 'Roboto', fontWeight: FontWeight.bold, ),     textAlign: TextAlign.start, ),
+                      Text("A short code has been send to your phone number via SMS. Please enter the code below to verify your identity",   style: TextStyle(color: ThemeColors.VerifyIdentityText, fontSize: 20,  height: 1.5,fontFamily: 'Roboto', fontWeight: FontWeight.bold, ),     textAlign: TextAlign.center, ),
                       
                        SizedBox(height: 15),
                             Center(
