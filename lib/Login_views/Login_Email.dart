@@ -102,7 +102,7 @@ class _LoginEmailState extends State<LoginEmail> {
                                       decoration: InputDecoration(
                                           hintText: 'Password',
                                           border: InputBorder.none,
-                                          prefix: Icon(Icons.lock)),
+                                          prefix: Icon(Icons.lock_outline)),
                                     ),
                                     Divider(color: Colors.grey),
                                   ],

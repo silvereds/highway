@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Login_views/under_construction.dart';
+//import 'package:mobile/Login_views/under_construction.dart';
 import 'package:flutter/gestures.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:mobile/Transactions_views/dashboard.dart';
 
 class VerifyIdentity extends StatefulWidget {
   @override
@@ -99,19 +100,16 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                         animationType: AnimationType.fade,
                         pinTheme: PinTheme(
                             shape: PinCodeFieldShape.box,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(5.0),
                             fieldHeight: 86,
                             fieldWidth: 32,
-                            activeFillColor: Colors.orange),
+                            activeFillColor: Colors.green),
                         cursorColor: Colors.black,
                         animationDuration: Duration(milliseconds: 300),
-                        validator: (v) {
-                          if (v.length < 5) {
-                            return "Not Complete";
-                          } else {
-                            return null;
-                          }
-                        },
+                        keyboardType: TextInputType.number,
+           
+                      
+                        
                         onCompleted: (v) {
                           print("Completed");
                         },
@@ -126,7 +124,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                 minWidth: 133,
                                 height: 40.02,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(2.0),
+                                  borderRadius: BorderRadius.circular(5.0),
                                   side: BorderSide(color: ThemeColors.Buttons),
                                 ),
                                 onPressed: () {
@@ -134,7 +132,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            UnderConstruction()),
+                                            DashBoard()),
                                   );
                                 },
                                 color: ThemeColors.Buttons,

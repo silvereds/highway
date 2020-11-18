@@ -115,7 +115,7 @@ class _LoginSmsState extends State<LoginSms> {
                                     decoration: InputDecoration(
                                         hintText: 'Password',
                                         border: InputBorder.none,
-                                        prefix: Icon(Icons.lock), fillColor: Colors.white),
+                                        prefix: Icon(Icons.lock_outline), fillColor: Colors.white),
                                   ),
                                   Divider(color: Colors.grey),
                                 ],

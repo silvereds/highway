@@ -21,8 +21,12 @@ dependencies:
 # For gesture
   gestures: ^0.0.1
 
+  # For pin input filed
   pin_code_fields: ^6.0.1
 
+   # To pick image from phone or camera
+  image_picker: ^0.6.7+14
+   
 
   
 
