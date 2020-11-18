@@ -147,7 +147,10 @@ class _LoginEmailState extends State<LoginEmail> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Roboto'),
-                                  recognizer: TapGestureRecognizer(),
+                                  recognizer: TapGestureRecognizer()
+                                     ..onTap = (){
+                                      print('Forgot password');
+                                    }
                                 )
                               ]),
                             )

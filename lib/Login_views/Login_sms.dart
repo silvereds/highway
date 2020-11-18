@@ -50,7 +50,7 @@ class _LoginSmsState extends State<LoginSms> {
                     children: [
                       SizedBox(height: 120),
                       Text(
-                        'Login with s:',
+                        'Login with:',
                         style: TextStyle(
                           color: Colors.green,
                           fontSize: 18, /*fontFamily:*/
@@ -115,7 +115,7 @@ class _LoginSmsState extends State<LoginSms> {
                                     decoration: InputDecoration(
                                         hintText: 'Password',
                                         border: InputBorder.none,
-                                        prefix: Icon(Icons.lock)),
+                                        prefix: Icon(Icons.lock), fillColor: Colors.white),
                                   ),
                                   Divider(color: Colors.grey),
                                 ],
@@ -160,7 +160,10 @@ class _LoginSmsState extends State<LoginSms> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Roboto'),
-                                  recognizer: TapGestureRecognizer(),
+                                  recognizer: TapGestureRecognizer()
+                                     ..onTap = (){
+                                      print('Forgot password "');
+                                    }
                                 )
                               ]),
                             )

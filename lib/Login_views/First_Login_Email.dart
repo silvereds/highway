@@ -129,7 +129,10 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                                         color: ThemeColors.CheckColor,
                                         fontSize: 14,
                                         fontFamily: 'Roboto'),
-                                    recognizer: TapGestureRecognizer(),
+                                    recognizer: TapGestureRecognizer()
+                                       ..onTap = (){
+                                      print('Terms and conditions"');
+                                    }
                                   )
                                 ]),
                           )
@@ -159,7 +162,7 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                             child: Text("Login")),
                       ),
 
-                      //CONTINUE BUILDING HERE
+                  
                     ],
                   ),
                 ),

@@ -75,7 +75,10 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Roboto'),
-                              recognizer: TapGestureRecognizer(),
+                              recognizer: TapGestureRecognizer()
+                                 ..onTap = (){
+                                      print('Resend code');
+                                    }
                             )
                           ]),
                         ),
@@ -114,7 +117,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                         },
                       ),
                       SizedBox(height: 20),
-                      SizedBox(height: 50),
+                    
                       Container(
                         alignment: Alignment.center,
                         child: Column(
@@ -123,7 +126,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                 minWidth: 133,
                                 height: 40.02,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderRadius: BorderRadius.circular(2.0),
                                   side: BorderSide(color: ThemeColors.Buttons),
                                 ),
                                 onPressed: () {
@@ -135,7 +138,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                   );
                                 },
                                 color: ThemeColors.Buttons,
-                                textColor: Colors.white,
+                                textColor: ThemeColors.white,
                                 child: Text(
                                   "Verify",
                                   style: TextStyle(

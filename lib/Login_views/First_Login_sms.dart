@@ -50,7 +50,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                     children: [
                       SizedBox(height: 120),
                       Text(
-                        'Login with s:',
+                        'Login with:',
                         style: TextStyle(
                           color: Colors.green,
                           fontSize: 18, /*fontFamily:*/
@@ -145,7 +145,10 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                         color: ThemeColors.CheckColor,
                                         fontSize: 14,
                                         fontFamily: 'Roboto'),
-                                    recognizer: TapGestureRecognizer(),
+                                    recognizer: TapGestureRecognizer()
+                                    ..onTap = (){
+                                      print('Terms and conditions"');
+                                    }
                                   )
                                 ]),
                           )
