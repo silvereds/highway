@@ -8,7 +8,7 @@ import 'package:mobile/splash_screen.dart';
 
 void main() {
   runApp( MyApp());
- runApp(DevicePreview(builder: (context) => MyApp()));    //<-- Comment  this line off if you want to run without Device preview
+//  runApp(DevicePreview(builder: (context) => MyApp()));    //<-- Comment  this line off if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {

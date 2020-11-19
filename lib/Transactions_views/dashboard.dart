@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:mobile/shared/const_color.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -9,6 +10,14 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   int _currentIndex = 0;
+
+
+  Map<String, double> dataMap = {
+    "Others": 1,
+    "Business": 6,
+    "Personal": 3,
+    
+  };
 
   // File _image
 
@@ -684,7 +693,7 @@ Container(
 
                 Container(
                   margin: EdgeInsets.all(35),
-                  height: 170,
+                  height: 300,
                   width: 323,
                   child: Stack(
                     clipBehavior: Clip.none,
@@ -694,6 +703,7 @@ Container(
                 child: Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: Column(
+                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       RichText(
@@ -704,24 +714,38 @@ Container(
                                 color: Color(0xFF192A3E), fontSize: 18)),
                        
                       ])),
-                     
-                     
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(child: Divider(thickness: 2,)),
-                    
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'New Transfer',
-                            style:
-                                TextStyle(color: ThemeColors.Text, fontSize: 13),
-                          ),
+
+                      SizedBox(height:10 ,),
+
+
+                      PieChart(dataMap: dataMap, 
+                       animationDuration: Duration(milliseconds: 800),
+                       chartType: ChartType.ring,
+                      // chartRadius: 200,
+                       chartLegendSpacing: 1,
+                         chartRadius: MediaQuery.of(context).size.width / 2.9,
+                          colorList: colorList,
+                          initialAngleInDegree: 90,
+                            ringStrokeWidth: 10,
+                            legendOptions: LegendOptions(legendPosition: LegendPosition.right,showLegends: false, ),
+                         //   centerText: 
                         
-                        ],
-                      )
+                          chartValuesOptions: ChartValuesOptions(
+       // showChartValueBackground: true,
+       // showChartValues: true,
+       // showChartValuesInPercentage: false,
+       // showChartValuesOutside: false,
+      ),
+                      
+
+                       
+                      
+                      ),
+
+
+                       
+                     
+                     
                     ],
                   ),
                 ),

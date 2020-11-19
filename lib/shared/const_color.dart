@@ -46,3 +46,9 @@ class ThemeColors {
   static const Text = Color(0xFF219653);
   
 }
+
+  List<Color> colorList = [
+    Color(0xFFF7685B),
+    Color(0xFF2ED47A),
+    Color(0xFFFFB946),
+  ];

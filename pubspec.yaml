@@ -26,6 +26,8 @@ dependencies:
 
    # To pick image from phone or camera
   image_picker: ^0.6.7+14
+
+  pie_chart: ^4.0.1
    
 
   
