@@ -15,7 +15,7 @@ class ThemeColors {
   static const Group = Color(0xFF4CAF50);
   static const RegisterC = Color(0xFF00CDAC);
   static const RegisterCl = Color(0xFF4EB181);
-  static const white = Colors.white;
+ 
   static const CheckColor = Color(0xFF4EB181);
   static const CheckText = Color(0xFFAAAAAA);
   static const Buttons = Color(0xFF4EB181);

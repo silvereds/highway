@@ -117,8 +117,9 @@ class _CreatePasswordState extends State<CreatePassword> {
               Positioned(
                   top: -35,
                   left: 15,
-                  right: 15,
-                  height: 80,
+                 
+                  height: 63,
+                  width: 63,
                   child: Card(
                     elevation: 10,
                     color: ThemeColors.Buttons,

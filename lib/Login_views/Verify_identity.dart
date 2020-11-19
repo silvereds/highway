@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-//import 'package:mobile/Login_views/under_construction.dart';
+import 'package:mobile/Login_views/under_construction.dart';
 import 'package:flutter/gestures.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:mobile/Transactions_views/dashboard.dart';
@@ -136,7 +136,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                   );
                                 },
                                 color: ThemeColors.Buttons,
-                                textColor: ThemeColors.white,
+                                textColor: Color(0xFFFFFFFF),
                                 child: Text(
                                   "Verify",
                                   style: TextStyle(
