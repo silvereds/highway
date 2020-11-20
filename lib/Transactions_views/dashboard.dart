@@ -19,6 +19,13 @@ class _DashBoardState extends State<DashBoard> {
     
   };
 
+
+    bool _showCenterText = true;
+   bool   _showChartValueBackground = false;
+     
+
+
+
   // File _image
 
   @override
@@ -704,14 +711,14 @@ Container(
                   padding: const EdgeInsets.all(14.0),
                   child: Column(
                      mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  //  crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       RichText(
                           text: TextSpan(children: <TextSpan>[
                         TextSpan(
                             text: '% Transactions / Accounts :',
                             style: TextStyle(
-                                color: Color(0xFF192A3E), fontSize: 18)),
+                                color: Color(0xFF192A3E), fontSize: 18), ),
                        
                       ])),
 
@@ -721,26 +728,36 @@ Container(
                       PieChart(dataMap: dataMap, 
                        animationDuration: Duration(milliseconds: 800),
                        chartType: ChartType.ring,
+                        centerText: _showCenterText ? "60 %" : null,
                       // chartRadius: 200,
                        chartLegendSpacing: 1,
                          chartRadius: MediaQuery.of(context).size.width / 2.9,
                           colorList: colorList,
                           initialAngleInDegree: 90,
                             ringStrokeWidth: 10,
-                            legendOptions: LegendOptions(legendPosition: LegendPosition.right,showLegends: false, ),
+                            legendOptions: LegendOptions(legendPosition: LegendPosition.right, showLegends: false, legendTextStyle: TextStyle() ),
                          //   centerText: 
                         
                           chartValuesOptions: ChartValuesOptions(
-       // showChartValueBackground: true,
-       // showChartValues: true,
-       // showChartValuesInPercentage: false,
-       // showChartValuesOutside: false,
+     
+       showChartValues: false,
+       chartValueStyle: TextStyle(fontSize: 56, color: Color(0xFF2ED47A)),
+       showChartValueBackground:  _showChartValueBackground 
       ),
                       
 
                        
                       
                       ),
+
+
+                      Divider(thickness: 1,), 
+
+                      Text('LEGEND', style: TextStyle(color: Color(0xFF999999), fontSize: 12,), textAlign: TextAlign.left ),
+
+                      
+
+
 
 
                        
