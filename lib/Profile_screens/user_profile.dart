@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/Profile_screens/change_password_screen.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -234,7 +235,7 @@ class _UserProfileState extends State<UserProfile> {
                     color: Color(0xFF2F80ED),
                     indent: 50,
                     endIndent: 50,
-                    thickness: 2,
+                    thickness: 1,
                   ),
                   SizedBox(
                     height: 40,
@@ -318,11 +319,23 @@ class _UserProfileState extends State<UserProfile> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       FlatButton(
+                          shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  side: BorderSide(color: ThemeColors.Buttons),
+                                ),
                         child: Text(
                           'Change Password',
                           style: TextStyle(fontSize: 13),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChangePassword()),
+                                 );
+
+
+                        },
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),
                         height: 33,
@@ -331,6 +344,10 @@ class _UserProfileState extends State<UserProfile> {
                         width: 30,
                       ),
                       FlatButton(
+                          shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  side: BorderSide(color: ThemeColors.Buttons),
+                                ),
                         child: Text(
                           'Close',
                           style: TextStyle(fontSize: 13),
