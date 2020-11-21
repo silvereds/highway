@@ -99,7 +99,7 @@ class _UserProfileState extends State<UserProfile> {
                         style: TextStyle(
                             color: Color(0xFF000000),
                             fontSize: 30,
-                            fontWeight: FontWeight.bold),
+                             fontFamily: 'Poppins',),
                       ),
                       SizedBox(
                         height: 10,
@@ -109,7 +109,8 @@ class _UserProfileState extends State<UserProfile> {
                         style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 18,
-                            fontWeight: FontWeight.w400),
+                           fontFamily: 'Poppins', fontWeight: FontWeight.w200 ),
+                           
                       ),
                       SizedBox(
                         height: 10,

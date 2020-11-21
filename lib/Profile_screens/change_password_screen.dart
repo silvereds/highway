@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-
 
 class ChangePassword extends StatefulWidget {
   @override
@@ -8,24 +7,71 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
+  final _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          color: Colors.black,
+          onPressed: () {},
+          iconSize: 36,
+        ),
         title: Image.asset(
           'assets/images/HIGHWEH_HORIZONTAL.png',
           fit: BoxFit.contain,
           height: 45,
         ),
         centerTitle: true,
+        actions: [CircleAvatar()],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFFFFFFFF),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: ThemeColors.SelectedItemColor,
+        unselectedItemColor: ThemeColors.UnSelectedItemColor,
+        onTap: (v) {
+          //  Respond to item press.
+          setState(() => _currentIndex == 0);
+        },
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.grid_on,
+                size: 30,
+              ),
+              label: ('Dashboad')),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.credit_card,
+                size: 30,
+              ),
+              label: 'Accounts'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.local_atm_outlined,
+                size: 30,
+              ),
+              label: 'Transactions'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.credit_card,
+                size: 30,
+              ),
+              label: 'Devices'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.place_outlined,
+                size: 30,
+              ),
+              label: 'Map'),
+        ],
       ),
       body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [ThemeColors.Background, ThemeColors.LightBackground])),
+        color: Color(0xFFF5F6F8),
+      
         padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
         child: Center(
           child: Stack(
@@ -43,7 +89,6 @@ class _ChangePasswordState extends State<ChangePassword> {
                       SizedBox(
                         height: 30,
                       ),
-
                       Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -53,15 +98,17 @@ class _ChangePasswordState extends State<ChangePassword> {
                               style: TextStyle(
                                 fontSize: 24,
                                 color: ThemeColors.TextGreen,
+                                fontFamily: 'Poppins',
                               ),
                             ),
                             SizedBox(height: 20),
                             TextField(
                               decoration: InputDecoration(
-                                hintText: 'old Password',
+                                hintText: 'Old Password',
                                 hintStyle: TextStyle(
                                   fontSize: 14,
                                   color: Color(0xFF14A09F),
+                                   fontFamily: 'Poppins',
                                 ),
                                 border: InputBorder.none,
                               ),
@@ -73,37 +120,33 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 hintText: 'New password',
                                 hintStyle: TextStyle(
                                   fontSize: 14,
-                                 color: Color(0xFF14A09F),
+                                  color: Color(0xFF14A09F),
                                 ),
                                 border: InputBorder.none,
                               ),
                             ),
                             Divider(color: Colors.grey),
-                             SizedBox(height: 20),
-
-                               TextField(
+                            SizedBox(height: 20),
+                            TextField(
                               decoration: InputDecoration(
                                 hintText: 'Confirm password',
                                 hintStyle: TextStyle(
                                   fontSize: 14,
-                                 color: Color(0xFF14A09F),
+                                  color: Color(0xFF14A09F),
                                 ),
                                 border: InputBorder.none,
                               ),
                             ),
-                             Divider(color: Colors.grey),
+                            Divider(color: Colors.grey),
                           ],
                         ),
                       ),
-
                       SizedBox(height: 20),
-
                       SizedBox(height: 50),
-
                       Container(
                         alignment: Alignment.bottomRight,
                         child: Row(
-                         mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             FlatButton(
                                 minWidth: 97,
@@ -117,17 +160,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   //   context,
                                   //   MaterialPageRoute(
                                   //       builder: (context) => LoginEmail()),
-                                //  );
-                               },
+                                  //  );
+                                },
                                 color: Color(0xFFF44336),
                                 textColor: Colors.white,
                                 child: Text("Cancel")),
-
-                                SizedBox(width: 20,),
-
-
-
-                                 FlatButton(
+                            SizedBox(
+                              width: 20,
+                            ),
+                            FlatButton(
                                 minWidth: 86,
                                 height: 31,
                                 shape: RoundedRectangleBorder(
@@ -139,21 +180,18 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   //   context,
                                   //   MaterialPageRoute(
                                   //       builder: (context) => LoginEmail()),
-                                //  );
-                               },
+                                  //  );
+                                },
                                 color: ThemeColors.Buttons,
                                 textColor: Colors.white,
                                 child: Text("Save")),
                           ],
                         ),
                       ),
-
-                
                     ],
                   ),
                 ),
               ),
-           
             ],
           ),
         ),
