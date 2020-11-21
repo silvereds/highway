@@ -53,7 +53,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                         'Login with:',
                         style: TextStyle(
                           color: Colors.green,
-                          fontSize: 18, /*fontFamily:*/
+                          fontSize: 18,fontFamily: 'Poppins'
                         ),
                       ),
                       SizedBox(
@@ -75,7 +75,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                 Text(
                                   "Email",
                                   style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
+                                    fontSize: 13, fontFamily: 'Poppins', fontWeight: FontWeight.w100
                                   ),
                                 ),
                                 Radio(
@@ -86,7 +86,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                 Text(
                                   "SMS",
                                   style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
+                                    fontSize: 13, fontFamily: 'Poppins',  fontWeight: FontWeight.w100
                                   ),
                                 ),
                               ],
@@ -103,6 +103,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                     onInputValidated: (bool value) {
                                       print(value);
                                     },
+                                     textStyle: TextStyle(color: Color(0xFF90A0B7), fontFamily: 'Poppins', fontSize: 13),
 
                                     ignoreBlank: false,
                                     autoValidateMode: AutovalidateMode.disabled,
@@ -159,23 +160,27 @@ class _LoginsmsState extends State<FirstLoginsms> {
 
                       Container(
                         alignment: Alignment.bottomRight,
-                        child: FlatButton(
-                            minWidth: 133,
-                            height: 40.02,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: BorderSide(color: ThemeColors.Buttons),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CreatePassword()),
-                              );
-                            },
-                            color: ThemeColors.Buttons,
-                            textColor: Colors.white,
-                            child: Text("Login")),
+                        child:  FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CreatePassword()),
+                          );
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Color(0xFFFFFFFF),
+                        height: 33,
+                        
+                      ),
                       ),
 
                       //CONTINUE BUILDING HERE
@@ -202,7 +207,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                     child: Center(
                       child: Text(
                         "Register",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 18, fontFamily: 'Poppins'),
                       ),
                     ),
                   ),

@@ -7,7 +7,7 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  final _currentIndex = 0;
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +28,15 @@ class _ChangePasswordState extends State<ChangePassword> {
         actions: [CircleAvatar()],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
         backgroundColor: Color(0xFFFFFFFF),
         type: BottomNavigationBarType.fixed,
+          selectedFontSize: 18,
         selectedItemColor: ThemeColors.SelectedItemColor,
         unselectedItemColor: ThemeColors.UnSelectedItemColor,
-        onTap: (v) {
+        onTap: (index) {
           //  Respond to item press.
-          setState(() => _currentIndex == 0);
+          setState(() => _currentIndex = index);
         },
         items: [
           BottomNavigationBarItem(

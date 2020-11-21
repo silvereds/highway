@@ -48,7 +48,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                           'Verify your Identity',
                           style: TextStyle(
                             color: Colors.green,
-                            fontSize: 28, /*fontFamily:*/
+                            fontSize: 28, fontFamily: 'Poppins', fontWeight: FontWeight.w200,
                           ),
                         ),
                       ),
@@ -56,10 +56,10 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                       Text(
                         "A short code has been sent to your phone number via SMS. Please enter the code below to verify your identity",
                         style: TextStyle(
-                          color: ThemeColors.VerifyIdentityText,
-                          fontSize: 20,
+                          color: Color(0xFFCACACA),
+                          fontSize: 18,
                           height: 1.5,
-                          fontFamily: 'Roboto',
+                         fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
@@ -72,10 +72,10 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                               text: '  Resend Code',
                               style: TextStyle(
                                   decoration: TextDecoration.underline,
-                                  color: ThemeColors.ResendCode,
-                                  fontSize: 15,
+                                  color: Color(0xFF2AA694),
+                                  fontSize: 13,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'Roboto'),
+                                  fontFamily: 'Poppins'),
                               recognizer: TapGestureRecognizer()
                                  ..onTap = (){
                                       print('Resend code');
@@ -121,29 +121,25 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                         child: Column(
                           children: [
                             FlatButton(
-                                minWidth: 133,
-                                height: 40.02,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: ThemeColors.Buttons),
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DashBoard()),
-                                  );
-                                },
-                                color: ThemeColors.Buttons,
-                                textColor: Color(0xFFFFFFFF),
-                                child: Text(
-                                  "Verify",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DashBoard()),
+                          );
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Color(0xFFFFFFFF),
+                        height: 33,
+                      ),
                             SizedBox(height: 15),
                           ],
                         ),

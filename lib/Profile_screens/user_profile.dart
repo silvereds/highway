@@ -8,7 +8,8 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  final _currentIndex = 0;
+  
+       int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +32,18 @@ class _UserProfileState extends State<UserProfile> {
           actions: [CircleAvatar()],
         ),
         bottomNavigationBar: BottomNavigationBar(
+           currentIndex: _currentIndex,
           backgroundColor: Color(0xFFFFFFFF),
           type: BottomNavigationBarType.fixed,
+          selectedFontSize: 18,
           selectedItemColor: ThemeColors.SelectedItemColor,
           unselectedItemColor: ThemeColors.UnSelectedItemColor,
-          onTap: (v) {
-            //  Respond to item press.
-            setState(() => _currentIndex == 0);
+          onTap: (index) {
+
+         setState(() =>
+           _currentIndex = index 
+         );
+           
           },
           items: [
             BottomNavigationBarItem(
@@ -97,9 +103,10 @@ class _UserProfileState extends State<UserProfile> {
                       Text(
                         'Jane Doe ',
                         style: TextStyle(
-                            color: Color(0xFF000000),
-                            fontSize: 30,
-                             fontFamily: 'Poppins',),
+                          color: Color(0xFF000000),
+                          fontSize: 30,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -109,8 +116,8 @@ class _UserProfileState extends State<UserProfile> {
                         style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 18,
-                           fontFamily: 'Poppins', fontWeight: FontWeight.w200 ),
-                           
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w200),
                       ),
                       SizedBox(
                         height: 10,
@@ -296,7 +303,6 @@ class _UserProfileState extends State<UserProfile> {
                   SizedBox(
                     height: 10,
                   ),
-
                   Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
@@ -315,27 +321,24 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                       )),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       FlatButton(
-                          shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: ThemeColors.Buttons),
-                                ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
                         child: Text(
                           'Change Password',
                           style: TextStyle(fontSize: 13),
                         ),
                         onPressed: () {
                           Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ChangePassword()),
-                                 );
-
-
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChangePassword()),
+                          );
                         },
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),
@@ -345,10 +348,10 @@ class _UserProfileState extends State<UserProfile> {
                         width: 30,
                       ),
                       FlatButton(
-                          shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: ThemeColors.Buttons),
-                                ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
                         child: Text(
                           'Close',
                           style: TextStyle(fontSize: 13),
@@ -360,7 +363,6 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ],
                   ),
-               
                 ],
               ),
             ),

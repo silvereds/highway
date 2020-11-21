@@ -24,7 +24,7 @@ class ThemeColors {
   static const VerifyIdentityText = Color(0xFFCACACA);
   static const ResendCode = Color(0xFF2AA694);
   static const black = Color(0xFF000000);
-  static const grey = Color(0xFF999999);
+
 
   static const BackgroundGradient = LinearGradient(
       begin: Alignment.topRight,
