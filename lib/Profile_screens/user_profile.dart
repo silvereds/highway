@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Profile_screens/change_password_screen.dart';
+import 'package:mobile/Login_views/under_construction.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -19,7 +20,12 @@ class _UserProfileState extends State<UserProfile> {
           leading: IconButton(
             icon: Icon(Icons.menu),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UnderConstruction()),
+            );
+          },
             iconSize: 36,
           ),
           backgroundColor: Colors.white,
@@ -29,7 +35,23 @@ class _UserProfileState extends State<UserProfile> {
             height: 45,
           ),
           centerTitle: true,
-          actions: [CircleAvatar()],
+          actions: [  Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+            child: GestureDetector(
+           
+              child: CircleAvatar(
+                radius: 25,
+                child: Container(
+                    decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                  ),
+                )),
+              ),
+            ),
+          )],
         ),
         bottomNavigationBar: BottomNavigationBar(
            currentIndex: _currentIndex,
@@ -48,7 +70,7 @@ class _UserProfileState extends State<UserProfile> {
           items: [
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.grid_on,
+                   Icons.dashboard_outlined,
                   size: 30,
                 ),
                 label: ('Dashboad')),

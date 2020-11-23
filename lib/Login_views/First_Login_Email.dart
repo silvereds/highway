@@ -56,64 +56,70 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                         height: 10,
                       ),
 
-                      Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Radio(
-                                  value: 0,
-                                  groupValue: 0,
-                                  onChanged: null,
-                                ),
-                                Text(
-                                  "Email",
-                                  style: TextStyle(
-                                    fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
-                                  ),
-                                ),
-                                Radio(
-                                  value: 1,
-                                  groupValue: 0,
-                                  onChanged: null,
-                                ),
-                                Text(
-                                  "SMS",
-                                  style: TextStyle(
-                                    fontSize: 13,fontFamily:'Poppins', color: Color(0xFF334D6E)
-                                  ),
-                                ),
-                              ],
+                      // RadioListTile(value: 0, groupValue: 0, title: Text('Email'), onChanged: (val){print('Email $val');},activeColor: Color(0xFF4EB181),),
+                      //    RadioListTile(value: 1, groupValue: 0, title: Text('Sms'), onChanged: (val){print('sms $val'); }, activeColor: Color(0xFF4EB181),),
+
+                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+
+
+                          Radio(
+                            activeColor: Color(0xFF4EB181),
+                            value: 0,
+                            groupValue: 1,
+                                onChanged: (val){ 
+                              print('Radio $val');
+                            },
+                          ),
+                          Text(
+                            "Email",
+                            style: TextStyle(
+                              fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
                             ),
-                            SizedBox(height: 20),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                      hintText: 'Email Address',
-                                                 hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFFAAAAAA),
-                                  fontFamily: 'Roboto'
-                                ),
-                                      border: InputBorder.none,
-                                      prefix: Icon(Icons.mail)),
-                                ),
-                              ),
-                            )
-                          ],
+                          ),
+                          Radio(
+                            activeColor: Color(0xFF4EB181),
+                            value: 1,
+                            groupValue: 0,
+                            onChanged: (val){ 
+                              print('Radio $val');
+                            },
+                          ),
+                          Text(
+                            "SMS",
+                            style: TextStyle(
+                              fontSize: 13,fontFamily:'Poppins', color: Color(0xFF334D6E)
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: 'Email Address',
+                                         hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFFAAAAAA),
+                          fontFamily: 'Roboto'
+                        ),
+                              border: InputBorder.none,
+                              prefix: Icon(Icons.mail)),
                         ),
                       ),
 
                       SizedBox(height: 20),
 
                       Row(
+                      
                         children: [
                           Checkbox(
-                              checkColor: ThemeColors.CheckColor,
+                          checkColor: ThemeColors.CheckColor,
+                              // activeColor: Color(0xFFFFFFFF),
+                
                               value: this.valuefirst,
                               onChanged: (bool value) {
                                 setState(() {

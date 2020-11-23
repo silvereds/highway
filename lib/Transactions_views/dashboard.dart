@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 // import 'package:image_picker/image_picker.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:mobile/Login_views/under_construction.dart';
+import 'package:mobile/Profile_screens/user_profile.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -29,7 +31,12 @@ class _DashBoardState extends State<DashBoard> {
         leading: IconButton(
           icon: Icon(Icons.menu),
           color: Colors.black,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UnderConstruction()),
+            );
+          },
           iconSize: 36,
         ),
         backgroundColor: Colors.white,
@@ -39,7 +46,30 @@ class _DashBoardState extends State<DashBoard> {
           height: 45,
         ),
         centerTitle: true,
-        actions: [CircleAvatar()],
+        actions: [
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserProfile()),
+                );
+              },
+              child: CircleAvatar(
+                radius: 25,
+                child: Container(
+                    decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                  ),
+                )),
+              ),
+            ),
+          )
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -55,7 +85,7 @@ class _DashBoardState extends State<DashBoard> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.grid_on,
+                Icons.dashboard_outlined,
                 size: 30,
               ),
               label: ('Dashboad')),
@@ -131,10 +161,14 @@ class _DashBoardState extends State<DashBoard> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'New Transfer',
-                                  style: TextStyle(
-                                      color: ThemeColors.Text, fontSize: 13),
+                                GestureDetector(
+                                  onTap: (){ print('New transfer');},
+                                                                  child: Text(
+                                    'New Transfer',
+                                    style: TextStyle(
+                                        color: ThemeColors.Text, fontSize: 13),
+                                        
+                                  ),
                                 ),
                                 Text(
                                   'Recharge',
@@ -515,7 +549,7 @@ class _DashBoardState extends State<DashBoard> {
                               horizontal: 22.0, vertical: 18.0),
                           child: Center(
                             child: Icon(
-                              Icons.grid_on,
+                              Icons.dashboard_outlined,
 
                               // child: Text(
                               //   "\$",
