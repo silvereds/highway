@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/splash_screen.dart';
-import 'package:mobile/Profile_screens/user_profile.dart';
+ import 'package:mobile/Profile_screens/user_profile.dart';
+// import 'package:mobile/Profile_screens/change_password_screen.dart';
 
 
 
@@ -23,6 +24,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home:   UserProfile());
+        home:  SplashScreen());
   }
 }

@@ -48,67 +48,78 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                       Text(
                         'Login with:',
                         style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 18, /*fontFamily:*/
+                          color: Color(0xFF4EB181),
+                          fontSize: 18, fontFamily: 'Poppins'
                         ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
 
-                      Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Radio(
-                                  value: 0,
-                                  groupValue: 0,
-                                  onChanged: null,
-                                ),
-                                Text(
-                                  "Email",
-                                  style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
-                                  ),
-                                ),
-                                Radio(
-                                  value: 1,
-                                  groupValue: 0,
-                                  onChanged: null,
-                                ),
-                                Text(
-                                  "SMS",
-                                  style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
-                                  ),
-                                ),
-                              ],
+                      // RadioListTile(value: 0, groupValue: 0, title: Text('Email'), onChanged: (val){print('Email $val');},activeColor: Color(0xFF4EB181),),
+                      //    RadioListTile(value: 1, groupValue: 0, title: Text('Sms'), onChanged: (val){print('sms $val'); }, activeColor: Color(0xFF4EB181),),
+
+                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+
+
+                          Radio(
+                            activeColor: Color(0xFF4EB181),
+                            value: 0,
+                            groupValue: 1,
+                                onChanged: (val){ 
+                              print('Radio $val');
+                            },
+                          ),
+                          Text(
+                            "Email",
+                            style: TextStyle(
+                              fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
                             ),
-                            SizedBox(height: 20),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                      hintText: 'Email Address',
-                                      border: InputBorder.none,
-                                      prefix: Icon(Icons.mail)),
-                                ),
-                              ),
-                            )
-                          ],
+                          ),
+                          Radio(
+                            activeColor: Color(0xFF4EB181),
+                            value: 1,
+                            groupValue: 0,
+                            onChanged: (val){ 
+                              print('Radio $val');
+                            },
+                          ),
+                          Text(
+                            "SMS",
+                            style: TextStyle(
+                              fontSize: 13,fontFamily:'Poppins', color: Color(0xFF334D6E)
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: 'Email Address',
+                                         hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFFAAAAAA),
+                          fontFamily: 'Roboto'
+                        ),
+                              border: InputBorder.none,
+                              prefix: Icon(Icons.mail)),
                         ),
                       ),
 
                       SizedBox(height: 20),
 
                       Row(
+                      
                         children: [
                           Checkbox(
-                              checkColor: ThemeColors.CheckColor,
+                          checkColor: ThemeColors.CheckColor,
+                              // activeColor: Color(0xFFFFFFFF),
+                
                               value: this.valuefirst,
                               onChanged: (bool value) {
                                 setState(() {
@@ -119,7 +130,7 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                             text: TextSpan(
                                 text: 'I agree to the',
                                 style: TextStyle(
-                                    color: ThemeColors.CheckText,
+                                    color: Color(0xFFAAAAAA),
                                     fontSize: 14,
                                     fontFamily: 'Roboto'),
                                 children: <TextSpan>[
@@ -143,23 +154,26 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
 
                       Container(
                         alignment: Alignment.bottomRight,
-                        child: FlatButton(
-                            minWidth: 133,
-                            height: 40.02,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: BorderSide(color: ThemeColors.Buttons),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FirstLoginsms()),
-                              );
-                            },
-                            color: ThemeColors.Buttons,
-                            textColor: Colors.white,
-                            child: Text("Login")),
+                        child:   FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FirstLoginsms()),
+                          );
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Color(0xFFFFFFFF),
+                        height: 33,
+                      ),
                       ),
 
                   
@@ -186,7 +200,7 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                     child: Center(
                       child: Text(
                         "Register",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(color:Color(0xFFFFFFFF), fontSize: 18, fontFamily: 'Poppins'),
                       ),
                     ),
                   ),

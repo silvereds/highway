@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/Profile_screens/change_password_screen.dart';
+import 'package:mobile/Login_views/under_construction.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -7,7 +9,8 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  final _currentIndex = 0;
+  
+       int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,12 @@ class _UserProfileState extends State<UserProfile> {
           leading: IconButton(
             icon: Icon(Icons.menu),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UnderConstruction()),
+            );
+          },
             iconSize: 36,
           ),
           backgroundColor: Colors.white,
@@ -27,21 +35,42 @@ class _UserProfileState extends State<UserProfile> {
             height: 45,
           ),
           centerTitle: true,
-          actions: [CircleAvatar()],
+          actions: [  Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+            child: GestureDetector(
+           
+              child: CircleAvatar(
+                radius: 25,
+                child: Container(
+                    decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                  ),
+                )),
+              ),
+            ),
+          )],
         ),
         bottomNavigationBar: BottomNavigationBar(
+           currentIndex: _currentIndex,
           backgroundColor: Color(0xFFFFFFFF),
           type: BottomNavigationBarType.fixed,
+          selectedFontSize: 18,
           selectedItemColor: ThemeColors.SelectedItemColor,
           unselectedItemColor: ThemeColors.UnSelectedItemColor,
-          onTap: (v) {
-            //  Respond to item press.
-            setState(() => _currentIndex == 0);
+          onTap: (index) {
+
+         setState(() =>
+           _currentIndex = index 
+         );
+           
           },
           items: [
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.grid_on,
+                   Icons.dashboard_outlined,
                   size: 30,
                 ),
                 label: ('Dashboad')),
@@ -96,9 +125,10 @@ class _UserProfileState extends State<UserProfile> {
                       Text(
                         'Jane Doe ',
                         style: TextStyle(
-                            color: Color(0xFF000000),
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold),
+                          color: Color(0xFF000000),
+                          fontSize: 30,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -108,7 +138,8 @@ class _UserProfileState extends State<UserProfile> {
                         style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 18,
-                            fontWeight: FontWeight.w400),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w200),
                       ),
                       SizedBox(
                         height: 10,
@@ -234,7 +265,7 @@ class _UserProfileState extends State<UserProfile> {
                     color: Color(0xFF2F80ED),
                     indent: 50,
                     endIndent: 50,
-                    thickness: 2,
+                    thickness: 1,
                   ),
                   SizedBox(
                     height: 40,
@@ -294,7 +325,6 @@ class _UserProfileState extends State<UserProfile> {
                   SizedBox(
                     height: 10,
                   ),
-
                   Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
@@ -313,16 +343,25 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                       )),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
                         child: Text(
                           'Change Password',
                           style: TextStyle(fontSize: 13),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChangePassword()),
+                          );
+                        },
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),
                         height: 33,
@@ -331,6 +370,10 @@ class _UserProfileState extends State<UserProfile> {
                         width: 30,
                       ),
                       FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
                         child: Text(
                           'Close',
                           style: TextStyle(fontSize: 13),
@@ -342,7 +385,6 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ],
                   ),
-               
                 ],
               ),
             ),

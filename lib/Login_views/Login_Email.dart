@@ -45,8 +45,8 @@ class _LoginEmailState extends State<LoginEmail> {
                       Text(
                         'Login with:',
                         style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 18, /*fontFamily:*/
+                        color: Color(0xFF4EB181),
+                          fontSize: 18, fontFamily: 'Poppins'
                         ),
                       ),
                       SizedBox(
@@ -67,8 +67,7 @@ class _LoginEmailState extends State<LoginEmail> {
                                 ),
                                 Text(
                                   "Email",
-                                  style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
+                                  style: TextStyle( fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
                                   ),
                                 ),
                                 Radio(
@@ -79,7 +78,7 @@ class _LoginEmailState extends State<LoginEmail> {
                                 Text(
                                   "SMS",
                                   style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
+                                    fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
                                   ),
                                 ),
                               ],
@@ -93,6 +92,11 @@ class _LoginEmailState extends State<LoginEmail> {
                                     TextField(
                                       decoration: InputDecoration(
                                           hintText: 'Email Address',
+                                                     hintStyle: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFFAAAAAA),
+                                  fontFamily: 'Roboto'
+                                ),
                                           border: InputBorder.none,
                                           prefix: Icon(Icons.mail)),
                                     ),
@@ -101,6 +105,11 @@ class _LoginEmailState extends State<LoginEmail> {
                                     TextField(
                                       decoration: InputDecoration(
                                           hintText: 'Password',
+                                           hintStyle: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFFAAAAAA),
+                                  fontFamily: 'Roboto'
+                                ),
                                           border: InputBorder.none,
                                           prefix: Icon(Icons.lock_outline)),
                                     ),
@@ -119,23 +128,26 @@ class _LoginEmailState extends State<LoginEmail> {
                         alignment: Alignment.bottomRight,
                         child: Column(
                           children: [
-                            FlatButton(
-                                minWidth: 133,
-                                height: 40.02,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: ThemeColors.Buttons),
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>LoginSms ()),
-                                  );
-                                },
-                                color: ThemeColors.Buttons,
-                                textColor: Colors.white,
-                                child: Text("Login")),
+                           FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginSms()),
+                          );
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Color(0xFFFFFFFF),
+                        height: 33,
+                      ),
                             SizedBox(height: 15),
                             RichText(
                               text: TextSpan(children: <TextSpan>[
@@ -143,10 +155,10 @@ class _LoginEmailState extends State<LoginEmail> {
                                   text: '  Forgot Password?',
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
-                                      color: ThemeColors.ForgotPassword,
+                                      color: Color(0xFF109CF1),
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Roboto'),
+                                      fontFamily: 'Poppins'),
                                   recognizer: TapGestureRecognizer()
                                      ..onTap = (){
                                       print('Forgot password');
@@ -182,7 +194,7 @@ class _LoginEmailState extends State<LoginEmail> {
                     child: Center(
                       child: Text(
                         "Login",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(color:Color(0xFFFFFFFF), fontSize: 18, fontFamily: 'Poppins')
                       ),
                     ),
                   ),

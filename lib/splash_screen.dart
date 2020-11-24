@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           color: ThemeColors.Welcome,
                         ),
                       ),
@@ -50,12 +50,21 @@ class SplashScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "Transfer Money",
-                                  style: TextStyle(color: ThemeColors.black, fontSize: 16, ),
+                                  style: TextStyle(
+                                    color: Color(0xFF000000),
+                                    fontSize: 16,
+                                    fontFamily: 'Roboto',
+                                  ),
                                 ),
                                 SizedBox(height: 20),
                                 Text(
                                   "Send upto 50,000 FCFA to your loved ones without charges.. oh yes, it is free!!",
-                                    style: TextStyle(color: ThemeColors.grey, fontSize: 12,  height: 1.5,fontFamily: 'Roboto' ),
+                                  style: TextStyle(
+                                    color: Color(0xFF999999),
+                                    fontSize: 12,
+                                    height: 1.5,
+                                    fontFamily: 'Roboto',
+                                  ),
                                   textAlign: TextAlign.start,
                                 ),
                               ],
@@ -78,15 +87,22 @@ class SplashScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "Manage Your Devices",
-                                   style: TextStyle(color: ThemeColors.black, fontSize: 16, )
-                                ),
+                                Text("Manage Your Devices",
+                                    style: TextStyle(
+                                      color: Color(0xFF000000),
+                                      fontSize: 16,
+                                      fontFamily: 'Roboto',
+                                    )),
                                 SizedBox(height: 20),
                                 Text(
                                   "Manage your cards, your card readers. Assign them to your loved ones, to your acquaintances as you please and follow in real time all the transactions made on/with your devices.",
                                   textAlign: TextAlign.start,
-                                   style: TextStyle(color: ThemeColors.grey, fontSize: 12,  height: 1.5 ),
+                                  style: TextStyle(
+                                    color: Color(0xFF999999),
+                                    fontSize: 12,
+                                    height: 1.5,
+                                    fontFamily: 'Roboto',
+                                  ),
                                 ),
                               ],
                             ),
@@ -108,17 +124,22 @@ class SplashScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "Manage Your E-wallet Account",
-                                   style: TextStyle(color: ThemeColors.black, fontSize: 16, )
-                                  
-                                ),
+                                Text("Manage Your E-wallet Account",
+                                    style: TextStyle(
+                                      color: Color(0xFF000000),
+                                      fontSize: 16,
+                                      fontFamily: 'Roboto',
+                                    )),
                                 SizedBox(height: 20),
                                 Text(
                                   "View your balance and transaction history. Manage your expenses and revenues.Recharge your acccounts via your mobile money accounts(MTN,Orange,Express Union, etc) or directly via a HighWeh branch or even at a private individual near you.Make your cash withdrawals directly from a HighWeh branch or from an individual near you with better fees than HighWeh",
                                   textAlign: TextAlign.start,
-                                  
-                                   style: TextStyle(color: ThemeColors.grey, fontSize: 12, height: 1.5  ),
+                                  style: TextStyle(
+                                    color: Color(0xFF999999),
+                                    fontSize: 12,
+                                    height: 1.5,
+                                    fontFamily: 'Roboto',
+                                  ),
                                 ),
                               ],
                             ),
@@ -142,12 +163,13 @@ class SplashScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => FirstLoginEmail()),
+                                        builder: (context) =>
+                                            FirstLoginEmail()),
                                   );
                                 },
                                 color: ThemeColors.Buttons,
                                 textColor: Colors.white,
-                                child: Text("Next")),
+                                child: Text("Next", style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'Poppins' ),)),
                           ))
                     ],
                   ),

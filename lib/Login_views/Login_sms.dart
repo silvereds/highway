@@ -51,9 +51,9 @@ class _LoginSmsState extends State<LoginSms> {
                       SizedBox(height: 120),
                       Text(
                         'Login with:',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 18, /*fontFamily:*/
+                       style: TextStyle(
+                        color: Color(0xFF4EB181),
+                          fontSize: 18, fontFamily: 'Poppins'
                         ),
                       ),
                       SizedBox(
@@ -74,8 +74,7 @@ class _LoginSmsState extends State<LoginSms> {
                                 ),
                                 Text(
                                   "Email",
-                                  style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
+                                  style: TextStyle( fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
                                   ),
                                 ),
                                 Radio(
@@ -85,8 +84,7 @@ class _LoginSmsState extends State<LoginSms> {
                                 ),
                                 Text(
                                   "SMS",
-                                  style: TextStyle(
-                                    fontSize: 13, /*fontFamily:*/
+                                  style: TextStyle( fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
                                   ),
                                 ),
                               ],
@@ -97,6 +95,7 @@ class _LoginSmsState extends State<LoginSms> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   InternationalPhoneNumberInput(
+                                     textStyle: TextStyle(color: Color(0xFF90A0B7), fontFamily: 'Poppins', fontSize: 13),
                                     onInputChanged: (PhoneNumber number) {
                                       print(number.phoneNumber);
                                     },
@@ -114,6 +113,7 @@ class _LoginSmsState extends State<LoginSms> {
                                   TextField(
                                     decoration: InputDecoration(
                                         hintText: 'Password',
+                                        hintStyle: TextStyle(color: Color(0xFFAAAAAA), fontFamily: 'Roboto', fontSize: 14),
                                         border: InputBorder.none,
                                         prefix: Icon(Icons.lock_outline), fillColor: Colors.white),
                                   ),
@@ -132,23 +132,26 @@ class _LoginSmsState extends State<LoginSms> {
                         alignment: Alignment.bottomRight,
                         child: Column(
                           children: [
-                            FlatButton(
-                                minWidth: 133,
-                                height: 40.02,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: ThemeColors.Buttons),
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => VerifyIdentity()),
-                                  );
-                                },
-                                color: ThemeColors.Buttons,
-                                textColor: Colors.white,
-                                child: Text("Login")),
+                              FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => VerifyIdentity()),
+                          );
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Color(0xFFFFFFFF),
+                        height: 33,
+                      ),
                             SizedBox(height: 15),
                             RichText(
                               text: TextSpan(children: <TextSpan>[
@@ -194,7 +197,7 @@ class _LoginSmsState extends State<LoginSms> {
                     child: Center(
                       child: Text(
                         "Login",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(color:Color(0xFFFFFFFF), fontSize: 18, fontFamily: 'Poppins')
                       ),
                     ),
                   ),

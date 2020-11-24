@@ -53,16 +53,20 @@ class _CreatePasswordState extends State<CreatePassword> {
                               'Create Password',
                               style: TextStyle(
                                 fontSize: 24,
-                                color: ThemeColors.TextGreen,
+                                color: Color(0xFF14A09F),
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w100
                               ),
                             ),
                             SizedBox(height: 30),
                             TextField(
                               decoration: InputDecoration(
                                 hintText: 'New Password',
+                                
                                 hintStyle: TextStyle(
                                   fontSize: 14,
-                                  color: ThemeColors.TextGreen,
+                                  color: Color(0xFF14A09F),
+                                  fontFamily: 'Poppins'
                                 ),
                                 border: InputBorder.none,
                               ),
@@ -74,7 +78,8 @@ class _CreatePasswordState extends State<CreatePassword> {
                                 hintText: 'Confirm password',
                                 hintStyle: TextStyle(
                                   fontSize: 14,
-                                  color: ThemeColors.TextGreen,
+                                  color: Color(0xFF14A09F),
+                                  fontFamily: 'Poppins'
                                 ),
                                 border: InputBorder.none,
                               ),
@@ -84,29 +89,32 @@ class _CreatePasswordState extends State<CreatePassword> {
                         ),
                       ),
 
-                      SizedBox(height: 20),
+                   
 
                       SizedBox(height: 50),
 
                       Container(
                         alignment: Alignment.bottomRight,
-                        child: FlatButton(
-                            minWidth: 133,
-                            height: 40.02,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: BorderSide(color: ThemeColors.Buttons),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginEmail()),
-                              );
-                            },
-                            color: ThemeColors.Buttons,
-                            textColor: Colors.white,
-                            child: Text("Save")),
+                        child:   FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
+                        child: Text(
+                          'Save',
+                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginEmail()),
+                          );
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Color(0xFFFFFFFF),
+                        height: 33,
+                      ),
                       ),
 
                 
