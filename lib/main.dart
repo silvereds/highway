@@ -3,12 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/splash_screen.dart';
+import 'package:mobile/Profile_screens/user_profile.dart';
 
 
 
 void main() {
   runApp( MyApp());
-//  runApp(DevicePreview(builder: (context) => MyApp()));    //<-- Comment  this line off if you want to run without Device preview
+ runApp(DevicePreview(builder: (context) => MyApp()));    //<-- Comment  this line off if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +23,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home:   SplashScreen());
+        home:   UserProfile());
   }
 }
