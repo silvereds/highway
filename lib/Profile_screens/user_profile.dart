@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Profile_screens/change_password_screen.dart';
 import 'package:mobile/Login_views/under_construction.dart';
+import 'package:mobile/Profile_screens/Company_profile.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -9,12 +10,11 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  
-       int _currentIndex = 0;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
         backgroundColor: Color(0xFFF5F6F8),
         appBar: AppBar(
           leading: IconButton(
@@ -378,7 +378,13 @@ class _UserProfileState extends State<UserProfile> {
                           'Close',
                           style: TextStyle(fontSize: 13),
                         ),
-                        onPressed: () {},
+                           onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CompanyProfileView()),
+                          );
+                        },
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),
                         height: 33,
