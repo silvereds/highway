@@ -148,7 +148,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                         fontFamily: 'Roboto'),
                                     recognizer: TapGestureRecognizer()
                                     ..onTap = (){
-                                      print('Terms and conditions"');
+                                      print(' Terms and conditions"');
                                     }
                                   )
                                 ]),

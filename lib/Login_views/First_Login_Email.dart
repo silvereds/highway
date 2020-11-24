@@ -113,41 +113,36 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
 
                       SizedBox(height: 20),
 
-                      Row(
-                      
-                        children: [
-                          Checkbox(
-                          checkColor: ThemeColors.CheckColor,
-                              // activeColor: Color(0xFFFFFFFF),
+                      Checkbox(
+                      checkColor: ThemeColors.CheckColor,
+                          // activeColor: Color(0xFFFFFFFF),
                 
-                              value: this.valuefirst,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  this.valuefirst = value;
-                                });
-                              }),
-                          RichText(
-                            text: TextSpan(
-                                text: 'I agree to the',
+                          value: this.valuefirst,
+                          onChanged: (bool value) {
+                            setState(() {
+                              this.valuefirst = value;
+                            });
+                          }),
+                      RichText(
+                        text: TextSpan(
+                            text: 'I agree to the',
+                            style: TextStyle(
+                                color: Color(0xFFAAAAAA),
+                                fontSize: 14,
+                                fontFamily: 'Roboto'),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: '  terms and conditions.',
                                 style: TextStyle(
-                                    color: Color(0xFFAAAAAA),
+                                    color: ThemeColors.CheckColor,
                                     fontSize: 14,
                                     fontFamily: 'Roboto'),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: '  terms and conditions.',
-                                    style: TextStyle(
-                                        color: ThemeColors.CheckColor,
-                                        fontSize: 14,
-                                        fontFamily: 'Roboto'),
-                                    recognizer: TapGestureRecognizer()
-                                       ..onTap = (){
-                                      print('Terms and conditions"');
-                                    }
-                                  )
-                                ]),
-                          )
-                        ],
+                                recognizer: TapGestureRecognizer()
+                                   ..onTap = (){
+                                  print('Terms and conditions"');
+                                }
+                              )
+                            ]),
                       ),
 
                       SizedBox(height: 50),
