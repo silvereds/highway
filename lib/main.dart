@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/splash_screen.dart';
- import 'package:mobile/Profile_screens/user_profile.dart';
-// import 'package:mobile/Profile_screens/change_password_screen.dart';
+import 'package:mobile/Login_views/First_Login_Email.dart';
 
 
 
@@ -20,10 +19,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        // theme: ThemeData(
-        //   primarySwatch: Colors.blue,
-        //   visualDensity: VisualDensity.adaptivePlatformDensity,
-        // ),
-        home:  SplashScreen());
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+       initialRoute: '/',
+        routes:
+        
+         {
+
+          '/': (context) => SplashScreen(),
+          '/firstlogin-Email': (context) => FirstLoginEmail()
+        },
+
+
+
+   
+        );
   }
 }
+

@@ -160,12 +160,8 @@ class SplashScreen extends StatelessWidget {
                                   side: BorderSide(color: Colors.green),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            FirstLoginEmail()),
-                                  );
+                                  Navigator.pushNamed(context, '/firstlogin-Email');
+                                  
                                 },
                                 color: ThemeColors.Buttons,
                                 textColor: Colors.white,
