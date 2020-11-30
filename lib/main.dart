@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         
          {
 
-          '/': (context) => AccountsView(),
+          '/': (context) => SplashScreen(),
           '/firstlogin-Email': (context) => FirstLoginEmail()
         },
 
