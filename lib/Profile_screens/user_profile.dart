@@ -14,18 +14,18 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFFF5F6F8),
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.menu),
             color: Colors.black,
             onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UnderConstruction()),
-            );
-          },
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UnderConstruction()),
+              );
+            },
             iconSize: 36,
           ),
           backgroundColor: Colors.white,
@@ -35,42 +35,39 @@ class _UserProfileState extends State<UserProfile> {
             height: 45,
           ),
           centerTitle: true,
-          actions: [  Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-            child: GestureDetector(
-           
-              child: CircleAvatar(
-                radius: 25,
-                child: Container(
-                    decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
-                  ),
-                )),
+          actions: [
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+              child: GestureDetector(
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Container(
+                      decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                    ),
+                  )),
+                ),
               ),
-            ),
-          )],
+            )
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-           currentIndex: _currentIndex,
+          currentIndex: _currentIndex,
           backgroundColor: Color(0xFFFFFFFF),
           type: BottomNavigationBarType.fixed,
           selectedFontSize: 18,
           selectedItemColor: ThemeColors.SelectedItemColor,
           unselectedItemColor: ThemeColors.UnSelectedItemColor,
           onTap: (index) {
-
-         setState(() =>
-           _currentIndex = index 
-         );
-           
+            setState(() => _currentIndex = index);
           },
           items: [
             BottomNavigationBarItem(
                 icon: Icon(
-                   Icons.dashboard_outlined,
+                  Icons.dashboard_outlined,
                   size: 30,
                 ),
                 label: ('Dashboad')),
@@ -154,12 +151,18 @@ class _UserProfileState extends State<UserProfile> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        "Touristic Voyage",
-                        style: TextStyle(
-                            color: Color(0xFF109CF1),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
+                      GestureDetector(
+                        onTap: () =>
+                           Navigator.pushNamed(context,  '/companyProfile'),
+                        child: RichText(
+                            text: TextSpan(
+                                style: TextStyle(
+                                    color: Color(0xFF109CF1),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                                children: [
+                              TextSpan(text: "Touristic Voyage"),
+                            ])),
                       ),
                     ],
                   ),
@@ -378,12 +381,8 @@ class _UserProfileState extends State<UserProfile> {
                           'Close',
                           style: TextStyle(fontSize: 13),
                         ),
-                           onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CompanyProfileView()),
-                          );
+                        onPressed: () {
+                      print('Close');
                         },
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),

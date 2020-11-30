@@ -5,6 +5,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:mobile/splash_screen.dart';
 import 'package:mobile/Login_views/First_Login_Email.dart';
 import 'package:mobile/Account_views/all_accouts.dart';
+import 'package:mobile/Profile_screens/Company_profile.dart';
 
 
 
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
          {
 
           '/': (context) => SplashScreen(),
-          '/firstlogin-Email': (context) => FirstLoginEmail()
+          '/firstlogin-Email': (context) => FirstLoginEmail(),
+          '/companyProfile': (context) => CompanyProfileView(),
         },
 
 
