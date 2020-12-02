@@ -14,7 +14,7 @@ class _AccountsViewState extends State<AccountsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: Color(0xFFF5F6F8),
+        backgroundColor: Color(0xFFF5F6F8),
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -97,20 +97,87 @@ class _AccountsViewState extends State<AccountsView> {
           ],
         ),
         body: Container(
-          color: Color(0xFFFFFFFF),
-          height: 1050,
-          margin: EdgeInsets.fromLTRB(20, 60, 20, 20),
-          child: Stack(children: [
-            ListView.separated(
-              itemCount: entries.length,
-              itemBuilder: (BuildContext context, int index) {
-                
-              },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
-            ),
-          ]),
-          clipBehavior: Clip.none,
+          margin: EdgeInsets.fromLTRB(20, 55, 20, 20),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [
+              BoxShadow(
+                color: Color(
+                  0x23000000,
+                ),
+                offset: Offset(
+                  0,
+                  1,
+                ),
+                blurRadius: 4,
+              ),
+            ],
+          ), 
+          
+          child: Stack(
+              alignment: AlignmentDirectional.center,
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(
+                  top: -30,
+                  left: 15,
+                  height: 63,
+                  width: 63,
+                  child: Container(
+                    width: 49.8,
+                    height: 51.39,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        3,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(
+                            0x23000000,
+                          ),
+                          offset: Offset(
+                            0,
+                            4,
+                          ),
+                          blurRadius: 4,
+                        ),
+                        BoxShadow(
+                          color: Color(
+                            0x66e91e63,
+                          ),
+                          offset: Offset(
+                            0,
+                            7,
+                          ),
+                          blurRadius: 10,
+                          spreadRadius: -5,
+                        ),
+                      ],
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Color(
+                            0xff00cdac,
+                          ),
+                          Color(
+                            0xff4eb181,
+                          ),
+                        ],
+                        stops: [
+                          0,
+                          0.98,
+                        ],
+          
+                      ),
+                    ),
+                     child: Center(child: Icon(Icons.person_outline_outlined)),
+                  ),
+                ),
+              ]),
+              
         ));
   }
 }
