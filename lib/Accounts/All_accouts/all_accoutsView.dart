@@ -114,12 +114,35 @@ class _AccountsViewState extends State<AccountsView> {
                 blurRadius: 4,
               ),
             ],
-          ), 
-          
+          ),
           child: Stack(
               alignment: AlignmentDirectional.center,
               clipBehavior: Clip.none,
               children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "All Accounts",
+                      style: TextStyle(
+                        color: Color(
+                          0xFF3C4858,
+                        ),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: "Poppins",
+                      ),
+                  
+
+                    ),
+                    // contiunue here
+
+                    
+             
+                  ],
+                ),
                 Positioned(
                   top: -30,
                   left: 15,
@@ -170,14 +193,12 @@ class _AccountsViewState extends State<AccountsView> {
                           0,
                           0.98,
                         ],
-          
                       ),
                     ),
-                     child: Center(child: Icon(Icons.person_outline_outlined)),
+                    child: Center(child: Icon(Icons.person_outline_outlined)),
                   ),
                 ),
               ]),
-              
         ));
   }
 }
