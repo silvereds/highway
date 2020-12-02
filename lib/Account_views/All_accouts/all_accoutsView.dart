@@ -14,7 +14,7 @@ class _AccountsViewState extends State<AccountsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF5F888),
+     backgroundColor: Color(0xFFF5F6F8),
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -99,22 +99,18 @@ class _AccountsViewState extends State<AccountsView> {
         body: Container(
           color: Color(0xFFFFFFFF),
           height: 1050,
-          margin: EdgeInsets.fromLTRB(20, 40, 20, 20),
-          child: ListView.separated(
-            
+          margin: EdgeInsets.fromLTRB(20, 60, 20, 20),
+          child: Stack(children: [
+            ListView.separated(
               itemCount: entries.length,
               itemBuilder: (BuildContext context, int index) {
-                  
+                
               },
-              
-              
-                separatorBuilder: (BuildContext context, int index) =>
+              separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),
-              ),
-
-            clipBehavior: Clip.none,    
-        )
-        
-        );
+            ),
+          ]),
+          clipBehavior: Clip.none,
+        ));
   }
 }

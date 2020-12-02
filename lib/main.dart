@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/splash_screen.dart';
 import 'package:mobile/Login_views/First_Login_Email.dart';
-import 'package:mobile/Account_views/all_accouts.dart';
+import 'package:mobile/Account_views/all_accouts/all_accoutsView.dart';
 import 'package:mobile/Profile_screens/Company_profile.dart';
 
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         
          {
 
-          '/': (context) => SplashScreen(),
+          '/': (context) => AccountsView(),
           '/firstlogin-Email': (context) => FirstLoginEmail(),
           '/companyProfile': (context) => CompanyProfileView(),
         },
