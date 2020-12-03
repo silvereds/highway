@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BlockAccountView extends StatefulWidget {
+class ChangeAliasView extends StatefulWidget {
   @override
-  _BlockAccountViewState createState() => _BlockAccountViewState();
+  _ChangeAliasViewState createState() => _ChangeAliasViewState();
 }
 
-class _BlockAccountViewState extends State<BlockAccountView> {
+class _ChangeAliasViewState extends State<ChangeAliasView> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -96,12 +96,15 @@ class _BlockAccountViewState extends State<BlockAccountView> {
           child: Container(
             margin: EdgeInsets.fromLTRB(20, 55, 20, 20),
             height: 380,
-          //  width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular( 6),
+              borderRadius: BorderRadius.circular(6),
               boxShadow: [
-                BoxShadow(color: Color(0x23000000, ),
+                BoxShadow(
+                  color: Color(
+                    0x23000000,
+                  ),
                 ),
               ],
             ),
@@ -112,69 +115,65 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                     height: 40,
                   ),
                   Text(
-                    "Block Account",
+                    "Change Alias",
                     style: TextStyle(
-                      color: Color(0xFF14A09F),
+                      color: Color(
+                        0xff14a09f,
+                      ),
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
                       fontFamily: "Poppins",
                     ),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.end,
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
-                  SizedBox(
-                    child: Text(
-                      "You are about to block your account.",
-                      style: TextStyle(
-                        color: Color(
-                          0xFF999999,
-                        ),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Poppins",
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    width: 150,
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Enter your password to confrim",
-                          style: TextStyle(
-                            color: Color(
-                              0xff14a09f,
-                            ),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                        TextField(
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                          ),
-                        ),
-                        Divider(
+                  Column(
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Enter new Account Alias below.",
+                        style: TextStyle(
                           color: Color(
-                            0xFFD2D2D2,
+                            0xff999999,
                           ),
-                          thickness: 2,
-                          indent: 5,
-                          endIndent: 5,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Poppins",
                         ),
-                        SizedBox(
-                          height: 30,
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        "Alias",
+                        style: TextStyle(
+                          color: Color(
+                            0xff14a09f,
+                          ),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Roboto",
                         ),
+                      ),
+                      TextField(
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                      ),
+                      Divider(
+                        color: Color(
+                          0xff27ae60,
+                        ),
+                        thickness: 2,
+                        indent: 30,
+                        endIndent: 30,
+                      ), 
+                      SizedBox(height: 30,),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -215,7 +214,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                                 color: Color(0xFF4EB181),
                                 textColor: Colors.white,
                                 child: Text(
-                                  "Block",
+                                  "Save",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
@@ -225,8 +224,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                                 ))
                           ],
                         ),
-                      ],
-                    ),
+                    ],
                   ),
                 ],
               ),
