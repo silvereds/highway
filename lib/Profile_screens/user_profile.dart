@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Profile_screens/change_password_screen.dart';
-import 'package:mobile/Login_views/under_construction.dart';
+import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/Profile_screens/Company_profile.dart';
 
 class UserProfile extends StatefulWidget {
@@ -15,19 +15,13 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: NavDrawer(),
         backgroundColor: Color(0xFFF5F6F8),
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UnderConstruction()),
-              );
-            },
-            iconSize: 36,
-          ),
+           iconTheme: IconThemeData(
+           color: Colors.black,
+           size: 36
+           ),
           backgroundColor: Colors.white,
           title: Image.asset(
             'assets/images/HIGHWEH_HORIZONTAL.png',

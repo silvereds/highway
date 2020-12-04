@@ -1,9 +1,12 @@
 import "package:flutter/material.dart";
 // import 'package:image_picker/image_picker.dart';
+
 import 'package:mobile/shared/const_color.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:mobile/Login_views/under_construction.dart';
 import 'package:mobile/Profile_screens/user_profile.dart';
+import 'package:mobile/shared/navDrawer.dart';
+
 
 class DashBoard extends StatefulWidget {
   @override
@@ -27,18 +30,14 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavDrawer(),
+       
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.black,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UnderConstruction()),
-            );
-          },
-          iconSize: 36,
+        iconTheme: IconThemeData(
+           color: Colors.black,
+           
         ),
+       
         backgroundColor: Colors.white,
         title: Image.asset(
           'assets/images/HIGHWEH_HORIZONTAL.png',
