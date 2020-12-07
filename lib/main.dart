@@ -9,7 +9,7 @@ import 'package:mobile/Profile_screens/Company_profile.dart';
 import 'package:mobile/Accounts/block_account/block_accountView.dart';
 import 'package:mobile/Accounts/block_account/change_alias.dart';
 import 'package:mobile/Transactions_views/dashboard.dart';
-import 'package:mobile/shared/navDrawer.dart';
+import 'package:mobile/Accounts/Accounts_details/accounts_detail_view.dart';
 
 
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         
          {
 
-          '/': (context) => AccountsView(),
+          '/': (context) => SplashScreen(),
           '/firstlogin-Email': (context) => FirstLoginEmail(),
           '/companyProfile': (context) => CompanyProfileView(),
          

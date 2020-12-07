@@ -11,8 +11,7 @@ class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
 int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-       bottomNavigationBar: BottomNavigationBar(
+   return  BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedFontSize: 18,
         backgroundColor: Color(0xFFFFFFFF),
@@ -55,8 +54,10 @@ int _currentIndex = 0;
               ),
               label: 'Map'),
         ],
-      ),
+      
       
     );
   }
 }
+
+      

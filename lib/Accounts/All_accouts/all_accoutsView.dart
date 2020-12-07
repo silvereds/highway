@@ -259,8 +259,7 @@ class _AccountsViewState extends State<AccountsView> {
                       endIndent: 5,
                     ),
 
-
- Container(
+                    Container(
                       //  color: Colors.blue,
                       width: 326,
                       height: 133,
@@ -294,7 +293,6 @@ class _AccountsViewState extends State<AccountsView> {
                                   height: 22,
                                 )),
                               ),
-                              
                             ],
                           ),
                           SizedBox(
@@ -362,8 +360,7 @@ class _AccountsViewState extends State<AccountsView> {
                       ),
                     ),
 
-
-    Divider(
+                    Divider(
                       color: Color(
                         0xFFD2D2D2,
                       ),
@@ -371,8 +368,7 @@ class _AccountsViewState extends State<AccountsView> {
                       endIndent: 5,
                     ),
 
-
-   Container(
+                    Container(
                       //  color: Colors.blue,
                       width: 326,
                       height: 133,
@@ -406,7 +402,6 @@ class _AccountsViewState extends State<AccountsView> {
                                   height: 22,
                                 )),
                               ),
-                              
                             ],
                           ),
                           SizedBox(
@@ -474,30 +469,13 @@ class _AccountsViewState extends State<AccountsView> {
                       ),
                     ),
 
-
-    Divider(
+                    Divider(
                       color: Color(
                         0xFFD2D2D2,
                       ),
                       indent: 5,
                       endIndent: 5,
                     ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                   ],
                 ),
                 Positioned(

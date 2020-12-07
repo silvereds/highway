@@ -127,7 +127,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             Text(
                               'Change Password',
                               style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 26,
                                 color: ThemeColors.TextGreen,
                                 fontFamily: 'Poppins',
                               ),

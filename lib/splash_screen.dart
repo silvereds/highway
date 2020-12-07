@@ -58,7 +58,7 @@ class SplashScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 20),
                                 Text(
-                                  "Send upto 50,000 FCFA to your loved ones without charges.. oh yes, it is free!!",
+                                  "Envoyez gratuitement jusqu’à 100 000 FCFA  à vos proches sans frais.",
                                   style: TextStyle(
                                     color: Color(0xFF999999),
                                     fontSize: 12,
@@ -95,7 +95,7 @@ class SplashScreen extends StatelessWidget {
                                     )),
                                 SizedBox(height: 20),
                                 Text(
-                                  "Manage your cards, your card readers. Assign them to your loved ones, to your acquaintances as you please and follow in real time all the transactions made on/with your devices.",
+                                  "Gérez votre carte de paiement pour vos dépenses et/ou votre lecteur de paiement pour vos recettes.",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     color: Color(0xFF999999),
@@ -132,7 +132,7 @@ class SplashScreen extends StatelessWidget {
                                     )),
                                 SizedBox(height: 20),
                                 Text(
-                                  "View your balance and transaction history. Manage your expenses and revenues.Recharge your acccounts via your mobile money accounts(MTN,Orange,Express Union, etc) or directly via a HighWeh branch or even at a private individual near you.Make your cash withdrawals directly from a HighWeh branch or from an individual near you with better fees than HighWeh",
+                                  "Réaliser vos transactions, consultez votre solde et suivez l’historique de vos dépenses.",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     color: Color(0xFF999999),

@@ -6,6 +6,7 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:mobile/Login_views/under_construction.dart';
 import 'package:mobile/Profile_screens/user_profile.dart';
 import 'package:mobile/shared/navDrawer.dart';
+import 'package:mobile/shared/bottomNavigationBar.dart';
 
 
 class DashBoard extends StatefulWidget {
@@ -14,7 +15,7 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  int _currentIndex = 0;
+
 
   Map<String, double> dataMap = {
     "Others": 1,
@@ -70,50 +71,8 @@ class _DashBoardState extends State<DashBoard> {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        selectedFontSize: 18,
-        backgroundColor: Color(0xFFFFFFFF),
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: ThemeColors.SelectedItemColor,
-        unselectedItemColor: ThemeColors.UnSelectedItemColor,
-        onTap: (index) {
-          // Respond to item press.
-          setState(() => _currentIndex = index);
-        },
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dashboard_outlined,
-                size: 30,
-              ),
-              label: ('Dashboad')),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.credit_card,
-                size: 30,
-              ),
-              label: 'Accounts'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.local_atm_outlined,
-                size: 30,
-              ),
-              label: 'Transactions'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.credit_card,
-                size: 30,
-              ),
-              label: 'Devices'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.place_outlined,
-                size: 30,
-              ),
-              label: 'Map'),
-        ],
-      ),
+       bottomNavigationBar: BottomNavigationBarView(),
+    
       body: Container(
         child: SingleChildScrollView(
           child: Column(
