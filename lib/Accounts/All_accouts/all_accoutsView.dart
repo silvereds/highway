@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/navDrawer.dart';
+import 'package:mobile/shared/bottomNavigationBar.dart';
 
 class AccountsView extends StatefulWidget {
   @override
@@ -44,49 +45,7 @@ class _AccountsViewState extends State<AccountsView> {
             )
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          backgroundColor: Color(0xFFFFFFFF),
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: 18,
-          selectedItemColor: Color(0xFF53B27F),
-          unselectedItemColor: Color(0xFF334D6E),
-          onTap: (index) {
-            setState(() => _currentIndex = index);
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.dashboard_outlined,
-                  size: 30,
-                ),
-                label: ('Dashboad')),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Accounts'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.local_atm_outlined,
-                  size: 30,
-                ),
-                label: 'Transactions'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Devices'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.place_outlined,
-                  size: 30,
-                ),
-                label: 'Map'),
-          ],
-        ),
+        bottomNavigationBar: BottomNavigationBarView(),
         body: Container(
           margin: EdgeInsets.fromLTRB(20, 55, 20, 20),
           width: MediaQuery.of(context).size.width,

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/shared/bottomNavigationBar.dart';
+
+
 
 class BlockAccountView extends StatefulWidget {
   @override
@@ -6,7 +9,7 @@ class BlockAccountView extends StatefulWidget {
 }
 
 class _BlockAccountViewState extends State<BlockAccountView> {
-  int _currentIndex = 0;
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,49 +52,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
             )
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          backgroundColor: Color(0xFFFFFFFF),
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: 18,
-          selectedItemColor: Color(0xFF53B27F),
-          unselectedItemColor: Color(0xFF334D6E),
-          onTap: (index) {
-            setState(() => _currentIndex = index);
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.dashboard_outlined,
-                  size: 30,
-                ),
-                label: ('Dashboad')),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Accounts'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.local_atm_outlined,
-                  size: 30,
-                ),
-                label: 'Transactions'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Devices'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.place_outlined,
-                  size: 30,
-                ),
-                label: 'Map'),
-          ],
-        ),
+        bottomNavigationBar: BottomNavigationBarView(),
         body: Center(
           child: Container(
             margin: EdgeInsets.fromLTRB(20, 55, 20, 20),

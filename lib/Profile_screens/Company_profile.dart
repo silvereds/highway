@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Login_views/under_construction.dart';
 import 'package:mobile/Transactions_views/dashboard.dart';
-
+import 'package:mobile/shared/bottomNavigationBar.dart';
 
 class CompanyProfileView extends StatefulWidget {
   @override
@@ -10,9 +10,6 @@ class CompanyProfileView extends StatefulWidget {
 }
 
 class _CompanyProfileViewState extends State<CompanyProfileView> {
- int _currentIndex = 0;
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,11 +19,11 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
             icon: Icon(Icons.menu),
             color: Colors.black,
             onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UnderConstruction()),
-            );
-          },
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UnderConstruction()),
+              );
+            },
             iconSize: 36,
           ),
           backgroundColor: Colors.white,
@@ -36,71 +33,26 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
             height: 45,
           ),
           centerTitle: true,
-          actions: [  Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-            child: GestureDetector(
-           
-              child: CircleAvatar(
-                radius: 25,
-                child: Container(
-                    decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
-                  ),
-                )),
+          actions: [
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+              child: GestureDetector(
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Container(
+                      decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                    ),
+                  )),
+                ),
               ),
-            ),
-          )],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-           currentIndex: _currentIndex,
-          backgroundColor: Color(0xFFFFFFFF),
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: 18,
-          selectedItemColor: ThemeColors.SelectedItemColor,
-          unselectedItemColor: ThemeColors.UnSelectedItemColor,
-          onTap: (index) {
-
-         setState(() =>
-           _currentIndex = index 
-         );
-           
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                   Icons.dashboard_outlined,
-                  size: 30,
-                ),
-                label: ('Dashboad')),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Accounts'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.local_atm_outlined,
-                  size: 30,
-                ),
-                label: 'Transactions'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Devices'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.place_outlined,
-                  size: 30,
-                ),
-                label: 'Map'),
+            )
           ],
         ),
+        bottomNavigationBar: BottomNavigationBarView(),
         body: SingleChildScrollView(
           child: Container(
             height: 1050,
@@ -155,7 +107,6 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       SizedBox(
                         height: 10,
                       ),
-                      
                     ],
                   ),
                   SizedBox(
@@ -196,7 +147,6 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                               fontSize: 14,
                             )),
                       ),
-                     
                       SizedBox(
                         height: 10,
                       ),
@@ -245,19 +195,20 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                             fontSize: 14,
                           )),
                       GestureDetector(
-                        onTap: (){print('Jane Doe');},
-                                              child: Text('Jane Doe',
+                        onTap: () {
+                          print('Jane Doe');
+                        },
+                        child: Text('Jane Doe',
                             style: TextStyle(
                               color: Color(0xFF109CF1),
                               fontSize: 14,
-                                  decoration: TextDecoration.underline,
-                             
+                              decoration: TextDecoration.underline,
                             )),
                       ),
-                         SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                       Text('Founded on',
+                      Text('Founded on',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
@@ -357,7 +308,6 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                    
                       // SizedBox(
                       //   width: 20,
                       // ),
@@ -377,7 +327,6 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                                 builder: (context) => DashBoard()),
                           );
                         },
-                    
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),
                         height: 33,

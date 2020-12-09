@@ -3,6 +3,7 @@ import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Profile_screens/change_password_screen.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/Profile_screens/Company_profile.dart';
+import 'package:mobile/shared/bottomNavigationBar.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  int _currentIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,49 +49,7 @@ class _UserProfileState extends State<UserProfile> {
             )
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          backgroundColor: Color(0xFFFFFFFF),
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: 18,
-          selectedItemColor: ThemeColors.SelectedItemColor,
-          unselectedItemColor: ThemeColors.UnSelectedItemColor,
-          onTap: (index) {
-            setState(() => _currentIndex = index);
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.dashboard_outlined,
-                  size: 30,
-                ),
-                label: ('Dashboad')),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Accounts'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.local_atm_outlined,
-                  size: 30,
-                ),
-                label: 'Transactions'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Devices'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.place_outlined,
-                  size: 30,
-                ),
-                label: 'Map'),
-          ],
-        ),
+     bottomNavigationBar: BottomNavigationBarView(),
         body: SingleChildScrollView(
           child: Container(
             height: 1050,
