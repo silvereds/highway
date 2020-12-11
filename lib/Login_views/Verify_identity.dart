@@ -71,7 +71,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                             TextSpan(
                               text: '  Resend Code',
                               style: TextStyle(
-                                  decoration: TextDecoration.underline,
+                                  decoration: TextDecoration.none,
                                   color: Color(0xFF2AA694),
                                   fontSize: 13,
                                   fontWeight: FontWeight.bold,
@@ -86,6 +86,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                       ),
                       SizedBox(height: 30),
                       PinCodeTextField(
+                       
                         appContext: context,
                         length: 5,
                         onChanged: (valu) {

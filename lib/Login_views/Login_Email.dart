@@ -41,18 +41,17 @@ class _LoginEmailState extends State<LoginEmail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(height: 120),
+                      SizedBox(height: 90),
                       Text(
                         'Login with:',
                         style: TextStyle(
-                        color: Color(0xFF4EB181),
-                          fontSize: 18, fontFamily: 'Poppins'
-                        ),
+                            color: Color(0xFF4EB181),
+                            fontSize: 18,
+                            fontFamily: 'Poppins'),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-
                       Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -61,25 +60,34 @@ class _LoginEmailState extends State<LoginEmail> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Radio(
+                                  activeColor: Color(0xFF4EB181),
                                   value: 0,
-                                  groupValue: 0,
-                                  onChanged: null,
+                                  groupValue: 1,
+                                  onChanged: (val) {
+                                    print('Radio $val');
+                                  },
                                 ),
                                 Text(
                                   "Email",
-                                  style: TextStyle( fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
-                                  ),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF334D6E)),
                                 ),
                                 Radio(
+                                  activeColor: Color(0xFF4EB181),
                                   value: 1,
                                   groupValue: 0,
-                                  onChanged: null,
+                                  onChanged: (val) {
+                                    print('Radio $val');
+                                  },
                                 ),
                                 Text(
                                   "SMS",
                                   style: TextStyle(
-                                    fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
-                                  ),
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF334D6E)),
                                 ),
                               ],
                             ),
@@ -90,13 +98,13 @@ class _LoginEmailState extends State<LoginEmail> {
                                 child: Column(
                                   children: [
                                     TextField(
+                                      keyboardType: TextInputType.emailAddress,
                                       decoration: InputDecoration(
                                           hintText: 'Email Address',
-                                                     hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFFAAAAAA),
-                                  fontFamily: 'Roboto'
-                                ),
+                                          hintStyle: TextStyle(
+                                              fontSize: 14,
+                                              color: Color(0xFFAAAAAA),
+                                              fontFamily: 'Roboto'),
                                           border: InputBorder.none,
                                           prefix: Icon(Icons.mail)),
                                     ),
@@ -105,11 +113,10 @@ class _LoginEmailState extends State<LoginEmail> {
                                     TextField(
                                       decoration: InputDecoration(
                                           hintText: 'Password',
-                                           hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFFAAAAAA),
-                                  fontFamily: 'Roboto'
-                                ),
+                                          hintStyle: TextStyle(
+                                              fontSize: 14,
+                                              color: Color(0xFFAAAAAA),
+                                              fontFamily: 'Roboto'),
                                           border: InputBorder.none,
                                           prefix: Icon(Icons.lock_outline)),
                                     ),
@@ -121,56 +128,76 @@ class _LoginEmailState extends State<LoginEmail> {
                           ],
                         ),
                       ),
-
-                      SizedBox(height: 50),
-
+                      SizedBox(height: 30),
                       Container(
                         alignment: Alignment.bottomRight,
                         child: Column(
                           children: [
-                           FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                          side: BorderSide(color: ThemeColors.Buttons),
-                        ),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginSms()),
-                          );
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Color(0xFFFFFFFF),
-                        height: 33,
-                      ),
+                            Container(
+                              height: 35.02,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                color: Color(
+                                  0xff4eb181,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  4,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(
+                                      0x3d109cf1,
+                                    ),
+                                    offset: Offset(
+                                      0,
+                                      4,
+                                    ),
+                                    blurRadius: 10,
+                                  ),
+                                ],
+                              ),
+                              child: FlatButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  side: BorderSide(color: ThemeColors.Buttons),
+                                ),
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                      fontSize: 13, fontFamily: 'Poppins'),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginSms()),
+                                  );
+                                },
+                                color: Color(0xFF4EB181),
+                                textColor: Color(0xFFFFFFFF),
+                                height: 33,
+                              ),
+                            ),
                             SizedBox(height: 15),
                             RichText(
                               text: TextSpan(children: <TextSpan>[
                                 TextSpan(
-                                  text: '  Forgot Password?',
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xFF109CF1),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Poppins'),
-                                  recognizer: TapGestureRecognizer()
-                                     ..onTap = (){
-                                      print('Forgot password');
-                                    }
-                                )
+                                    text: '  Forgot Password?',
+                                    style: TextStyle(
+                                        decoration: TextDecoration.none,
+                                        color: Color(0xFF109CF1),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins'),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        print('Forgot password');
+                                      })
                               ]),
                             )
                           ],
                         ),
                       ),
-
-                      
                     ],
                   ),
                 ),
@@ -182,19 +209,56 @@ class _LoginEmailState extends State<LoginEmail> {
                 height: 120,
                 child: Align(
                   child: Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                          ThemeColors.RegisterC,
-                          ThemeColors.RegisterCl
-                        ])),
-                    width: 300,
                     child: Center(
                       child: Text(
                         "Login",
-                          style: TextStyle(color:Color(0xFFFFFFFF), fontSize: 18, fontFamily: 'Poppins')
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        3,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(
+                            0x23000000,
+                          ),
+                          offset: Offset(
+                            0,
+                            4,
+                          ),
+                          blurRadius: 4,
+                        ),
+                        BoxShadow(
+                          color: Color(
+                            0x66E91E63,
+                          ),
+                          offset: Offset(
+                            0,
+                            7,
+                          ),
+                          blurRadius: 10,
+                          spreadRadius: -5,
+                        ),
+                      ],
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Color(
+                            0xFF00CDAC,
+                          ),
+                          Color(
+                            0xFF4EB181,
+                          ),
+                        ],
                       ),
                     ),
                   ),
