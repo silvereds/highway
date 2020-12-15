@@ -3,6 +3,7 @@ import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Profile_screens/user_profile.dart';
 import 'package:mobile/Login_views/under_construction.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
+import 'package:mobile/shared/navDrawer.dart';
 
 
 class ChangePassword extends StatefulWidget {
@@ -11,30 +12,26 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  int _currentIndex = 0;
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.black,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UnderConstruction()),
-            );
-          },
-          iconSize: 36,
+       drawer: NavDrawer(),
+        appBar: AppBar(
+        iconTheme: IconThemeData(
+           color: Colors.black,
+           
         ),
+       
+        backgroundColor: Colors.white,
         title: Image.asset(
           'assets/images/HIGHWEH_HORIZONTAL.png',
           fit: BoxFit.contain,
           height: 45,
         ),
         centerTitle: true,
-        actions: [ Container(
+        actions: [
+          Container(
             margin: EdgeInsets.fromLTRB(0, 0, 15, 10),
             child: GestureDetector(
               onTap: () {
@@ -55,7 +52,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                 )),
               ),
             ),
-          )],
+          )
+        ],
       ),
       bottomNavigationBar: BottomNavigationBarView(),
       body: Container(

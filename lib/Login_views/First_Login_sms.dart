@@ -228,19 +228,56 @@ class _LoginsmsState extends State<FirstLoginsms> {
                 height: 120,
                 child: Align(
                   child: Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                          ThemeColors.RegisterC,
-                          ThemeColors.RegisterCl
-                        ])),
-                    width: 300,
                     child: Center(
                       child: Text(
                         "Register",
-                        style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 18, fontFamily: 'Poppins'),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        3,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(
+                            0x23000000,
+                          ),
+                          offset: Offset(
+                            0,
+                            4,
+                          ),
+                          blurRadius: 4,
+                        ),
+                        BoxShadow(
+                          color: Color(
+                            0x66E91E63,
+                          ),
+                          offset: Offset(
+                            0,
+                            7,
+                          ),
+                          blurRadius: 10,
+                          spreadRadius: -5,
+                        ),
+                      ],
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Color(
+                            0xFF00CDAC,
+                          ),
+                          Color(
+                            0xFF4EB181,
+                          ),
+                        ],
                       ),
                     ),
                   ),
