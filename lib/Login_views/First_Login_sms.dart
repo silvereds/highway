@@ -3,6 +3,7 @@ import 'package:mobile/Login_views/Create_password.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:flutter/gestures.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:mobile/Login_views/First_Login_Email.dart';
 
 class FirstLoginsms extends StatefulWidget {
   @override
@@ -72,7 +73,11 @@ class _LoginsmsState extends State<FirstLoginsms> {
                               value: 0,
                               groupValue: 1,
                               onChanged: (val) {
-                                print('Radio $val');
+                                   Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FirstLoginEmail()),
+                                   );
                               },
                             ),
                             Text(
@@ -85,7 +90,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                             Radio(
                               activeColor: Color(0xFF4EB181),
                               value: 1,
-                              groupValue: 0,
+                              groupValue: 1,
                               onChanged: (val) {
                                 print('Radio $val');
                               },

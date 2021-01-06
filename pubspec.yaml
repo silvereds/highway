@@ -18,6 +18,8 @@ dependencies:
 
   intl_phone_number_input: ^0.5.2+2
 
+  form_field_validator: ^1.0.1
+
 # For gesture
   gestures: ^0.0.1
 
