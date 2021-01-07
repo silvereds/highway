@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mobile/Login_views/Create_password.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:flutter/gestures.dart';
@@ -109,22 +110,35 @@ class _LoginsmsState extends State<FirstLoginsms> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  InternationalPhoneNumberInput(
-                                    onInputChanged: (PhoneNumber number) {
-                                      print(number.phoneNumber);
-                                    },
-                                    onInputValidated: (bool value) {
-                                      print(value);
-                                    },
-                                     textStyle: TextStyle(color: Color(0xFF90A0B7), fontFamily: 'Poppins', fontSize: 13),
+                                  Form(
+                                    key: formKey,
+                                    child: InternationalPhoneNumberInput(
+                                      validator: (String arg){
+                                        if(arg.length < 10){
+                                          return 'number must be 8 digits'; 
 
-                                    ignoreBlank: false,
-                                    autoValidateMode: AutovalidateMode.disabled,
-                                    selectorTextStyle:
-                                        TextStyle(color: Colors.black),
-                                    initialValue: number,
-                                    textFieldController: controller,
-                                  
+
+                                        }  else {
+                                          return null;
+                                        }
+                                      
+                                      },
+                                      onInputChanged: (PhoneNumber number) {
+                                        print(number.phoneNumber);
+                                      },
+                                      onInputValidated: (bool value) {
+                                        print(value);
+                                      },
+                                       textStyle: TextStyle(color: Color(0xFF90A0B7), fontFamily: 'Poppins', fontSize: 13),
+
+                                      ignoreBlank: false,
+                                      autoValidateMode: AutovalidateMode.disabled,
+                                      selectorTextStyle:
+                                          TextStyle(color: Colors.black),
+                                      initialValue: number,
+                                      textFieldController: controller,
+                                
+                                    ),
                                   )
                                 ],
                               ),
@@ -138,7 +152,9 @@ class _LoginsmsState extends State<FirstLoginsms> {
                       Row(
                         children: [
                           Checkbox(
-                              checkColor: ThemeColors.CheckColor,
+                              checkColor: Color(0xFF4EB181),
+                               
+                                 activeColor: Color(0xFFFFFFFF),
                               value: this.valuefirst,
                               onChanged: (bool value) {
                                 setState(() {
@@ -211,12 +227,18 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                 textAlign: TextAlign.center,
                               ),
                               onPressed: () {
+                                if (formKey.currentState.validate() && valuefirst == true) {
+                                
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CreatePassword()),
                               );
-                            },
+                                                 } else {
+                                                   Scaffold.of(context).showSnackBar(SnackBar(content: Text('Enter valid phone Number')));
+                                 
+                                }
+                              },
                             ),
                           ),
                         )

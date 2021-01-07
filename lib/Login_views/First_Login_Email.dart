@@ -119,7 +119,7 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                               
                                 
                                 validator: EmailValidator(errorText: "Enter valid Email"),
-                                keyboardType: TextInputType.phone,
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     hintText: 'Email Address',
                                     hintStyle: TextStyle(
