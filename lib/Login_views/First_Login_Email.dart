@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Login_views/First_Login_sms.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+import 'package:mobile/Login_views/Create_password.dart';
 
 class FirstLoginEmail extends StatefulWidget {
   @override
@@ -10,6 +12,8 @@ class FirstLoginEmail extends StatefulWidget {
 
 class _FirstLoginEmailState extends State<FirstLoginEmail> {
   bool valuefirst = false;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,7 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SingleChildScrollView(
-                                      child: Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 90),
@@ -63,13 +67,12 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                         SizedBox(
                           height: 15,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Radio(
                               activeColor: Color(0xFF4EB181),
-                              value: 0,
+                              value: 1,
                               groupValue: 1,
                               onChanged: (val) {
                                 print('Radio $val');
@@ -87,8 +90,13 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                               value: 1,
                               groupValue: 0,
                               onChanged: (val) {
-                                print('Radio $val');
-                              },
+                                     Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FirstLoginsms()),
+                              );
+                              }
+                               ,
                             ),
                             Text(
                               "SMS",
@@ -99,22 +107,28 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                             ),
                           ],
                         ),
-
                         SizedBox(
                           height: 15,
                         ),
-
                         Column(
                           children: [
-                            TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Email Address',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFAAAAAA),
-                                      fontFamily: 'Roboto'),
-                                  border: InputBorder.none,
-                                  prefix: Icon(Icons.mail)),
+                            Form(
+                              key: _formKey,
+                              child: TextFormField(
+                                autovalidateMode: AutovalidateMode.disabled,
+                              
+                                
+                                validator: EmailValidator(errorText: "Enter valid Email"),
+                                keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                    hintText: 'Email Address',
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xFFAAAAAA),
+                                        fontFamily: 'Roboto'),
+                                    border: InputBorder.none,
+                                    prefix: Icon(Icons.mail)),
+                              ),
                             ),
                             Divider(
                               color: Color(
@@ -125,18 +139,18 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                             ),
                           ],
                         ),
-
                         SizedBox(
                           height: 15,
                         ),
-
                         Row(
                           children: [
                             Checkbox(
-                                checkColor: ThemeColors.CheckColor,
-                                // activeColor: Color(0xFFFFFFFF),
+                                checkColor: Color(0xFF4EB181),
+                               
+                                 activeColor: Color(0xFFFFFFFF),
 
                                 value: this.valuefirst,
+                                
                                 onChanged: (bool value) {
                                   setState(() {
                                     this.valuefirst = value;
@@ -166,14 +180,12 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                             ),
                           ],
                         ),
-
-                       
-                        SizedBox(height: 20,),
-
+                        SizedBox(
+                          height: 20,
+                        ),
                         Container(
-                           alignment: Alignment.bottomRight,
-
-                                                child: Container(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
                             decoration: BoxDecoration(
                               color: Color(
                                 0xff4eb181,
@@ -181,18 +193,18 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                               borderRadius: BorderRadius.circular(
                                 4,
                               ),
-                                boxShadow: [
-        BoxShadow(
-          color: Color(
-            0x3d109cf1,
-          ),
-          offset: Offset(
-            0,
-            4,
-          ),
-          blurRadius: 10,
-        ),
-      ],
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(
+                                    0x3d109cf1,
+                                  ),
+                                  offset: Offset(
+                                    0,
+                                    4,
+                                  ),
+                                  blurRadius: 10,
+                                ),
+                              ],
                             ),
                             height: 35.02,
                             width: 120,
@@ -208,12 +220,17 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                                 textAlign: TextAlign.center,
                               ),
                               onPressed: () {
+                                if (_formKey.currentState.validate() && valuefirst == true) {
+                                
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => FirstLoginsms()),
+                                    builder: (context) => CreatePassword()),
                               );
-                            },
+                                                 } else {
+                                  print("Not validated");
+                                }
+                              },
                             ),
                           ),
                         )
@@ -222,7 +239,6 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                   ),
                 ),
               ),
-
               Positioned(
                 top: -40,
                 left: 15,
