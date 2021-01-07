@@ -24,10 +24,11 @@ dependencies:
   # For pin input filed
   pin_code_fields: ^6.0.1
 
-   # To pick image from phone or camera
-  image_picker: ^0.6.7+14
-
   pie_chart: ^4.0.1
+
+  redux: ^4.0.0+3
+
+  flutter_redux: ^0.7.0
    
 
   
