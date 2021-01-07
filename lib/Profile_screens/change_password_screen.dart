@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Profile_screens/user_profile.dart';
 import 'package:mobile/Login_views/under_construction.dart';
+import 'package:mobile/shared/bottomNavigationBar.dart';
+import 'package:mobile/shared/navDrawer.dart';
 
 
 class ChangePassword extends StatefulWidget {
@@ -10,30 +12,26 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  int _currentIndex = 0;
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.black,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UnderConstruction()),
-            );
-          },
-          iconSize: 36,
+       drawer: NavDrawer(),
+        appBar: AppBar(
+        iconTheme: IconThemeData(
+           color: Colors.black,
+           
         ),
+       
+        backgroundColor: Colors.white,
         title: Image.asset(
           'assets/images/HIGHWEH_HORIZONTAL.png',
           fit: BoxFit.contain,
           height: 45,
         ),
         centerTitle: true,
-        actions: [ Container(
+        actions: [
+          Container(
             margin: EdgeInsets.fromLTRB(0, 0, 15, 10),
             child: GestureDetector(
               onTap: () {
@@ -54,52 +52,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                 )),
               ),
             ),
-          )],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        backgroundColor: Color(0xFFFFFFFF),
-        type: BottomNavigationBarType.fixed,
-          selectedFontSize: 18,
-        selectedItemColor: ThemeColors.SelectedItemColor,
-        unselectedItemColor: ThemeColors.UnSelectedItemColor,
-        onTap: (index) {
-          //  Respond to item press.
-          setState(() => _currentIndex = index);
-        },
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-             Icons.dashboard_outlined,
-                size: 30,
-              ),
-              label: ('Dashboad')),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.credit_card,
-                size: 30,
-              ),
-              label: 'Accounts'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.local_atm_outlined,
-                size: 30,
-              ),
-              label: 'Transactions'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.credit_card,
-                size: 30,
-              ),
-              label: 'Devices'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.place_outlined,
-                size: 30,
-              ),
-              label: 'Map'),
+          )
         ],
       ),
+      bottomNavigationBar: BottomNavigationBarView(),
       body: Container(
         color: Color(0xFFF5F6F8),
       
@@ -127,7 +83,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             Text(
                               'Change Password',
                               style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 26,
                                 color: ThemeColors.TextGreen,
                                 fontFamily: 'Poppins',
                               ),

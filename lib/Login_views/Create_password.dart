@@ -131,7 +131,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                   child: Card(
                     elevation: 10,
                     color: ThemeColors.Buttons,
-                    child: Center(child: Icon(Icons.lock)),
+                    child: Center(child: Icon(Icons.lock_outline, color: Color(0xFFFFFFFF)),  ),
                   )),
             ],
           ),

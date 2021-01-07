@@ -51,15 +51,14 @@ class _LoginSmsState extends State<LoginSms> {
                       SizedBox(height: 120),
                       Text(
                         'Login with:',
-                       style: TextStyle(
-                        color: Color(0xFF4EB181),
-                          fontSize: 18, fontFamily: 'Poppins'
-                        ),
+                        style: TextStyle(
+                            color: Color(0xFF4EB181),
+                            fontSize: 18,
+                            fontFamily: 'Poppins'),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-
                       Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -68,24 +67,34 @@ class _LoginSmsState extends State<LoginSms> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Radio(
-                                  value: 1,
-                                  groupValue: 0,
-                                  onChanged: null,
+                                  activeColor: Color(0xFF4EB181),
+                                  value: 0,
+                                  groupValue: 1,
+                                  onChanged: (val) {
+                                    print('Radio $val');
+                                  },
                                 ),
                                 Text(
                                   "Email",
-                                  style: TextStyle( fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
-                                  ),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF334D6E)),
                                 ),
                                 Radio(
-                                  value: 0,
+                                  activeColor: Color(0xFF4EB181),
+                                  value: 1,
                                   groupValue: 0,
-                                  onChanged: null,
+                                  onChanged: (val) {
+                                    print('Radio $val');
+                                  },
                                 ),
                                 Text(
                                   "SMS",
-                                  style: TextStyle( fontSize: 13, fontFamily:'Poppins', color: Color(0xFF334D6E)
-                                  ),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF334D6E)),
                                 ),
                               ],
                             ),
@@ -95,7 +104,10 @@ class _LoginSmsState extends State<LoginSms> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   InternationalPhoneNumberInput(
-                                     textStyle: TextStyle(color: Color(0xFF90A0B7), fontFamily: 'Poppins', fontSize: 13),
+                                    textStyle: TextStyle(
+                                        color: Color(0xFF90A0B7),
+                                        fontFamily: 'Poppins',
+                                        fontSize: 13),
                                     onInputChanged: (PhoneNumber number) {
                                       print(number.phoneNumber);
                                     },
@@ -113,9 +125,13 @@ class _LoginSmsState extends State<LoginSms> {
                                   TextField(
                                     decoration: InputDecoration(
                                         hintText: 'Password',
-                                        hintStyle: TextStyle(color: Color(0xFFAAAAAA), fontFamily: 'Roboto', fontSize: 14),
+                                        hintStyle: TextStyle(
+                                            color: Color(0xFFAAAAAA),
+                                            fontFamily: 'Roboto',
+                                            fontSize: 14),
                                         border: InputBorder.none,
-                                        prefix: Icon(Icons.lock_outline), fillColor: Colors.white),
+                                        prefix: Icon(Icons.lock_outline),
+                                        fillColor: Colors.white),
                                   ),
                                   Divider(color: Colors.grey),
                                 ],
@@ -124,56 +140,77 @@ class _LoginSmsState extends State<LoginSms> {
                           ],
                         ),
                       ),
-
                       SizedBox(height: 20),
-
                       SizedBox(height: 50),
                       Container(
                         alignment: Alignment.bottomRight,
                         child: Column(
                           children: [
-                              FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                          side: BorderSide(color: ThemeColors.Buttons),
-                        ),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VerifyIdentity()),
-                          );
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Color(0xFFFFFFFF),
-                        height: 33,
-                      ),
+                            Container(
+                              height: 35.02,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                color: Color(
+                                  0xff4eb181,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  4,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(
+                                      0x3d109cf1,
+                                    ),
+                                    offset: Offset(
+                                      0,
+                                      4,
+                                    ),
+                                    blurRadius: 10,
+                                  ),
+                                ],
+                              ),
+                              child: FlatButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  side: BorderSide(color: ThemeColors.Buttons),
+                                ),
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                      fontSize: 13, fontFamily: 'Poppins'),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => VerifyIdentity()),
+                                  );
+                                },
+                                color: Color(0xFF4EB181),
+                                textColor: Color(0xFFFFFFFF),
+                                height: 33,
+                              ),
+                            ),
                             SizedBox(height: 15),
                             RichText(
                               text: TextSpan(children: <TextSpan>[
                                 TextSpan(
-                                  text: '  Forgot Password?',
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: ThemeColors.ForgotPassword,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Roboto'),
-                                  recognizer: TapGestureRecognizer()
-                                     ..onTap = (){
-                                      print('Forgot password "');
-                                    }
-                                )
+                                    text: '  Forgot Password?',
+                                    style: TextStyle(
+                                        decoration: TextDecoration.none,
+                                        color: ThemeColors.ForgotPassword,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Roboto'),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        print('Forgot password "');
+                                      })
                               ]),
                             )
                           ],
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -185,19 +222,56 @@ class _LoginSmsState extends State<LoginSms> {
                 height: 120,
                 child: Align(
                   child: Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                          ThemeColors.RegisterC,
-                          ThemeColors.RegisterCl
-                        ])),
-                    width: 300,
                     child: Center(
                       child: Text(
                         "Login",
-                        style: TextStyle(color:Color(0xFFFFFFFF), fontSize: 18, fontFamily: 'Poppins')
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        3,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(
+                            0x23000000,
+                          ),
+                          offset: Offset(
+                            0,
+                            4,
+                          ),
+                          blurRadius: 4,
+                        ),
+                        BoxShadow(
+                          color: Color(
+                            0x66E91E63,
+                          ),
+                          offset: Offset(
+                            0,
+                            7,
+                          ),
+                          blurRadius: 10,
+                          spreadRadius: -5,
+                        ),
+                      ],
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Color(
+                            0xFF00CDAC,
+                          ),
+                          Color(
+                            0xFF4EB181,
+                          ),
+                        ],
                       ),
                     ),
                   ),

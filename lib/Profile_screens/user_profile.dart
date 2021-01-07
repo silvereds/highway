@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Profile_screens/change_password_screen.dart';
-import 'package:mobile/Login_views/under_construction.dart';
+import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/Profile_screens/Company_profile.dart';
+import 'package:mobile/shared/bottomNavigationBar.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -10,24 +11,18 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  int _currentIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: NavDrawer(),
         backgroundColor: Color(0xFFF5F6F8),
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UnderConstruction()),
-              );
-            },
-            iconSize: 36,
-          ),
+           iconTheme: IconThemeData(
+           color: Colors.black,
+           size: 36
+           ),
           backgroundColor: Colors.white,
           title: Image.asset(
             'assets/images/HIGHWEH_HORIZONTAL.png',
@@ -54,49 +49,7 @@ class _UserProfileState extends State<UserProfile> {
             )
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          backgroundColor: Color(0xFFFFFFFF),
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: 18,
-          selectedItemColor: ThemeColors.SelectedItemColor,
-          unselectedItemColor: ThemeColors.UnSelectedItemColor,
-          onTap: (index) {
-            setState(() => _currentIndex = index);
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.dashboard_outlined,
-                  size: 30,
-                ),
-                label: ('Dashboad')),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Accounts'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.local_atm_outlined,
-                  size: 30,
-                ),
-                label: 'Transactions'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  size: 30,
-                ),
-                label: 'Devices'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.place_outlined,
-                  size: 30,
-                ),
-                label: 'Map'),
-          ],
-        ),
+     bottomNavigationBar: BottomNavigationBarView(),
         body: SingleChildScrollView(
           child: Container(
             height: 1050,
