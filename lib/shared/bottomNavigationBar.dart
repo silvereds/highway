@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:mobile/Transactions_views/All_Transactions/transactions.dart';
+import 'package:mobile/Accounts/All_accouts/all_accoutsView.dart';
 
 class BottomNavigationBarView extends StatefulWidget {
   @override
@@ -9,6 +10,32 @@ class BottomNavigationBarView extends StatefulWidget {
 class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
 
 int _currentIndex = 0;
+Widget _transactions = TransactionsView();
+Widget _accounts =   AccountsView();
+
+
+
+ getBody(){
+      if(this._currentIndex == 0) {
+      return this._transactions;
+    } else if(this._currentIndex==1) {
+      return this._accounts;
+    } else {
+      return this._transactions;
+    }
+}
+
+void onTapHandler(int index){
+  this.setState(() {
+    this._currentIndex = index;
+  }
+ 
+  );
+   getBody();
+}
+
+
+
   @override
   Widget build(BuildContext context) {
    return  BottomNavigationBar(
@@ -18,9 +45,10 @@ int _currentIndex = 0;
         type: BottomNavigationBarType.fixed,
         selectedItemColor:  Color(0xFF53B27F),
         unselectedItemColor: Color(0xFF334D6E),
-        onTap: (index) {
+        onTap: (int index) {
           // Respond to item press.
-          setState(() => _currentIndex = index);
+         this.onTapHandler(index);
+          
         },
         items: [
           BottomNavigationBarItem(
@@ -29,6 +57,7 @@ int _currentIndex = 0;
                 size: 30,
               ),
               label: ('Dashboad')),
+             
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.credit_card,
