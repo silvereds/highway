@@ -15,7 +15,7 @@ import 'package:mobile/Accounts/Accounts_details/accounts_detail_view.dart';
 
 void main() {
   runApp( MyApp());
-//  runApp(DevicePreview(builder: (context) => MyApp()));    //<-- Comment  this line  if you want to run without Device preview
+ runApp(DevicePreview(builder: (context) => MyApp()));    //<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -37,12 +37,12 @@ class MyApp extends StatelessWidget {
 
           '/': (context) => SplashScreen(),
           '/firstlogin-Email': (context) => FirstLoginEmail(),
-          '/companyProfile': (context) => CompanyProfileView(),
+          '/companyProfile': (context) => CompanyProfileView(), 
          
         },
 
 
-
+   
    
         );
   }

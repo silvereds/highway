@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Login_views/Login_Email.dart';
@@ -9,9 +10,22 @@ class CreatePassword extends StatefulWidget {
 }
 
 class _CreatePasswordState extends State<CreatePassword> {
+
+     
+   
+
+   
+     
+  
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+   
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -44,80 +58,74 @@ class _CreatePasswordState extends State<CreatePassword> {
                       SizedBox(
                         height: 30,
                       ),
-
                       Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Create Password',
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: Color(0xFF14A09F),
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w100
+                        child: Form(
+                     
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Create Password',
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    color: Color(0xFF14A09F),
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w100),
                               ),
-                            ),
-                            SizedBox(height: 30),
-                            TextField(
-                              decoration: InputDecoration(
-                                hintText: 'New Password',
+                              SizedBox(height: 30),
+                              TextFormField(
                                 
-                                hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF14A09F),
-                                  fontFamily: 'Poppins'
+                                decoration: InputDecoration(
+                                  hintText: 'New Password',
+                                  hintStyle: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF14A09F),
+                                      fontFamily: 'Poppins'),
+                                  border: InputBorder.none,
                                 ),
-                                border: InputBorder.none,
                               ),
-                            ),
-                            Divider(color: Colors.grey),
-                            SizedBox(height: 30),
-                            TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Confirm password',
-                                hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF14A09F),
-                                  fontFamily: 'Poppins'
+                              Divider(color: Colors.grey),
+                              SizedBox(height: 30),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  hintText: 'Confirm password',
+                                  hintStyle: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF14A09F),
+                                      fontFamily: 'Poppins'),
+                                  border: InputBorder.none,
                                 ),
-                                border: InputBorder.none,
                               ),
-                            ),
-                            Divider(color: Colors.grey),
-                          ],
+                              Divider(color: Colors.grey),
+                            ],
+                          ),
                         ),
                       ),
-
-                   
-
                       SizedBox(height: 50),
-
                       Container(
                         alignment: Alignment.bottomRight,
-                        child:   FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                          side: BorderSide(color: ThemeColors.Buttons),
+                        child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            side: BorderSide(color: ThemeColors.Buttons),
+                          ),
+                          child: Text(
+                            'Save',
+                            style:
+                                TextStyle(fontSize: 13, fontFamily: 'Poppins'),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginEmail()),
+                            );
+                          },
+                          color: Color(0xFF4EB181),
+                          textColor: Color(0xFFFFFFFF),
+                          height: 33,
                         ),
-                        child: Text(
-                          'Save',
-                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginEmail()),
-                          );
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Color(0xFFFFFFFF),
-                        height: 33,
                       ),
-                      ),
-
-                
                     ],
                   ),
                 ),
@@ -125,13 +133,14 @@ class _CreatePasswordState extends State<CreatePassword> {
               Positioned(
                   top: -35,
                   left: 15,
-                 
                   height: 63,
                   width: 63,
                   child: Card(
                     elevation: 10,
                     color: ThemeColors.Buttons,
-                    child: Center(child: Icon(Icons.lock_outline, color: Color(0xFFFFFFFF)),  ),
+                    child: Center(
+                      child: Icon(Icons.lock_outline, color: Color(0xFFFFFFFF)),
+                    ),
                   )),
             ],
           ),

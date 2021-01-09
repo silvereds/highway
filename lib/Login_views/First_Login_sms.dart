@@ -74,11 +74,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                               value: 0,
                               groupValue: 1,
                               onChanged: (val) {
-                                   Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FirstLoginEmail()),
-                                   );
+                                   Navigator.pop(context);
                               },
                             ),
                             Text(
@@ -114,7 +110,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                     key: formKey,
                                     child: InternationalPhoneNumberInput(
                                       validator: (String arg){
-                                        if(arg.length < 10){
+                                        if(arg.length < 8){
                                           return 'number must be 8 digits'; 
 
 
