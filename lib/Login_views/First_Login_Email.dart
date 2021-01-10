@@ -11,13 +11,40 @@ class FirstLoginEmail extends StatefulWidget {
 }
 
 class _FirstLoginEmailState extends State<FirstLoginEmail> {
+
   bool valuefirst = false;
 
-  final _formKey = GlobalKey<FormState>();
+   String _email;
+
+  final formKey = GlobalKey<FormState>();
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _submitCommand(){
+    final form = formKey.currentState;
+    if(form.validate()){
+      form.save();
+
+
+      // Email & password matched our validation rules
+      // and are saved to _email and _password fields.
+      _loginCommand();
+    }
+  }
+
+  void _loginCommand(){
+    final snackbar = SnackBar(content: Text('Email: $_email'),);
+
+    scaffoldKey.currentState.showSnackBar(snackbar);
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -90,13 +117,12 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                               value: 1,
                               groupValue: 0,
                               onChanged: (val) {
-                                     Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FirstLoginsms()),
-                              );
-                              }
-                               ,
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FirstLoginsms()),
+                                );
+                              },
                             ),
                             Text(
                               "SMS",
@@ -113,13 +139,13 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                         Column(
                           children: [
                             Form(
-                              key: _formKey,
+                              key: formKey,
+                              autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                                autovalidateMode: AutovalidateMode.disabled,
-                              
+                                // validator:  (val) => !EmailValidator.validate(val, true) ? 'Not a valid email.' : null,
                                 
-                                validator: EmailValidator(errorText: "Enter valid Email"),
-                                keyboardType: TextInputType.phone,
+                                
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     hintText: 'Email Address',
                                     hintStyle: TextStyle(
@@ -146,11 +172,8 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                           children: [
                             Checkbox(
                                 checkColor: Color(0xFF4EB181),
-                               
-                                 activeColor: Color(0xFFFFFFFF),
-
+                                activeColor: Color(0xFFFFFFFF),
                                 value: this.valuefirst,
-                                
                                 onChanged: (bool value) {
                                   setState(() {
                                     this.valuefirst = value;
@@ -219,18 +242,7 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                              onPressed: () {
-                                if (_formKey.currentState.validate() && valuefirst == true) {
-                                
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CreatePassword()),
-                              );
-                                                 } else {
-                                  print("Not validated");
-                                }
-                              },
+                              onPressed: _submitCommand,                              
                             ),
                           ),
                         )

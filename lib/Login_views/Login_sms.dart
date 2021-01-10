@@ -3,6 +3,7 @@ import 'package:mobile/shared/const_color.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:flutter/gestures.dart';
 import 'package:mobile/Login_views/Verify_identity.dart';
+import 'package:mobile/shared/formValidation.dart';
 
 class LoginSms extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class _LoginSmsState extends State<LoginSms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -71,7 +73,7 @@ class _LoginSmsState extends State<LoginSms> {
                                   value: 0,
                                   groupValue: 1,
                                   onChanged: (val) {
-                                    print('Radio $val');
+                                  Navigator.pop(context);
                                   },
                                 ),
                                 Text(
@@ -84,7 +86,7 @@ class _LoginSmsState extends State<LoginSms> {
                                 Radio(
                                   activeColor: Color(0xFF4EB181),
                                   value: 1,
-                                  groupValue: 0,
+                                  groupValue: 1,
                                   onChanged: (val) {
                                     print('Radio $val');
                                   },

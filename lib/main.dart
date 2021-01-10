@@ -30,18 +30,19 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
        initialRoute: '/',
+       
         routes:
         
          {
 
           '/': (context) => SplashScreen(),
           '/firstlogin-Email': (context) => FirstLoginEmail(),
-          '/companyProfile': (context) => CompanyProfileView(),
+          '/companyProfile': (context) => CompanyProfileView(), 
          
         },
 
 
-
+   
    
         );
   }

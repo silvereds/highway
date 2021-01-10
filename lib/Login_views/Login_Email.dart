@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:flutter/gestures.dart';
 import 'package:mobile/Login_views/Login_sms.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+
 
 class LoginEmail extends StatefulWidget {
   @override
@@ -9,9 +11,36 @@ class LoginEmail extends StatefulWidget {
 }
 
 class _LoginEmailState extends State<LoginEmail> {
+  final formKey = GlobalKey<FormState>();
+  final scaffoldkey = GlobalKey<ScaffoldState>();
+
+  String _email;
+  String _password;
+
+  void _submitCommand() {
+    final form = formKey.currentState;
+
+    if (form.validate()) {
+      form.save();
+
+      // Email & password matched our validation rules
+      // and are saved to _email and _password fields.
+      _loginCommand();
+    }
+  }
+
+  _loginCommand() {
+    final snackbar = SnackBar(
+      content: Text('Email: $_email, Password: $_password'),
+    );
+
+    scaffoldkey.currentState.showSnackBar(snackbar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -61,7 +90,7 @@ class _LoginEmailState extends State<LoginEmail> {
                               children: [
                                 Radio(
                                   activeColor: Color(0xFF4EB181),
-                                  value: 0,
+                                  value: 1,
                                   groupValue: 1,
                                   onChanged: (val) {
                                     print('Radio $val');
@@ -76,11 +105,16 @@ class _LoginEmailState extends State<LoginEmail> {
                                 ),
                                 Radio(
                                   activeColor: Color(0xFF4EB181),
+                                
                                   value: 1,
                                   groupValue: 0,
                                   onChanged: (val) {
-                                    print('Radio $val');
-                                  },
+                                   Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>  LoginSms()),
+                                );
+                                },
                                 ),
                                 Text(
                                   "SMS",
@@ -95,33 +129,43 @@ class _LoginEmailState extends State<LoginEmail> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                child: Column(
-                                  children: [
-                                    TextField(
-                                      keyboardType: TextInputType.emailAddress,
-                                      decoration: InputDecoration(
-                                          hintText: 'Email Address',
-                                          hintStyle: TextStyle(
-                                              fontSize: 14,
-                                              color: Color(0xFFAAAAAA),
-                                              fontFamily: 'Roboto'),
-                                          border: InputBorder.none,
-                                          prefix: Icon(Icons.mail)),
-                                    ),
-                                    Divider(color: Colors.grey),
-                                    SizedBox(height: 10),
-                                    TextField(
-                                      decoration: InputDecoration(
-                                          hintText: 'Password',
-                                          hintStyle: TextStyle(
-                                              fontSize: 14,
-                                              color: Color(0xFFAAAAAA),
-                                              fontFamily: 'Roboto'),
-                                          border: InputBorder.none,
-                                          prefix: Icon(Icons.lock_outline)),
-                                    ),
-                                    Divider(color: Colors.grey),
-                                  ],
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      TextFormField(
+                                        // validator: (val) => !EmailValidator.validate(val, true) ? 'Enter valid Email': null,
+                                        onSaved: (val) => _email = val,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: InputDecoration(
+                                          
+                                            hintText: 'Email Address',
+                                            hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto'),
+                                            border: InputBorder.none,
+                                            prefix: Icon(Icons.mail)),
+                                      ),
+                                      Divider(color: Colors.grey),
+                                      SizedBox(height: 10),
+                                      TextFormField(
+                                        validator: (val) => val.length < 4 ? 'Password too short..': null,
+                                        onSaved: (val) => _password = val,
+                                         obscureText: true, 
+                                        decoration: InputDecoration(
+                                            hintText: 'Password',
+                                            hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto'),
+                                            border: InputBorder.none,
+                                            prefix: Icon(Icons.lock_outline)),
+                                      ),
+                                      Divider(color: Colors.grey),
+                                    ],
+                                  ),
                                 ),
                               ),
                             )
@@ -166,13 +210,14 @@ class _LoginEmailState extends State<LoginEmail> {
                                   style: TextStyle(
                                       fontSize: 13, fontFamily: 'Poppins'),
                                 ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginSms()),
-                                  );
-                                },
+                                onPressed: _submitCommand,
+                                // () {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => LoginSms()),
+                                //   );
+                                // },
                                 color: Color(0xFF4EB181),
                                 textColor: Color(0xFFFFFFFF),
                                 height: 33,
