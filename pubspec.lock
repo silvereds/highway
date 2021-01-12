@@ -287,6 +287,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0+3"
+  redux_api_middleware:
+    dependency: "direct main"
+    description:
+      name: redux_api_middleware
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
+  redux_thunk:
+    dependency: "direct main"
+    description:
+      name: redux_thunk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   shared_preferences:
     dependency: transitive
     description:

@@ -3,6 +3,7 @@ import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/Login_views/under_construction.dart';
 import 'package:mobile/Transactions_views/dashboard.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
+import 'package:mobile/shared/appBar.dart';
 
 class CompanyProfileView extends StatefulWidget {
   @override
@@ -14,44 +15,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFF5F6F8),
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UnderConstruction()),
-              );
-            },
-            iconSize: 36,
-          ),
-          backgroundColor: Colors.white,
-          title: Image.asset(
-            'assets/images/HIGHWEH_HORIZONTAL.png',
-            fit: BoxFit.contain,
-            height: 45,
-          ),
-          centerTitle: true,
-          actions: [
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-              child: GestureDetector(
-                child: CircleAvatar(
-                  radius: 25,
-                  child: Container(
-                      decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
-                    ),
-                  )),
-                ),
-              ),
-            )
-          ],
-        ),
+        appBar:AppBarView(),
         bottomNavigationBar: BottomNavigationBarView(),
         body: SingleChildScrollView(
           child: Container(
@@ -321,6 +285,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                           style: TextStyle(fontSize: 13),
                         ),
                         onPressed: () {
+                          Navigator.pop(context);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

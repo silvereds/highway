@@ -11,20 +11,18 @@ class FirstLoginEmail extends StatefulWidget {
 }
 
 class _FirstLoginEmailState extends State<FirstLoginEmail> {
-
   bool valuefirst = false;
 
-   String _email;
+  String _email;
 
   final formKey = GlobalKey<FormState>();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  void _submitCommand(){
+  void _submitCommand() {
     final form = formKey.currentState;
-    if(form.validate()){
+    if (form.validate()) {
       form.save();
-
 
       // Email & password matched our validation rules
       // and are saved to _email and _password fields.
@@ -32,14 +30,13 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
     }
   }
 
-  void _loginCommand(){
-    final snackbar = SnackBar(content: Text('Email: $_email'),);
+  void _loginCommand() {
+    final snackbar = SnackBar(
+      content: Text('Email: $_email'),
+    );
 
     scaffoldKey.currentState.showSnackBar(snackbar);
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -142,9 +139,10 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                               key: formKey,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                                // validator:  (val) => !EmailValidator.validate(val, true) ? 'Not a valid email.' : null,
-                                
-                                
+                                // validator: (val) =>
+                                    // !EmailValidator.validate(val, true)
+                                    //     ? 'Not a valid email.'
+                                    //     : null,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     hintText: 'Email Address',
@@ -242,7 +240,7 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                              onPressed: _submitCommand,                              
+                              onPressed: _submitCommand,
                             ),
                           ),
                         )

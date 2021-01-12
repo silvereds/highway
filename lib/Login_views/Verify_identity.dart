@@ -131,6 +131,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                           style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
                         ),
                         onPressed: () {
+                          Navigator.pop(context);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
