@@ -4,6 +4,7 @@ import 'package:mobile/Profile_screens/change_password_screen.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/Profile_screens/Company_profile.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
+import 'package:mobile/shared/routes.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -334,8 +335,12 @@ class _UserProfileState extends State<UserProfile> {
                           'Close',
                           style: TextStyle(fontSize: 13),
                         ),
-                        onPressed: () {
-                      print('Close');
+                       onPressed: () {
+                          // Navigator.pop(context);
+                          Navigator.pushNamed(
+                            context, AppRoutes.dashboard
+                          
+                          );
                         },
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),

@@ -1,5 +1,7 @@
 
 
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/splash_screen.dart';
@@ -10,6 +12,7 @@ import 'package:mobile/Accounts/block_account/block_accountView.dart';
 import 'package:mobile/Accounts/block_account/change_alias.dart';
 import 'package:mobile/Transactions_views/dashboard.dart';
 import 'package:mobile/Accounts/Accounts_details/accounts_detail_view.dart';
+import 'package:mobile/shared/routes.dart';
 
 
 
@@ -35,9 +38,10 @@ class MyApp extends StatelessWidget {
         
          {
 
-          '/': (context) => SplashScreen(),
-          '/firstlogin-Email': (context) => FirstLoginEmail(),
-          '/companyProfile': (context) => CompanyProfileView(), 
+        AppRoutes.splashScreen: (context) => SplashScreen(),
+        AppRoutes.firstLoginEmail : (context) => FirstLoginEmail(),
+        AppRoutes.companyProfile: (context) => CompanyProfileView(), 
+        AppRoutes.dashboard: (context) => DashBoard(),
          
         },
 
