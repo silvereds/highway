@@ -1,12 +1,6 @@
-
-
-
-
-class AppRoutes{
- 
- static final splashScreen = '/';
- static final firstLoginEmail = '/loginEmail';
- static final companyProfile = '/companyProfile';
- static final dashboard = '/dashboard';
-
+class AppRoutes {
+  static final splashScreenPage = '/';
+  static final registerPage = '/register';
+  static final loginPage = '/login';
+  static final dashboard = '/dashboard';
 }

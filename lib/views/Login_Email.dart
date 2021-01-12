@@ -1,26 +1,44 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:flutter/gestures.dart';
-import 'package:mobile/Login_views/Verify_identity.dart';
-import 'package:mobile/shared/formValidation.dart';
+import 'package:mobile/views/Login_sms.dart';
 
-class LoginSms extends StatefulWidget {
+class LoginEmail extends StatefulWidget {
   @override
-  _LoginSmsState createState() => _LoginSmsState();
+  _LoginEmailState createState() => _LoginEmailState();
 }
 
-class _LoginSmsState extends State<LoginSms> {
-  bool valuefirst = false;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController controller = TextEditingController();
-  String initialCountry = 'CMR';
-  PhoneNumber number = PhoneNumber(isoCode: 'CMR');
+class _LoginEmailState extends State<LoginEmail> {
+  final formKey = GlobalKey<FormState>();
+  final scaffoldkey = GlobalKey<ScaffoldState>();
+
+  String _email;
+  String _password;
+
+  void _submitCommand() {
+    final form = formKey.currentState;
+
+    if (form.validate()) {
+      form.save();
+
+      // Email & password matched our validation rules
+      // and are saved to _email and _password fields.
+      _loginCommand();
+    }
+  }
+
+  _loginCommand() {
+    final snackbar = SnackBar(
+      content: Text('Email: $_email, Password: $_password'),
+    );
+
+    scaffoldkey.currentState.showSnackBar(snackbar);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       
+      key: scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -50,7 +68,7 @@ class _LoginSmsState extends State<LoginSms> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(height: 120),
+                      SizedBox(height: 90),
                       Text(
                         'Login with:',
                         style: TextStyle(
@@ -70,10 +88,10 @@ class _LoginSmsState extends State<LoginSms> {
                               children: [
                                 Radio(
                                   activeColor: Color(0xFF4EB181),
-                                  value: 0,
+                                  value: 1,
                                   groupValue: 1,
                                   onChanged: (val) {
-                                  Navigator.pop(context);
+                                    print('Radio $val');
                                   },
                                 ),
                                 Text(
@@ -86,9 +104,13 @@ class _LoginSmsState extends State<LoginSms> {
                                 Radio(
                                   activeColor: Color(0xFF4EB181),
                                   value: 1,
-                                  groupValue: 1,
+                                  groupValue: 0,
                                   onChanged: (val) {
-                                    print('Radio $val');
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginSms()),
+                                    );
                                   },
                                 ),
                                 Text(
@@ -101,49 +123,54 @@ class _LoginSmsState extends State<LoginSms> {
                               ],
                             ),
                             SizedBox(height: 20),
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  InternationalPhoneNumberInput(
-                                    textStyle: TextStyle(
-                                        color: Color(0xFF90A0B7),
-                                        fontFamily: 'Poppins',
-                                        fontSize: 13),
-                                    onInputChanged: (PhoneNumber number) {
-                                      print(number.phoneNumber);
-                                    },
-                                    onInputValidated: (bool value) {
-                                      print(value);
-                                    },
-                                    ignoreBlank: false,
-                                    autoValidateMode: AutovalidateMode.disabled,
-                                    selectorTextStyle:
-                                        TextStyle(color: Colors.black),
-                                    initialValue: number,
-                                    textFieldController: controller,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      TextFormField(
+                                        // validator: (val) => !EmailValidator.validate(val, true) ? 'Enter valid Email': null,
+                                        onSaved: (val) => _email = val,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: InputDecoration(
+                                            hintText: 'Email Address',
+                                            hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto'),
+                                            border: InputBorder.none,
+                                            prefix: Icon(Icons.mail)),
+                                      ),
+                                      Divider(color: Colors.grey),
+                                      SizedBox(height: 10),
+                                      TextFormField(
+                                        validator: (val) => val.length < 4
+                                            ? 'Password too short..'
+                                            : null,
+                                        onSaved: (val) => _password = val,
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                            hintText: 'Password',
+                                            hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto'),
+                                            border: InputBorder.none,
+                                            prefix: Icon(Icons.lock_outline)),
+                                      ),
+                                      Divider(color: Colors.grey),
+                                    ],
                                   ),
-                                  SizedBox(height: 10),
-                                  TextField(
-                                    decoration: InputDecoration(
-                                        hintText: 'Password',
-                                        hintStyle: TextStyle(
-                                            color: Color(0xFFAAAAAA),
-                                            fontFamily: 'Roboto',
-                                            fontSize: 14),
-                                        border: InputBorder.none,
-                                        prefix: Icon(Icons.lock_outline),
-                                        fillColor: Colors.white),
-                                  ),
-                                  Divider(color: Colors.grey),
-                                ],
+                                ),
                               ),
                             )
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
-                      SizedBox(height: 50),
+                      SizedBox(height: 30),
                       Container(
                         alignment: Alignment.bottomRight,
                         child: Column(
@@ -181,13 +208,14 @@ class _LoginSmsState extends State<LoginSms> {
                                   style: TextStyle(
                                       fontSize: 13, fontFamily: 'Poppins'),
                                 ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => VerifyIdentity()),
-                                  );
-                                },
+                                onPressed: _submitCommand,
+                                // () {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => LoginSms()),
+                                //   );
+                                // },
                                 color: Color(0xFF4EB181),
                                 textColor: Color(0xFFFFFFFF),
                                 height: 33,
@@ -200,13 +228,13 @@ class _LoginSmsState extends State<LoginSms> {
                                     text: '  Forgot Password?',
                                     style: TextStyle(
                                         decoration: TextDecoration.none,
-                                        color: ThemeColors.ForgotPassword,
+                                        color: Color(0xFF109CF1),
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: 'Roboto'),
+                                        fontFamily: 'Poppins'),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        print('Forgot password "');
+                                        print('Forgot password');
                                       })
                               ]),
                             )

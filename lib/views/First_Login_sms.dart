@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:mobile/Login_views/Create_password.dart';
-import 'package:mobile/shared/const_color.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:mobile/Login_views/First_Login_Email.dart';
+import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/views/Create_password.dart';
 
 class FirstLoginsms extends StatefulWidget {
   @override
@@ -54,9 +52,9 @@ class _LoginsmsState extends State<FirstLoginsms> {
                       Text(
                         'Login with:',
                         style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 18,fontFamily: 'Poppins'
-                        ),
+                            color: Colors.green,
+                            fontSize: 18,
+                            fontFamily: 'Poppins'),
                       ),
                       SizedBox(
                         height: 10,
@@ -67,40 +65,40 @@ class _LoginsmsState extends State<FirstLoginsms> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Radio(
-                              activeColor: Color(0xFF4EB181),
-                              value: 0,
-                              groupValue: 1,
-                              onChanged: (val) {
-                                   Navigator.pop(context);
-                              },
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Radio(
+                                  activeColor: Color(0xFF4EB181),
+                                  value: 0,
+                                  groupValue: 1,
+                                  onChanged: (val) {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                Text(
+                                  "Email",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF334D6E)),
+                                ),
+                                Radio(
+                                  activeColor: Color(0xFF4EB181),
+                                  value: 1,
+                                  groupValue: 1,
+                                  onChanged: (val) {
+                                    print('Radio $val');
+                                  },
+                                ),
+                                Text(
+                                  "SMS",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF334D6E)),
+                                ),
+                              ],
                             ),
-                            Text(
-                              "Email",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: 'Poppins',
-                                  color: Color(0xFF334D6E)),
-                            ),
-                            Radio(
-                              activeColor: Color(0xFF4EB181),
-                              value: 1,
-                              groupValue: 1,
-                              onChanged: (val) {
-                                print('Radio $val');
-                              },
-                            ),
-                            Text(
-                              "SMS",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: 'Poppins',
-                                  color: Color(0xFF334D6E)),
-                            ),
-                          ],
-                        ),
                             SizedBox(height: 20),
                             Container(
                               child: Column(
@@ -109,15 +107,12 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                   Form(
                                     key: formKey,
                                     child: InternationalPhoneNumberInput(
-                                      validator: (String arg){
-                                        if(arg.length < 8){
-                                          return 'number must be 8 digits'; 
-
-
-                                        }  else {
+                                      validator: (String arg) {
+                                        if (arg.length < 8) {
+                                          return 'number must be 8 digits';
+                                        } else {
                                           return null;
                                         }
-                                      
                                       },
                                       onInputChanged: (PhoneNumber number) {
                                         print(number.phoneNumber);
@@ -125,15 +120,17 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                       onInputValidated: (bool value) {
                                         print(value);
                                       },
-                                       textStyle: TextStyle(color: Color(0xFF90A0B7), fontFamily: 'Poppins', fontSize: 13),
-
+                                      textStyle: TextStyle(
+                                          color: Color(0xFF90A0B7),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 13),
                                       ignoreBlank: false,
-                                      autoValidateMode: AutovalidateMode.disabled,
+                                      autoValidateMode:
+                                          AutovalidateMode.disabled,
                                       selectorTextStyle:
                                           TextStyle(color: Colors.black),
                                       initialValue: number,
                                       textFieldController: controller,
-                                
                                     ),
                                   )
                                 ],
@@ -149,8 +146,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                         children: [
                           Checkbox(
                               checkColor: Color(0xFF4EB181),
-                               
-                                 activeColor: Color(0xFFFFFFFF),
+                              activeColor: Color(0xFFFFFFFF),
                               value: this.valuefirst,
                               onChanged: (bool value) {
                                 setState(() {
@@ -158,7 +154,7 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                 });
                               }),
                           Expanded(
-                                                      child: RichText(
+                            child: RichText(
                               text: TextSpan(
                                   text: 'I agree to the',
                                   style: TextStyle(
@@ -167,16 +163,15 @@ class _LoginsmsState extends State<FirstLoginsms> {
                                       fontFamily: 'Roboto'),
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: '  terms and conditions.',
-                                      style: TextStyle(
-                                          color: ThemeColors.CheckColor,
-                                          fontSize: 14,
-                                          fontFamily: 'Roboto'),
-                                      recognizer: TapGestureRecognizer()
-                                      ..onTap = (){
-                                        print(' Terms and conditions"');
-                                      }
-                                    )
+                                        text: '  terms and conditions.',
+                                        style: TextStyle(
+                                            color: ThemeColors.CheckColor,
+                                            fontSize: 14,
+                                            fontFamily: 'Roboto'),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            print(' Terms and conditions"');
+                                          })
                                   ]),
                             ),
                           )
@@ -186,58 +181,57 @@ class _LoginsmsState extends State<FirstLoginsms> {
                       SizedBox(height: 50),
 
                       Container(
-                           alignment: Alignment.bottomRight,
-
-                                                child: Container(
-                            decoration: BoxDecoration(
-                              color: Color(
-                                0xff4eb181,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                4,
-                              ),
-                                boxShadow: [
-        BoxShadow(
-          color: Color(
-            0x3d109cf1,
-          ),
-          offset: Offset(
-            0,
-            4,
-          ),
-          blurRadius: 10,
-        ),
-      ],
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(
+                              0xff4eb181,
                             ),
-                            height: 35.02,
-                            width: 120,
-                            child: FlatButton(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: "Poppins",
+                            borderRadius: BorderRadius.circular(
+                              4,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(
+                                  0x3d109cf1,
                                 ),
-                                textAlign: TextAlign.center,
+                                offset: Offset(
+                                  0,
+                                  4,
+                                ),
+                                blurRadius: 10,
                               ),
-                              onPressed: () {
-                                if (formKey.currentState.validate() && valuefirst == true) {
-                                
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CreatePassword()),
-                              );
-                                                 } else {
-                                                   Scaffold.of(context).showSnackBar(SnackBar(content: Text('Enter valid phone Number')));
-                                 
-                                }
-                              },
-                            ),
+                            ],
                           ),
-                        )
+                          height: 35.02,
+                          width: 120,
+                          child: FlatButton(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "Poppins",
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            onPressed: () {
+                              if (formKey.currentState.validate() &&
+                                  valuefirst == true) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CreatePassword()),
+                                );
+                              } else {
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                    content: Text('Enter valid phone Number')));
+                              }
+                            },
+                          ),
+                        ),
+                      )
 
                       //CONTINUE BUILDING HERE
                     ],

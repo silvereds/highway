@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Profile_screens/user_profile.dart';
-import 'package:mobile/Login_views/under_construction.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
+import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/shared/navDrawer.dart';
-
+import 'package:mobile/views/user_profile.dart';
 
 class ChangePassword extends StatefulWidget {
   @override
@@ -12,17 +10,14 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       drawer: NavDrawer(),
-        appBar: AppBar(
+      drawer: NavDrawer(),
+      appBar: AppBar(
         iconTheme: IconThemeData(
-           color: Colors.black,
-           
+          color: Colors.black,
         ),
-       
         backgroundColor: Colors.white,
         title: Image.asset(
           'assets/images/HIGHWEH_HORIZONTAL.png',
@@ -58,7 +53,6 @@ class _ChangePasswordState extends State<ChangePassword> {
       bottomNavigationBar: BottomNavigationBarView(),
       body: Container(
         color: Color(0xFFF5F6F8),
-      
         padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
         child: Center(
           child: Stack(
@@ -95,7 +89,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 hintStyle: TextStyle(
                                   fontSize: 14,
                                   color: Color(0xFF14A09F),
-                                   fontFamily: 'Poppins',
+                                  fontFamily: 'Poppins',
                                 ),
                                 border: InputBorder.none,
                               ),

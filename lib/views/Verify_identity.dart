@@ -1,9 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Login_views/under_construction.dart';
-import 'package:flutter/gestures.dart';
+import 'package:mobile/views/dashboard.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:mobile/Transactions_views/dashboard.dart';
 
 class VerifyIdentity extends StatefulWidget {
   @override
@@ -48,7 +47,9 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                           'Verify your Identity',
                           style: TextStyle(
                             color: Colors.green,
-                            fontSize: 28, fontFamily: 'Poppins', fontWeight: FontWeight.w200,
+                            fontSize: 28,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w200,
                           ),
                         ),
                       ),
@@ -59,7 +60,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                           color: Color(0xFFCACACA),
                           fontSize: 18,
                           height: 1.5,
-                         fontFamily: 'Poppins',
+                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
@@ -69,24 +70,22 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                         child: RichText(
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                              text: '  Resend Code',
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  color: Color(0xFF2AA694),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Poppins'),
-                              recognizer: TapGestureRecognizer()
-                                 ..onTap = (){
-                                      print('Resend code');
-                                    }
-                            )
+                                text: '  Resend Code',
+                                style: TextStyle(
+                                    decoration: TextDecoration.none,
+                                    color: Color(0xFF2AA694),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins'),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    print('Resend code');
+                                  })
                           ]),
                         ),
                       ),
                       SizedBox(height: 30),
                       PinCodeTextField(
-                       
                         appContext: context,
                         length: 5,
                         onChanged: (valu) {
@@ -108,40 +107,37 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                         cursorColor: Colors.black,
                         animationDuration: Duration(milliseconds: 300),
                         keyboardType: TextInputType.number,
-           
-                      
-                        
                         onCompleted: (v) {
                           print("Completed");
                         },
                       ),
                       SizedBox(height: 20),
-                    
                       Container(
                         alignment: Alignment.center,
                         child: Column(
                           children: [
                             FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                          side: BorderSide(color: ThemeColors.Buttons),
-                        ),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(fontSize: 13, fontFamily: 'Poppins'),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DashBoard()),
-                          );
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Color(0xFFFFFFFF),
-                        height: 33,
-                      ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                side: BorderSide(color: ThemeColors.Buttons),
+                              ),
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    fontSize: 13, fontFamily: 'Poppins'),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DashBoard()),
+                                );
+                              },
+                              color: Color(0xFF4EB181),
+                              textColor: Color(0xFFFFFFFF),
+                              height: 33,
+                            ),
                             SizedBox(height: 15),
                           ],
                         ),

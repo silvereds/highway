@@ -1,21 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Login_views/under_construction.dart';
-import 'package:mobile/Transactions_views/dashboard.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
-import 'package:mobile/shared/appBar.dart';
+import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/shared/navDrawer.dart';
+import 'package:mobile/shared/routes.dart';
+import 'package:mobile/views/change_password_screen.dart';
 
-class CompanyProfileView extends StatefulWidget {
+class UserProfile extends StatefulWidget {
   @override
-  _CompanyProfileViewState createState() => _CompanyProfileViewState();
+  _UserProfileState createState() => _UserProfileState();
 }
 
-class _CompanyProfileViewState extends State<CompanyProfileView> {
+class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: NavDrawer(),
         backgroundColor: Color(0xFFF5F6F8),
-        appBar:AppBarView(),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black, size: 36),
+          backgroundColor: Colors.white,
+          title: Image.asset(
+            'assets/images/HIGHWEH_HORIZONTAL.png',
+            fit: BoxFit.contain,
+            height: 45,
+          ),
+          centerTitle: true,
+          actions: [
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+              child: GestureDetector(
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Container(
+                      decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                    ),
+                  )),
+                ),
+              ),
+            )
+          ],
+        ),
         bottomNavigationBar: BottomNavigationBarView(),
         body: SingleChildScrollView(
           child: Container(
@@ -40,7 +68,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        'Touristic Voyage ',
+                        'Jane Doe ',
                         style: TextStyle(
                           color: Color(0xFF000000),
                           fontSize: 30,
@@ -51,7 +79,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                         height: 10,
                       ),
                       Text(
-                        'voyage@touristic.com',
+                        'janedoe@email.com',
                         style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 18,
@@ -62,7 +90,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                         height: 10,
                       ),
                       Text(
-                        "+237 765890021",
+                        "+237 654678765",
                         style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 18,
@@ -70,6 +98,19 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       ),
                       SizedBox(
                         height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/companyProfile'),
+                        child: RichText(
+                            text: TextSpan(
+                                style: TextStyle(
+                                    color: Color(0xFF109CF1),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                                children: [
+                              TextSpan(text: "Touristic Voyage"),
+                            ])),
                       ),
                     ],
                   ),
@@ -88,7 +129,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Company Details',
+                      Text('Personal Details',
                           style: TextStyle(
                             color: Color(0xFF4CAF50),
                             fontSize: 12,
@@ -104,22 +145,12 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        child: Text('Mvan, Yaounde, CM.',
-                            style: TextStyle(
-                              color: Color(0xFF192A3E),
-                              fontSize: 14,
-                            )),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text('Industry:',
+                      Text('Maison Rose, Maeture',
                           style: TextStyle(
-                            color: Color(0xFF818E9B),
+                            color: Color(0xFF192A3E),
                             fontSize: 14,
                           )),
-                      Text('Transport and Logistics',
+                      Text('Mendong, Yaounde, CM.',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -127,12 +158,12 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Size',
+                      Text('Date of Birth:',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('20',
+                      Text('January 21st, 1990',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -140,12 +171,12 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Founded on',
+                      Text('Place Of Birth:',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('September 30th, 2011',
+                      Text('Baffoussam',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -153,31 +184,25 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Contact person',
+                      Text('Profession:',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      GestureDetector(
-                        onTap: () {
-                          print('Jane Doe');
-                        },
-                        child: Text('Jane Doe',
-                            style: TextStyle(
-                              color: Color(0xFF109CF1),
-                              fontSize: 14,
-                              decoration: TextDecoration.underline,
-                            )),
-                      ),
+                      Text('Driver',
+                          style: TextStyle(
+                            color: Color(0xFF192A3E),
+                            fontSize: 14,
+                          )),
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Founded on',
+                      Text('Gender:',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('September 30th, 2011',
+                      Text('Female',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -272,9 +297,29 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // SizedBox(
-                      //   width: 20,
-                      // ),
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: ThemeColors.Buttons),
+                        ),
+                        child: Text(
+                          'Change Password',
+                          style: TextStyle(fontSize: 13),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChangePassword()),
+                          );
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Color(0xFFFFFFFF),
+                        height: 33,
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
                       FlatButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
@@ -285,12 +330,8 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                           style: TextStyle(fontSize: 13),
                         ),
                         onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DashBoard()),
-                          );
+                          // Navigator.pop(context);
+                          Navigator.pushNamed(context, AppRoutes.dashboard);
                         },
                         color: Color(0xFF4EB181),
                         textColor: Color(0xFFFFFFFF),

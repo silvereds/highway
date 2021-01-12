@@ -1,13 +1,11 @@
 import "package:flutter/material.dart";
+import 'package:mobile/shared/appBar.dart';
+import 'package:mobile/shared/bottomNavigationBar.dart';
 // import 'package:image_picker/image_picker.dart';
 
 import 'package:mobile/shared/const_color.dart';
-import 'package:pie_chart/pie_chart.dart';
-import 'package:mobile/Login_views/under_construction.dart';
-import 'package:mobile/Profile_screens/user_profile.dart';
 import 'package:mobile/shared/navDrawer.dart';
-import 'package:mobile/shared/bottomNavigationBar.dart';
-import 'package:mobile/shared/appBar.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class DashBoard extends StatefulWidget {
   @override

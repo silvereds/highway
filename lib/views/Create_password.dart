@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Login_views/Login_Email.dart';
+import 'package:mobile/views/Login_Email.dart';
 
 class CreatePassword extends StatefulWidget {
   @override
@@ -10,22 +8,9 @@ class CreatePassword extends StatefulWidget {
 }
 
 class _CreatePasswordState extends State<CreatePassword> {
-
-     
-   
-
-   
-     
-  
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -60,7 +45,6 @@ class _CreatePasswordState extends State<CreatePassword> {
                       ),
                       Container(
                         child: Form(
-                     
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
@@ -74,7 +58,6 @@ class _CreatePasswordState extends State<CreatePassword> {
                               ),
                               SizedBox(height: 30),
                               TextFormField(
-                                
                                 decoration: InputDecoration(
                                   hintText: 'New Password',
                                   hintStyle: TextStyle(

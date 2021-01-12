@@ -1,56 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Profile_screens/change_password_screen.dart';
-import 'package:mobile/shared/navDrawer.dart';
-import 'package:mobile/Profile_screens/Company_profile.dart';
+import 'package:mobile/shared/appBar.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
-import 'package:mobile/shared/routes.dart';
+import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/views/dashboard.dart';
 
-class UserProfile extends StatefulWidget {
+class CompanyProfileView extends StatefulWidget {
   @override
-  _UserProfileState createState() => _UserProfileState();
+  _CompanyProfileViewState createState() => _CompanyProfileViewState();
 }
 
-class _UserProfileState extends State<UserProfile> {
-
-
+class _CompanyProfileViewState extends State<CompanyProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavDrawer(),
         backgroundColor: Color(0xFFF5F6F8),
-        appBar: AppBar(
-           iconTheme: IconThemeData(
-           color: Colors.black,
-           size: 36
-           ),
-          backgroundColor: Colors.white,
-          title: Image.asset(
-            'assets/images/HIGHWEH_HORIZONTAL.png',
-            fit: BoxFit.contain,
-            height: 45,
-          ),
-          centerTitle: true,
-          actions: [
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-              child: GestureDetector(
-                child: CircleAvatar(
-                  radius: 25,
-                  child: Container(
-                      decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
-                    ),
-                  )),
-                ),
-              ),
-            )
-          ],
-        ),
-     bottomNavigationBar: BottomNavigationBarView(),
+        appBar: AppBarView(),
+        bottomNavigationBar: BottomNavigationBarView(),
         body: SingleChildScrollView(
           child: Container(
             height: 1050,
@@ -74,7 +39,7 @@ class _UserProfileState extends State<UserProfile> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        'Jane Doe ',
+                        'Touristic Voyage ',
                         style: TextStyle(
                           color: Color(0xFF000000),
                           fontSize: 30,
@@ -85,7 +50,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 10,
                       ),
                       Text(
-                        'janedoe@email.com',
+                        'voyage@touristic.com',
                         style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 18,
@@ -96,7 +61,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 10,
                       ),
                       Text(
-                        "+237 654678765",
+                        "+237 765890021",
                         style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 18,
@@ -104,19 +69,6 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                       SizedBox(
                         height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () =>
-                           Navigator.pushNamed(context,  '/companyProfile'),
-                        child: RichText(
-                            text: TextSpan(
-                                style: TextStyle(
-                                    color: Color(0xFF109CF1),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400),
-                                children: [
-                              TextSpan(text: "Touristic Voyage"),
-                            ])),
                       ),
                     ],
                   ),
@@ -135,7 +87,7 @@ class _UserProfileState extends State<UserProfile> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Personal Details',
+                      Text('Company Details',
                           style: TextStyle(
                             color: Color(0xFF4CAF50),
                             fontSize: 12,
@@ -151,12 +103,22 @@ class _UserProfileState extends State<UserProfile> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Maison Rose, Maeture',
+                      Container(
+                        child: Text('Mvan, Yaounde, CM.',
+                            style: TextStyle(
+                              color: Color(0xFF192A3E),
+                              fontSize: 14,
+                            )),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('Industry:',
                           style: TextStyle(
-                            color: Color(0xFF192A3E),
+                            color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('Mendong, Yaounde, CM.',
+                      Text('Transport and Logistics',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -164,12 +126,12 @@ class _UserProfileState extends State<UserProfile> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Date of Birth:',
+                      Text('Size',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('January 21st, 1990',
+                      Text('20',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -177,12 +139,12 @@ class _UserProfileState extends State<UserProfile> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Place Of Birth:',
+                      Text('Founded on',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('Baffoussam',
+                      Text('September 30th, 2011',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -190,25 +152,31 @@ class _UserProfileState extends State<UserProfile> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Profession:',
+                      Text('Contact person',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('Driver',
-                          style: TextStyle(
-                            color: Color(0xFF192A3E),
-                            fontSize: 14,
-                          )),
+                      GestureDetector(
+                        onTap: () {
+                          print('Jane Doe');
+                        },
+                        child: Text('Jane Doe',
+                            style: TextStyle(
+                              color: Color(0xFF109CF1),
+                              fontSize: 14,
+                              decoration: TextDecoration.underline,
+                            )),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Gender:',
+                      Text('Founded on',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
                             fontSize: 14,
                           )),
-                      Text('Female',
+                      Text('September 30th, 2011',
                           style: TextStyle(
                             color: Color(0xFF192A3E),
                             fontSize: 14,
@@ -303,29 +271,9 @@ class _UserProfileState extends State<UserProfile> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                          side: BorderSide(color: ThemeColors.Buttons),
-                        ),
-                        child: Text(
-                          'Change Password',
-                          style: TextStyle(fontSize: 13),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ChangePassword()),
-                          );
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Color(0xFFFFFFFF),
-                        height: 33,
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
+                      // SizedBox(
+                      //   width: 20,
+                      // ),
                       FlatButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
@@ -335,11 +283,12 @@ class _UserProfileState extends State<UserProfile> {
                           'Close',
                           style: TextStyle(fontSize: 13),
                         ),
-                       onPressed: () {
-                          // Navigator.pop(context);
-                          Navigator.pushNamed(
-                            context, AppRoutes.dashboard
-                          
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DashBoard()),
                           );
                         },
                         color: Color(0xFF4EB181),

@@ -1,47 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Login_views/First_Login_sms.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:mobile/Login_views/Create_password.dart';
+import 'package:mobile/views/First_Login_sms.dart';
 
-class FirstLoginEmail extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _FirstLoginEmailState createState() => _FirstLoginEmailState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _FirstLoginEmailState extends State<FirstLoginEmail> {
-  bool valuefirst = false;
-
-  String _email;
-
-  final formKey = GlobalKey<FormState>();
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void _submitCommand() {
-    final form = formKey.currentState;
-    if (form.validate()) {
-      form.save();
-
-      // Email & password matched our validation rules
-      // and are saved to _email and _password fields.
-      _loginCommand();
-    }
-  }
-
-  void _loginCommand() {
-    final snackbar = SnackBar(
-      content: Text('Email: $_email'),
-    );
-
-    scaffoldKey.currentState.showSnackBar(snackbar);
-  }
-
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -136,13 +106,12 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                         Column(
                           children: [
                             Form(
-                              key: formKey,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
                                 // validator: (val) =>
-                                    // !EmailValidator.validate(val, true)
-                                    //     ? 'Not a valid email.'
-                                    //     : null,
+                                // !EmailValidator.validate(val, true)
+                                //     ? 'Not a valid email.'
+                                //     : null,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     hintText: 'Email Address',
@@ -169,14 +138,10 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                         Row(
                           children: [
                             Checkbox(
-                                checkColor: Color(0xFF4EB181),
-                                activeColor: Color(0xFFFFFFFF),
-                                value: this.valuefirst,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    this.valuefirst = value;
-                                  });
-                                }),
+                              checkColor: Color(0xFF4EB181),
+                              activeColor: Color(0xFFFFFFFF),
+                              value: false,
+                            ),
                             Expanded(
                               child: RichText(
                                 text: TextSpan(
@@ -240,7 +205,6 @@ class _FirstLoginEmailState extends State<FirstLoginEmail> {
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                              onPressed: _submitCommand,
                             ),
                           ),
                         )

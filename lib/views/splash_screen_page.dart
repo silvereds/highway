@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/controllers/splash_screen_controller.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/Login_views/First_Login_Email.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreenPage extends StatefulWidget {
+  SplashScreenPage({Key key}) : super(key: key);
+
+  @override
+  _SplashScreenPageState createState() => _SplashScreenPageState();
+}
+
+class _SplashScreenPageState extends State<SplashScreenPage> {
+  SplashScreenController _splashScreenController = new SplashScreenController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -227,7 +236,10 @@ class SplashScreen extends StatelessWidget {
                               side: BorderSide(color: Colors.green),
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, '/firstlogin-Email');
+                              _splashScreenController.isUserLoggedIn().then(
+                                  (sessionExists) => _splashScreenController
+                                      .navigateToNextPage(
+                                          context, sessionExists));
                             },
                             color: ThemeColors.Buttons,
                             textColor: Colors.white,
