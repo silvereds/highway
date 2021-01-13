@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/views/Login_sms.dart';
+import 'package:mobile/shared/routes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,8 +11,13 @@ class LoginPage extends StatefulWidget {
  enum LoginOption{email, sms}
 
 class _LoginPageState extends State<LoginPage> {
-   
+    // _site is the variable that recieves registeroption and keeps
     LoginOption _site = LoginOption.email;
+    
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+    
+
 
 
 
@@ -20,6 +26,24 @@ class _LoginPageState extends State<LoginPage> {
 
   String _email;
   String _password;
+
+    @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  String hintText(){
+    if(_site == LoginOption.email){
+      return "Email";
+
+     } else{
+       return "Phone number";
+     }
+  }
 
   void _submitCommand() {
     final form = formKey.currentState;
@@ -137,22 +161,24 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Column(
                                     children: [
                                       TextFormField(
+                                        controller: emailController,
                                         // validator: (val) => !EmailValidator.validate(val, true) ? 'Enter valid Email': null,
                                         onSaved: (val) => _email = val,
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         decoration: InputDecoration(
-                                            hintText: 'Email Address',
+                                            hintText: hintText(),
                                             hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xFFAAAAAA),
                                                 fontFamily: 'Roboto'),
                                             border: InputBorder.none,
-                                            prefix: Icon(Icons.mail)),
+                                           ),
                                       ),
                                       Divider(color: Colors.grey),
                                       SizedBox(height: 10),
                                       TextFormField(
+                                         controller: passwordController,
                                         validator: (val) => val.length < 4
                                             ? 'Password too short..'
                                             : null,
@@ -165,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 color: Color(0xFFAAAAAA),
                                                 fontFamily: 'Roboto'),
                                             border: InputBorder.none,
-                                            prefix: Icon(Icons.lock_outline)),
+                                            ),
                                       ),
                                       Divider(color: Colors.grey),
                                     ],
@@ -214,14 +240,15 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(
                                       fontSize: 13, fontFamily: 'Poppins'),
                                 ),
-                                onPressed: _submitCommand,
-                                // () {
-                                //   Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => LoginSms()),
-                                //   );
-                                // },
+                                onPressed: 
+                                () {
+                                  if(emailController != null && passwordController != null){
+                                  Navigator.pushNamed(context, AppRoutes.dashboard);
+                                  } 
+                                  
+                                  print("Email: " + emailController.text + ' Password: ' + passwordController.text );
+                                  
+                                   },
                                 color: Color(0xFF4EB181),
                                 textColor: Color(0xFFFFFFFF),
                                 height: 33,

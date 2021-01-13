@@ -47,7 +47,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                       ),
                       SizedBox(
                         child: Text(
-                          "WELCOME TO HIGHWEY ",
+                          "WELCOME TO HIGHWEH ",
                           style: TextStyle(
                             color: Color(
                               0xff4eb181,

@@ -9,13 +9,40 @@ class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
+  
  enum RegisterOption{email, sms}
 
 
 class _RegisterPageState extends State<RegisterPage> {
-
-
+            bool  checkOption = false;
+      // _site is the variable that recieves registeroption and keeps
   RegisterOption _site = RegisterOption.email;
+  
+  final textController = TextEditingController();
+
+  
+
+    @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    textController.dispose();
+    super.dispose();
+  }
+
+  String hintText(){
+    if(_site == RegisterOption.email){
+      return "Email";
+
+     } else{
+       return "Phone number";
+     }
+  }
+
+  
+  
+  
+
   
   @override
   Widget build(BuildContext context) {
@@ -96,6 +123,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               onChanged: (RegisterOption value) {
                                setState(() {
                                   _site =value;
+                                  
                                });
                               },
                             ),
@@ -116,16 +144,16 @@ class _RegisterPageState extends State<RegisterPage> {
                             Form(
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                              
+                                controller: textController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                    hintText: 'Email Address',
+                                   hintText: hintText(),
                                     hintStyle: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xFFAAAAAA),
                                         fontFamily: 'Roboto'),
                                     border: InputBorder.none,
-                                    prefix: Icon(Icons.mail)),
+                                   ),
                               ),
                             ),
                             Divider(
@@ -143,9 +171,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         Row(
                           children: [
                             Checkbox(
+                              onChanged: (value) {
+                                setState(() {
+                                  this.checkOption = value;
+                                });
+                              },
+                               
                               checkColor: Color(0xFF4EB181),
                               activeColor: Color(0xFFFFFFFF),
-                              value: false,
+                              value: checkOption,
                             ),
                             Expanded(
                               child: RichText(
@@ -215,8 +249,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => CreatePassword()),
+                                    
                                 );
-                                
+                                print(textController.text);
+                              
                               },
                             ),
                           ),

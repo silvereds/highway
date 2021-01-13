@@ -7,11 +7,28 @@ class CreatePassword extends StatefulWidget {
   _CreatePasswordState createState() => _CreatePasswordState();
 }
 
-
 class _CreatePasswordState extends State<CreatePassword> {
+  final snackBar = SnackBar(content: Text('Enter same password'));
 
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  void onSave() {
+    if (newPasswordController.text == confirmPasswordController.text && confirmPasswordController != null ) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+        
+      );
+    } else {
+      print("Passwords do not mactch");
+    }
+     print('newPassword: ' +
+        newPasswordController.text +
+        ' confirmPw: ' +
+        confirmPasswordController.text);
     
-  
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +80,8 @@ class _CreatePasswordState extends State<CreatePassword> {
                               ),
                               SizedBox(height: 30),
                               TextFormField(
+                                controller: newPasswordController,
+                                obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: 'New Password',
                                   hintStyle: TextStyle(
@@ -75,6 +94,8 @@ class _CreatePasswordState extends State<CreatePassword> {
                               Divider(color: Colors.grey),
                               SizedBox(height: 30),
                               TextFormField(
+                                controller: confirmPasswordController,
+                                obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: 'Confirm password',
                                   hintStyle: TextStyle(
@@ -103,11 +124,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                                 TextStyle(fontSize: 13, fontFamily: 'Poppins'),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
-                            );
+                            onSave();
                           },
                           color: Color(0xFF4EB181),
                           textColor: Color(0xFFFFFFFF),
