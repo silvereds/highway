@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/views/Login_Email.dart';
+import 'package:mobile/views/Login_page.dart';
 
 class CreatePassword extends StatefulWidget {
   @override
   _CreatePasswordState createState() => _CreatePasswordState();
 }
 
+
 class _CreatePasswordState extends State<CreatePassword> {
+
+    
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +106,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginEmail()),
+                                  builder: (context) => LoginPage()),
                             );
                           },
                           color: Color(0xFF4EB181),

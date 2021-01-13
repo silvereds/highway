@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/views/Login_sms.dart';
 
-class LoginEmail extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _LoginEmailState createState() => _LoginEmailState();
+  _LoginPageState  createState() => _LoginPageState();
 }
+ enum LoginOption{email, sms}
 
-class _LoginEmailState extends State<LoginEmail> {
+class _LoginPageState extends State<LoginPage> {
+   
+    LoginOption _site = LoginOption.email;
+
+
+
   final formKey = GlobalKey<FormState>();
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -88,10 +94,12 @@ class _LoginEmailState extends State<LoginEmail> {
                               children: [
                                 Radio(
                                   activeColor: Color(0xFF4EB181),
-                                  value: 1,
-                                  groupValue: 1,
-                                  onChanged: (val) {
-                                    print('Radio $val');
+                                  value: LoginOption.email,
+                                  groupValue: _site,
+                                  onChanged: (LoginOption value) {
+                                    setState(() {
+                                      _site = value;
+                                    });
                                   },
                                 ),
                                 Text(
@@ -103,14 +111,12 @@ class _LoginEmailState extends State<LoginEmail> {
                                 ),
                                 Radio(
                                   activeColor: Color(0xFF4EB181),
-                                  value: 1,
-                                  groupValue: 0,
-                                  onChanged: (val) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginSms()),
-                                    );
+                                  value: LoginOption.sms,
+                                  groupValue: _site,
+                                  onChanged: (value) {
+                                   setState(() {
+                                     _site = value;
+                                   });
                                   },
                                 ),
                                 Text(

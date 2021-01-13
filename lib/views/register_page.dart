@@ -2,13 +2,21 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/views/First_Login_sms.dart';
+import 'package:mobile/views/Create_password.dart';
 
 class RegisterPage extends StatefulWidget {
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
+ enum RegisterOption{email, sms}
+
 
 class _RegisterPageState extends State<RegisterPage> {
+
+
+  RegisterOption _site = RegisterOption.email;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,10 +74,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: [
                             Radio(
                               activeColor: Color(0xFF4EB181),
-                              value: 1,
-                              groupValue: 1,
-                              onChanged: (val) {
-                                print('Radio $val');
+                              value: RegisterOption.email,
+                              groupValue: _site,
+                              onChanged: (RegisterOption value) {
+                                setState(() {
+                                  _site = value;
+                                });
                               },
                             ),
                             Text(
@@ -81,14 +91,12 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             Radio(
                               activeColor: Color(0xFF4EB181),
-                              value: 1,
-                              groupValue: 0,
-                              onChanged: (val) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => FirstLoginsms()),
-                                );
+                              value: RegisterOption.sms,
+                              groupValue: _site,
+                              onChanged: (RegisterOption value) {
+                               setState(() {
+                                  _site =value;
+                               });
                               },
                             ),
                             Text(
@@ -108,10 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Form(
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                                // validator: (val) =>
-                                // !EmailValidator.validate(val, true)
-                                //     ? 'Not a valid email.'
-                                //     : null,
+                              
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     hintText: 'Email Address',
@@ -205,6 +210,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                                 textAlign: TextAlign.center,
                               ),
+                              onPressed: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CreatePassword()),
+                                );
+                                
+                              },
                             ),
                           ),
                         )

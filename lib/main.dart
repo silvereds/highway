@@ -5,6 +5,7 @@ import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
 import 'package:mobile/views/splash_screen_page.dart';
 
+
 void main() {
   runApp(MyApp());
   runApp(
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.registerPage: (context) => RegisterPage(),
         AppRoutes.loginPage: (context) => CompanyProfileView(),
         AppRoutes.dashboard: (context) => DashBoard(),
+        
       },
     );
   }
