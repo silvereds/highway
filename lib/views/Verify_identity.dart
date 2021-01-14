@@ -10,6 +10,12 @@ class VerifyIdentity extends StatefulWidget {
 }
 
 class _VerifyIdentityState extends State<VerifyIdentity> {
+
+   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+ final pinCodeController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,6 +92,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                       ),
                       SizedBox(height: 30),
                       PinCodeTextField(
+                        controller: pinCodeController,
                         appContext: context,
                         length: 5,
                         onChanged: (valu) {
@@ -127,12 +134,14 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
                                     fontSize: 13, fontFamily: 'Poppins'),
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DashBoard()),
-                                );
+                                 _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text(
+          (pinCodeController.text),
+        ),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.red,
+      ));
+                              
                               },
                               color: Color(0xFF4EB181),
                               textColor: Color(0xFFFFFFFF),
