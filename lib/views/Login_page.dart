@@ -1,21 +1,26 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/controllers/login_controller.dart';
+import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/views/Login_sms.dart';
 import 'package:mobile/shared/routes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState  createState() => _LoginPageState();
+  
 }
  enum LoginOption{email, sms}
 
 class _LoginPageState extends State<LoginPage> {
-    // _site is the variable that recieves registeroption and keeps
+    // _site is the variable that recieves registerOption and keeps
     LoginOption _site = LoginOption.email;
     
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+   AuthCredentials authCredentials = AuthCredentials();
+  
     
 
 
@@ -240,18 +245,21 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(
                                       fontSize: 13, fontFamily: 'Poppins'),
                                 ),
-                                onPressed: 
-                                () {
-                                  if(emailController != null && passwordController != null){
-                                  Navigator.pushNamed(context, AppRoutes.dashboard);
-                                  } 
-                                  
-                                  print("Email: " + emailController.text + ' Password: ' + passwordController.text );
-                                  
-                                   },
+                                onPressed: () {
+                                if (hintText() == "Email") {
+                                  authCredentials.email =
+                                      emailController.text;
+                                } else {
+                                  authCredentials.password =
+                                  passwordController.text;
+                                }
+                                 
+                                },
+                                
                                 color: Color(0xFF4EB181),
                                 textColor: Color(0xFFFFFFFF),
                                 height: 33,
+                                
                               ),
                             ),
                             SizedBox(height: 15),

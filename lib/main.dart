@@ -4,6 +4,7 @@ import 'package:mobile/views/Company_profile.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
 import 'package:mobile/views/splash_screen_page.dart';
+import 'package:mobile/views/Create_password.dart';
 
 
 void main() {
@@ -23,13 +24,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: '/createPassword',
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
         AppRoutes.loginPage: (context) => CompanyProfileView(),
         AppRoutes.dashboard: (context) => DashBoard(),
-        
+        AppRoutes.createPassword:(context) => CreatePassword(),
       },
     );
   }

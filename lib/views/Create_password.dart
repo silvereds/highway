@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/views/Login_page.dart';
+import 'package:mobile/controllers/create_password_controller.dart';
+import 'package:mobile/entities/auth-credentials.dart';
+
 
 class CreatePassword extends StatefulWidget {
   @override
@@ -8,31 +10,42 @@ class CreatePassword extends StatefulWidget {
 }
 
 class _CreatePasswordState extends State<CreatePassword> {
-  final snackBar = SnackBar(content: Text('Enter same password'));
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+   AuthCredentials authCredentials = AuthCredentials();
 
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   void onSave() {
-    if (newPasswordController.text == confirmPasswordController.text && confirmPasswordController != null ) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
-        
-      );
+    if (newPasswordController.text == confirmPasswordController.text &&
+        confirmPasswordController != null) {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text(
+          ('newPassword: ' +
+              newPasswordController.text +
+              ' confirmPw: ' +
+              confirmPasswordController.text),
+        ),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.green,
+      ));
     } else {
-      print("Passwords do not mactch");
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text(
+          ('Passwords do not match'),
+        ),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.red,
+      ));
     }
-     print('newPassword: ' +
-        newPasswordController.text +
-        ' confirmPw: ' +
-        confirmPasswordController.text);
-    
+
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(

@@ -1,47 +1,52 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/controllers/register_controller.dart';
-import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/views/First_Login_sms.dart';
+import 'package:mobile/views/Create_password.dart';
 
 class RegisterPage extends StatefulWidget {
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
+  
+ enum RegisterOption{email, sms}
 
-enum RegisterOption { email, sms }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  RegisterController registerController = new RegisterController();
-  AuthCredentials authCredentials = AuthCredentials();
-
-  bool checkOption = false;
-  // _site is the variable that receives registeroption and keeps
+            bool  checkOption = false;
+      // _site is the variable that recieves registeroption and keeps
   RegisterOption _site = RegisterOption.email;
+  
+  final textController = TextEditingController();
 
-  final emailPhoneNumberController = TextEditingController();
+  
 
-  @override
+    @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
-    emailPhoneNumberController.dispose();
+    textController.dispose();
     super.dispose();
   }
 
-  String hintText() {
-    if (_site == RegisterOption.email) {
+  String hintText(){
+    if(_site == RegisterOption.email){
       return "Email";
-    } else {
-      return "Phone Number";
-    }
+
+     } else{
+       return "Phone number";
+     }
   }
 
+  
+  
+  
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -116,9 +121,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               value: RegisterOption.sms,
                               groupValue: _site,
                               onChanged: (RegisterOption value) {
-                                setState(() {
-                                  _site = value;
-                                });
+                               setState(() {
+                                  _site =value;
+                                  
+                               });
                               },
                             ),
                             Text(
@@ -138,16 +144,16 @@ class _RegisterPageState extends State<RegisterPage> {
                             Form(
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                                controller: emailPhoneNumberController,
+                                controller: textController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                  hintText: hintText(),
-                                  hintStyle: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFAAAAAA),
-                                      fontFamily: 'Roboto'),
-                                  border: InputBorder.none,
-                                ),
+                                   hintText: hintText(),
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xFFAAAAAA),
+                                        fontFamily: 'Roboto'),
+                                    border: InputBorder.none,
+                                   ),
                               ),
                             ),
                             Divider(
@@ -170,6 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   this.checkOption = value;
                                 });
                               },
+                               
                               checkColor: Color(0xFF4EB181),
                               activeColor: Color(0xFFFFFFFF),
                               value: checkOption,
@@ -238,22 +245,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                 textAlign: TextAlign.center,
                               ),
                               onPressed: () {
-                                if (hintText() == "Email") {
-                                  authCredentials.email =
-                                      emailPhoneNumberController.text;
-                                } else {
-                                  authCredentials.phoneNumber =
-                                      emailPhoneNumberController.text;
-                                }
-                                registerController
-                                    .firstTimeLogin(authCredentials)
-                                    .then((message) => {
-                                          _scaffoldKey.currentState
-                                              .showSnackBar(SnackBar(
-                                            content: Text(message),
-                                            duration: Duration(seconds: 3),
-                                          )),
-                                        });
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CreatePassword()),
+                                    
+                                );
+                                print(textController.text);
+                              
                               },
                             ),
                           ),
