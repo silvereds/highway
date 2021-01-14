@@ -5,7 +5,7 @@ import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/entities/user.dart';
 
 class AuthService {
-  final String endpoint = "https://dev-api.highweh.com/auth";
+  final String endpoint = "https://dev-admin.highweh.com/auth";
   Map<String, String> headers = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
   };
@@ -18,9 +18,9 @@ class AuthService {
         headers: headers, body: jsonEncode(authCredentials.toJson()));
 
     if (response.statusCode == 200) {
-      return "Login Email Sent";
+      return "success";
     } else {
-      return "Account Not Found";
+      return "failure";
     }
   }
 

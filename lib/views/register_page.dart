@@ -1,7 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/controllers/register_controller.dart';
+import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/views/Create_password.dart';
+
+import 'package:mobile/shared/routes.dart';
+
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -11,19 +15,25 @@ class RegisterPage extends StatefulWidget {
 enum RegisterOption { email, sms }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  RegisterController registerController = new RegisterController();
+  AuthCredentials authCredentials = AuthCredentials();
   bool checkOption = false;
   // _site is the variable that recieves registeroption and keeps
   RegisterOption _site = RegisterOption.email;
 
-  final textController = TextEditingController();
-  final new_password_Controller = TextEditingController();
-  final confirm_password_Controller = TextEditingController();
+  final emailPhoneNumberController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
 
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
-    textController.dispose();
+    confirmPasswordController.dispose();
+    newPasswordController.dispose();
+    emailPhoneNumberController.dispose();
     super.dispose();
   }
 
@@ -38,6 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -62,14 +73,17 @@ class _RegisterPageState extends State<RegisterPage> {
             // alignment: AlignmentDirectional.center,
             clipBehavior: Clip.none,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SingleChildScrollView(
-                                      child: Column(
+              SingleChildScrollView(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  // height: 423,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 90),
@@ -135,9 +149,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             Form(
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                              
-                                 
-                                controller: textController,
+                                controller: emailPhoneNumberController,
+
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: hintText(),
@@ -157,9 +170,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               // indent: 20,
                             ),
                             TextFormField(
-                              
-                             
-                              controller: new_password_Controller,
+                              controller: newPasswordController,
+
                               obscureText: true,
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
@@ -177,8 +189,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                             TextFormField(
-                            
-                              controller: confirm_password_Controller,
+                              controller: confirmPasswordController,
+
                               keyboardType: TextInputType.emailAddress,
                               obscureText: true,
                               decoration: InputDecoration(
@@ -278,19 +290,54 @@ class _RegisterPageState extends State<RegisterPage> {
                                     textAlign: TextAlign.center,
                                   ),
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CreatePassword()),
-                                    );
-                                    print(
-                                      textController.text,
-                                    );
-                                    print(new_password_Controller.text);
-                                    print(
-                                      confirm_password_Controller.text,
-                                    );
+
+                                    String authType = "";
+                                    if (hintText() == "Email") {
+                                      authType = "email";
+                                      authCredentials.email =
+                                          emailPhoneNumberController.text
+                                              .trim();
+                                    } else {
+                                      authType = "phoneNumber";
+                                      authCredentials.phoneNumber =
+                                          emailPhoneNumberController.text
+                                              .trim();
+                                    }
+                                    // check if passwords match
+                                    if (passwordsMatch()) {
+                                      registerController
+                                          .firstTimeLogin(
+                                              authCredentials, authType)
+                                          .then((result) => {
+                                                if (result == "success")
+                                                  {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        AppRoutes
+                                                            .verifyPasscodePage)
+                                                  }
+                                                else
+                                                  {
+                                                    _scaffoldKey.currentState
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          "Registration Failed"),
+                                                      backgroundColor:
+                                                          Colors.red[600],
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    ))
+                                                  }
+                                              });
+                                    } else {
+                                      _scaffoldKey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text("Invalid Password"),
+                                        backgroundColor: Colors.red[600],
+                                        duration: Duration(seconds: 3),
+                                      ));
+                                    }
+
                                   },
                                 ),
                               ),
@@ -386,5 +433,17 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
+  }
+
+  bool passwordsMatch() {
+    String newPassword = newPasswordController.text.trim();
+    String confirmPassword = confirmPasswordController.text.trim();
+
+    if (newPassword == confirmPassword && newPassword.isNotEmpty) {
+      authCredentials.password = newPassword;
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -17,6 +17,7 @@ class User {
   String proofOfAddressUrl;
   String role;
   String authorization;
+  String agent = "mobile";
 
   User(
       {this.name,
@@ -36,7 +37,10 @@ class User {
       this.role,
       this.status,
       this.subdivision,
-      this.authorization});
+      this.authorization,
+      this.agent}) {
+    this.agent = "mobile";
+  }
 
   factory User.fromJson(Map<String, dynamic> json) => User(
       uuid: json['uuid'] as String,
@@ -56,7 +60,8 @@ class User {
       idUrl: json['idUrl'] as String,
       proofOfAddressUrl: json['proofOfAddressUrl'] as String,
       role: json['role'] as String,
-      authorization: json['Authorization']);
+      authorization: json['Authorization'],
+      agent: json['agent']);
 
   Map<String, dynamic> toJson() => {
         'uuid': uuid,
@@ -76,6 +81,7 @@ class User {
         'idUrl': idUrl,
         'proofOfAddressUrl': proofOfAddressUrl,
         'role': role,
-        'authorization': authorization
+        'authorization': authorization,
+        'agent': authorization
       };
 }

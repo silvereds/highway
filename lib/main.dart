@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/routes.dart';
 import 'package:mobile/views/Company_profile.dart';
+import 'package:mobile/views/Create_password.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
 import 'package:mobile/views/splash_screen_page.dart';
@@ -31,13 +32,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+
+
+      initialRoute: AppRoutes.splashScreenPage,
+
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
         AppRoutes.loginPage: (context) => CompanyProfileView(),
         AppRoutes.dashboard: (context) => DashBoard(),
-       
+        AppRoutes.createPassword: (context) => CreatePassword(),
+     
+
       },
     );
   }

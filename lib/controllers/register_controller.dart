@@ -8,12 +8,25 @@ class RegisterController {
     this._authService = AuthService();
   }
 
-  Future<String> firstTimeLogin(AuthCredentials authCredentials) async {
-    if (isValidEmail(authCredentials.email) ||
-        isValidPhoneNumber(authCredentials.phoneNumber)) {
-      return await _authService.firstTimeLogin(authCredentials);
+  Future<String> firstTimeLogin(
+      AuthCredentials authCredentials, String authType) async {
+    authCredentials.agent = "mobile";
+    if (authType == "email") {
+
+      if (isValidEmail(authCredentials.email)) {
+        return await _authService.firstTimeLogin(authCredentials);
+      } else {
+        return "Invalid Email";
+      }
+      
+    } else if (authType == 'phoneNumber') {
+      if (isValidPhoneNumber(authCredentials.phoneNumber)) {
+        return await _authService.firstTimeLogin(authCredentials);
+      } else {
+        return "Invalid Phone Number";
+      }
     } else {
-      return "Invalid Email Or Phone Number";
+      return "Something went wrong";
     }
   }
 
