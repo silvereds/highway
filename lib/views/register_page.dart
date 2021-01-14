@@ -5,24 +5,22 @@ import 'package:mobile/views/First_Login_sms.dart';
 import 'package:mobile/views/Create_password.dart';
 
 class RegisterPage extends StatefulWidget {
-
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
-  
- enum RegisterOption{email, sms}
 
+enum RegisterOption { email, sms }
 
 class _RegisterPageState extends State<RegisterPage> {
-            bool  checkOption = false;
-      // _site is the variable that recieves registeroption and keeps
+  bool checkOption = false;
+  // _site is the variable that recieves registeroption and keeps
   RegisterOption _site = RegisterOption.email;
-  
+
   final textController = TextEditingController();
+   final new_password_Controller = TextEditingController();
+    final confirm_password_Controller = TextEditingController();
 
-  
-
-    @override
+  @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
@@ -30,20 +28,14 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  String hintText(){
-    if(_site == RegisterOption.email){
+  String hintText() {
+    if (_site == RegisterOption.email) {
       return "Email";
-
-     } else{
-       return "Phone number";
-     }
+    } else {
+      return "Phone number";
+    }
   }
 
-  
-  
-  
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
         centerTitle: true,
       ),
       body: Container(
+       
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -68,15 +61,15 @@ class _RegisterPageState extends State<RegisterPage> {
             // alignment: AlignmentDirectional.center,
             clipBehavior: Clip.none,
             children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 423,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SingleChildScrollView(
+              SingleChildScrollView(
+                              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  // height: 423,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -121,10 +114,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               value: RegisterOption.sms,
                               groupValue: _site,
                               onChanged: (RegisterOption value) {
-                               setState(() {
-                                  _site =value;
-                                  
-                               });
+                                setState(() {
+                                  _site = value;
+                                });
                               },
                             ),
                             Text(
@@ -147,26 +139,58 @@ class _RegisterPageState extends State<RegisterPage> {
                                 controller: textController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                   hintText: hintText(),
-                                    hintStyle: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFFAAAAAA),
-                                        fontFamily: 'Roboto'),
-                                    border: InputBorder.none,
-                                   ),
+                                  hintText: hintText(),
+                                  hintStyle: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFFAAAAAA),
+                                      fontFamily: 'Roboto'),
+                                  border: InputBorder.none,
+                                ),
                               ),
                             ),
                             Divider(
+                              color: Color(0xffd2d2d2, ),
+                              // endIndent: 20,
+                              // indent: 20,
+                              ),
+                            TextFormField(
+                                 controller: new_password_Controller,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  hintText: 'New password',
+                                  hintStyle: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFFAAAAAA),
+                                      fontFamily: 'Roboto'),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                               Divider(
                               color: Color(
                                 0xffd2d2d2,
                               ),
-                              endIndent: 20,
-                              indent: 20,
-                            ),
-                          ],
+                                ),
+                                  TextFormField(
+                                 controller: confirm_password_Controller,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  hintText: 'Confirm password',
+                                  hintStyle: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFFAAAAAA),
+                                      fontFamily: 'Roboto'),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                               Divider(
+                              color: Color(
+                                0xffd2d2d2,
+                              ),
+                                ),
+                                 ],
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 10,
                         ),
                         Row(
                           children: [
@@ -176,7 +200,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                   this.checkOption = value;
                                 });
                               },
-                               
                               checkColor: Color(0xFF4EB181),
                               activeColor: Color(0xFFFFFFFF),
                               value: checkOption,
@@ -208,55 +231,78 @@ class _RegisterPageState extends State<RegisterPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          alignment: Alignment.bottomRight,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color(
-                                0xff4eb181,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                4,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
+                        Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.bottomRight,
+                              child: Container(
+                                decoration: BoxDecoration(
                                   color: Color(
-                                    0x3d109cf1,
+                                    0xff4eb181,
                                   ),
-                                  offset: Offset(
-                                    0,
+                                  borderRadius: BorderRadius.circular(
                                     4,
                                   ),
-                                  blurRadius: 10,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(
+                                        0x3d109cf1,
+                                      ),
+                                      offset: Offset(
+                                        0,
+                                        4,
+                                      ),
+                                      blurRadius: 10,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            height: 35.02,
-                            width: 120,
-                            child: FlatButton(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: "Poppins",
+                                height: 45.02,
+                                width: 130,
+                                child: FlatButton(
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: "Poppins",
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CreatePassword()),
+                                    );
+                                    print(textController.text, );
+                                    print(new_password_Controller.text );
+                                    print(confirm_password_Controller.text, );
+                                  },
                                 ),
-                                textAlign: TextAlign.center,
                               ),
-                              onPressed: () {
-                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CreatePassword()),
-                                    
-                                );
-                                print(textController.text);
                               
-                              },
                             ),
-                          ),
-                        )
+                             RichText(
+                        textAlign: TextAlign.right,
+                              text: TextSpan(children: <TextSpan>[
+                                TextSpan(
+                                    text: '  Login',
+                                    style: TextStyle(
+                                        decoration: TextDecoration.none,
+                                        color: Color(0xFF109CF1),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins'),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        print('login');
+                                      })
+                              ]),
+                            )
+                          ],
+                        ),
+                     
                       ],
                     ),
                   ),

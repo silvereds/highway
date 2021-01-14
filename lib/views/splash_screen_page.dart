@@ -43,7 +43,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
-                        height: 25,
+                        height: 10,
                       ),
                       SizedBox(
                         child: Text(
@@ -61,7 +61,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                         width: 327,
                         height: 97,
                       ),
-                      SizedBox(height: 30),
+                      // SizedBox(height: 20),
                       Container(
                         child: Column(
                           children: [
@@ -116,7 +116,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
+                      // SizedBox(height: 20),
                       Container(
                         child: Column(
                           children: [
@@ -199,7 +199,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                           ),
                                         ),
                                         width: 222.15,
-                                        // height: 17.51,
+                                        height: 17.51,
                                       ),
                                       SizedBox(height: 10),
                                       SizedBox(
@@ -225,7 +225,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 45,
                       ),
                       Container(
                         child: FlatButton(
