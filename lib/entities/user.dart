@@ -16,6 +16,7 @@ class User {
   String idUrl;
   String proofOfAddressUrl;
   String role;
+  String authorization;
 
   User(
       {this.name,
@@ -34,27 +35,28 @@ class User {
       this.proofOfAddressUrl,
       this.role,
       this.status,
-      this.subdivision});
+      this.subdivision,
+      this.authorization});
 
-  factory User.fromJSON(Map<String, dynamic> json) => User(
-        uuid: json['uuid'] as String,
-        name: json['name'] as String,
-        email: json['email'] as String,
-        phoneNumber: json['phoneNumber'] as String,
-        status: json['status'] as String,
-        preferredLanguage: json['preferredLanguage'] as String,
-        photoUrl: json['photoUrl'] as String,
-        address: json['address'] as String,
-        bornOn: json['bornOn'] as String,
-        registeredOn: json['registeredOn'] as String,
-        organisation: json['organisation'] as String,
-        city: json['city'] as String,
-        gender: json['gender'] as String,
-        subdivision: json['subdivision'] as String,
-        idUrl: json['idUrl'] as String,
-        proofOfAddressUrl: json['proofOfAddressUrl'] as String,
-        role: json['role'] as String,
-      );
+  factory User.fromJson(Map<String, dynamic> json) => User(
+      uuid: json['uuid'] as String,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      phoneNumber: json['phoneNumber'] as String,
+      status: json['status'] as String,
+      preferredLanguage: json['preferredLanguage'] as String,
+      photoUrl: json['photoUrl'] as String,
+      address: json['address'] as String,
+      bornOn: json['bornOn'] as String,
+      registeredOn: json['registeredOn'] as String,
+      organisation: json['organisation'] as String,
+      city: json['city'] as String,
+      gender: json['gender'] as String,
+      subdivision: json['subdivision'] as String,
+      idUrl: json['idUrl'] as String,
+      proofOfAddressUrl: json['proofOfAddressUrl'] as String,
+      role: json['role'] as String,
+      authorization: json['Authorization']);
 
   Map<String, dynamic> toJson() => {
         'uuid': uuid,
@@ -73,6 +75,7 @@ class User {
         'subdivision': subdivision,
         'idUrl': idUrl,
         'proofOfAddressUrl': proofOfAddressUrl,
-        'role': role
+        'role': role,
+        'authorization': authorization
       };
 }

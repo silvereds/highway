@@ -40,7 +40,8 @@ class DBConnect {
           "subdivision TEXT," +
           "idUrl TEXT," +
           "proofOfAddressUrl TEXT," +
-          "role TEXT" +
+          "role TEXT," +
+          "authorization TEXT" +
           ")";
 
       var batch = db.batch();
