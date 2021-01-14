@@ -4,13 +4,20 @@ import 'package:mobile/views/Company_profile.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
 import 'package:mobile/views/splash_screen_page.dart';
-import 'package:mobile/views/Verify_identity.dart';
+import 'package:device_preview/device_preview.dart';
+
+
 
 
 void main() {
   runApp(MyApp());
   runApp(
-      MyApp()); //<-- Comment  this line  if you want to run without Device preview
+    
+     DevicePreview(
+   
+    builder: (context) => MyApp(), // Wrap your app
+  ),
+);//<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -24,13 +31,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/verifyIdentity',
+      initialRoute: '/',
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
         AppRoutes.loginPage: (context) => CompanyProfileView(),
         AppRoutes.dashboard: (context) => DashBoard(),
-        AppRoutes.verifyIdentity:(context) => VerifyIdentity(),
+       
       },
     );
   }

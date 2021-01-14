@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/views/First_Login_sms.dart';
 import 'package:mobile/views/Create_password.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -17,8 +16,8 @@ class _RegisterPageState extends State<RegisterPage> {
   RegisterOption _site = RegisterOption.email;
 
   final textController = TextEditingController();
-   final new_password_Controller = TextEditingController();
-    final confirm_password_Controller = TextEditingController();
+  final new_password_Controller = TextEditingController();
+  final confirm_password_Controller = TextEditingController();
 
   @override
   void dispose() {
@@ -49,28 +48,28 @@ class _RegisterPageState extends State<RegisterPage> {
         centerTitle: true,
       ),
       body: Container(
-       
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [ThemeColors.Background, ThemeColors.LightBackground])),
+                colors: [
+              ThemeColors.Background,
+              ThemeColors.LightBackground
+            ])),
         padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
         child: Center(
           child: Stack(
             // alignment: AlignmentDirectional.center,
             clipBehavior: Clip.none,
             children: [
-              SingleChildScrollView(
-                              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  // height: 423,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                                      child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 90),
@@ -136,7 +135,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             Form(
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                               
+                              
+                                 
                                 controller: textController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
@@ -150,48 +150,52 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                             Divider(
-                              color: Color(0xffd2d2d2, ),
+                              color: Color(
+                                0xffd2d2d2,
+                              ),
                               // endIndent: 20,
                               // indent: 20,
-                              ),
+                            ),
                             TextFormField(
-                                 controller: new_password_Controller,
-                                  obscureText: true,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  hintText: 'New password',
-                                  
-                                  hintStyle: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFAAAAAA),
-                                      fontFamily: 'Roboto'),
-                                  border: InputBorder.none,
-                                ),
+                              
+                             
+                              controller: new_password_Controller,
+                              obscureText: true,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                hintText: 'New password',
+                                hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xFFAAAAAA),
+                                    fontFamily: 'Roboto'),
+                                border: InputBorder.none,
                               ),
-                               Divider(
+                            ),
+                            Divider(
                               color: Color(
                                 0xffd2d2d2,
                               ),
-                                ),
-                                  TextFormField(
-                                 controller: confirm_password_Controller,
-                                keyboardType: TextInputType.emailAddress,
-                                 obscureText: true,
-                                decoration: InputDecoration(
-                                  hintText: 'Confirm password',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFAAAAAA),
-                                      fontFamily: 'Roboto'),
-                                  border: InputBorder.none,
-                                ),
+                            ),
+                            TextFormField(
+                            
+                              controller: confirm_password_Controller,
+                              keyboardType: TextInputType.emailAddress,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintText: 'Confirm password',
+                                hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xFFAAAAAA),
+                                    fontFamily: 'Roboto'),
+                                border: InputBorder.none,
                               ),
-                               Divider(
+                            ),
+                            Divider(
                               color: Color(
                                 0xffd2d2d2,
                               ),
-                                ),
-                                 ],
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 10,
@@ -277,18 +281,22 @@ class _RegisterPageState extends State<RegisterPage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => CreatePassword()),
+                                          builder: (context) =>
+                                              CreatePassword()),
                                     );
-                                    print(textController.text, );
-                                    print(new_password_Controller.text );
-                                    print(confirm_password_Controller.text, );
+                                    print(
+                                      textController.text,
+                                    );
+                                    print(new_password_Controller.text);
+                                    print(
+                                      confirm_password_Controller.text,
+                                    );
                                   },
                                 ),
                               ),
-                              
                             ),
-                             RichText(
-                        textAlign: TextAlign.right,
+                            RichText(
+                              textAlign: TextAlign.right,
                               text: TextSpan(children: <TextSpan>[
                                 TextSpan(
                                     text: '  Login',
@@ -306,7 +314,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             )
                           ],
                         ),
-                     
                       ],
                     ),
                   ),

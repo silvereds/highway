@@ -116,7 +116,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                           ],
                         ),
                       ),
-                      // SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Container(
                         child: Column(
                           children: [
@@ -201,7 +201,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                         width: 222.15,
                                         height: 17.51,
                                       ),
-                                      SizedBox(height: 10),
+                                      // SizedBox(height: 10),
                                       SizedBox(
                                         child: Text(
                                           "Carry out your transactions, consult your balance and follow your spending history",
