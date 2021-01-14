@@ -136,6 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Form(
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
+                               
                                 controller: textController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
@@ -155,9 +156,11 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             TextFormField(
                                  controller: new_password_Controller,
+                                  obscureText: true,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: 'New password',
+                                  
                                   hintStyle: TextStyle(
                                       fontSize: 14,
                                       color: Color(0xFFAAAAAA),
@@ -173,6 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   TextFormField(
                                  controller: confirm_password_Controller,
                                 keyboardType: TextInputType.emailAddress,
+                                 obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: 'Confirm password',
                                   hintStyle: TextStyle(
