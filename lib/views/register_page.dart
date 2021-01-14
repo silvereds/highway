@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/controllers/register_controller.dart';
+import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/views/First_Login_sms.dart';
-import 'package:mobile/views/Create_password.dart';
+import 'package:mobile/shared/routes.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -12,19 +13,24 @@ class RegisterPage extends StatefulWidget {
 enum RegisterOption { email, sms }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  RegisterController registerController = new RegisterController();
+  AuthCredentials authCredentials = AuthCredentials();
   bool checkOption = false;
   // _site is the variable that recieves registeroption and keeps
   RegisterOption _site = RegisterOption.email;
 
-  final textController = TextEditingController();
-   final new_password_Controller = TextEditingController();
-    final confirm_password_Controller = TextEditingController();
+  final emailPhoneNumberController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
-    textController.dispose();
+    confirmPasswordController.dispose();
+    newPasswordController.dispose();
+    emailPhoneNumberController.dispose();
     super.dispose();
   }
 
@@ -39,6 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -49,7 +56,6 @@ class _RegisterPageState extends State<RegisterPage> {
         centerTitle: true,
       ),
       body: Container(
-       
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -62,7 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
             clipBehavior: Clip.none,
             children: [
               SingleChildScrollView(
-                              child: Container(
+                child: Container(
                   width: MediaQuery.of(context).size.width,
                   // height: 423,
                   decoration: BoxDecoration(
@@ -136,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Form(
                               autovalidateMode: AutovalidateMode.disabled,
                               child: TextFormField(
-                                controller: textController,
+                                controller: emailPhoneNumberController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: hintText(),
@@ -149,45 +155,47 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                             Divider(
-                              color: Color(0xffd2d2d2, ),
+                              color: Color(
+                                0xffd2d2d2,
+                              ),
                               // endIndent: 20,
                               // indent: 20,
-                              ),
+                            ),
                             TextFormField(
-                                 controller: new_password_Controller,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  hintText: 'New password',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFAAAAAA),
-                                      fontFamily: 'Roboto'),
-                                  border: InputBorder.none,
-                                ),
+                              controller: newPasswordController,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                hintText: 'New password',
+                                hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xFFAAAAAA),
+                                    fontFamily: 'Roboto'),
+                                border: InputBorder.none,
                               ),
-                               Divider(
+                            ),
+                            Divider(
                               color: Color(
                                 0xffd2d2d2,
                               ),
-                                ),
-                                  TextFormField(
-                                 controller: confirm_password_Controller,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  hintText: 'Confirm password',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFAAAAAA),
-                                      fontFamily: 'Roboto'),
-                                  border: InputBorder.none,
-                                ),
+                            ),
+                            TextFormField(
+                              controller: confirmPasswordController,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                hintText: 'Confirm password',
+                                hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xFFAAAAAA),
+                                    fontFamily: 'Roboto'),
+                                border: InputBorder.none,
                               ),
-                               Divider(
+                            ),
+                            Divider(
                               color: Color(
                                 0xffd2d2d2,
                               ),
-                                ),
-                                 ],
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 10,
@@ -270,21 +278,58 @@ class _RegisterPageState extends State<RegisterPage> {
                                     textAlign: TextAlign.center,
                                   ),
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => CreatePassword()),
-                                    );
-                                    print(textController.text, );
-                                    print(new_password_Controller.text );
-                                    print(confirm_password_Controller.text, );
+                                    String authType = "";
+                                    if (hintText() == "Email") {
+                                      authType = "email";
+                                      authCredentials.email =
+                                          emailPhoneNumberController.text
+                                              .trim();
+                                    } else {
+                                      authType = "phoneNumber";
+                                      authCredentials.phoneNumber =
+                                          emailPhoneNumberController.text
+                                              .trim();
+                                    }
+                                    // check if passwords match
+                                    if (passwordsMatch()) {
+                                      registerController
+                                          .firstTimeLogin(
+                                              authCredentials, authType)
+                                          .then((result) => {
+                                                if (result == "success")
+                                                  {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        AppRoutes
+                                                            .verifyPasscodePage)
+                                                  }
+                                                else
+                                                  {
+                                                    _scaffoldKey.currentState
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          "Registration Failed"),
+                                                      backgroundColor:
+                                                          Colors.red[600],
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    ))
+                                                  }
+                                              });
+                                    } else {
+                                      _scaffoldKey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text("Invalid Password"),
+                                        backgroundColor: Colors.red[600],
+                                        duration: Duration(seconds: 3),
+                                      ));
+                                    }
                                   },
                                 ),
                               ),
-                              
                             ),
-                             RichText(
-                        textAlign: TextAlign.right,
+                            RichText(
+                              textAlign: TextAlign.right,
                               text: TextSpan(children: <TextSpan>[
                                 TextSpan(
                                     text: '  Login',
@@ -302,7 +347,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             )
                           ],
                         ),
-                     
                       ],
                     ),
                   ),
@@ -375,5 +419,17 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
+  }
+
+  bool passwordsMatch() {
+    String newPassword = newPasswordController.text.trim();
+    String confirmPassword = confirmPasswordController.text.trim();
+
+    if (newPassword == confirmPassword && newPassword.isNotEmpty) {
+      authCredentials.password = newPassword;
+      return true;
+    } else {
+      return false;
+    }
   }
 }

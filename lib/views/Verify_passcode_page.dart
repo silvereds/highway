@@ -4,12 +4,12 @@ import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerifyIdentity extends StatefulWidget {
+class VerifyPasscodePage extends StatefulWidget {
   @override
-  _VerifyIdentityState createState() => _VerifyIdentityState();
+  _VerifyPasscodePageState createState() => _VerifyPasscodePageState();
 }
 
-class _VerifyIdentityState extends State<VerifyIdentity> {
+class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
