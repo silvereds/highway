@@ -19,6 +19,7 @@ class _VerifyIdentityState extends State<VerifyIdentity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
