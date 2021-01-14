@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/routes.dart';
 import 'package:mobile/views/Company_profile.dart';
 import 'package:mobile/views/Create_password.dart';
-import 'package:mobile/views/Verify_passcode_page.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
 import 'package:mobile/views/splash_screen_page.dart';
+import 'package:mobile/views/verify_passcode_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: AppRoutes.splashScreenPage,
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),

@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/views/dashboard.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyPasscodePage extends StatefulWidget {
@@ -10,9 +9,13 @@ class VerifyPasscodePage extends StatefulWidget {
 }
 
 class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  final pinCodeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -86,6 +89,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       ),
                       SizedBox(height: 30),
                       PinCodeTextField(
+                        controller: pinCodeController,
                         appContext: context,
                         length: 5,
                         onChanged: (valu) {
@@ -127,12 +131,13 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                                     fontSize: 13, fontFamily: 'Poppins'),
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DashBoard()),
-                                );
+                                _scaffoldKey.currentState.showSnackBar(SnackBar(
+                                  content: Text(
+                                    (pinCodeController.text),
+                                  ),
+                                  duration: Duration(seconds: 3),
+                                  backgroundColor: Colors.red,
+                                ));
                               },
                               color: Color(0xFF4EB181),
                               textColor: Color(0xFFFFFFFF),

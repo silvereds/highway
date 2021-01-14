@@ -5,7 +5,7 @@ import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/entities/user.dart';
 
 class AuthService {
-  final String endpoint = "http://10.0.2.2:5000/auth";
+  final String endpoint = "https://dev-admin.highweh.com/auth";
   Map<String, String> headers = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
   };
