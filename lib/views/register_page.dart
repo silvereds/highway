@@ -58,25 +58,27 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-              ThemeColors.Background,
-              ThemeColors.LightBackground
-            ])),
-        padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
-        child: Center(
-          child: Stack(
-            // alignment: AlignmentDirectional.center,
-            clipBehavior: Clip.none,
-            children: [
-              SingleChildScrollView(
-                child: Container(
+      body: SingleChildScrollView(
+              child: Container(
+              height: 820,
+           width: 800,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                ThemeColors.Background,
+                ThemeColors.LightBackground
+              ])),
+          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
+          child: Center(
+            child: Stack(
+              // alignment: AlignmentDirectional.center,
+              clipBehavior: Clip.none,
+              children: [
+                Container(
                   width: MediaQuery.of(context).size.width,
-                  // height: 423,
+                  height: 560,
                   decoration: BoxDecoration(
                     color: Colors.white,
                   ),
@@ -251,11 +253,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        Column(
+                        Container(
+                          alignment: Alignment.bottomRight,
+                        child: Column(
                           children: [
                             Container(
-                              alignment: Alignment.bottomRight,
-                              child: Container(
+                                
                                 decoration: BoxDecoration(
                                   color: Color(
                                     0xff4eb181,
@@ -309,7 +312,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           .firstTimeLogin(
                                               authCredentials, authType)
                                           .then((result) => {
-                                                if (result == "success")
+                                                if (result == "success" && this.checkOption == true )
                                                   {
                                                     Navigator.pushNamed(
                                                         context,
@@ -337,98 +340,108 @@ class _RegisterPageState extends State<RegisterPage> {
                                         duration: Duration(seconds: 3),
                                       ));
                                     }
+                                    if(checkOption==false){
+                                       _scaffoldKey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text("Check Terms and condtion"),
+                                        backgroundColor: Colors.red[600],
+                                        duration: Duration(seconds: 1),
+                                      ));
+
+                                    }
 
                                   },
                                 ),
                               ),
-                            ),
-                            RichText(
-                              textAlign: TextAlign.right,
+                              SizedBox(height: 5,),
+                                RichText(
                               text: TextSpan(children: <TextSpan>[
                                 TextSpan(
                                     text: '  Login',
                                     style: TextStyle(
                                         decoration: TextDecoration.none,
                                         color: Color(0xFF109CF1),
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Poppins'),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        print('login');
+                                        print('Login');
                                       })
                               ]),
                             )
                           ],
                         ),
+                        ),
+                        
                       ],
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                top: -40,
-                left: 15,
-                right: 15,
-                height: 120,
-                child: Align(
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        "Register",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "Poppins",
+                Positioned(
+                  top: -40,
+                  left: 15,
+                  right: 15,
+                  height: 120,
+                  child: Align(
+                    child: Container(
+                      child: Center(
+                        child: Text(
+                          "Register",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "Poppins",
+                          ),
                         ),
                       ),
-                    ),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        3,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(
-                            0x23000000,
-                          ),
-                          offset: Offset(
-                            0,
-                            4,
-                          ),
-                          blurRadius: 4,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          3,
                         ),
-                        BoxShadow(
-                          color: Color(
-                            0x66E91E63,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(
+                              0x23000000,
+                            ),
+                            offset: Offset(
+                              0,
+                              4,
+                            ),
+                            blurRadius: 4,
                           ),
-                          offset: Offset(
-                            0,
-                            7,
-                          ),
-                          blurRadius: 10,
-                          spreadRadius: -5,
-                        ),
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Color(
-                            0xFF00CDAC,
-                          ),
-                          Color(
-                            0xFF4EB181,
+                          BoxShadow(
+                            color: Color(
+                              0x66E91E63,
+                            ),
+                            offset: Offset(
+                              0,
+                              7,
+                            ),
+                            blurRadius: 10,
+                            spreadRadius: -5,
                           ),
                         ],
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color(
+                              0xFF00CDAC,
+                            ),
+                            Color(
+                              0xFF4EB181,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

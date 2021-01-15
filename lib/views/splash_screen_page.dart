@@ -16,7 +16,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            width: MediaQuery.of(context).size.width,
+          
+              width: 800,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -92,7 +93,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                         ),
                                         width: 115,
                                       ),
-                                      SizedBox(height: 10),
+                                      SizedBox(height: 5),
                                       SizedBox(
                                         child: Text(
                                           "Send free up to 100,000 FCFA to your loved ones free of charge",
@@ -116,7 +117,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 25),
                       Container(
                         child: Column(
                           children: [
@@ -148,7 +149,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                         width: 160,
                                         height: 18,
                                       ),
-                                      SizedBox(height: 10),
+                                      SizedBox(height: 5),
                                       SizedBox(
                                         child: Text(
                                           "Manage your payment card for your expenses and / or your payment reader for your receipts.",
@@ -201,7 +202,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                         width: 222.15,
                                         height: 17.51,
                                       ),
-                                      // SizedBox(height: 10),
+                                      SizedBox(height: 5),
                                       SizedBox(
                                         child: Text(
                                           "Carry out your transactions, consult your balance and follow your spending history",

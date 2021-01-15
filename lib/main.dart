@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/routes.dart';
 import 'package:mobile/views/Company_profile.dart';
-import 'package:mobile/views/Create_password.dart';
+import 'package:mobile/views/Verify_passcode_page.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
 import 'package:mobile/views/splash_screen_page.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:mobile/views/Login_page.dart';
 
 
 
 
 void main() {
   runApp(MyApp());
-  runApp(
+
+
+//   runApp(
     
-     DevicePreview(
+//      DevicePreview(
    
-    builder: (context) => MyApp(), // Wrap your app
-  ),
-);//<-- Comment  this line  if you want to run without Device preview
+//     builder: (context) => MyApp(), // Wrap your app
+//   ),
+// );//<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -34,14 +37,15 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute: AppRoutes.splashScreenPage,
+      initialRoute:      AppRoutes.splashScreenPage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
-        AppRoutes.loginPage: (context) => CompanyProfileView(),
+        AppRoutes.loginPage: (context) =>  LoginPage(),
         AppRoutes.dashboard: (context) => DashBoard(),
-        AppRoutes.createPassword: (context) => CreatePassword(),
+        AppRoutes.verifyPasscodePage: (context) => VerifyPasscodePage(),
+       
      
 
       },

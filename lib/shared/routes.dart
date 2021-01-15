@@ -6,4 +6,5 @@ class AppRoutes {
 
   static final createPassword = '/createPassword';
   static final verifyPasscodePage = '/verifyPasscode';
+ 
 }

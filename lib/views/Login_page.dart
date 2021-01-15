@@ -10,16 +10,23 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState  createState() => _LoginPageState();
   
+  
 }
  enum LoginOption{email, sms}
 
 class _LoginPageState extends State<LoginPage> {
     // _site is the variable that recieves registerOption and keeps
     LoginOption _site = LoginOption.email;
+    final GlobalKey<ScaffoldState>  _scaffoldkey = new GlobalKey<ScaffoldState>();
+    
     
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+
    AuthCredentials authCredentials = AuthCredentials();
+
+
   
     
 
@@ -27,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
   final formKey = GlobalKey<FormState>();
-  final scaffoldkey = GlobalKey<ScaffoldState>();
+  
 
   String _email;
   String _password;
@@ -50,30 +57,14 @@ class _LoginPageState extends State<LoginPage> {
      }
   }
 
-  void _submitCommand() {
-    final form = formKey.currentState;
+ 
 
-    if (form.validate()) {
-      form.save();
 
-      // Email & password matched our validation rules
-      // and are saved to _email and _password fields.
-      _loginCommand();
-    }
-  }
-
-  _loginCommand() {
-    final snackbar = SnackBar(
-      content: Text('Email: $_email, Password: $_password'),
-    );
-
-    scaffoldkey.currentState.showSnackBar(snackbar);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldkey,
+      key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset(
@@ -83,22 +74,24 @@ class _LoginPageState extends State<LoginPage> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [ThemeColors.Background, ThemeColors.LightBackground])),
-        padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
-        child: Center(
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                padding: EdgeInsets.all(20.0),
-                color: Colors.white,
-                child: SingleChildScrollView(
+      body: SingleChildScrollView(
+              child: Container(
+           width: 800,
+           height: 850,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [ThemeColors.Background, ThemeColors.LightBackground])),
+          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
+          child: Center(
+            child: Stack(
+              alignment: AlignmentDirectional.center,
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20.0),
+                  color: Colors.white,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -250,10 +243,24 @@ class _LoginPageState extends State<LoginPage> {
                                 if (hintText() == "Email") {
                                   authCredentials.email =
                                       emailController.text;
+                                       _scaffoldkey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text('$emailController.text + $passwordController.text'  ),
+                                        backgroundColor: Colors.red[600],
+                                        duration: Duration(seconds: 3),
+                                      )); 
                                 } else {
                                   authCredentials.password =
                                   passwordController.text;
+                                   _scaffoldkey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text('$emailController.text + $passwordController.text'),
+                                        backgroundColor: Colors.red[600],
+                                        duration: Duration(seconds: 3),
+                                      )); 
+                                  
                                 }
+                                    
                                  
                                 },
                                 
@@ -286,70 +293,70 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-              ),
-              Positioned(
-                top: -40,
-                left: 15,
-                right: 15,
-                height: 120,
-                child: Align(
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "Poppins",
+                Positioned(
+                  top: -40,
+                  left: 15,
+                  right: 15,
+                  height: 120,
+                  child: Align(
+                    child: Container(
+                      child: Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "Poppins",
+                          ),
                         ),
                       ),
-                    ),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        3,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(
-                            0x23000000,
-                          ),
-                          offset: Offset(
-                            0,
-                            4,
-                          ),
-                          blurRadius: 4,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          3,
                         ),
-                        BoxShadow(
-                          color: Color(
-                            0x66E91E63,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(
+                              0x23000000,
+                            ),
+                            offset: Offset(
+                              0,
+                              4,
+                            ),
+                            blurRadius: 4,
                           ),
-                          offset: Offset(
-                            0,
-                            7,
-                          ),
-                          blurRadius: 10,
-                          spreadRadius: -5,
-                        ),
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Color(
-                            0xFF00CDAC,
-                          ),
-                          Color(
-                            0xFF4EB181,
+                          BoxShadow(
+                            color: Color(
+                              0x66E91E63,
+                            ),
+                            offset: Offset(
+                              0,
+                              7,
+                            ),
+                            blurRadius: 10,
+                            spreadRadius: -5,
                           ),
                         ],
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color(
+                              0xFF00CDAC,
+                            ),
+                            Color(
+                              0xFF4EB181,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
