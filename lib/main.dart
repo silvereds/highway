@@ -7,6 +7,7 @@ import 'package:mobile/views/register_page.dart';
 import 'package:mobile/views/splash_screen_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/views/Login_page.dart';
+import 'package:mobile/views/all_accoutsView.dart';
 
 
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:      AppRoutes.splashScreenPage,
+      initialRoute:       AppRoutes. accountsView,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.loginPage: (context) =>  LoginPage(),
         AppRoutes.dashboard: (context) => DashBoard(),
         AppRoutes.verifyPasscodePage: (context) => VerifyPasscodePage(),
-       
+        AppRoutes. accountsView: (context) => AccountsView(),
+    
      
 
       },

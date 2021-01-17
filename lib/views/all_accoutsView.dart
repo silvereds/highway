@@ -21,7 +21,7 @@ class _AccountsViewState extends State<AccountsView> {
         appBar: AppBarView(),
         bottomNavigationBar: BottomNavigationBarView(),
         body: Container(
-          margin: EdgeInsets.fromLTRB(20, 55, 20, 20),
+          margin: EdgeInsets.fromLTRB(16, 55, 16, 20),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -43,373 +43,375 @@ class _AccountsViewState extends State<AccountsView> {
               alignment: AlignmentDirectional.centerEnd,
               clipBehavior: Clip.none,
               children: [
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "All Accounts",
-                      style: TextStyle(
-                        color: Color(
-                          0xFF3C4858,
+                SingleChildScrollView(
+                                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "All Accounts",
+                        style: TextStyle(
+                          color: Color(
+                            0xFF3C4858,
+                          ),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "Poppins",
                         ),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Poppins",
                       ),
-                    ),
 
-                    Divider(
-                      color: Color(
-                        0xFFD2D2D2,
+                      Divider(
+                        color: Color(
+                          0xFFD2D2D2,
+                        ),
+                        indent: 5,
+                        endIndent: 5,
                       ),
-                      indent: 5,
-                      endIndent: 5,
-                    ),
 
-                    SizedBox(height: 15),
-                    // contiunue here
-                    Container(
-                      //  color: Colors.blue,
-                      width: 326,
-                      height: 133,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Color(
-                                      0xFF4EB181,
-                                    ),
-                                    borderRadius: BorderRadius.circular(4)),
-                                height: 15.81,
-                                width: 93.43,
-                                child: Center(
-                                    child: SizedBox(
-                                  child: Text(
-                                    "Active",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: "Poppins",
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  width: 140,
-                                  height: 22,
-                                )),
-                              ),
-                              SizedBox(
-                                child: Text(
-                                  "DEFAULT",
-                                  style: TextStyle(
-                                    color: Color(
-                                      0xff14a09f,
-                                    ),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                width: 65.9879150390625,
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "CMR12344459876-01",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: 'Jane Doe ',
+                      SizedBox(height: 15),
+                      // contiunue here
+                      Container(
+                          //  color: Colors.blue,
+                          width: 326,
+                          height: 133,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(
+                      0xFF4EB181,
+                                          ),
+                                          borderRadius: BorderRadius.circular(4)),
+                                      height: 15.81,
+                                      width: 93.43,
+                                      child: Center(
+                                          child: SizedBox(
+                                        child: Text(
+                                          "Active",
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 14,
-                                              color: Color(0xFF000000),
-                                              fontFamily: 'Poppins'),
+                      color: Colors.white,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "Poppins",
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        TextSpan(
-                                          text: '-  Personal',
+                                        width: 140,
+                                        height: 22,
+                                      )),
+                                    ),
+                                    SizedBox(
+                                      child: Text(
+                                        "DEFAULT",
+                                        style: TextStyle(
+                                          color: Color(
+                      0xff14a09f,
+                                          ),
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w700,
+                                          fontFamily: "Poppins",
+                                        ),
+                                      ),
+                                      width: 65.9879150390625,
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "CMR12344459876-01",
                                           style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF333333),
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "Poppins",
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        RichText(
+                                          text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Jane Doe ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 14,
+                            color: Color(0xFF000000),
+                            fontFamily: 'Poppins'),
+                        ),
+                        TextSpan(
+                          text: '-  Personal',
+                          style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Poppins',
+                          color: Color(0xFF333333),
+                          ),
+                        ),
+                      ],
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text(
-                                "FCFA  24,000",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff27ae60,
-                                  ),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Roboto",
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      "FCFA  24,000",
+                                      style: TextStyle(
+                                        color: Color(
+                                          0xff27ae60,
+                                        ),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Roboto",
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                        ),
+                      Divider(
+                        color: Color(
+                          0xFFD2D2D2,
+                        ),
+                        indent: 5,
+                        endIndent: 5,
                       ),
-                    ),
-                    Divider(
-                      color: Color(
-                        0xFFD2D2D2,
-                      ),
-                      indent: 5,
-                      endIndent: 5,
-                    ),
 
-                    Container(
-                      //  color: Colors.blue,
-                      width: 326,
-                      height: 133,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
+                      Container(
+                        //  color: Colors.blue,
+                        width: 326,
+                        height: 133,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Color(
+                                        0xFFF44336,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4)),
+                                  height: 15.81,
+                                  width: 93.43,
+                                  child: Center(
+                                      child: SizedBox(
+                                    child: Text(
+                                      "Blocked",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "Poppins",
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    width: 140,
+                                    height: 22,
+                                  )),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "CMR12344459876-02",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "Poppins",
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: 'Jane Doe ',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 14,
+                                                color: Color(0xFF000000),
+                                                fontFamily: 'Poppins'),
+                                          ),
+                                          TextSpan(
+                                            text: '-  Business',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF333333),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  "FCFA  -900",
+                                  style: TextStyle(
                                     color: Color(
                                       0xFFF44336,
                                     ),
-                                    borderRadius: BorderRadius.circular(4)),
-                                height: 15.81,
-                                width: 93.43,
-                                child: Center(
-                                    child: SizedBox(
-                                  child: Text(
-                                    "Blocked",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: "Poppins",
-                                    ),
-                                    textAlign: TextAlign.center,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "Roboto",
                                   ),
-                                  width: 140,
-                                  height: 22,
-                                )),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "CMR12344459876-02",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: 'Jane Doe ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 14,
-                                              color: Color(0xFF000000),
-                                              fontFamily: 'Poppins'),
-                                        ),
-                                        TextSpan(
-                                          text: '-  Business',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF333333),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text(
-                                "FCFA  -900",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xFFF44336,
-                                  ),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Roboto",
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
 
-                    Divider(
-                      color: Color(
-                        0xFFD2D2D2,
+                      Divider(
+                        color: Color(
+                          0xFFD2D2D2,
+                        ),
+                        indent: 5,
+                        endIndent: 5,
                       ),
-                      indent: 5,
-                      endIndent: 5,
-                    ),
 
-                    Container(
-                      //  color: Colors.blue,
-                      width: 326,
-                      height: 133,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
+                      Container(
+                        //  color: Colors.blue,
+                        width: 326,
+                        height: 133,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Color(
+                                        0xFF4EB181,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4)),
+                                  height: 15.81,
+                                  width: 93.43,
+                                  child: Center(
+                                      child: SizedBox(
+                                    child: Text(
+                                      "Active",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "Poppins",
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    width: 140,
+                                    height: 22,
+                                  )),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "CMR12344459876-03",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "Poppins",
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: 'Jane Doe ',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 14,
+                                                color: Color(0xFF000000),
+                                                fontFamily: 'Poppins'),
+                                          ),
+                                          TextSpan(
+                                            text: '-  Others',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF333333),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  "FCFA  3,700",
+                                  style: TextStyle(
                                     color: Color(
-                                      0xFF4EB181,
+                                      0xFF27AE60,
                                     ),
-                                    borderRadius: BorderRadius.circular(4)),
-                                height: 15.81,
-                                width: 93.43,
-                                child: Center(
-                                    child: SizedBox(
-                                  child: Text(
-                                    "Active",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: "Poppins",
-                                    ),
-                                    textAlign: TextAlign.center,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "Roboto",
                                   ),
-                                  width: 140,
-                                  height: 22,
-                                )),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "CMR12344459876-03",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: 'Jane Doe ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 14,
-                                              color: Color(0xFF000000),
-                                              fontFamily: 'Poppins'),
-                                        ),
-                                        TextSpan(
-                                          text: '-  Others',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF333333),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text(
-                                "FCFA  3,700",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xFF27AE60,
-                                  ),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Roboto",
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
 
-                    Divider(
-                      color: Color(
-                        0xFFD2D2D2,
+                      Divider(
+                        color: Color(
+                          0xFFD2D2D2,
+                        ),
+                        indent: 5,
+                        endIndent: 5,
                       ),
-                      indent: 5,
-                      endIndent: 5,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Positioned(
                   top: -30,
