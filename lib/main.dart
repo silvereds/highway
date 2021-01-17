@@ -15,13 +15,13 @@ void main() {
   runApp(MyApp());
 
 
-//   runApp(
+  runApp(
     
-//      DevicePreview(
+     DevicePreview(
    
-//     builder: (context) => MyApp(), // Wrap your app
-//   ),
-// );//<-- Comment  this line  if you want to run without Device preview
+    builder: (context) => MyApp(), // Wrap your app
+  ),
+);          //<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:      AppRoutes.splashScreenPage,
+      initialRoute:           AppRoutes.loginPage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
