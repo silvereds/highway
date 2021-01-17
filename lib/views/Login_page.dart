@@ -254,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                                         .trim();
                               }
                               // check if passwords match
-                              if (validCredentials()) {
+                              if (validCredentials () ) {
                                 loginController
                                     .loginRequest(
                                         authCredentials, authType)
@@ -271,7 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                                               _scaffoldKey.currentState
                                                   .showSnackBar(SnackBar(
                                                 content: Text(
-                                                    "Login Failed"),
+                                                 "Login Failed"),
                                                 backgroundColor:
                                                     Colors.red[600],
                                                 duration:
@@ -279,17 +279,12 @@ class _LoginPageState extends State<LoginPage> {
                                               ))
                                             }
                                         });
-                              } else {
-                                _scaffoldKey.currentState
-                                    .showSnackBar(SnackBar(
-                                  content: Text("Invalid Password"),
-                                  backgroundColor: Colors.red[600],
-                                  duration: Duration(seconds: 3),
-                                ));
-                              }
+                              } 
+                              },
            
 
-                            },
+                          
+                        
                           color: Color(0xFF4EB181),
                           textColor: Color(0xFFFFFFFF),
                           height: 33,
@@ -394,7 +389,7 @@ class _LoginPageState extends State<LoginPage> {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
-    if (email == this._email && password.isNotEmpty) {
+    if (email == email && password == password ) {
       authCredentials.password = password;
       return true;
     } else {
