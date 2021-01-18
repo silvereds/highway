@@ -8,6 +8,8 @@ import 'package:mobile/views/splash_screen_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:mobile/views/Login_page.dart';
 import 'package:mobile/views/all_accoutsView.dart';
+import 'package:mobile/views/accounts_detail_view.dart';
+import 'package:mobile/views/recharge_account.dart';
 
 
 
@@ -16,13 +18,13 @@ void main() {
   runApp(MyApp());
 
 
-//   runApp(
+  runApp(
     
-//      DevicePreview(
+     DevicePreview(
    
-//     builder: (context) => MyApp(), // Wrap your app
-//   ),
-// );//<-- Comment  this line  if you want to run without Device preview
+    builder: (context) => MyApp(), // Wrap your app
+  ),
+);//<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:       AppRoutes. accountsView,
+      initialRoute:               AppRoutes.splashScreenPage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
@@ -47,6 +49,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.dashboard: (context) => DashBoard(),
         AppRoutes.verifyPasscodePage: (context) => VerifyPasscodePage(),
         AppRoutes. accountsView: (context) => AccountsView(),
+        AppRoutes.accoutsDetailsView: (context) => AccountsDetailsView(),
+        AppRoutes.rechargeAccountpage: (context) => RechargeAccountPage(),
     
      
 

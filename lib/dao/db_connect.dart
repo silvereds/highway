@@ -59,6 +59,7 @@ class DBConnect {
       var batch = db.batch();
       batch.execute(createSessionTable);
       batch.execute(createUserTable);
+      batch.execute(createAccountsTable);
       await batch.commit(noResult: true);
     });
   }

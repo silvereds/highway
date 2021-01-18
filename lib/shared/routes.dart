@@ -7,5 +7,6 @@ class AppRoutes {
   static final createPassword = '/createPassword';
   static final verifyPasscodePage = '/verifyPasscode';
   static final accountsView = '/accoutsView';
- 
+  static final accoutsDetailsView = '/accoutsDetailsView';
+  static final rechargeAccountpage = '/rechargeAccountPage';
 }
