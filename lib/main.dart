@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:               AppRoutes.splashScreenPage,
+      initialRoute:                AppRoutes. accountsView,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
