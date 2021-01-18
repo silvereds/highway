@@ -10,6 +10,7 @@ import 'package:mobile/views/Login_page.dart';
 import 'package:mobile/views/all_accoutsView.dart';
 import 'package:mobile/views/accounts_detail_view.dart';
 import 'package:mobile/views/recharge_account.dart';
+import 'package:mobile/views/change_alias.dart';
 
 
 
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:                AppRoutes. accountsView,
+      initialRoute: AppRoutes.accoutsDetailsView,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         AppRoutes. accountsView: (context) => AccountsView(),
         AppRoutes.accoutsDetailsView: (context) => AccountsDetailsView(),
         AppRoutes.rechargeAccountpage: (context) => RechargeAccountPage(),
+        AppRoutes.changeAlias: (context) => ChangeAliasView()
     
      
 

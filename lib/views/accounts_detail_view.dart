@@ -570,7 +570,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                
                                   ),
                                   onPressed: () {
-                                    print(' Account Blocked');
+                                     Navigator.pushNamed(context,   AppRoutes.changeAlias);
                                   },
                                   color: Color(0xFF4EB181),
                                   textColor: Colors.white,
