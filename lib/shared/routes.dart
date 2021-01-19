@@ -10,4 +10,5 @@ class AppRoutes {
   static final accoutsDetailsView = '/accoutsDetailsView';
   static final rechargeAccountpage = '/rechargeAccountPage';
   static final changeAlias = '/changeAliasPage';
+  static final alldevicesPage = '/alldevicesPage';
 }
