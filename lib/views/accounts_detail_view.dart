@@ -541,7 +541,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                     
                      FlatButton(
                                   minWidth: 93,
-                                  height: 27,
+                                 height: 35,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                
@@ -564,7 +564,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
 
                                   FlatButton(
                                   minWidth: 93,
-                                  height: 27,
+                                 height: 35,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                
@@ -587,7 +587,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
 
                                   FlatButton(
                                    minWidth: 93,
-                                  height: 27,
+                                  height: 35,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                

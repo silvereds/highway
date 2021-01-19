@@ -42,7 +42,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
             ],
           ),
           child: SingleChildScrollView(
-                      child: Column(
+            child: Column(
               children: [
                 SizedBox(
                   height: 10,
@@ -229,7 +229,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                           underline: Container(),
                           onChanged: (String paymentValue) {
                             setState(() {
-                            dropdownPayment = paymentValue;
+                              dropdownPayment = paymentValue;
                             });
                           },
                           items: <String>[
@@ -239,9 +239,10 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                             'OTHERS'
                           ].map<DropdownMenuItem<String>>((String value2) {
                             return DropdownMenuItem<String>(
-                              value: value2,
-                              child: Text(value2,)
-                            );
+                                value: value2,
+                                child: Text(
+                                  value2,
+                                ));
                           }).toList(),
                         ),
                         Divider(),
@@ -259,76 +260,72 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                   ),
                 ),
                 TextFormField(
-                 style: TextStyle(
-        color: Color(
-          0xff323c47,
-        ),
-        fontSize: 20,
-        fontWeight: FontWeight.w400,
-        fontFamily: "Poppins",
-    ),
+                  style: TextStyle(
+                    color: Color(
+                      0xff323c47,
+                    ),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "Poppins",
+                  ),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),
                 Divider(
-                  
                   indent: 10,
                   endIndent: 10,
                 ),
-                 Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              FlatButton(
-                                  minWidth: 97,
-                                  height: 37,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                
-                                  ),
-                                  onPressed: () {
-                                    print('Cancel');
-                                  },
-                                  color: Color(0xFFF44336),
-                                  textColor: Colors.white,
-                                  child: Text(
-                                    "Cancel",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  )),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              FlatButton(
-                                  minWidth: 100,
-                                  height: 40,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                               
-                                  ),
-                                  onPressed: () {
-                                    print(' Account Blocked');
-                                  },
-                                  color: Color(0xFF4EB181),
-                                  textColor: Colors.white,
-                                  child: Text(
-                                    "Recharge",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Roboto",
-                                    ),
-                                  ))
-                            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FlatButton(
+                        minWidth: 97,
+                        height: 37,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        onPressed: () {
+                          print('Cancel');
+                        },
+                        color: Color(0xFFF44336),
+                        textColor: Colors.white,
+                        child: Text(
+                          "Cancel",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "Poppins",
                           ),
+                        )),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    FlatButton(
+                        minWidth: 100,
+                        height: 40,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        onPressed: () {
+                          print('Recharge Account');
+                        },
+                        color: Color(0xFF4EB181),
+                        textColor: Colors.white,
+                        child: Text(
+                          "Recharge",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Roboto",
+                          ),
+                        ))
+                  ],
+                ),
               ],
-
             ),
           ),
         ),
