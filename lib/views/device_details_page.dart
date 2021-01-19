@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
 import 'package:mobile/shared/appBar.dart';
+import 'package:mobile/shared/routes.dart';
 
 class DeviceDetailsPage extends StatefulWidget {
   @override
@@ -707,7 +708,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                  
                                     ),
                                     onPressed: () {
-                                      print(' Change Alias');
+                                     Navigator.pushNamed(context, AppRoutes.changeDevicePage);
                                     },
                                     color: Color(0xFF4EB181),
                                     textColor: Colors.white,

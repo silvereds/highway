@@ -12,4 +12,5 @@ class AppRoutes {
   static final changeAlias = '/changeAliasPage';
   static final alldevicesPage = '/alldevicesPage';
   static final deviceDetailsPage = '/deviceDetailsPage'; 
+  static final changeDevicePage='/changeDevicePage';
 }
