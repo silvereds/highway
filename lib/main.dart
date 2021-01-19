@@ -12,6 +12,7 @@ import 'package:mobile/views/accounts_detail_view.dart';
 import 'package:mobile/views/recharge_account.dart';
 import 'package:mobile/views/change_alias.dart';
 import 'package:mobile/views/all_devices_page.dart';
+import 'package:mobile/views/device_details_page.dart';
 
 
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:    AppRoutes.alldevicesPage,
+      initialRoute:     AppRoutes.deviceDetailsPage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
@@ -54,8 +55,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.accoutsDetailsView: (context) => AccountsDetailsView(),
         AppRoutes.rechargeAccountpage: (context) => RechargeAccountPage(),
         AppRoutes.changeAlias: (context) => ChangeAliasView(),
-        AppRoutes.alldevicesPage: (context) => AllDevicesPage()
-    
+        AppRoutes.alldevicesPage: (context) => AllDevicesPage(),
+        AppRoutes.deviceDetailsPage: (context) => DeviceDetailsPage()
      
 
       },

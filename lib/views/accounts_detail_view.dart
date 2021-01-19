@@ -10,7 +10,7 @@ class AccountsDetailsView extends StatefulWidget {
 }
 
 class _AccountsDetailsViewState extends State<AccountsDetailsView> {
-  int _currentIndex = 0;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
