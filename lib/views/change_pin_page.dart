@@ -40,7 +40,8 @@ class _ChangePinPageState extends State<ChangePinPage> {
                   ),
                 ],
               ),
-              child: Column(children: [
+              child: SingleChildScrollView(
+                              child: Column(children: [
            SizedBox( height: 20,),
 
         Column(
@@ -82,127 +83,128 @@ SizedBox(
            padding: const EdgeInsets.all(20.0),
            child: Center(
              child: PinCodeTextField(
-                             
-                              appContext: context,
-                              length: 5,
-                              onChanged: (valu) {
-                                print(valu);
-                              },
-                              pastedTextStyle: TextStyle(
-                                color: Color(
-              0xff219653,
+                               
+                                appContext: context,
+                                length: 5,
+                                onChanged: (valu) {
+                                  print(valu);
+                                },
+                                pastedTextStyle: TextStyle(
+                                  color: Color(
+                0xff219653,
         ),
-                                fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                obscureText: false,
+                                obscuringCharacter: '*',
+                                animationType: AnimationType.fade,
+                                pinTheme: PinTheme(
+                                    shape: PinCodeFieldShape.box,
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    fieldHeight: 86,
+                                    fieldWidth: 32,
+                                    activeFillColor: Colors.green),
+                                cursorColor: Colors.black,
+                                animationDuration: Duration(milliseconds: 300),
+                                keyboardType: TextInputType.number,
+                                onCompleted: (v) {
+                                  print("Completed");
+                                },
                               ),
-                              obscureText: false,
-                              obscuringCharacter: '*',
-                              animationType: AnimationType.fade,
-                              pinTheme: PinTheme(
-                                  shape: PinCodeFieldShape.box,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  fieldHeight: 86,
-                                  fieldWidth: 32,
-                                  activeFillColor: Colors.green),
-                              cursorColor: Colors.black,
-                              animationDuration: Duration(milliseconds: 300),
-                              keyboardType: TextInputType.number,
-                              onCompleted: (v) {
-                                print("Completed");
-                              },
-                            ),
            ),
          ),
 
 
           Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      // border: Border.all(
-                      //   color: Color(
-                      //     0xffd2d2d2,
-                      //   ),
-                      //   width: 1,
-                      // ),
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        // border: Border.all(
+                        //   color: Color(
+                        //     0xffd2d2d2,
+                        //   ),
+                        //   width: 1,
+                        // ),
 
-                      ),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Password',
-                          hintStyle: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xff14a09f),
-                              fontFamily: 'Roboto'),
-                          border: InputBorder.none,
                         ),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                            hintText: 'Password',
+                            hintStyle: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xff14a09f),
+                                fontFamily: 'Roboto'),
+                            border: InputBorder.none,
+                          ),
+                        ),
+                        Divider()
+                      ],
+                    ),
+                  ),
+                ),
+
+
+                    Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FlatButton(
+                          minWidth: 100,
+                          height: 47,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          onPressed: () {
+                            print('Cancel');
+                          },
+                          color: Color(0xFFF44336),
+                          textColor: Colors.white,
+                          child: Text(
+                            "Cancel",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Poppins",
+                            ),
+                          )),
+                      SizedBox(
+                        width: 20,
                       ),
-                      Divider()
+                      FlatButton(
+                          minWidth: 100,
+                          height: 47,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          onPressed: () {
+                            print(' Change Device');
+                          },
+                          color: Color(0xFF4EB181),
+                          textColor: Colors.white,
+                          child: Text(
+                            "Save",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Roboto",
+                            ),
+                          ))
                     ],
                   ),
                 ),
+
+
+
+
+
+
+                ],),
               ),
-
-
-                  Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    FlatButton(
-                        minWidth: 100,
-                        height: 47,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        onPressed: () {
-                          print('Cancel');
-                        },
-                        color: Color(0xFFF44336),
-                        textColor: Colors.white,
-                        child: Text(
-                          "Cancel",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          ),
-                        )),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    FlatButton(
-                        minWidth: 100,
-                        height: 47,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        onPressed: () {
-                          print(' Change Device');
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Colors.white,
-                        child: Text(
-                          "Save",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto",
-                          ),
-                        ))
-                  ],
-                ),
-              ),
-
-
-
-
-
-
-              ],),
            
         ),
       ),
