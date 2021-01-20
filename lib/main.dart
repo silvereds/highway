@@ -14,6 +14,8 @@ import 'package:mobile/views/change_alias.dart';
 import 'package:mobile/views/all_devices_page.dart';
 import 'package:mobile/views/device_details_page.dart';
 import 'package:mobile/views/change_device_page.dart';
+import 'package:mobile/views/block_device_page.dart';
+import 'package:mobile/views/change_pin_page.dart';
 
 
 
@@ -58,8 +60,9 @@ class MyApp extends StatelessWidget {
         AppRoutes.changeAlias: (context) => ChangeAliasView(),
         AppRoutes.alldevicesPage: (context) => AllDevicesPage(),
         AppRoutes.deviceDetailsPage: (context) => DeviceDetailsPage(),
-       AppRoutes.changeDevicePage: (context) => ChangeDevicePage()
-
+       AppRoutes.changeDevicePage: (context) => ChangeDevicePage(),
+       AppRoutes.blockDevicePage: (context) => BlockDevicePage(),
+        AppRoutes.changePinPage: (context) => ChangePinPage(),
       },
     );
   }

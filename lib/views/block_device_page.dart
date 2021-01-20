@@ -5,13 +5,12 @@ import 'package:mobile/shared/appBar.dart';
 
 
 
-class BlockAccountView extends StatefulWidget {
+class BlockDevicePage extends StatefulWidget {
   @override
-  _BlockAccountViewState createState() => _BlockAccountViewState();
+  _BlockDevicePageState createState() => _BlockDevicePageState();
 }
 
-class _BlockAccountViewState extends State<BlockAccountView> {
- 
+class _BlockDevicePageState extends State<BlockDevicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +21,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
         body: Center(
           child: Container(
             margin: EdgeInsets.fromLTRB(20, 55, 20, 20),
-            height: 380,
+            height: 427,
           //  width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -39,7 +38,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                     height: 40,
                   ),
                   Text(
-                    "Block Account",
+                    "Block Device",
                     style: TextStyle(
                       color: Color(0xFF14A09F),
                       fontSize: 30,
@@ -53,7 +52,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                   ),
                   SizedBox(
                     child: Text(
-                      "You are about to block your account.",
+                      "You are about to block this Device.",
                       style: TextStyle(
                         color: Color(
                           0xFF999999,

@@ -13,4 +13,6 @@ class AppRoutes {
   static final alldevicesPage = '/alldevicesPage';
   static final deviceDetailsPage = '/deviceDetailsPage'; 
   static final changeDevicePage='/changeDevicePage';
+  static final blockDevicePage = '/blockDevicePage';
+  static final changePinPage = '/changePinPage';
 }

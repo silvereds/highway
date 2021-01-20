@@ -326,7 +326,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  print('Change PIN');
+                                  Navigator.pushNamed(context,     AppRoutes.changePinPage);
                                 },
                               )),
                               width: 144,
@@ -684,7 +684,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                   
                                     ),
                                     onPressed: () {
-                                      print('Block Device');
+                                     Navigator.pushNamed(context,   AppRoutes.blockDevicePage);
                                     },
                                     color: Color(0xFFF44336),
                                     textColor: Colors.white,
