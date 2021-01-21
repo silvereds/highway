@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
+
 import 'package:mobile/shared/routes.dart';
-import 'package:mobile/views/Company_profile.dart';
 import 'package:mobile/views/Verify_passcode_page.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
@@ -16,6 +17,7 @@ import 'package:mobile/views/device_details_page.dart';
 import 'package:mobile/views/change_device_page.dart';
 import 'package:mobile/views/block_device_page.dart';
 import 'package:mobile/views/change_pin_page.dart';
+import 'package:mobile/views/all_transactions_page.dart';
 
 
 
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:      AppRoutes.deviceDetailsPage,
+      initialRoute:          AppRoutes.allTransactionsPage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
@@ -63,6 +65,7 @@ class MyApp extends StatelessWidget {
        AppRoutes.changeDevicePage: (context) => ChangeDevicePage(),
        AppRoutes.blockDevicePage: (context) => BlockDevicePage(),
         AppRoutes.changePinPage: (context) => ChangePinPage(),
+       AppRoutes.allTransactionsPage: (context) => AllTransactionsPage(),
       },
     );
   }
