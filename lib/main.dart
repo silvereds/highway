@@ -19,6 +19,7 @@ import 'package:mobile/views/block_device_page.dart';
 import 'package:mobile/views/change_pin_page.dart';
 import 'package:mobile/views/all_transactions_page.dart';
 import 'package:mobile/views/transfer_money_page.dart';
+import 'package:mobile/views/confirm_transfer_page.dart';
 
 
 
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.changePinPage: (context) => ChangePinPage(),
        AppRoutes.allTransactionsPage: (context) => AllTransactionsPage(),
        AppRoutes.transferMoneyPage: (context) => TransferMoneyPage(),
+      AppRoutes.confirmTransferPage: (context) => ConfirmTransferPage(),
       },
     );
   }

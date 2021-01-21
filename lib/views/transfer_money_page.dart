@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/appBar.dart';
+import 'package:mobile/shared/routes.dart';
+
+
+
+
 
 class TransferMoneyPage extends StatefulWidget {
   @override
@@ -10,7 +15,8 @@ class TransferMoneyPage extends StatefulWidget {
 }
 
 class _TransferMoneyPageState extends State<TransferMoneyPage> {
-String dropdownValue = 'CMR188976560-01';
+  String dropdownValue = 'CMR188976560-01';
+    String recieverownValue = 'CMR188976560-01';
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +44,8 @@ String dropdownValue = 'CMR188976560-01';
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-
               SingleChildScrollView(
-                              child: Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
@@ -58,452 +63,433 @@ String dropdownValue = 'CMR188976560-01';
                           fontFamily: "Poppins",
                         ),
                       ),
-                    ), 
+                    ),
 
                     // SizedBox(height: 20,),
-                       // second Container
+                    // second Container
 
                     Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
-                         Text(
-    "Sending Account",
-    style: TextStyle(
-      color: Color(
-        0xff14a09f,
-      ),
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      fontFamily: "Poppins",
-    ),
-  ),
-
-     Row(children: [
-        DropdownButton<String>(
-                            value: dropdownValue,
-                          //  icon: Icon(Icons.arrow_downward),
-                            iconSize: 15,
-                            elevation: 10,
+                          Text(
+                            "Sending Account",
                             style: TextStyle(
                               color: Color(
-                                0xff323c47,
+                                0xff14a09f,
                               ),
-                            ),
-                            underline: Container(),
-                            onChanged: (String newValue) {
-                              setState(() {
-                                dropdownValue = newValue;
-                              });
-                            },
-                            items: <String>[
-                              'CMR188976560-01',
-                              'CMR188976560-02',
-                              'CMR188976560-03',
-                              'CMR188976560-04'
-                            ].map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-
-                          IconButton(icon: Icon(Icons.arrow_drop_down, size: 20,), onPressed: (){}, ),
-
-  
-
-
-     ],),
-
-                             Container(
-    width: 224,
-    height: 34,
-    decoration: BoxDecoration(
-      color: Colors.white,
-      border: Border.all(
-        color: Color(
-          0xffeeeeee,
-        ),
-        width: 1,
-      ),
-    ),
-    child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-      
-          Row(
-            children: [
-                   SizedBox(width: 10,),
-                RichText(
-                           text: TextSpan(
-                             text: 'Account Name: ',
-                             style: TextStyle(
-                               color: Color(
-                                 0xff818e9b,
-                               ),
-                               fontSize: 11,
-                               fontWeight: FontWeight.w500,
-                               fontFamily: "Poppins",
-                             ),
-                             children: <TextSpan>[
-                               TextSpan(
-                                 text: ' Jane Doe',
-                                 style: TextStyle(
-                                   color: Color(
-                                     0xff323c47,
-                                   ),
-                                   fontSize: 11,
-                                   fontWeight: FontWeight.w200,
-                                   fontFamily: "Poppins",
-                                 ),
-                               ),
-                             ],
-                           ),
-                         ),
-            ],
-          ),
-
-                        Row(
-                          children: [
-                               SizedBox(width: 10,),
-                            RichText(
-                              text: TextSpan(
-                                text: 'Balance: ',
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff818e9b,
-                                  ),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "Poppins",
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: ' FCFA 32,500',
-                                    style: TextStyle(
-                                      color: Color(
-                                        0xff323c47,
-                                      ),
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-
-    ],),
-  ),
-
-
-
-
-
-   SizedBox(height: 10,),
-
-            Text(
-    "Reciever Account",
-    style: TextStyle(
-      color: Color(
-        0xff14a09f,
-      ),
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      fontFamily: "Poppins",
-    ),
-  ),
-
-     Row(children: [
-        DropdownButton<String>(
-                            value: dropdownValue,
-                          //  icon: Icon(Icons.arrow_downward),
-                            iconSize: 15,
-                            elevation: 10,
-                            style: TextStyle(
-                              color: Color(
-                                0xff323c47,
-                              ),
-                            ),
-                            underline: Container(),
-                            onChanged: (String newValue) {
-                              setState(() {
-                                dropdownValue = newValue;
-                              });
-                            },
-                            items: <String>[
-                              'CMR188976560-01',
-                              'CMR188976560-02',
-                              'CMR188976560-03',
-                              'CMR188976560-04'
-                            ].map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-
-                          IconButton(icon: Icon(Icons.arrow_drop_down, size: 20,), onPressed: (){}, ),
-
-  
-
-
-     ],),
-
-                             Container(
-    width: 224,
-    height: 26,
-    decoration: BoxDecoration(
-      color: Colors.white,
-      border: Border.all(
-        color: Color(
-          0xffeeeeee,
-        ),
-        width: 1,
-      ),
-    ),
-    child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-      Row(
-        children: [
-             SizedBox(width: 10,),
-          RichText(
-                              text: TextSpan(
-                                text: 'Account Name: ',
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff818e9b,
-                                  ),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "Poppins",
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: ' Jean Paual Tchoi',
-                                    style: TextStyle(
-                                      color: Color(
-                                        0xff323c47,
-                                      ),
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w200,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-        ],
-      ),
-
-                    
-
-    ],),
-  ),
-
-
-   SizedBox(height: 10,),
-
-            Text(
-    "Amount",
-    style: TextStyle(
-      color: Color(
-        0xff14a09f,
-      ),
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      fontFamily: "Poppins",
-    ),
-  ),
-   SizedBox(height: 10,),
-
-
-                             Container(
-    width: 224,
-    height: 26,
-    decoration: BoxDecoration(
-      color: Colors.white,
-      border: Border.all(
-        color: Color(
-          0xffeeeeee,
-        ),
-        width: 1,
-      ),
-    ),
-    child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-      Row(
-        children: [
-           SizedBox(width: 10,),
-          RichText(
-                              text: TextSpan(
-                                text: 'Charges: ',
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff818e9b,
-                                  ),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "Poppins",
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: ' FCFA  25',
-                                    style: TextStyle(
-                                      color: Color(
-                                        0xff323c47,
-                                      ),
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w200,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-        ],
-      ),
-
-                    
-
-    ],),
-  ),
-  SizedBox(height:  10,),
-
-
-           Text(
-    "Commentt",
-    style: TextStyle(
-      color: Color(
-        0xff14a09f,
-      ),
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      fontFamily: "Poppins",
-    ),
-  ),
-   SizedBox(height: 10,),
-
-   TextField(
-     decoration: InputDecoration(
-       hintText: 'School fees for the kids',
-       border: InputBorder.none,
-      ),
-     
-     
-   ),
-   Divider(),
-
-      Row(
-        children: [
-           
-          //  SizedBox(width: 10,),
-          RichText(
-                              text: TextSpan(
-                                text: 'Total Amount: ',
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff818e9b,
-                                  ),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "Poppins",
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: '              FCFA  12,025',
-                                    style: TextStyle(
-                                      color: Color(
-                                        0xff323c47,
-                                      ),
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-        ],
-      ),
-      SizedBox(height: 10,),
-
-
-       Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      
-                        SizedBox(width: 20,),
-                      FlatButton(
-                          minWidth: 97,
-                          height: 37,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          onPressed: () {
-                            print('Cancel');
-                          },
-                          color: Color(0xFFF44336),
-                          textColor: Colors.white,
-                          child: Text(
-                            "Cancel",
-                            style: TextStyle(
-                              color: Colors.white,
                               fontSize: 12,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w500,
                               fontFamily: "Poppins",
                             ),
-                          )),
-                      // SizedBox(
-                      //   width: 10,
-                      // ),
-                      FlatButton(
-                          minWidth: 100,
-                          height: 40,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
                           ),
-                          onPressed: () {
-                            print('Send');
-                          },
-                          color: Color(0xFF4EB181),
-                          textColor: Colors.white,
-                          child: Text(
-                            "Send",
-                            style: TextStyle(
+                          Row(
+                            children: [
+                              DropdownButton<String>(
+                                value: dropdownValue,
+                                //  icon: Icon(Icons.arrow_downward),
+                                iconSize: 15,
+                                elevation: 10,
+                                style: TextStyle(
+                                  color: Color(
+                                    0xff323c47,
+                                  ),
+                                ),
+                                underline: Container(),
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    dropdownValue = newValue;
+                                  });
+                                },
+                                items: <String>[
+                                  'CMR188976560-01',
+                                  'CMR188976560-02',
+                                  'CMR188976560-03',
+                                  'CMR188976560-04'
+                                ].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.arrow_drop_down,
+                                  size: 20,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                          Container(
+                            width: 224,
+                            height: 34,
+                            decoration: BoxDecoration(
                               color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
+                              border: Border.all(
+                                color: Color(
+                                  0xffeeeeee,
+                                ),
+                                width: 1,
+                              ),
                             ),
-                          ))
-                    ],
-                  ),
-
-  
-
-
-
-                        
-
-
-
-
-
-                        
-
-
-
-                      ],),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Account Name: ',
+                                        style: TextStyle(
+                                          color: Color(
+                                            0xff818e9b,
+                                          ),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Poppins",
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: ' Jane Doe',
+                                            style: TextStyle(
+                                              color: Color(
+                                                0xff323c47,
+                                              ),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w200,
+                                              fontFamily: "Poppins",
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Balance: ',
+                                        style: TextStyle(
+                                          color: Color(
+                                            0xff818e9b,
+                                          ),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Poppins",
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: ' FCFA 32,500',
+                                            style: TextStyle(
+                                              color: Color(
+                                                0xff323c47,
+                                              ),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: "Poppins",
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Reciever Account",
+                            style: TextStyle(
+                              color: Color(
+                                0xff14a09f,
+                              ),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              DropdownButton<String>(
+                                value: recieverownValue,
+                                //  icon: Icon(Icons.arrow_downward),
+                                iconSize: 15,
+                                elevation: 10,
+                                style: TextStyle(
+                                  color: Color(
+                                    0xff323c47,
+                                  ),
+                                ),
+                                underline: Container(),
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    recieverownValue = newValue;
+                                  });
+                                },
+                                items: <String>[
+                                  'CMR188976560-01',
+                                  'CMR188976560-02',
+                                  'CMR188976560-03',
+                                  'CMR188976560-04'
+                                ].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.arrow_drop_down,
+                                  size: 20,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                          Container(
+                            width: 224,
+                            height: 26,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Color(
+                                  0xffeeeeee,
+                                ),
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Account Name: ',
+                                        style: TextStyle(
+                                          color: Color(
+                                            0xff818e9b,
+                                          ),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Poppins",
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: ' Jean Paual Tchoi',
+                                            style: TextStyle(
+                                              color: Color(
+                                                0xff323c47,
+                                              ),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w200,
+                                              fontFamily: "Poppins",
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Amount",
+                            style: TextStyle(
+                              color: Color(
+                                0xff14a09f,
+                              ),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: 224,
+                            height: 26,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Color(
+                                  0xffeeeeee,
+                                ),
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Charges: ',
+                                        style: TextStyle(
+                                          color: Color(
+                                            0xff818e9b,
+                                          ),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Poppins",
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: ' FCFA  25',
+                                            style: TextStyle(
+                                              color: Color(
+                                                0xff323c47,
+                                              ),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w200,
+                                              fontFamily: "Poppins",
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Commentt",
+                            style: TextStyle(
+                              color: Color(
+                                0xff14a09f,
+                              ),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: 'School fees for the kids',
+                              border: InputBorder.none,
+                            ),
+                          ),
+                          Divider(),
+                          Row(
+                            children: [
+                              //  SizedBox(width: 10,),
+                              RichText(
+                                text: TextSpan(
+                                  text: 'Total Amount: ',
+                                  style: TextStyle(
+                                    color: Color(
+                                      0xff818e9b,
+                                    ),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "Poppins",
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: '              FCFA  12,025',
+                                      style: TextStyle(
+                                        color: Color(
+                                          0xff323c47,
+                                        ),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: "Poppins",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                width: 20,
+                              ),
+                              FlatButton(
+                                  minWidth: 97,
+                                  height: 37,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  onPressed: () {
+                                    print('Cancel');
+                                  },
+                                  color: Color(0xFFF44336),
+                                  textColor: Colors.white,
+                                  child: Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  )),
+                              // SizedBox(
+                              //   width: 10,
+                              // ),
+                              FlatButton(
+                                  minWidth: 100,
+                                  height: 40,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context,  AppRoutes.confirmTransferPage);
+                                  },
+                                  color: Color(0xFF4EB181),
+                                  textColor: Colors.white,
+                                  child: Text(
+                                    "Send",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: "Roboto",
+                                    ),
+                                  ))
+                            ],
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
