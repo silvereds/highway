@@ -18,4 +18,5 @@ class AppRoutes {
   static final allTransactionsPage = '/allTransactionsPage';
   static final transferMoneyPage = '/tansferMoneyPage'; 
   static final confirmTransferPage = '/confirmTransferPage';
+  static final transferCompletedPage = '/transferCompletedPage';
 }
