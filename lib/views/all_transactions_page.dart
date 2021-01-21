@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/appBar.dart';
+import 'package:mobile/shared/routes.dart';
 
 class AllTransactionsPage extends StatefulWidget {
   @override
@@ -63,7 +64,10 @@ class _AllTransactionsPageState extends State<AllTransactionsPage> {
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, AppRoutes.transferMoneyPage);
+
+                            },
                           ),
                         ),
                       ),

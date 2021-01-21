@@ -16,4 +16,5 @@ class AppRoutes {
   static final blockDevicePage = '/blockDevicePage';
   static final changePinPage = '/changePinPage';
   static final allTransactionsPage = '/allTransactionsPage';
+  static final transferMoneyPage = '/tansferMoneyPage'; 
 }
