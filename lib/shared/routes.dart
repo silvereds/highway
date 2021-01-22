@@ -1,3 +1,5 @@
+import 'package:mobile/views/transaction_details_page.dart';
+
 class AppRoutes {
   static final splashScreenPage = '/';
   static final registerPage = '/register';
@@ -19,4 +21,5 @@ class AppRoutes {
   static final transferMoneyPage = '/tansferMoneyPage'; 
   static final confirmTransferPage = '/confirmTransferPage';
   static final transferCompletedPage = '/transferCompletedPage';
+  static final transactionDetailsPage = '/transactionDetailsPage';
 }

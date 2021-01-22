@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/appBar.dart';
+import 'package:mobile/shared/routes.dart';
 
 
 class TransferCompletedPage extends StatefulWidget {
@@ -334,7 +335,7 @@ Text(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           onPressed: () {
-                            print("Close");
+                           Navigator.pushNamed(context, AppRoutes.transactionDetailsPage);
                           },
                           color: Color(0xFF4EB181),
                           textColor: Colors.white,
