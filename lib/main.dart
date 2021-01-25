@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:mobile/shared/routes.dart';
 import 'package:mobile/views/Verify_passcode_page.dart';
 import 'package:mobile/views/dashboard.dart';
@@ -23,19 +22,14 @@ import 'package:mobile/views/transfer_money_page.dart';
 import 'package:mobile/views/confirm_transfer_page.dart';
 import 'package:mobile/views/transfer_completed_page.dart';
 
-
-
 void main() {
   runApp(MyApp());
 
-
   runApp(
-    
-     DevicePreview(
-   
-    builder: (context) => MyApp(), // Wrap your app
-  ),
-);//<-- Comment  this line  if you want to run without Device preview
+    DevicePreview(
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  ); //<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -49,30 +43,27 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-
-
-      initialRoute:          AppRoutes.allTransactionsPage,
-
+      initialRoute: AppRoutes.allTransactionsPage,
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
-        AppRoutes.loginPage: (context) =>  LoginPage(),
+        AppRoutes.loginPage: (context) => LoginPage(),
         AppRoutes.dashboard: (context) => DashBoard(),
         AppRoutes.verifyPasscodePage: (context) => VerifyPasscodePage(),
-        AppRoutes. accountsView: (context) => AccountsView(),
+        AppRoutes.accountsView: (context) => AccountsView(),
         AppRoutes.accoutsDetailsView: (context) => AccountsDetailsView(),
         AppRoutes.rechargeAccountpage: (context) => RechargeAccountPage(),
         AppRoutes.changeAlias: (context) => ChangeAliasView(),
         AppRoutes.alldevicesPage: (context) => AllDevicesPage(),
         AppRoutes.deviceDetailsPage: (context) => DeviceDetailsPage(),
-       AppRoutes.changeDevicePage: (context) => ChangeDevicePage(),
-       AppRoutes.blockDevicePage: (context) => BlockDevicePage(),
+        AppRoutes.changeDevicePage: (context) => ChangeDevicePage(),
+        AppRoutes.blockDevicePage: (context) => BlockDevicePage(),
         AppRoutes.changePinPage: (context) => ChangePinPage(),
-       AppRoutes.allTransactionsPage: (context) => AllTransactionsPage(),
-       AppRoutes.transferMoneyPage: (context) => TransferMoneyPage(),
-      AppRoutes.confirmTransferPage: (context) => ConfirmTransferPage(),
-      AppRoutes.transferCompletedPage: (context)=>  TransferCompletedPage(),
-      AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage()
+        AppRoutes.allTransactionsPage: (context) => AllTransactionsPage(),
+        AppRoutes.transferMoneyPage: (context) => TransferMoneyPage(),
+        AppRoutes.confirmTransferPage: (context) => ConfirmTransferPage(),
+        AppRoutes.transferCompletedPage: (context) => TransferCompletedPage(),
+        AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage()
       },
     );
   }
