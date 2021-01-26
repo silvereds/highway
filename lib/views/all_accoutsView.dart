@@ -9,7 +9,7 @@ class AccountsView extends StatefulWidget {
 }
 
 class _AccountsViewState extends State<AccountsView> {
-  int _currentIndex = 0;
+  
 
   final List<String> entries = <String>['Active', 'Blocked' 'Active'];
 

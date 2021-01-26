@@ -21,6 +21,7 @@ import 'package:mobile/views/transaction_details_page.dart';
 import 'package:mobile/views/transfer_money_page.dart';
 import 'package:mobile/views/confirm_transfer_page.dart';
 import 'package:mobile/views/transfer_completed_page.dart';
+import 'package:mobile/views/support_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: AppRoutes.allTransactionsPage,
+      initialRoute: AppRoutes.supportPage,
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
@@ -63,7 +64,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.transferMoneyPage: (context) => TransferMoneyPage(),
         AppRoutes.confirmTransferPage: (context) => ConfirmTransferPage(),
         AppRoutes.transferCompletedPage: (context) => TransferCompletedPage(),
-        AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage()
+        AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage(),
+        AppRoutes.supportPage: (context) => SupportPage(),
       },
     );
   }
