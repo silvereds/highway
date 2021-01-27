@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/appBar.dart';
+import 'package:mobile/shared/routes.dart';
 
 class SupportPage extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class _SupportPageState extends State<SupportPage> {
                     ],
                   ),
                   child: FlatButton(
-                    onPressed: (){print("New Conversation btn");},
+                    onPressed: (){Navigator.pushNamed(context, AppRoutes.newConversationPage);},
                         child: Center(
                     child: Text(
                       "New Conversation",

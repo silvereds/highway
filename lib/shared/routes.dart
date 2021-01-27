@@ -23,4 +23,5 @@ class AppRoutes {
   static final transferCompletedPage = '/transferCompletedPage';
   static final transactionDetailsPage = '/transactionDetailsPage';
   static final supportPage = '/supportPage';
+  static final newConversationPage = '/newConversationPage';
 }

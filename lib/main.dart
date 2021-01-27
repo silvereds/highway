@@ -22,15 +22,16 @@ import 'package:mobile/views/transfer_money_page.dart';
 import 'package:mobile/views/confirm_transfer_page.dart';
 import 'package:mobile/views/transfer_completed_page.dart';
 import 'package:mobile/views/support_page.dart';
+import 'package:mobile/views/new_conversation_page.dart';
 
 void main() {
-  runApp(MyApp());
+  // runApp(MyApp());
 
-  runApp(
-    DevicePreview(
-      builder: (context) => MyApp(), // Wrap your app
-    ),
-  ); //<-- Comment  this line  if you want to run without Device preview
+  // runApp(
+  //   DevicePreview(
+  //     builder: (context) => MyApp(), // Wrap your app
+  //   ),
+  // ); //<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.transferCompletedPage: (context) => TransferCompletedPage(),
         AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage(),
         AppRoutes.supportPage: (context) => SupportPage(),
+        AppRoutes.newConversationPage: (context) => NewConversationPage(),
       },
     );
   }
