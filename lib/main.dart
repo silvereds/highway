@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:          AppRoutes.allTransactionsPage,
+      initialRoute:             AppRoutes.dashboard,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
