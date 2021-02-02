@@ -8,38 +8,28 @@ import 'package:mobile/shared/routes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPageState  createState() => _LoginPageState();
-  
-  
+  _LoginPageState createState() => _LoginPageState();
 }
- enum LoginOption{email, sms}
+
+enum LoginOption { email, sms }
 
 class _LoginPageState extends State<LoginPage> {
-    // _site is the variable that recieves registerOption and keeps
-    LoginOption _site = LoginOption.email;
-    final GlobalKey<ScaffoldState>  _scaffoldkey = new GlobalKey<ScaffoldState>();
-    
-    
+  // _site is the variable that recieves registerOption and keeps
+  LoginOption _site = LoginOption.email;
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  LoginController loginController = new LoginController();
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-
-   AuthCredentials authCredentials = AuthCredentials();
-
-
-  
-    
-
-
-
+  AuthCredentials authCredentials = AuthCredentials();
 
   final formKey = GlobalKey<FormState>();
-  
 
   String _email;
   String _password;
 
-    @override
+  @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
@@ -48,18 +38,13 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  String hintText(){
-    if(_site == LoginOption.email){
+  String hintText() {
+    if (_site == LoginOption.email) {
       return "Email";
-
-     } else{
-       return "Phone number";
-     }
+    } else {
+      return "Phone number";
+    }
   }
-
- 
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,14 +60,17 @@ class _LoginPageState extends State<LoginPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-              child: Container(
-           width: 800,
-           height: 850,
+        child: Container(
+          width: 800,
+          height: 850,
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [ThemeColors.Background, ThemeColors.LightBackground])),
+                  colors: [
+                ThemeColors.Background,
+                ThemeColors.LightBackground
+              ])),
           padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
           child: Center(
             child: Stack(
@@ -136,9 +124,9 @@ class _LoginPageState extends State<LoginPage> {
                                   value: LoginOption.sms,
                                   groupValue: _site,
                                   onChanged: (value) {
-                                   setState(() {
-                                     _site = value;
-                                   });
+                                    setState(() {
+                                      _site = value;
+                                    });
                                   },
                                 ),
                                 Text(
@@ -165,32 +153,31 @@ class _LoginPageState extends State<LoginPage> {
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         decoration: InputDecoration(
-                                            hintText: hintText(),
-                                            hintStyle: TextStyle(
-                                                fontSize: 14,
-                                                color: Color(0xFFAAAAAA),
-                                                fontFamily: 'Roboto'),
-                                            border: InputBorder.none,
-                                           ),
+                                          hintText: hintText(),
+                                          hintStyle: TextStyle(
+                                              fontSize: 14,
+                                              color: Color(0xFFAAAAAA),
+                                              fontFamily: 'Roboto'),
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                       Divider(color: Colors.grey),
                                       SizedBox(height: 10),
                                       TextFormField(
-                                        
-                                         controller: passwordController,
+                                        controller: passwordController,
                                         validator: (val) => val.length < 4
                                             ? 'Password too short..'
                                             : null,
                                         onSaved: (val) => _password = val,
                                         obscureText: true,
                                         decoration: InputDecoration(
-                                            hintText: 'Password',
-                                            hintStyle: TextStyle(
-                                                fontSize: 14,
-                                                color: Color(0xFFAAAAAA),
-                                                fontFamily: 'Roboto'),
-                                            border: InputBorder.none,
-                                            ),
+                                          hintText: 'Password',
+                                          hintStyle: TextStyle(
+                                              fontSize: 14,
+                                              color: Color(0xFFAAAAAA),
+                                              fontFamily: 'Roboto'),
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                       Divider(color: Colors.grey),
                                     ],
@@ -240,34 +227,59 @@ class _LoginPageState extends State<LoginPage> {
                                       fontSize: 13, fontFamily: 'Poppins'),
                                 ),
                                 onPressed: () {
-                                if (hintText() == "Email") {
-                                  authCredentials.email =
-                                      emailController.text;
-                                       _scaffoldkey.currentState
-                                          .showSnackBar(SnackBar(
-                                        content: Text('$emailController.text + $passwordController.text'  ),
-                                        backgroundColor: Colors.red[600],
-                                        duration: Duration(seconds: 3),
-                                      )); 
-                                } else {
-                                  authCredentials.password =
-                                  passwordController.text;
-                                   _scaffoldkey.currentState
-                                          .showSnackBar(SnackBar(
-                                        content: Text('$emailController.text + $passwordController.text'),
-                                        backgroundColor: Colors.red[600],
-                                        duration: Duration(seconds: 3),
-                                      )); 
-                                  
-                                }
-                                    
-                                 
+                                   String authType = "";
+                                  if (hintText() == "Email") {
+                                     authType = "email";
+                                    authCredentials.email =
+                                        emailController.text.trim();
+                                    // _scaffoldkey.currentState
+                                    //     .showSnackBar(SnackBar(
+                                    //   content: Text(
+                                    //       '$emailController.text + $passwordController.text'),
+                                    //   backgroundColor: Colors.red[600],
+                                    //   duration: Duration(seconds: 3),
+                                    // ));
+                                  } else {
+                                    authType = "phoneNumber";
+                                    authCredentials.phoneNumber =
+                                      emailController.text.trim();
+                                    // _scaffoldkey.currentState
+                                    //     .showSnackBar(SnackBar(
+                                    //   content: Text(
+                                    //       '$emailController.text + $passwordController.text'),
+                                    //   backgroundColor: Colors.red[600],
+                                    //   duration: Duration(seconds: 3),
+                                    // ));
+                                  }
+                                     if( passwordController.text == authCredentials.password){
+                                        loginController.loginRequest(
+                                          authCredentials, authType).then((result) => { 
+                                            if(result == "true"){
+                                                {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                              AppRoutes.dashboard)
+                                                  } 
+
+                                            } else {
+                                               _scaffoldkey.currentState
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          "Registration Failed"),
+                                                      backgroundColor:
+                                                          Colors.red[600],
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    ))
+
+                                            }
+
+                                          });
+                                     }
                                 },
-                                
                                 color: Color(0xFF4EB181),
                                 textColor: Color(0xFFFFFFFF),
                                 height: 33,
-                                
                               ),
                             ),
                             SizedBox(height: 15),

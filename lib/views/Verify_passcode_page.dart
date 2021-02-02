@@ -140,13 +140,26 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       fontSize: 13, fontFamily: 'Poppins'),
                 ),
                 onPressed: () {
-                  _scaffoldKey.currentState.showSnackBar(SnackBar(
-                    content: Text(
-                      (pinCodeController.text ),
-                    ),
-                    duration: Duration(seconds: 3),
-                    backgroundColor: Colors.red,
-                  ));
+                      if(pinCodeController != null){
+                               _scaffoldKey.currentState
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(pinCodeController.text),
+                                                      backgroundColor:
+                                                          Colors.red[600],
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    ));
+                                                  } else {
+                                                     _scaffoldKey.currentState
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          "Wrong PIN"),
+                                                      backgroundColor:
+                                                          Colors.red[600],
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    ));
+                                                  }
                 },
                 color: Color(0xFF4EB181),
                 textColor: Color(0xFFFFFFFF),

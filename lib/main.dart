@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:             AppRoutes.dashboard,
+      initialRoute:                AppRoutes.verifyPasscodePage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),

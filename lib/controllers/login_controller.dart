@@ -10,22 +10,13 @@ class LoginController{
 }
 
  // checks if email exist in system and return true or false
-Future<String> loginRequest(AuthCredentials authCredentials) async {
-    if (isValidEmail(authCredentials.email) ||
-        isValidPhoneNumber(authCredentials.phoneNumber)) {
-      return await _authService.firstTimeLogin(authCredentials);
-    } else {
-      return "Invalid Email Or Phone Number";
-    }
+Future<String> loginRequest(AuthCredentials authCredentials, String authType) async {
+       authCredentials.agent = "mobile";
+      
   }
-   bool isValidEmail(String email) {
-    return true;
+      
+     
   }
 
 
-  
-  bool isValidPhoneNumber(String phoneNumber) {
-    return true;
-  }
-
-}
+ 

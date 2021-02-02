@@ -311,7 +311,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       registerController
                                           .firstTimeLogin(
                                               authCredentials, authType)
-                                          .then((result) => {
+                                          .then((result) => { 
                                                 if (result == "success" && this.checkOption == true )
                                                   {
                                                     Navigator.pushNamed(
@@ -366,7 +366,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                         fontFamily: 'Poppins'),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        print('Login');
+                                       Navigator.pushNamed(context, AppRoutes.loginPage);
                                       })
                               ]),
                             )
