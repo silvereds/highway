@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/views/all_accoutsView.dart';
-import 'package:mobile/views/transactions.dart';
+import 'package:mobile/shared/routes.dart';
 
 class BottomNavigationBarView extends StatefulWidget {
   @override
@@ -10,16 +9,21 @@ class BottomNavigationBarView extends StatefulWidget {
 
 class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
   int _currentIndex = 0;
-  Widget _transactions = TransactionsView();
-  Widget _accounts = AccountsView();
+
+  // static const List<Widget> _widgetOption = <Widget> [
+
+ 
+
+  // ];
+ 
 
   getBody() {
     if (this._currentIndex == 0) {
-      return this._transactions;
+      Navigator.pushNamed(context, AppRoutes.loginPage);
     } else if (this._currentIndex == 1) {
-      return this._accounts;
+       Navigator.pushNamed(context, AppRoutes.loginPage);
     } else {
-      return this._transactions;
+      Navigator.pushNamed(context, AppRoutes.loginPage);
     }
   }
 
@@ -40,8 +44,8 @@ class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
       selectedItemColor: Color(0xFF53B27F),
       unselectedItemColor: Color(0xFF334D6E),
       onTap: (int index) {
-        // Respond to item press.
-        this.onTapHandler(index);
+       // Respond to item press.
+       this.onTapHandler(index);
       },
       items: [
         BottomNavigationBarItem(
