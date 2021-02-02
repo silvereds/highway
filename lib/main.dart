@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:      AppRoutes.dashboard,
+      initialRoute:       AppRoutes.splashScreenPage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
