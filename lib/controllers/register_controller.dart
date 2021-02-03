@@ -10,7 +10,7 @@ class RegisterController {
 
   Future<String> firstTimeLogin(
       AuthCredentials authCredentials, String authType) async {
-    authCredentials.agent = "mobile";
+  
     if (authType == "email") {
 
       if (isValidEmail(authCredentials.email)) {

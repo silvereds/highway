@@ -265,7 +265,7 @@ class _LoginPageState extends State<LoginPage> {
                                                _scaffoldkey.currentState
                                                         .showSnackBar(SnackBar(
                                                       content: Text(
-                                                          "Registration Failed"),
+                                                          "Login Failed"),
                                                       backgroundColor:
                                                           Colors.red[600],
                                                       duration:
