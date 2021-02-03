@@ -11,7 +11,7 @@ class UserDao{
 
    Future<User> createUser(User user) async {
     final db = await dbConnect.database;
-   await db.insert("user", user.toJson()); 
+     db.insert("user", user.toJson());
     return user;
   }
 
