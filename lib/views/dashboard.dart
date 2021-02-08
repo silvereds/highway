@@ -691,7 +691,7 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ],
                   ),
-                  margin: EdgeInsets.fromLTRB(30, 30, 30, 8),
+                  margin: EdgeInsets.fromLTRB(26, 30, 26, 8),
                   height: 150,
                   width: 323,
                   child: Stack(
@@ -699,7 +699,7 @@ class _DashBoardState extends State<DashBoard> {
                     children: [
                       Container(
                         child: Padding(
-                          padding: const EdgeInsets.all(14.0),
+                          padding: const EdgeInsets.all(6.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -746,10 +746,10 @@ class _DashBoardState extends State<DashBoard> {
                                     ],
                                   ),
                                   Text("-7,300",
-                                      style: TextStyle(
-                                          color: Color(0xFFF7685B),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold))
+                                        style: TextStyle(
+                                            color: Color(0xFFF7685B),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold))
                                 ],
                               )
                             ],
@@ -826,7 +826,7 @@ class _DashBoardState extends State<DashBoard> {
                       Card(
                         elevation: 5,
                         child: Padding(
-                          padding: const EdgeInsets.all(14.0),
+                          padding: const EdgeInsets.all(6.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -886,7 +886,7 @@ class _DashBoardState extends State<DashBoard> {
                       Card(
                         elevation: 5,
                         child: Padding(
-                          padding: const EdgeInsets.all(14.0),
+                          padding: const EdgeInsets.all(6.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
