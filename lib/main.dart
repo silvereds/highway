@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:mobile/shared/routes.dart';
-import 'package:mobile/views/Company_profile.dart';
 import 'package:mobile/views/Verify_passcode_page.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/register_page.dart';
@@ -16,21 +16,22 @@ import 'package:mobile/views/device_details_page.dart';
 import 'package:mobile/views/change_device_page.dart';
 import 'package:mobile/views/block_device_page.dart';
 import 'package:mobile/views/change_pin_page.dart';
-
-
-
+import 'package:mobile/views/all_transactions_page.dart';
+import 'package:mobile/views/transaction_details_page.dart';
+import 'package:mobile/views/transfer_money_page.dart';
+import 'package:mobile/views/confirm_transfer_page.dart';
+import 'package:mobile/views/transfer_completed_page.dart';
+import 'package:mobile/views/support_page.dart';
+import 'package:mobile/views/new_conversation_page.dart';
 
 void main() {
-  runApp(MyApp());
+  // runApp(MyApp());
 
-
-  runApp(
-    
-     DevicePreview(
-   
-    builder: (context) => MyApp(), // Wrap your app
-  ),
-);//<-- Comment  this line  if you want to run without Device preview
+  // runApp(
+  //   DevicePreview(
+  //     builder: (context) => MyApp(), // Wrap your app
+  //   ),
+  // ); //<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -45,24 +46,33 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
+
       initialRoute:       AppRoutes.dashboard,
+
 
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
-        AppRoutes.loginPage: (context) =>  LoginPage(),
+        AppRoutes.loginPage: (context) => LoginPage(),
         AppRoutes.dashboard: (context) => DashBoard(),
         AppRoutes.verifyPasscodePage: (context) => VerifyPasscodePage(),
-        AppRoutes. accountsView: (context) => AccountsView(),
+        AppRoutes.accountsView: (context) => AccountsView(),
         AppRoutes.accoutsDetailsView: (context) => AccountsDetailsView(),
         AppRoutes.rechargeAccountpage: (context) => RechargeAccountPage(),
         AppRoutes.changeAlias: (context) => ChangeAliasView(),
         AppRoutes.alldevicesPage: (context) => AllDevicesPage(),
         AppRoutes.deviceDetailsPage: (context) => DeviceDetailsPage(),
-       AppRoutes.changeDevicePage: (context) => ChangeDevicePage(),
-       AppRoutes.blockDevicePage: (context) => BlockDevicePage(),
+        AppRoutes.changeDevicePage: (context) => ChangeDevicePage(),
+        AppRoutes.blockDevicePage: (context) => BlockDevicePage(),
         AppRoutes.changePinPage: (context) => ChangePinPage(),
+        AppRoutes.allTransactionsPage: (context) => AllTransactionsPage(),
+        AppRoutes.transferMoneyPage: (context) => TransferMoneyPage(),
+        AppRoutes.confirmTransferPage: (context) => ConfirmTransferPage(),
+        AppRoutes.transferCompletedPage: (context) => TransferCompletedPage(),
+        AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage(),
+        AppRoutes.supportPage: (context) => SupportPage(),
+        AppRoutes.newConversationPage: (context) => NewConversationPage(),
       },
     );
   }

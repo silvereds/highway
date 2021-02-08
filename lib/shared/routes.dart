@@ -1,3 +1,5 @@
+
+
 class AppRoutes {
   static final splashScreenPage = '/';
   static final registerPage = '/register';
@@ -15,4 +17,11 @@ class AppRoutes {
   static final changeDevicePage='/changeDevicePage';
   static final blockDevicePage = '/blockDevicePage';
   static final changePinPage = '/changePinPage';
+  static final allTransactionsPage = '/allTransactionsPage';
+  static final transferMoneyPage = '/tansferMoneyPage'; 
+  static final confirmTransferPage = '/confirmTransferPage';
+  static final transferCompletedPage = '/transferCompletedPage';
+  static final transactionDetailsPage = '/transactionDetailsPage';
+  static final supportPage = '/supportPage';
+  static final newConversationPage = '/newConversationPage';
 }

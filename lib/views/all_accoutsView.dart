@@ -9,7 +9,7 @@ class AccountsView extends StatefulWidget {
 }
 
 class _AccountsViewState extends State<AccountsView> {
-  int _currentIndex = 0;
+  
 
   final List<String> entries = <String>['Active', 'Blocked' 'Active'];
 
@@ -422,32 +422,8 @@ class _AccountsViewState extends State<AccountsView> {
                     width: 49.8,
                     height: 51.39,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        3,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(
-                            0x23000000,
-                          ),
-                          offset: Offset(
-                            0,
-                            4,
-                          ),
-                          blurRadius: 4,
-                        ),
-                        BoxShadow(
-                          color: Color(
-                            0x66e91e63,
-                          ),
-                          offset: Offset(
-                            0,
-                            7,
-                          ),
-                          blurRadius: 10,
-                          spreadRadius: -5,
-                        ),
-                      ],
+                      borderRadius: BorderRadius.circular(3,),
+                     
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,

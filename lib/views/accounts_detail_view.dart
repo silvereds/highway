@@ -83,7 +83,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             borderRadius: BorderRadius.circular(
                               3,
                             ),
-                          ),
+                         ),
                         ),
                         Container(
                           height: 42,
