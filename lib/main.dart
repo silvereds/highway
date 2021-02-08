@@ -27,11 +27,13 @@ import 'package:mobile/views/new_conversation_page.dart';
 void main() {
   // runApp(MyApp());
 
+
   // runApp(
   //   DevicePreview(
   //     builder: (context) => MyApp(), // Wrap your app
   //   ),
   // ); //<-- Comment  this line  if you want to run without Device preview
+
 }
 
 class MyApp extends StatelessWidget {
@@ -48,6 +50,7 @@ class MyApp extends StatelessWidget {
 
 
       initialRoute:       AppRoutes.dashboard,
+
 
 
 
