@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
-import 'package:mobile/shared/appBar.dart';
-import 'package:mobile/shared/routes.dart';
+
+import 'package:mobile/shared/appbar.dart';
+
+
 
 class AccountsDetailsView extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
         drawer: NavDrawer(),
         backgroundColor: Color(0xFFF5F6F8),
         appBar: AppBarView(),
+
         bottomNavigationBar: BottomNavigationBarView(),
         body: Center(
           child: Container(
@@ -38,6 +41,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                     0,
                     1,
                   ),
+
                 ),
               ],
             ),

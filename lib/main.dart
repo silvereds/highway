@@ -45,7 +45,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: AppRoutes.supportPage,
+
+
+      initialRoute:       AppRoutes.dashboard,
+
+
+
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
