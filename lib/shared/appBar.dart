@@ -35,7 +35,8 @@ class AppBarView extends StatelessWidget implements PreferredSizeWidget {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                  image: NetworkImage("https://avatars.githubusercontent.com/u/26025717?s=460&u=158987f9f457e1f3ec80e0aedb0ee4cc8b5ea9e4&v=4")
+
                 ),
               )),
             ),

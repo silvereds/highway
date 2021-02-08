@@ -4,6 +4,8 @@ import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/routes.dart';
 import 'package:mobile/views/change_password_screen.dart';
+import 'package:mobile/shared/appbar.dart';
+
 
 class UserProfile extends StatefulWidget {
   @override
@@ -16,34 +18,7 @@ class _UserProfileState extends State<UserProfile> {
     return Scaffold(
         drawer: NavDrawer(),
         backgroundColor: Color(0xFFF5F6F8),
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black, size: 36),
-          backgroundColor: Colors.white,
-          title: Image.asset(
-            'assets/images/HIGHWEH_HORIZONTAL.png',
-            fit: BoxFit.contain,
-            height: 45,
-          ),
-          centerTitle: true,
-          actions: [
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-              child: GestureDetector(
-                child: CircleAvatar(
-                  radius: 25,
-                  child: Container(
-                      decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"),
-                    ),
-                  )),
-                ),
-              ),
-            )
-          ],
-        ),
+        appBar: AppBarView(),
         bottomNavigationBar: BottomNavigationBarView(),
         body: SingleChildScrollView(
           child: Container(
@@ -62,7 +37,7 @@ class _UserProfileState extends State<UserProfile> {
                           image: DecorationImage(
                             fit: BoxFit.fill,
                             image:
-                                NetworkImage("https://i.imgur.com/BoN9kdC.png"),
+                                NetworkImage("https://avatars.githubusercontent.com/u/26025717?s=460&u=158987f9f457e1f3ec80e0aedb0ee4cc8b5ea9e4&v=4"),
                           ))),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,

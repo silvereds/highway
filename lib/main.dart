@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
+      initialRoute:       AppRoutes.dashboard,
 
-      initialRoute:      AppRoutes.deviceDetailsPage,
 
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
