@@ -18,7 +18,7 @@ class UserService {
     if (response.statusCode == 200) {
       return true;
     } else {
-      throw Exception('failed to load user');
+      throw Exception('failed to load users');
     }
   }
 
@@ -52,7 +52,7 @@ class UserService {
     if (response.statusCode == 200) {
       return true;
     } else {
-      return false;
+      throw Exception('failed to load user');
     }
 
   }
