@@ -1,5 +1,5 @@
 class Device {
-  String id;
+  int id;
   String assignedTo;
   String accountId;
   String pin;
@@ -20,7 +20,7 @@ class Device {
   });
 
   factory Device.fromJson(Map<String, dynamic> json) => Device(
-        id: json['Id'] as String,
+        id: json['Id'] as int,
         accountId: json['accountId'] as String,
         pin: json['pin'] as String,
         rentedOn: json['rentedOn'] as String,

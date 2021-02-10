@@ -1,5 +1,5 @@
 class Payment {
-  String id;
+  int id;
   String  status;
   String  provider;
   String  amount;
@@ -20,7 +20,7 @@ class Payment {
 
 
  factory Payment.fromJson(Map<String, dynamic> json) => Payment(
-   id: json['id'] as String,
+   id: json['id'] as int,
    status: json['status'] as String,
    provider: json['provider'] as String,
    amount: json['amount'] as String,

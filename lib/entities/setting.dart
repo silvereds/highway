@@ -1,5 +1,5 @@
  class Setting {
-  String id;
+  int    id;
   String name;
   String value;
   String defaultValue;
@@ -17,7 +17,7 @@
 
 
   factory Setting.fromJson(Map<String, dynamic> json) => Setting(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['json'] as String, 
       value: json['value'] as String, 
       defaultValue: json['defaultValue'] as String,   

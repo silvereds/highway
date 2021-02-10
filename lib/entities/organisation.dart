@@ -1,5 +1,5 @@
 class Organisation {
-  String id;
+  int    id;
   String uuid;
   String contactPersonId;
   String name;
@@ -34,7 +34,7 @@ class Organisation {
 
  factory Organisation.fromJson(Map<String, dynamic> json) => Organisation(
    
-  id: json['id'] as String,
+  id: json['id'] as int,
   uuid: json['uuid'] as String,
   contactPersonId:  json['contactPersonId'] as String,
   name: json['name'] as String, 
