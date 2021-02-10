@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      initialRoute:        AppRoutes.splashScreenPage,
+      initialRoute:            AppRoutes.newConversationPage,
 
 
 
