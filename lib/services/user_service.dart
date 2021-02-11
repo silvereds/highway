@@ -27,7 +27,7 @@ class UserService {
     final http.Response response =
         await http.post(url, headers: headers, body: user.toJson());
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return "Success";
     } else {
       return "failure";
