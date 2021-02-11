@@ -22,15 +22,15 @@ class UserService {
     }
   }
 
-  Future<String> createUser(User user) async {
+  Future<User> createUser(User user) async {
     String url = endpoint;
     final http.Response response =
         await http.post(url, headers: headers, body: user.toJson());
 
     if (response.statusCode == 201) {
-      return "Success";
+      return User.fromJson(jsonDecode(response.body));
     } else {
-      return "failure";
+      throw Exception('Failed to load account');
     }
   }
 
