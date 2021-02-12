@@ -36,7 +36,7 @@ class AccountService {
   Future<String> updateAccount(Account account) async {
     String url = endpoint + "/accountId";
     final http.Response response =
-        await http.post(url, headers: headers, body: account.toJson());
+        await http.put(url, headers: headers, body: account.toJson());
 
     if (response.statusCode == 200) {
       return "Success";

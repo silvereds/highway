@@ -37,7 +37,7 @@ class UserService {
   Future<String> updateUser(User user) async {
     String url = endpoint + "/userId";
     final http.Response response =
-        await http.post(url, headers: headers, body: user.toJson());
+        await http.put(url, headers: headers, body: user.toJson());
 
     if (response.statusCode == 200) {
       return "Success";
