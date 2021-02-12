@@ -51,11 +51,11 @@ class TransactionService {
   }
 
 
-  Future<bool> retrieveTransaction(Transaction transaction) async {
+  Future<Transaction> retrieveTransaction(Transaction transaction) async {
     String url = endpoint + "/transactionId";
     final http.Response response = await http.get(url);
     if (response.statusCode == 200) {
-      return true;
+      return Transaction.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('failed to load transaction');
     }
