@@ -49,11 +49,13 @@ class UserService {
   Future<bool> retrieveUser(User user) async {
     String url = endpoint + "/userId";
     final http.Response response = await http.get(url);
+    print(response.toString());
     if (response.statusCode == 200) {
       return true;
     } else {
       throw Exception('failed to load user');
-    }
+    } 
+    
 
   }
 
