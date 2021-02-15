@@ -1,6 +1,4 @@
 class Ticket {
-
-
   int id;
 
   String openedOn;
@@ -19,10 +17,7 @@ class Ticket {
   });
 
   factory Ticket.fromJson(Map<String, dynamic> json) => Ticket(
-
-=======
         id: json['id'] as int,
-
         openedOn: json['openedOn'] as String,
         topic: json['topic'] as String,
         openedBy: json['openedBy'] as String,
