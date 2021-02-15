@@ -1,5 +1,5 @@
 class Geolocation {
-  String id;
+  int id;
   String itemId;
   String category;
   String latitude;
@@ -18,7 +18,7 @@ class Geolocation {
   });
 
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(
-        id: json['id'] as String,
+        id: json['id'] as int,
         itemId: json['itemId'] as String,
         category: json['category'] as String,
         latitude: json['latitude'] as String,

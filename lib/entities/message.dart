@@ -1,5 +1,5 @@
 class Message {
-  String id;
+  int    id;
   String ticketId;
   String sentOn;
   String sender;
@@ -20,7 +20,7 @@ class Message {
   });
 
   factory Message.fromJson(Map<String, dynamic> json) => Message(
-      id: json['id'] as String,
+      id: json['id'] as int,
       ticketId: json['ticketId'] as String,
       sentOn: json['sentOn'] as String,
       sender: json['sender'] as String,
@@ -30,13 +30,13 @@ class Message {
       status: json['status'] as String);
 
   Map<String, dynamic> toJson() => {
-        id: 'id',
-        ticketId: 'ticketId',
-        sentOn: 'sentOn',
-        sender: 'sender',
-        body: 'body',
-        subject: 'subject',
-        handledBy: 'handledBy',
-        status: 'status',
+        'id': id,
+        'ticketId': ticketId,
+        'sentOn': sentOn,
+        'sender': sender,
+        'body': body,
+        'subject': subject,
+        'handledBy': handledBy,
+        'status': status,
       };
 }

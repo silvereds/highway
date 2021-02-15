@@ -1,5 +1,5 @@
 class Transaction {
-  String id;
+  int    id;
   String status;
   String category;
   String amount;
@@ -24,7 +24,7 @@ class Transaction {
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
-        id: json['id'] as String,
+        id: json['id'] as int,
         status: json['status'] as String,
         category: json['category'] as String,
         amount: json['amount'] as String,

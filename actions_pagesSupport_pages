@@ -1,0 +1,500 @@
+[1mdiff --git a/android/app/src/main/AndroidManifest.xml b/android/app/src/main/AndroidManifest.xml[m
+[1mindex bd88ddc..48d17df 100644[m
+[1m--- a/android/app/src/main/AndroidManifest.xml[m
+[1m+++ b/android/app/src/main/AndroidManifest.xml[m
+[36m@@ -9,7 +9,7 @@[m
+ [m
+     <application[m
+         android:name="io.flutter.app.FlutterApplication"[m
+[31m-        android:label="HighWeh"[m
+[32m+[m[32m        android:label="mobile"[m
+         android:usesCleartextTraffic="true"[m
+         android:icon="@mipmap/ic_launcher">[m
+ [m
+[1mdiff --git a/assets/icon/Highweh.png b/assets/icon/Highweh.png[m
+[1mdeleted file mode 100644[m
+[1mindex 42a5bf0..0000000[m
+Binary files a/assets/icon/Highweh.png and /dev/null differ
+[1mdiff --git a/ios/Runner/Info.plist b/ios/Runner/Info.plist[m
+[1mindex 2f84fb5..5cb4aed 100644[m
+[1m--- a/ios/Runner/Info.plist[m
+[1m+++ b/ios/Runner/Info.plist[m
+[36m@@ -11,7 +11,7 @@[m
+ 		<key>CFBundleInfoDictionaryVersion</key>[m
+ 		<string>6.0</string>[m
+ 		<key>CFBundleName</key>[m
+[31m-		<string>HighWeh</string>[m
+[32m+[m		[32m<string>mobile</string>[m
+ 		<key>CFBundlePackageType</key>[m
+ 		<string>APPL</string>[m
+ 		<key>CFBundleShortVersionString</key>[m
+[1mdiff --git a/lib/controllers/login_controller.dart b/lib/controllers/login_controller.dart[m
+[1mindex 8329dfe..828fef8 100644[m
+[1m--- a/lib/controllers/login_controller.dart[m
+[1m+++ b/lib/controllers/login_controller.dart[m
+[36m@@ -9,54 +9,23 @@[m [mclass LoginController{[m
+     this._authService = AuthService();[m
+ }[m
+ [m
+[31m-[m
+[31m-Future<bool> loginRequest([m
+[31m-      AuthCredentials authCredentials, String authType) async {[m
+[31m-    authCredentials.agent = "mobile";[m
+[31m-    if (authType == "email") {[m
+[31m-[m
+[31m-      if (isValidEmail(authCredentials.email)) {[m
+[31m-        return await _authService.loginRequest(authCredentials);[m
+[31m-      } else {[m
+[31m-        return false;[m
+[31m-      }[m
+[31m-      [m
+[31m-    } else if (authType == 'phoneNumber') {[m
+[31m-      if (isValidPhoneNumber(authCredentials.phoneNumber)) {[m
+[31m-        return await _authService.loginRequest(authCredentials);[m
+[31m-      } else {[m
+[31m-        return false;[m
+[31m-      }[m
+[31m-    } [m
+[32m+[m[32m // checks if email exist in system and return true or false[m
+[32m+[m[32mFuture<String> loginRequest(AuthCredentials authCredentials) async {[m
+[32m+[m[32m    if (isValidEmail(authCredentials.email) ||[m
+[32m+[m[32m        isValidPhoneNumber(authCredentials.phoneNumber)) {[m
+[32m+[m[32m      return await _authService.firstTimeLogin(authCredentials);[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      return "Invalid Email Or Phone Number";[m
+[32m+[m[32m    }[m
+   }[m
+[31m-[m
+[31m-  bool isValidEmail(String email) {[m
+[31m-    return RegExp([m
+[31m-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")[m
+[31m-        .hasMatch(email);[m
+[32m+[m[32m   bool isValidEmail(String email) {[m
+[32m+[m[32m    return true;[m
+   }[m
+ [m
+[31m-  bool isValidPhoneNumber(String phoneNumber) {[m
+[31m-    return phoneNumber.length == 14;[m
+[31m-  }[m
+[31m-[m
+[31m- // checks if email exist in system and return true or false[m
+[31m-// Future<String> loginRequest(AuthCredentials authCredentials) async {[m
+[31m-//     if (isValidEmail(authCredentials.email) ||[m
+[31m-//         isValidPhoneNumber(authCredentials.phoneNumber)) {[m
+[31m-//       return await _authService.firstTimeLogin(authCredentials);[m
+[31m-//     } else {[m
+[31m-//       return "Invalid Email Or Phone Number";[m
+[31m-//     }[m
+[31m-//   }[m
+[31m-//    bool isValidEmail(String email) {[m
+[31m-//     return true;[m
+[31m-//   }[m
+[31m-[m
+ [m
+   [m
+[31m-//   bool isValidPhoneNumber(String phoneNumber) {[m
+[31m-//     return true;[m
+[31m-//   }[m
+[32m+[m[32m  bool isValidPhoneNumber(String phoneNumber) {[m
+[32m+[m[32m    return true;[m
+[32m+[m[32m  }[m
+ [m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/lib/entities/Geolocation.dart b/lib/entities/Geolocation.dart[m
+[1mdeleted file mode 100644[m
+[1mindex 1ab17c3..0000000[m
+[1m--- a/lib/entities/Geolocation.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,39 +0,0 @@[m
+[31m-class Geolocation {[m
+[31m-  String id;[m
+[31m-  String itemId;[m
+[31m-  String category;[m
+[31m-  String latitude;[m
+[31m-  String longitude;[m
+[31m-  String status;[m
+[31m-  String lastSeen;[m
+[31m-[m
+[31m-  Geolocation({[m
+[31m-    this.id,[m
+[31m-    this.itemId,[m
+[31m-    this.category,[m
+[31m-    this.latitude,[m
+[31m-    this.longitude,[m
+[31m-    this.status,[m
+[31m-    this.lastSeen,[m
+[31m-  });[m
+[31m-[m
+[31m-  factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation([m
+[31m-        id: json['id'] as String,[m
+[31m-        itemId: json['itemId'] as String,[m
+[31m-        category: json['category'] as String,[m
+[31m-        latitude: json['latitude'] as String,[m
+[31m-        longitude: json['longitude'] as String,[m
+[31m-        status: json['status'] as String,[m
+[31m-        lastSeen: json['lastSeen'] as String,[m
+[31m-      );[m
+[31m-[m
+[31m-  Map<String, dynamic> toJson() => {[m
+[31m-        'id': id,[m
+[31m-        'itemId': itemId,[m
+[31m-        'category': category,[m
+[31m-        'latitude': latitude,[m
+[31m-        'longitude': longitude,[m
+[31m-        'status': status,[m
+[31m-        'lastSeen': lastSeen,[m
+[31m-      };[m
+[31m-}[m
+[1mdiff --git a/lib/entities/account.dart b/lib/entities/account.dart[m
+[1mdeleted file mode 100644[m
+[1mindex 7f36b13..0000000[m
+[1m--- a/lib/entities/account.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,49 +0,0 @@[m
+[31m-class Account {[m
+[31m-  String id;[m
+[31m-  String userId;[m
+[31m-  String accountNumber;[m
+[31m-  String balance;[m
+[31m-  String alias;[m
+[31m-  String notificationType;[m
+[31m-  String notificationAddress;[m
+[31m-  String status;[m
+[31m-  String createdOn;[m
+[31m-[m
+[31m-  Account({[m
+[31m-    this.id,[m
+[31m-    this.userId,[m
+[31m-    this.accountNumber,[m
+[31m-    this.balance,[m
+[31m-    this.alias,[m
+[31m-    this.notificationType,[m
+[31m-    this.notificationAddress,[m
+[31m-    this.status,[m
+[31m-    this.createdOn,[m
+[31m-  });[m
+[31m-[m
+[31m-  factory Account.fromJson(Map<String, dynamic> json) => Account([m
+[31m-        id: json['id'] as String,[m
+[31m-        userId: json['userId'] as String,[m
+[31m-        accountNumber: json['accountNumber'] as String,[m
+[31m-        balance: json['balance'] as String,[m
+[31m-        alias: json['alias'] as String,[m
+[31m-        notificationType: json['notificationType'] as String,[m
+[31m-        notificationAddress: json['  notificationAddress'] as String,[m
+[31m-        status: json['status'] as String,[m
+[31m-        createdOn: json['createdOn'] as String,[m
+[31m-      );[m
+[31m-[m
+[31m-[m
+[31m-      Map<String, dynamic> toJson() => {[m
+[31m-        'id': id,[m
+[31m-        'userId': userId,[m
+[31m-        'accountNumber': accountNumber,[m
+[31m-        'balance': balance,[m
+[31m-        'alias' : alias,[m
+[31m-        'notificationType'  : notificationType, [m
+[31m-        'notificationAddress' : notificationAddress, [m
+[31m-        'status' : status, [m
+[31m-        'createdOn' : createdOn, [m
+[31m-[m
+[31m-      };[m
+[31m-}[m
+[1mdiff --git a/lib/entities/device.dart b/lib/entities/device.dart[m
+[1mdeleted file mode 100644[m
+[1mindex fccb6b6..0000000[m
+[1m--- a/lib/entities/device.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,41 +0,0 @@[m
+[31m-class Device {[m
+[31m-  String id;[m
+[31m-  String assignedTo;[m
+[31m-  String accountId;[m
+[31m-  String pin;[m
+[31m-  String rentedOn;[m
+[31m-  String returnedOn;[m
+[31m-  String rentedState;[m
+[31m-  String status;[m
+[31m-[m
+[31m-  Device({[m
+[31m-    this.id,[m
+[31m-    this.assignedTo,[m
+[31m-    this.accountId,[m
+[31m-    this.pin,[m
+[31m-    this.rentedOn,[m
+[31m-    this.returnedOn,[m
+[31m-    this.rentedState,[m
+[31m-    this.status,[m
+[31m-  });[m
+[31m-[m
+[31m-  factory Device.fromJson(Map<String, dynamic> json) => Device([m
+[31m-        id: json['Id'] as String,[m
+[31m-        accountId: json['accountId'] as String,[m
+[31m-        pin: json['pin'] as String,[m
+[31m-        rentedOn: json['rentedOn'] as String,[m
+[31m-        returnedOn: json['returnedOn'] as String,[m
+[31m-        rentedState: json['rentedState'] as String,[m
+[31m-        status: json['status'] as String,[m
+[31m-      );[m
+[31m-[m
+[31m-  Map<String, dynamic> toJson() => {[m
+[31m-        'id': id,[m
+[31m-        'accountId': accountId,[m
+[31m-        'pin': pin,[m
+[31m-        'rentedOn': rentedOn,[m
+[31m-        'returnedOn': returnedOn,[m
+[31m-        'rentedState': rentedState,[m
+[31m-        'status': status,[m
+[31m-      };[m
+[31m-}[m
+[1mdiff --git a/lib/entities/message.dart b/lib/entities/message.dart[m
+[1mdeleted file mode 100644[m
+[1mindex f979ebe..0000000[m
+[1m--- a/lib/entities/message.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,42 +0,0 @@[m
+[31m-class Message {[m
+[31m-  String id;[m
+[31m-  String ticketId;[m
+[31m-  String sentOn;[m
+[31m-  String sender;[m
+[31m-  String body;[m
+[31m-  String subject;[m
+[31m-  String handledBy;[m
+[31m-  String status;[m
+[31m-[m
+[31m-  Message({[m
+[31m-    this.id,[m
+[31m-    this.ticketId,[m
+[31m-    this.sentOn,[m
+[31m-    this.sender,[m
+[31m-    this.body,[m
+[31m-    this.subject,[m
+[31m-    this.handledBy,[m
+[31m-    this.status,[m
+[31m-  });[m
+[31m-[m
+[31m-  factory Message.fromJson(Map<String, dynamic> json) => Message([m
+[31m-      id: json['id'] as String,[m
+[31m-      ticketId: json['ticketId'] as String,[m
+[31m-      sentOn: json['sentOn'] as String,[m
+[31m-      sender: json['sender'] as String,[m
+[31m-      body: json['body'] as String,[m
+[31m-      subject: json['subject'] as String,[m
+[31m-      handledBy: json['handledBy'] as String,[m
+[31m-      status: json['status'] as String);[m
+[31m-[m
+[31m-  Map<String, dynamic> toJson() => {[m
+[31m-        id: 'id',[m
+[31m-        ticketId: 'ticketId',[m
+[31m-        sentOn: 'sentOn',[m
+[31m-        sender: 'sender',[m
+[31m-        body: 'body',[m
+[31m-        subject: 'subject',[m
+[31m-        handledBy: 'handledBy',[m
+[31m-        status: 'status',[m
+[31m-      };[m
+[31m-}[m
+[1mdiff --git a/lib/entities/organisation.dart b/lib/entities/organisation.dart[m
+[1mdeleted file mode 100644[m
+[1mindex afa36fe..0000000[m
+[1m--- a/lib/entities/organisation.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,77 +0,0 @@[m
+[31m-class Organisation {[m
+[31m-  String id;[m
+[31m-  String uuid;[m
+[31m-  String contactPersonId;[m
+[31m-  String name;[m
+[31m-  String industry;[m
+[31m-  String size;[m
+[31m-  String status;[m
+[31m-  String photoUrl;[m
+[31m-  String address;[m
+[31m-  String foundedOn;[m
+[31m-  String contactPersonRole;[m
+[31m-  String businessLicenceUrl;[m
+[31m-  String proofOfAddressUrl;[m
+[31m-[m
+[31m-[m
+[31m- Organisation({[m
+[31m-   this.id,[m
+[31m-   this.uuid,[m
+[31m-   this.contactPersonId,[m
+[31m-   this.name,[m
+[31m-   this.industry,[m
+[31m-   this.size,[m
+[31m-    this.status,[m
+[31m-    this.photoUrl,[m
+[31m-    this.address,[m
+[31m-    this.foundedOn,[m
+[31m-    this.contactPersonRole,[m
+[31m-    this.businessLicenceUrl,[m
+[31m-    this.proofOfAddressUrl, [m
+[31m-[m
+[31m- }); [m
+[31m-[m
+[31m-[m
+[31m- factory Organisation.fromJson(Map<String, dynamic> json) => Organisation([m
+[31m-   [m
+[31m-  id: json['id'] as String,[m
+[31m-  uuid: json['uuid'] as String,[m
+[31m-  contactPersonId:  json['contactPersonId'] as String,[m
+[31m-  name: json['name'] as String, [m
+[31m-  industry: json['industry'] as String,[m
+[31m-  size:  json['size'] as String,[m
+[31m-  status: json['status'] as String, [m
+[31m-  photoUrl:   json['photoUrl'] as String,[m
+[31m-  address:  json['address'] as String,[m
+[31m-  foundedOn: json['foundedOn'] as String, [m
+[31m-  contactPersonRole:   json['contactPersonRole'] as String,[m
+[31m-  businessLicenceUrl:  json['businessLicenceUrl'] as String,[m
+[31m-  proofOfAddressUrl: json['proofOfAddressUrl'] as String,[m
+[31m-[m
+[31m- );[m
+[31m- [m
+[31m- Map<String, dynamic> toJson() => {[m
+[31m-[m
+[31m-   'id': id, [m
+[31m-   'uuid': uuid,[m
+[31m-   'contactPersonId': contactPersonId, [m
+[31m-   'name': name, [m
+[31m-   'industry': industry,[m
+[31m-   'size': size,[m
+[31m-   'status': status,[m
+[31m-   'photoUrl': photoUrl, [m
+[31m-   'address': address, [m
+[31m-   'foundedOn': foundedOn,[m
+[31m-   'contactPersonRole': contactPersonRole, [m
+[31m-   'businessLicenceUrl': businessLicenceUrl, [m
+[31m-   'proofOfAddressUrl': proofOfAddressUrl[m
+[31m-[m
+[31m-[m
+[31m- };[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-}[m
+[31m-[m
+[31m- [m
+\ No newline at end of file[m
+[1mdiff --git a/lib/entities/payment.dart b/lib/entities/payment.dart[m
+[1mdeleted file mode 100644[m
+[1mindex 48ba879..0000000[m
+[1m--- a/lib/entities/payment.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,45 +0,0 @@[m
+[31m-class Payment {[m
+[31m-  String id;[m
+[31m-  String  status;[m
+[31m-  String  provider;[m
+[31m-  String  amount;[m
+[31m-  String  from;[m
+[31m-  String  to;[m
+[31m-  String  dateOn;[m
+[31m-[m
+[31m- Payment({[m
+[31m-   this.id,[m
+[31m-   this.status,[m
+[31m-   this.provider,[m
+[31m-   this.amount,[m
+[31m-   this.from,[m
+[31m-   this.to, [m
+[31m-   this.dateOn, [m
+[31m-[m
+[31m- });[m
+[31m-[m
+[31m-[m
+[31m- factory Payment.fromJson(Map<String, dynamic> json) => Payment([m
+[31m-   id: json['id'] as String,[m
+[31m-   status: json['status'] as String,[m
+[31m-   provider: json['provider'] as String,[m
+[31m-   amount: json['amount'] as String,[m
+[31m-   from: json['from'] as String,[m
+[31m-   to: json['to'] as String,[m
+[31m-   dateOn: json['dateOn'] as String,[m
+[31m-   [m
+[31m- );[m
+[31m-[m
+[31m-[m
+[31m- Map<String, dynamic> toJson() => {[m
+[31m-   'id': id,[m
+[31m-   'status': status,[m
+[31m-   'provider': provider,[m
+[31m-   'amount': amount,[m
+[31m-   'from': from, [m
+[31m-   'dateOn': dateOn[m
+[31m-[m
+[31m- };[m
+[31m-[m
+[31m-[m
+[31m-  }[m
+\ No newline at end of file[m
+[1mdiff --git a/lib/entities/setting.dart b/lib/entities/setting.dart[m
+[1mdeleted file mode 100644[m
+[1mindex cdce0eb..0000000[m
+[1m--- a/lib/entities/setting.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,35 +0,0 @@[m
+[31m- class Setting {[m
+[31m-  String id;[m
+[31m-  String name;[m
+[31m-  String value;[m
+[31m-  String defaultValue;[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-  Setting({[m
+[31m-    this.id, [m
+[31m-    this.name,[m
+[31m-    this.value,[m
+[31m-    this.defaultValue[m
+[31m-  }); [m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-  factory Setting.fromJson(Map<String, dynamic> json) => Setting([m
+[31m-      id: json['id'] as String,[m
+[31m-      name: json['json'] as String, [m
+[31m-      value: json['value'] as String, [m
+[31m-      defaultValue: json['defaultValue'] as String,   [m
+[31m-  ); [m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-  Map<String, dynamic> toJson() => {[m
+[31m-    'id': id,[m
+[31m-    'name': name,[m
+[31m-    'value': value,[m
+[31m-    'defaultValue': defaultValue,[m
+[31m-[m
+[31m-  } ;[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/lib/entities/ticket.dart b/lib/entities/ticket.dart[m
+[1mdeleted file mode 100644[m
+[1mindex fa42cfd..0000000[m
+[1m--- a/lib/entities/ticket.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1,44 +0,0 @@[m
+[31m-class Ticket {[m
+[31m-  String  id;[m
+[31m-  String  openedOn;[m
+[31m-  String  topic;[m
+[31m-  String  openedBy;[m
+[31m-  String  handledBy; //must be operator[m
+[31m-  String  status;[m
+[31m-[m
+[31m-[m
+[31m-  Ticket({[m
+[31m-    this.id,[m
+[31m-    this.openedOn,[m
+[31m-[m
+[31m-    this.topic,[m
+[31m-        this.openedBy,[m
+[31m-    this.handledBy,[m
+[31m-    this.status,[m
+[31m-  });[

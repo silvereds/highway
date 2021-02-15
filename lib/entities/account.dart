@@ -1,5 +1,5 @@
 class Account {
-  String id;
+  int id;
   String userId;
   String accountNumber;
   String balance;
@@ -22,7 +22,7 @@ class Account {
   });
 
   factory Account.fromJson(Map<String, dynamic> json) => Account(
-        id: json['id'] as String,
+        id: json['id'] as int,
         userId: json['userId'] as String,
         accountNumber: json['accountNumber'] as String,
         balance: json['balance'] as String,
