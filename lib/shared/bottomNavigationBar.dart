@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile/views/all_accoutsView.dart';
 import 'package:mobile/views/dashboard.dart';
 import 'package:mobile/views/transactions.dart';
+import 'package:mobile/views/accounts_detail_view.dart';
+import 'package:mobile/views/block_accountView.dart';
 
 class BottomNavigationBarView extends StatefulWidget {
   @override
@@ -11,14 +13,14 @@ class BottomNavigationBarView extends StatefulWidget {
 }
 
 class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
-  int _currentIndex = 0;
+  int _currentIndex;
 
     final  List<Widget> _children = <Widget> [
       DashBoard(),
       AccountsView(),
       TransactionsView(),
-      DashBoard(),
-      AccountsView(),
+      AccountsDetailsView(),
+      BlockAccountView(),
     
 
 
