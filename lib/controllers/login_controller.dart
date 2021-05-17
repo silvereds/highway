@@ -1,33 +1,31 @@
 import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/services/auth_service.dart';
 
-
-class LoginController{
+class LoginController {
   AuthService _authService;
 
   LoginController() {
     this._authService = AuthService();
-}
+  }
 
-
-Future<bool> loginRequest(
+  // checks if email exist in system
+  Future<String> loginRequest(
       AuthCredentials authCredentials, String authType) async {
-    authCredentials.agent = "mobile";
     if (authType == "email") {
-
       if (isValidEmail(authCredentials.email)) {
-        return await _authService.loginRequest(authCredentials);
+        return await _authService.firstTimeLogin(authCredentials);
       } else {
-        return false;
+        return "Invalid Email";
       }
-      
     } else if (authType == 'phoneNumber') {
       if (isValidPhoneNumber(authCredentials.phoneNumber)) {
-        return await _authService.loginRequest(authCredentials);
+        return await _authService.firstTimeLogin(authCredentials);
       } else {
-        return false;
+        return "Invalid Phone Number";
       }
-    } 
+    } else {
+      return "Something went wrong";
+    }
   }
 
   bool isValidEmail(String email) {
@@ -39,24 +37,4 @@ Future<bool> loginRequest(
   bool isValidPhoneNumber(String phoneNumber) {
     return phoneNumber.length == 14;
   }
-
- // checks if email exist in system and return true or false
-// Future<String> loginRequest(AuthCredentials authCredentials) async {
-//     if (isValidEmail(authCredentials.email) ||
-//         isValidPhoneNumber(authCredentials.phoneNumber)) {
-//       return await _authService.firstTimeLogin(authCredentials);
-//     } else {
-//       return "Invalid Email Or Phone Number";
-//     }
-//   }
-//    bool isValidEmail(String email) {
-//     return true;
-//   }
-
-
-  
-//   bool isValidPhoneNumber(String phoneNumber) {
-//     return true;
-//   }
-
 }

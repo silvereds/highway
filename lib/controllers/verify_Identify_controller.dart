@@ -3,8 +3,12 @@ import 'package:mobile/entities/auth-credentials.dart';
 import 'package:mobile/services/auth_service.dart';
 
 
-class VerifyIdentiity{
-  AuthService _authService; 
+class VerifyShortcode{
+   AuthService _authService; 
+
+  VerifyShortcode(){
+      this._authService = AuthService();
+  }
 
   Future<bool> verifyPasscode(AuthCredentials authCredentials) async {
     if (isvalidPassCode(authCredentials.passcode)){

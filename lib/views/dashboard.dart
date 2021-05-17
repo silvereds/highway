@@ -961,10 +961,13 @@ class _DashBoardState extends State<DashBoard> {
                               mainAxisSize: MainAxisSize.min,
                               //  crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+                                  SizedBox(
+                                  height: 10,
+                                ),
                                 RichText(
                                     text: TextSpan(children: <TextSpan>[
                                   TextSpan(
-                                    text: '% Transactions / Accounts :',
+                                    text: ' % Transactions / Accounts :',
                                     style: TextStyle(
                                       color: Color(0xFF192A3E),
                                       fontSize: 18,

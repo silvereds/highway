@@ -241,9 +241,139 @@ class _RegisterPageState extends State<RegisterPage> {
                                         color: ThemeColors.CheckColor,
                                         fontSize: 14,
                                         fontFamily: 'Roboto'),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: '  terms and conditions.',
+                                          style: TextStyle(
+                                              color: ThemeColors.CheckColor,
+                                              fontSize: 14,
+                                              fontFamily: 'Roboto'),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              print('Terms and conditions"');
+                                            })
+                                    ]),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.bottomRight,
+                        child: Column(
+                          children: [
+                            Container(
+                                
+                                decoration: BoxDecoration(
+                                  color: Color(
+                                    0xff4eb181,
+                                  ),
+                                  borderRadius: BorderRadius.circular(
+                                    4,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(
+                                        0x3d109cf1,
+                                      ),
+                                      offset: Offset(
+                                        0,
+                                        4,
+                                      ),
+                                      blurRadius: 10,
+                                    ),
+                                  ],
+                                ),
+                                height: 45.02,
+                                width: 130,
+                                child: FlatButton(
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: "Poppins",
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  onPressed: () {
+
+                                    String authType = "";
+                                    if (hintText() == "Email") {
+                                      authType = "email";
+                                      authCredentials.email =
+                                          emailPhoneNumberController.text
+                                              .trim();
+                                    } else {
+                                      authType = "phoneNumber";
+                                      authCredentials.phoneNumber =
+                                          emailPhoneNumberController.text
+                                              .trim();
+                                    }
+                                    // check if passwords match
+                                    if (passwordsMatch()) {
+                                      registerController
+                                          .firstTimeLogin(
+                                              authCredentials, authType)
+                                          .then((result) => { 
+                                                if (result == "success" && this.checkOption == true )
+                                                  {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        AppRoutes
+                                                            .verifyPasscodePage)
+                                                  }
+                                                else
+                                                  {
+                                                    _scaffoldKey.currentState
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          "Registration Failed"),
+                                                      backgroundColor:
+                                                          Colors.red[600],
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    ))
+                                                  }
+                                              });
+                                    } else {
+                                      _scaffoldKey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text("Invalid Password"),
+                                        backgroundColor: Colors.red[600],
+                                        duration: Duration(seconds: 3),
+                                      ));
+                                    }
+                                    if(checkOption==false){
+                                       _scaffoldKey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text("Check Terms and condtion"),
+                                        backgroundColor: Colors.red[600],
+                                        duration: Duration(seconds: 1),
+                                      ));
+
+                                    }
+
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: 5,),
+                                RichText(
+                              text: TextSpan(children: <TextSpan>[
+                                TextSpan(
+                                    text: '  Login',
+                                    style: TextStyle(
+                                        decoration: TextDecoration.none,
+                                        color: Color(0xFF109CF1),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins'),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        print('Terms and conditions"');
+                                       Navigator.pushNamed(context, AppRoutes.loginPage);
                                       })
                               ]),
                         ),
