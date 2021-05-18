@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/routes.dart';
 import 'package:mobile/views/Login_page.dart';
@@ -25,12 +24,6 @@ import 'package:mobile/views/transfer_money_page.dart';
 
 void main() {
   runApp(MyApp());
-
-  runApp(
-    DevicePreview(
-      builder: (context) => MyApp(), // Wrap your app
-    ),
-  ); //<-- Comment  this line  if you want to run without Device preview
 }
 
 class MyApp extends StatelessWidget {
@@ -43,9 +36,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        // inputDecorationTheme: InputDecorationTheme.
       ),
-      initialRoute: AppRoutes.accoutsDetailsView,
+      initialRoute: AppRoutes.splashScreenPage,
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
