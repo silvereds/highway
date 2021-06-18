@@ -44,17 +44,17 @@ class DBConnect {
           "authorization TEXT" +
           ")";
 
-      String createAccountsTable = "CREATE TABLE accout (" + 
-       "uuid TEXT PRIMARY KEY," + 
-       "userId TEXT," + 
-       "accountNumber TEXT," +
-       "balance TEXT," + 
-       "alias TEXT," + 
-       "notificationType TEXT," + 
-       "notificationAddress TEXT," +
-       "status," + 
-       "createdOn," + ")"; 
-
+      String createAccountsTable = "CREATE TABLE accout (" +
+          "uuid TEXT PRIMARY KEY," +
+          "userId TEXT," +
+          "accountNumber TEXT," +
+          "balance TEXT," +
+          "alias TEXT," +
+          "notificationType TEXT," +
+          "notificationAddress TEXT," +
+          "status," +
+          "createdOn" +
+          ")";
 
       var batch = db.batch();
       batch.execute(createSessionTable);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/routes.dart';
+import 'package:mobile/themes/app_themes.dart';
 import 'package:mobile/views/Login_page.dart';
 import 'package:mobile/views/Verify_passcode_page.dart';
 import 'package:mobile/views/accounts_detail_view.dart';
@@ -33,10 +34,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'HIGHWEH',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      // Set the theme of the app to light
+      theme: AppThemes.lightTheme,
       initialRoute: AppRoutes.splashScreenPage,
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
