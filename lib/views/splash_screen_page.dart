@@ -16,7 +16,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: 800,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -36,6 +35,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
