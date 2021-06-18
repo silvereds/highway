@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import 'package:mobile/shared/appBar.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
+import 'package:mobile/shared/navDrawer.dart';
 // import 'package:image_picker/image_picker.dart';
 
-import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/shared/navDrawer.dart';
+import 'package:mobile/themes/const_color.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class DashBoard extends StatefulWidget {
@@ -746,10 +746,10 @@ class _DashBoardState extends State<DashBoard> {
                                     ],
                                   ),
                                   Text("-7,300",
-                                        style: TextStyle(
-                                            color: Color(0xFFF7685B),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold))
+                                      style: TextStyle(
+                                          color: Color(0xFFF7685B),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold))
                                 ],
                               )
                             ],
@@ -961,7 +961,7 @@ class _DashBoardState extends State<DashBoard> {
                               mainAxisSize: MainAxisSize.min,
                               //  crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                  SizedBox(
+                                SizedBox(
                                   height: 10,
                                 ),
                                 RichText(

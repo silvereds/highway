@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/shared/appbar.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
-import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/shared/navDrawer.dart';
 import 'package:mobile/shared/routes.dart';
+import 'package:mobile/themes/const_color.dart';
 import 'package:mobile/views/change_password_screen.dart';
-import 'package:mobile/shared/appbar.dart';
-
 
 class UserProfile extends StatefulWidget {
   @override
@@ -36,8 +35,8 @@ class _UserProfileState extends State<UserProfile> {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image:
-                                NetworkImage("https://avatars.githubusercontent.com/u/26025717?s=460&u=158987f9f457e1f3ec80e0aedb0ee4cc8b5ea9e4&v=4"),
+                            image: NetworkImage(
+                                "https://avatars.githubusercontent.com/u/26025717?s=460&u=158987f9f457e1f3ec80e0aedb0ee4cc8b5ea9e4&v=4"),
                           ))),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,

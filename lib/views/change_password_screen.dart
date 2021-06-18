@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
-import 'package:mobile/shared/const_color.dart';
 import 'package:mobile/shared/navDrawer.dart';
+import 'package:mobile/themes/const_color.dart';
 import 'package:mobile/views/user_profile.dart';
 
 class ChangePassword extends StatefulWidget {

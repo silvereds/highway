@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/appBar.dart';
 import 'package:mobile/shared/bottomNavigationBar.dart';
-import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/themes/const_color.dart';
 import 'package:mobile/views/dashboard.dart';
 
 class CompanyProfileView extends StatefulWidget {

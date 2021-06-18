@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/controllers/login_controller.dart';
 import 'package:mobile/entities/auth-credentials.dart';
-import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/themes/const_color.dart';
 import 'package:mobile/shared/routes.dart';
 
 class LoginPage extends StatefulWidget {

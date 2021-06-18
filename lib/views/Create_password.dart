@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/const_color.dart';
-import 'package:mobile/controllers/create_password_controller.dart';
 import 'package:mobile/entities/auth-credentials.dart';
-
+import 'package:mobile/themes/const_color.dart';
 
 class CreatePassword extends StatefulWidget {
   @override
@@ -11,7 +9,7 @@ class CreatePassword extends StatefulWidget {
 
 class _CreatePasswordState extends State<CreatePassword> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-   AuthCredentials authCredentials = AuthCredentials();
+  AuthCredentials authCredentials = AuthCredentials();
 
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -38,10 +36,8 @@ class _CreatePasswordState extends State<CreatePassword> {
         backgroundColor: Colors.red,
       ));
     }
-
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

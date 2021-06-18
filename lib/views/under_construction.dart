@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/themes/const_color.dart';
 
 class UnderConstruction extends StatelessWidget {
   @override
@@ -17,20 +17,20 @@ class UnderConstruction extends StatelessWidget {
         ),
         body: Center(
             child: Container(
-             
-           
           padding: EdgeInsets.all(20),
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
-             gradient: LinearGradient(
+              gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [ThemeColors.Background, ThemeColors.LightBackground]),
-            
+                  colors: [
+                    ThemeColors.Background,
+                    ThemeColors.LightBackground
+                  ]),
               image: DecorationImage(
-            image: AssetImage("assets/images/Underconstruction.png"),
-            fit: BoxFit.fill,
-          )),
+                image: AssetImage("assets/images/Underconstruction.png"),
+                fit: BoxFit.fill,
+              )),
         )),
       ),
     );

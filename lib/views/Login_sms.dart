@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/themes/const_color.dart';
 import 'package:mobile/views/verify_passcode_page.dart';
 
 class LoginSms extends StatefulWidget {

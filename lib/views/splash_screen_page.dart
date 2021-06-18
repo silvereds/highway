@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/controllers/splash_screen_controller.dart';
-import 'package:mobile/shared/const_color.dart';
+import 'package:mobile/themes/const_color.dart';
 
 class SplashScreenPage extends StatefulWidget {
   SplashScreenPage({Key key}) : super(key: key);
