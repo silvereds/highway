@@ -30,19 +30,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
-  }
-
-  String hintText() {
-    if (_site == LoginOption.email) {
-      return "Email";
-    } else {
-      return "Phone number";
-    }
   }
 
   @override
@@ -94,9 +84,9 @@ class _LoginPageState extends State<LoginPage> {
                         Text(
                           'Login with:',
                           style: TextStyle(
-                              color: Color(0xFF4EB181),
-                              fontSize: 18,
-                              fontFamily: 'Poppins'),
+                            color: Color(0xFF4EB181),
+                            fontSize: 18,
+                          ),
                         ),
                         SizedBox(
                           height: 10,
@@ -175,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   onPressed: () {
                                     Navigator.pushNamed(
-                                        context, AppRoutes.dashboard);
+                                        context, AppRoutes.homeScreen);
                                     // String authType = "";
                                     // if (hintText() == "Email") {
                                     //   authType = "email";
@@ -222,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   print('Forgot password');
                                 },
                                 child: Text(
@@ -243,58 +233,56 @@ class _LoginPageState extends State<LoginPage> {
                     top: -40,
                     left: 15,
                     right: 15,
-                    height: 80,
-                    child: Align(
-                      child: Container(
-                        child: Center(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "Poppins",
-                            ),
+                    height: 70,
+                    child: Container(
+                      child: Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "Poppins",
                           ),
                         ),
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(
-                                0x23000000,
-                              ),
-                              offset: Offset(
-                                0,
-                                4,
-                              ),
-                              blurRadius: 4,
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(
+                              0x23000000,
                             ),
-                            BoxShadow(
-                              color: Color(
-                                0x66E91E63,
-                              ),
-                              offset: Offset(
-                                0,
-                                7,
-                              ),
-                              blurRadius: 10,
-                              spreadRadius: -5,
+                            offset: Offset(
+                              0,
+                              4,
+                            ),
+                            blurRadius: 4,
+                          ),
+                          BoxShadow(
+                            color: Color(
+                              0x66E91E63,
+                            ),
+                            offset: Offset(
+                              0,
+                              7,
+                            ),
+                            blurRadius: 10,
+                            spreadRadius: -5,
+                          ),
+                        ],
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color(
+                              0xFF00CDAC,
+                            ),
+                            Color(
+                              0xFF4EB181,
                             ),
                           ],
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color(
-                                0xFF00CDAC,
-                              ),
-                              Color(
-                                0xFF4EB181,
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                     ),

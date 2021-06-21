@@ -177,8 +177,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            child:
-                                Icon(Icons.group, color: Color(0xFF4CAF50)),
+                            child: Icon(Icons.group, color: Color(0xFF4CAF50)),
                             width: 40,
                           ),
                           Expanded(

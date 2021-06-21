@@ -53,35 +53,35 @@ class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
         onTap: onTapTapped,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dashboard_outlined,
-                size: 30,
-              ),
-              label: ('Dashboad')),
+            icon: Icon(
+              Icons.dashboard_outlined,
+            ),
+            label: 'Dashboad',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.credit_card,
-                size: 30,
-              ),
-              label: 'Accounts'),
+            icon: Icon(
+              Icons.credit_card,
+            ),
+            label: 'Accounts',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.local_atm_outlined,
-                size: 30,
-              ),
-              label: 'Transactions'),
+            icon: Icon(
+              Icons.local_atm_outlined,
+            ),
+            label: 'Transactions',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.credit_card,
-                size: 30,
-              ),
-              label: 'Devices'),
+            icon: Icon(
+              Icons.credit_card,
+            ),
+            label: 'Devices',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.place_outlined,
-                size: 30,
-              ),
-              label: 'Map'),
+            icon: Icon(
+              Icons.place_outlined,
+            ),
+            label: 'Map',
+          ),
         ],
       ),
     );

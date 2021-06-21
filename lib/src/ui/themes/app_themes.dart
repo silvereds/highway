@@ -11,7 +11,7 @@ class AppThemes {
       fontFamily: 'Roboto',
       appBarTheme: AppBarTheme(
         elevation: 0,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
     );
   }
