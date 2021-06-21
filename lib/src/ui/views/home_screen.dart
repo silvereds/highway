@@ -50,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        selectedFontSize: 18,
         backgroundColor: Color(0xFFFFFFFF),
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Color(0xFF53B27F),
@@ -60,35 +59,30 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.dashboard_outlined,
-              size: 30,
             ),
             label: 'Dashboad',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.credit_card,
-              size: 30,
             ),
             label: 'Accounts',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.local_atm_outlined,
-              size: 30,
             ),
             label: 'Transactions',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.credit_card,
-              size: 30,
             ),
             label: 'Devices',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.place_outlined,
-              size: 30,
             ),
             label: 'Map',
           ),
