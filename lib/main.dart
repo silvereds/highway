@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/routes.dart';
-import 'package:mobile/themes/app_themes.dart';
-import 'package:mobile/views/Login_page.dart';
-import 'package:mobile/views/Verify_passcode_page.dart';
-import 'package:mobile/views/accounts_detail_view.dart';
-import 'package:mobile/views/all_accoutsView.dart';
-import 'package:mobile/views/all_devices_page.dart';
-import 'package:mobile/views/all_transactions_page.dart';
-import 'package:mobile/views/block_device_page.dart';
-import 'package:mobile/views/change_alias.dart';
-import 'package:mobile/views/change_device_page.dart';
-import 'package:mobile/views/change_pin_page.dart';
-import 'package:mobile/views/confirm_transfer_page.dart';
-import 'package:mobile/views/dashboard.dart';
-import 'package:mobile/views/device_details_page.dart';
-import 'package:mobile/views/new_conversation_page.dart';
-import 'package:mobile/views/recharge_account.dart';
-import 'package:mobile/views/register_page.dart';
-import 'package:mobile/views/splash_screen_page.dart';
-import 'package:mobile/views/support_page.dart';
-import 'package:mobile/views/transaction_details_page.dart';
-import 'package:mobile/views/transfer_completed_page.dart';
-import 'package:mobile/views/transfer_money_page.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:mobile/src/ui/themes/app_themes.dart';
+import 'package:mobile/src/ui/views/home_screen.dart';
+
+import 'src/ui/views/Login_page.dart';
+import 'src/ui/views/Verify_passcode_page.dart';
+import 'src/ui/views/accounts_detail_view.dart';
+import 'src/ui/views/all_accoutsView.dart';
+import 'src/ui/views/all_devices_page.dart';
+import 'src/ui/views/all_transactions_page.dart';
+import 'src/ui/views/block_device_page.dart';
+import 'src/ui/views/change_alias.dart';
+import 'src/ui/views/change_device_page.dart';
+import 'src/ui/views/change_pin_page.dart';
+import 'src/ui/views/confirm_transfer_page.dart';
+import 'src/ui/views/dashboard.dart';
+import 'src/ui/views/device_details_page.dart';
+import 'src/ui/views/new_conversation_page.dart';
+import 'src/ui/views/recharge_account.dart';
+import 'src/ui/views/register_page.dart';
+import 'src/ui/views/splash_screen_page.dart';
+import 'src/ui/views/support_page.dart';
+import 'src/ui/views/transaction_details_page.dart';
+import 'src/ui/views/transfer_completed_page.dart';
+import 'src/ui/views/transfer_money_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'HIGHWEH',
       // Set the theme of the app to light
       theme: AppThemes.lightTheme,
-      initialRoute: AppRoutes.splashScreenPage,
+      initialRoute: AppRoutes.homeScreen,
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
@@ -59,6 +61,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage(),
         AppRoutes.supportPage: (context) => SupportPage(),
         AppRoutes.newConversationPage: (context) => NewConversationPage(),
+        AppRoutes.homeScreen: (context) => HomeScreen(),
       },
     );
   }
