@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mobile/entities/geolocation.dart';
+import 'package:mobile/src/core/entities/Geolocation.dart';
 
 class GeolocationService {
   final String endpoint = "https://dev-admin.highweh.com/geolocations";

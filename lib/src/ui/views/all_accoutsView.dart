@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/ui/shared/appBar.dart';
 
 class AccountsView extends StatefulWidget {
   @override
@@ -13,7 +12,6 @@ class _AccountsViewState extends State<AccountsView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFF5F6F8),
-        appBar: AppBarView(),
         body: Container(
           margin: EdgeInsets.fromLTRB(16, 55, 16, 20),
           width: MediaQuery.of(context).size.width,

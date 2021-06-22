@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 
 class TransactionsView extends StatefulWidget {
@@ -12,7 +11,6 @@ class _TransactionsViewState extends State<TransactionsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),
-      appBar: AppBarView(),
     );
   }
 }

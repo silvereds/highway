@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/appbar.dart';
+import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
