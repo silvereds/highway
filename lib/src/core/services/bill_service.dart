@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:mobile/src/core/entities/transaction.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 
 class BillService {
   final String endpoint = "https://dev-admin.highweh.com/bills";

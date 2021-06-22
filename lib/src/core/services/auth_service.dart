@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mobile/src/core/entities/auth-credentials.dart';
-import 'package:mobile/src/core/entities/user.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 
 class AuthService {
   final String endpoint = "https://dev-admin.highweh.com/auth";

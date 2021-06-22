@@ -1,4 +1,4 @@
-import 'package:mobile/src/core/entities/session.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 
 import 'db_connect.dart';
 

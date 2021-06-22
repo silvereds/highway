@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/core/entities/auth-credentials.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
 class CreatePassword extends StatefulWidget {

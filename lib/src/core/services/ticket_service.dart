@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mobile/src/core/entities/ticket.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 
 class TicketService {
   final String endpoint = "https://dev-admin.highweh.com/ticket";

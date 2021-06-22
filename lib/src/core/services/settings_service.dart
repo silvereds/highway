@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mobile/src/core/entities/setting.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 
 class SettingService {
   final String endpoint = "https://dev-admin.highweh.com/settings";

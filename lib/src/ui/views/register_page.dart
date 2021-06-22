@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/src/core/controllers/register_controller.dart';
-import 'package:mobile/src/core/entities/auth-credentials.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 

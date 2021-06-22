@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/app_themes.dart';
 import 'package:mobile/src/ui/views/home_screen.dart';
+import 'package:mobile/src/ui/views/views.dart';
 
-import 'src/ui/views/Login_page.dart';
-import 'src/ui/views/Verify_passcode_page.dart';
-import 'src/ui/views/accounts_detail_view.dart';
-import 'src/ui/views/all_accoutsView.dart';
-import 'src/ui/views/all_devices_page.dart';
-import 'src/ui/views/all_transactions_page.dart';
-import 'src/ui/views/block_device_page.dart';
-import 'src/ui/views/change_alias.dart';
-import 'src/ui/views/change_device_page.dart';
-import 'src/ui/views/change_pin_page.dart';
-import 'src/ui/views/confirm_transfer_page.dart';
-import 'src/ui/views/dashboard.dart';
-import 'src/ui/views/device_details_page.dart';
-import 'src/ui/views/new_conversation_page.dart';
-import 'src/ui/views/recharge_account.dart';
-import 'src/ui/views/register_page.dart';
-import 'src/ui/views/splash_screen_page.dart';
-import 'src/ui/views/support_page.dart';
-import 'src/ui/views/transaction_details_page.dart';
-import 'src/ui/views/transfer_completed_page.dart';
-import 'src/ui/views/transfer_money_page.dart';
+void _setupLogging() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((rec) {
+    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
+}
 
 void main() {
-  runApp(MyApp());
+  _setupLogging();
+
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -39,6 +33,7 @@ class MyApp extends StatelessWidget {
       // Set the theme of the app to light
       theme: AppThemes.lightTheme,
       initialRoute: AppRoutes.splashScreenPage,
+      onGenerateTitle: (context) => "HIGHWEH",
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),

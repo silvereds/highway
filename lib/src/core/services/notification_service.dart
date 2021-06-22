@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mobile/src/core/entities/notification.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 
 class NotificationService {
   final endPoint = "https://dev-admin.highweh.com/notifications";

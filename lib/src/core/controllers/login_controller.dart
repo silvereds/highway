@@ -1,4 +1,4 @@
-import 'package:mobile/src/core/entities/auth-credentials.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/core/services/auth_service.dart';
 
 class LoginController {

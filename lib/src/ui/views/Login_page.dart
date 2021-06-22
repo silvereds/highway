@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/controllers/login_controller.dart';
-import 'package:mobile/src/core/entities/auth-credentials.dart';
-import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:mobile/src/core/entities/entities.dart';
+import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
 
   String _email;
   String _password;
+
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -80,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                      const  SizedBox(height: 55),
+                        const SizedBox(height: 55),
                         Text(
                           'Login with:',
                           style: TextStyle(
@@ -103,12 +106,8 @@ class _LoginPageState extends State<LoginPage> {
                                     child: Column(
                                       children: [
                                         TextFormField(
-                                          controller: passwordController,
-                                          validator: (val) => val.length < 4
-                                              ? 'Password too short..'
-                                              : null,
+                                          controller: emailController,
                                           onSaved: (val) => _password = val,
-                                          obscureText: true,
                                           decoration: InputDecoration(
                                             icon: Icon(Icons.person),
                                             hintText: 'Email or Phone number',
@@ -184,8 +183,16 @@ class _LoginPageState extends State<LoginPage> {
                                         fontSize: 16, fontFamily: 'Poppins'),
                                   ),
                                   onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoutes.homeScreen);
+                                    context
+                                        .read(AuthProvider.authProvider)
+                                        .login(User(
+                                          email: emailController.text,
+                                          password: passwordController.text,
+                                        ))
+                                        .then(
+                                          (value) => print('Login succes'),
+                                        )
+                                        .catchError((e) => print(e.toString()));
                                     // String authType = "";
                                     // if (hintText() == "Email") {
                                     //   authType = "email";

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/core/dao/db_connect.dart';
 import 'package:mobile/src/core/dao/session_dao.dart';
-import 'package:mobile/src/core/entities/session.dart';
+import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 
 class SplashScreenController {
