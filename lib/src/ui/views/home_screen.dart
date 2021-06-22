@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/views/accounts_detail_view.dart';
 import 'package:mobile/src/ui/views/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/block_accountView.dart';
@@ -47,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavDrawer(),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

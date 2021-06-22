@@ -1,7 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:mobile/src/ui/shared/appBar.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
-import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -25,7 +23,6 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
       appBar: AppBarView(),
       body: Center(
         child: Container(
