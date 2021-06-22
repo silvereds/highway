@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/routes.dart';
-import 'package:mobile/views/Login_page.dart';
-import 'package:mobile/views/Verify_passcode_page.dart';
-import 'package:mobile/views/accounts_detail_view.dart';
-import 'package:mobile/views/all_accoutsView.dart';
-import 'package:mobile/views/all_devices_page.dart';
-import 'package:mobile/views/all_transactions_page.dart';
-import 'package:mobile/views/block_device_page.dart';
-import 'package:mobile/views/change_alias.dart';
-import 'package:mobile/views/change_device_page.dart';
-import 'package:mobile/views/change_pin_page.dart';
-import 'package:mobile/views/confirm_transfer_page.dart';
-import 'package:mobile/views/dashboard.dart';
-import 'package:mobile/views/device_details_page.dart';
-import 'package:mobile/views/new_conversation_page.dart';
-import 'package:mobile/views/recharge_account.dart';
-import 'package:mobile/views/register_page.dart';
-import 'package:mobile/views/splash_screen_page.dart';
-import 'package:mobile/views/support_page.dart';
-import 'package:mobile/views/transaction_details_page.dart';
-import 'package:mobile/views/transfer_completed_page.dart';
-import 'package:mobile/views/transfer_money_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:mobile/src/ui/themes/app_themes.dart';
+import 'package:mobile/src/ui/views/home_screen.dart';
+import 'package:mobile/src/ui/views/views.dart';
+
+void _setupLogging() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((rec) {
+    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
+}
 
 void main() {
-  runApp(MyApp());
+  _setupLogging();
+
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -33,11 +30,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'HIGHWEH',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      // Set the theme of the app to light
+      theme: AppThemes.lightTheme,
       initialRoute: AppRoutes.splashScreenPage,
+      onGenerateTitle: (context) => "HIGHWEH",
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
         AppRoutes.registerPage: (context) => RegisterPage(),
@@ -60,6 +56,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage(),
         AppRoutes.supportPage: (context) => SupportPage(),
         AppRoutes.newConversationPage: (context) => NewConversationPage(),
+        AppRoutes.homeScreen: (context) => HomeScreen(),
       },
     );
   }
