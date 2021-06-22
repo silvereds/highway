@@ -182,57 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                                     style: TextStyle(
                                         fontSize: 16, fontFamily: 'Poppins'),
                                   ),
-                                  onPressed: () {
-                                    context
-                                        .read(AuthProvider.authProvider)
-                                        .login(User(
-                                          email: emailController.text,
-                                          password: passwordController.text,
-                                        ))
-                                        .then(
-                                          (value) => print('Login succes'),
-                                        )
-                                        .catchError((e) => print(e.toString()));
-                                    // String authType = "";
-                                    // if (hintText() == "Email") {
-                                    //   authType = "email";
-                                    //   authCredentials.email =
-                                    //       emailController.text.trim();
-                                    // } else {
-                                    //   authType = "phoneNumber";
-                                    //   authCredentials.phoneNumber =
-                                    //       emailController.text.trim();
-                                    // }
-                                    // // check if passwords match
-                                    // if (validCredentials()) {
-                                    //   loginController
-                                    //       .loginRequest(
-                                    //           authCredentials, authType)
-                                    //       .then(
-                                    //         (result) => {
-                                    //           if (result == true)
-                                    //             {
-                                    //               Navigator.pushNamed(context,
-                                    //                   AppRoutes.dashboard)
-                                    //             }
-                                    //           else
-                                    //             {
-                                    //               _scaffoldKey.currentState
-                                    //                   .showSnackBar(
-                                    //                 SnackBar(
-                                    //                   content:
-                                    //                       Text("Login Failed"),
-                                    //                   backgroundColor:
-                                    //                       Colors.red[600],
-                                    //                   duration:
-                                    //                       Duration(seconds: 3),
-                                    //                 ),
-                                    //               )
-                                    //             }
-                                    //         },
-                                    //       );
-                                    // }
-                                  },
+                                  onPressed: () {},
                                   color: Color(0xFF4EB181),
                                   textColor: Color(0xFFFFFFFF),
                                   height: 33,
