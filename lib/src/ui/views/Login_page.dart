@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 90),
+                      const  SizedBox(height: 55),
                         Text(
                           'Login with:',
                           style: TextStyle(
@@ -110,6 +110,26 @@ class _LoginPageState extends State<LoginPage> {
                                           onSaved: (val) => _password = val,
                                           obscureText: true,
                                           decoration: InputDecoration(
+                                            icon: Icon(Icons.person),
+                                            hintText: 'Email or Phone number',
+                                            hintStyle: TextStyle(
+                                              fontSize: 14,
+                                              color: Color(0xFFAAAAAA),
+                                              fontFamily: 'Roboto',
+                                            ),
+                                            border: InputBorder.none,
+                                          ),
+                                        ),
+                                        Divider(color: Colors.grey),
+                                        TextFormField(
+                                          controller: passwordController,
+                                          validator: (val) => val.length < 4
+                                              ? 'Password too short..'
+                                              : null,
+                                          onSaved: (val) => _password = val,
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                            icon: Icon(Icons.lock),
                                             hintText: 'Password',
                                             hintStyle: TextStyle(
                                               fontSize: 14,

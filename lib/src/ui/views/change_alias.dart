@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 
 class ChangeAliasView extends StatefulWidget {
@@ -15,7 +14,6 @@ class _ChangeAliasViewState extends State<ChangeAliasView> {
         backgroundColor: Color(0xFFF5F6F8),
         drawer: NavDrawer(),
         appBar: AppBarView(),
-        bottomNavigationBar: BottomNavigationBarView(),
         body: Center(
           child: Container(
             margin: EdgeInsets.fromLTRB(20, 55, 20, 20),
