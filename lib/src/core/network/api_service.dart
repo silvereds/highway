@@ -1,29 +1,33 @@
-import 'package:dio/dio.dart';
+import 'package:chopper/chopper.dart';
 import 'package:mobile/src/core/entities/entities.dart';
-import 'package:retrofit/retrofit.dart';
+import 'package:mobile/src/core/network/model_response.dart';
+
+import 'model_converter.dart';
 
 // This is necessary for the generator to work.
-part "api_service.g.dart";
+part "api_service.chopper.dart";
 
-const String baseUrl = "https://dev-api.highweh.com";
+const String baseUrl = "https://dev-admin.highweh.com";
 
-@RestApi(baseUrl: baseUrl)
-abstract class ApiService {
-  factory ApiService(Dio dio, {String baseUrl}) {
-    dio.options = BaseOptions(
-      connectTimeout: 4000,
-      receiveTimeout: 3000,
-      contentType: 'application/json',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+@ChopperApi()
+abstract class ApiService extends ChopperService {
+  // A helper method that helps instantiating the service.
+  // You can omit this method and use the generated class directly instead.
+  static ApiService create() {
+    final client = ChopperClient(
+      baseUrl: baseUrl,
+      converter: ModelConverter(),
+      errorConverter: JsonConverter(),
+      interceptors: [
+        HttpLoggingInterceptor(),
+      ],
+      services: [
+        _$ApiService(),
+      ],
     );
-    return _ApiService(dio, baseUrl: baseUrl);
+    return _$ApiService(client);
   }
 
-  @POST('/auth/login')
-  Future<User> loginUser(@Body() User user);
-
-  @GET('/users')
-  Future<List<User>> getUsers();
+  @Post(path: '/auth/login')
+  Future<Response<Result<User>>> loginUser(@Body() User user);
 }
