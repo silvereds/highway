@@ -120,20 +120,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
-  chopper:
-    dependency: "direct main"
-    description:
-      name: chopper
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.6"
-  chopper_generator:
-    dependency: "direct dev"
-    description:
-      name: chopper_generator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.6"
   cli_util:
     dependency: transitive
     description:
@@ -368,13 +354,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
-  json_serializable:
-    dependency: "direct dev"
-    description:
-      name: json_serializable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.5.1"
   libphonenumber:
     dependency: transitive
     description:

@@ -138,7 +138,8 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8, 8, 8, 0),
                                   child: Consumer(
                                       builder: (context, watch, child) {
                                     final validation = watch(
@@ -173,7 +174,8 @@ class _LoginPageState extends State<LoginPage> {
                                             onChanged: (v) =>
                                                 validation.validatePassword(v),
                                             decoration: InputDecoration(
-                                              errorText: validation.email.error,
+                                              errorText:
+                                                  validation.password.error,
                                               icon: Icon(Icons.lock),
                                               hintText: 'Password',
                                               hintStyle: TextStyle(
@@ -227,10 +229,10 @@ class _LoginPageState extends State<LoginPage> {
                                                         fontFamily: 'Poppins',
                                                       ),
                                                     ),
-                                                    onPressed:
-                                                        validation.validate
-                                                            ? _logUser
-                                                            : null,
+                                                    onPressed: validation
+                                                            .isValidateAuthForm
+                                                        ? _logUser
+                                                        : null,
                                                     color: Color(0xFF4EB181),
                                                     textColor:
                                                         Color(0xFFFFFFFF),

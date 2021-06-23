@@ -42,7 +42,7 @@ class FormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool get validate {
+  bool get isValidateAuthForm {
     if (_email.value.isNotNull && _password.value.isNotNull) {
       return true;
     } else {
