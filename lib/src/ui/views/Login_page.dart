@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/controllers/login_controller.dart';
 import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/core/providers/form_provider.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
 
   AuthCredentials authCredentials = AuthCredentials();
 
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   String _email;
   String _password;
@@ -36,6 +38,41 @@ class _LoginPageState extends State<LoginPage> {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  void _logUser() async {
+    if (_formKey.currentState.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        await context
+            .read(AuthProvider.authProvider)
+            .login(
+              User(
+                email: emailController.text,
+                password: passwordController.text,
+              ),
+            )
+            .then((value) {
+          setState(() {
+            _isLoading = false;
+          });
+        });
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            e.toString(),
+            style: TextStyle(
+                color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
+          ),
+          backgroundColor: Colors.red,
+        ));
+      }
+    }
   }
 
   @override
@@ -51,270 +88,241 @@ class _LoginPageState extends State<LoginPage> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              ThemeColors.Background,
-              ThemeColors.LightBackground,
-            ],
+      body: ModalProgressHUD(
+        inAsyncCall: _isLoading,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                ThemeColors.Background,
+                ThemeColors.LightBackground,
+              ],
+            ),
           ),
-        ),
-        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.16),
-            child: Center(
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: 55),
-                        Text(
-                          'Login with:',
-                          style: TextStyle(
-                            color: Color(0xFF4EB181),
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  child: Form(
-                                    key: formKey,
-                                    child: Column(
-                                      children: [
-                                        TextFormField(
-                                          controller: emailController,
-                                          onSaved: (val) => _password = val,
-                                          decoration: InputDecoration(
-                                            icon: Icon(Icons.person),
-                                            hintText: 'Email or Phone number',
-                                            hintStyle: TextStyle(
-                                              fontSize: 14,
-                                              color: Color(0xFFAAAAAA),
-                                              fontFamily: 'Roboto',
-                                            ),
-                                            border: InputBorder.none,
-                                          ),
-                                        ),
-                                        Divider(color: Colors.grey),
-                                        TextFormField(
-                                          controller: passwordController,
-                                          validator: (val) => val.length < 4
-                                              ? 'Password too short..'
-                                              : null,
-                                          onSaved: (val) => _password = val,
-                                          obscureText: true,
-                                          decoration: InputDecoration(
-                                            icon: Icon(Icons.lock),
-                                            hintText: 'Password',
-                                            hintStyle: TextStyle(
-                                              fontSize: 14,
-                                              color: Color(0xFFAAAAAA),
-                                              fontFamily: 'Roboto',
-                                            ),
-                                            border: InputBorder.none,
-                                          ),
-                                        ),
-                                        Divider(color: Colors.grey),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 30),
-                        Container(
-                          alignment: Alignment.bottomRight,
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 35.02,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                  color: Color(
-                                    0xff4eb181,
-                                  ),
-                                  borderRadius: BorderRadius.circular(
-                                    4,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(
-                                        0x3d109cf1,
-                                      ),
-                                      blurRadius: 10,
-                                    ),
-                                  ],
-                                ),
-                                child: FlatButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    side:
-                                        BorderSide(color: ThemeColors.Buttons),
-                                  ),
-                                  child: Text(
-                                    'Login',
-                                    style: TextStyle(
-                                        fontSize: 16, fontFamily: 'Poppins'),
-                                  ),
-                                  onPressed: () {
-                                    context
-                                        .read(AuthProvider.authProvider)
-                                        .login(User(
-                                          email: emailController.text,
-                                          password: passwordController.text,
-                                        ))
-                                        .then(
-                                          (value) => print('Login succes'),
-                                        )
-                                        .catchError((e) => print(e.toString()));
-                                    // String authType = "";
-                                    // if (hintText() == "Email") {
-                                    //   authType = "email";
-                                    //   authCredentials.email =
-                                    //       emailController.text.trim();
-                                    // } else {
-                                    //   authType = "phoneNumber";
-                                    //   authCredentials.phoneNumber =
-                                    //       emailController.text.trim();
-                                    // }
-                                    // // check if passwords match
-                                    // if (validCredentials()) {
-                                    //   loginController
-                                    //       .loginRequest(
-                                    //           authCredentials, authType)
-                                    //       .then(
-                                    //         (result) => {
-                                    //           if (result == true)
-                                    //             {
-                                    //               Navigator.pushNamed(context,
-                                    //                   AppRoutes.dashboard)
-                                    //             }
-                                    //           else
-                                    //             {
-                                    //               _scaffoldKey.currentState
-                                    //                   .showSnackBar(
-                                    //                 SnackBar(
-                                    //                   content:
-                                    //                       Text("Login Failed"),
-                                    //                   backgroundColor:
-                                    //                       Colors.red[600],
-                                    //                   duration:
-                                    //                       Duration(seconds: 3),
-                                    //                 ),
-                                    //               )
-                                    //             }
-                                    //         },
-                                    //       );
-                                    // }
-                                  },
-                                  color: Color(0xFF4EB181),
-                                  textColor: Color(0xFFFFFFFF),
-                                  height: 33,
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () async {
-                                  print('Forgot password');
-                                },
-                                child: Text(
-                                  'Forgot password?',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    top: -40,
-                    left: 15,
-                    right: 15,
-                    height: 70,
-                    child: Container(
-                      child: Center(
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                      width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.16),
+              child: Center(
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(
-                              0x23000000,
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(height: 55),
+                          Text(
+                            'Login with:',
+                            style: TextStyle(
+                              color: Color(0xFF4EB181),
+                              fontSize: 18,
                             ),
-                            offset: Offset(
-                              0,
-                              4,
-                            ),
-                            blurRadius: 4,
                           ),
-                          BoxShadow(
-                            color: Color(
-                              0x66E91E63,
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Consumer(
+                                      builder: (context, watch, child) {
+                                    final validation = watch(
+                                        ValidationProvider.validationProvider);
+
+                                    return Form(
+                                      key: _formKey,
+                                      child: Column(
+                                        children: [
+                                          TextFormField(
+                                            controller: emailController,
+                                            onChanged: (v) =>
+                                                validation.validateEmail(v),
+                                            onSaved: (val) => _email = val,
+                                            decoration: InputDecoration(
+                                              errorText: validation.email.error,
+                                              icon: Icon(Icons.person),
+                                              hintText: 'Email or Phone number',
+                                              hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto',
+                                              ),
+                                              border: InputBorder.none,
+                                            ),
+                                          ),
+                                          Divider(color: Colors.grey),
+                                          TextFormField(
+                                            controller: passwordController,
+                                            onSaved: (val) => _password = val,
+                                            obscureText: true,
+                                            onChanged: (v) =>
+                                                validation.validatePassword(v),
+                                            decoration: InputDecoration(
+                                              errorText: validation.email.error,
+                                              icon: Icon(Icons.lock),
+                                              hintText: 'Password',
+                                              hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto',
+                                              ),
+                                              border: InputBorder.none,
+                                            ),
+                                          ),
+                                          Divider(color: Colors.grey),
+                                          SizedBox(height: 30),
+                                          Container(
+                                            alignment: Alignment.bottomRight,
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 35.02,
+                                                  width: 120,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(
+                                                      0xff4eb181,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      4,
+                                                    ),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Color(
+                                                          0x3d109cf1,
+                                                        ),
+                                                        blurRadius: 10,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: FlatButton(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0),
+                                                      side: BorderSide(
+                                                          color: ThemeColors
+                                                              .Buttons),
+                                                    ),
+                                                    child: Text(
+                                                      'Login',
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Poppins',
+                                                      ),
+                                                    ),
+                                                    onPressed:
+                                                        validation.validate
+                                                            ? _logUser
+                                                            : null,
+                                                    color: Color(0xFF4EB181),
+                                                    textColor:
+                                                        Color(0xFFFFFFFF),
+                                                    height: 33,
+                                                  ),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () async {
+                                                    print('Forgot password');
+                                                  },
+                                                  child: Text(
+                                                    'Forgot password?',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              ],
                             ),
-                            offset: Offset(
-                              0,
-                              7,
-                            ),
-                            blurRadius: 10,
-                            spreadRadius: -5,
                           ),
                         ],
-                        gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Color(
-                              0xFF00CDAC,
+                      ),
+                    ),
+                    Positioned(
+                      top: -40,
+                      left: 15,
+                      right: 15,
+                      height: 70,
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "Poppins",
                             ),
-                            Color(
-                              0xFF4EB181,
+                          ),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(
+                                0x23000000,
+                              ),
+                              offset: Offset(
+                                0,
+                                4,
+                              ),
+                              blurRadius: 4,
+                            ),
+                            BoxShadow(
+                              color: Color(
+                                0x66E91E63,
+                              ),
+                              offset: Offset(
+                                0,
+                                7,
+                              ),
+                              blurRadius: 10,
+                              spreadRadius: -5,
                             ),
                           ],
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              Color(
+                                0xFF00CDAC,
+                              ),
+                              Color(
+                                0xFF4EB181,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -370,3 +370,16 @@ class User {
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
+
+@JsonSerializable()
+class Validation {
+  String value;
+  String error;
+
+  Validation(this.value, this.error);
+
+  factory Validation.fromJson(Map<String, dynamic> json) =>
+      _$ValidationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ValidationToJson(this);
+}
