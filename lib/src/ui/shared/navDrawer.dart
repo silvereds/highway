@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -8,17 +9,56 @@ class NavDrawer extends StatelessWidget {
         child: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height -
-                Scaffold.of(context).appBarMaxHeight,
+                Scaffold.of(context).appBarMaxHeight +
+                16,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/bg.png'),
+              ),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFF191919),
+                  Color(0xFF191919),
+                ],
+                stops: [
+                  1,
+                  0.77,
+                ],
+              ),
+            ),
             child: Stack(
               clipBehavior: Clip.none,
               children: [
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xFF191919).withOpacity(0.77),
+                        Color(0xFF191919).withOpacity(0.77),
+                      ],
+                      stops: [
+                        0.77,
+                        0.77,
+                      ],
+                    ),
+                  ),
+                ),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
+                    const SizedBox(height: 24),
                     ListTile(
                       leading: Icon(
                         Icons.notifications_outlined,
                         size: 30,
+                        color: Color(0xFFDADADA),
                       ),
                       title: Text(
                         "Notifications",
@@ -34,7 +74,10 @@ class NavDrawer extends StatelessWidget {
                       onTap: () => Navigator.pop(context),
                     ),
                     ListTile(
-                      leading: Icon(Icons.chat_outlined),
+                      leading: Icon(
+                        Icons.chat_outlined,
+                        color: Color(0xFFDADADA),
+                      ),
                       title: Text(
                         "Support",
                         style: TextStyle(
@@ -49,7 +92,12 @@ class NavDrawer extends StatelessWidget {
                       onTap: () => Navigator.pop(context),
                     ),
                     ExpansionTile(
-                      leading: Icon(Icons.settings),
+                      collapsedIconColor: Color(0xFFDADADA),
+                      iconColor: Color(0xFFDADADA),
+                      leading: Icon(
+                        Icons.settings,
+                        color: Color(0xFFDADADA),
+                      ),
                       title: Text(
                         "Settings",
                         style: TextStyle(
@@ -148,7 +196,10 @@ class NavDrawer extends StatelessWidget {
                   bottom: 0,
                   child: ListTile(
                     onTap: () {},
-                    leading: Icon(Icons.logout),
+                    leading: Icon(
+                      Icons.logout,
+                      color: Color(0xFFDADADA),
+                    ),
                     title: Text(
                       "Logout",
                       style: TextStyle(
@@ -213,6 +264,7 @@ class _SubMenu extends StatelessWidget {
                   fontSize: 16,
                   decoration: TextDecoration.underline,
                   fontFamily: "Poppins",
+                  color: Color(0xFFDADADA),
                 ),
               ),
             ),
@@ -250,6 +302,7 @@ class _SubMenuTextButton extends StatelessWidget {
             fontSize: fontSize,
             decoration: TextDecoration.underline,
             fontFamily: "Poppins",
+            color: Color(0xFFDADADA),
           ),
         ),
       ),
