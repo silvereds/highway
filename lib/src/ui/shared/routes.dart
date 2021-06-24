@@ -1,5 +1,7 @@
 
 
+import 'package:mobile/src/ui/views/policy_page.dart';
+
 class AppRoutes {
   static final splashScreenPage = '/';
   static final registerPage = '/register';
@@ -26,4 +28,5 @@ class AppRoutes {
   static final newConversationPage = '/newConversationPage';
   static final homeScreen = '/homeScreen';
   static final settingPreference = '/settingPreference';
+  static final policyPage = '/policyPage';
 }
