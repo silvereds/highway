@@ -5,6 +5,7 @@ import 'package:mobile/src/core/controllers/login_controller.dart';
 import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
@@ -229,10 +230,11 @@ class _LoginPageState extends State<LoginPage> {
                                                         fontFamily: 'Poppins',
                                                       ),
                                                     ),
-                                                    onPressed: validation
-                                                            .isValidateAuthForm
-                                                        ? _logUser
-                                                        : null,
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pushNamed(AppRoutes
+                                                              .homeScreen);
+                                                    },
                                                     color: Color(0xFF4EB181),
                                                     textColor:
                                                         Color(0xFFFFFFFF),
