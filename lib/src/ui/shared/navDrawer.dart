@@ -4,31 +4,14 @@ import 'package:flutter/widgets.dart';
 class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var _pageSize = MediaQuery.of(context).size.height;
+    var _notifySize = MediaQuery.of(context).padding.top;
+    var _appBarSize = AppBar().preferredSize.height;
     return SafeArea(
       child: Drawer(
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height -
-                Scaffold.of(context).appBarMaxHeight +
-                16,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/bg.png'),
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFF191919),
-                  Color(0xFF191919),
-                ],
-                stops: [
-                  1,
-                  0.77,
-                ],
-              ),
-            ),
+            height: _pageSize - _notifySize,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
@@ -36,20 +19,13 @@ class NavDrawer extends StatelessWidget {
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xFF191919).withOpacity(0.77),
-                        Color(0xFF191919).withOpacity(0.77),
-                      ],
-                      stops: [
-                        0.77,
-                        0.77,
-                      ],
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/bg.png'),
                     ),
                   ),
                 ),
+                _Overlay(),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -193,7 +169,7 @@ class NavDrawer extends StatelessWidget {
                 Positioned(
                   left: 0,
                   right: 0,
-                  bottom: 0,
+                  bottom: 16,
                   child: ListTile(
                     onTap: () {},
                     leading: Icon(
@@ -216,6 +192,34 @@ class NavDrawer extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Overlay extends StatelessWidget {
+  const _Overlay({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF191919).withOpacity(0.77),
+            Color(0xFF191919).withOpacity(0.77),
+          ],
+          stops: [
+            0.77,
+            0.77,
+          ],
         ),
       ),
     );
@@ -250,7 +254,7 @@ class _SubMenu extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.green,
+                color: Color(0xFFDADADA),
               ),
               height: 10,
               width: 10,
