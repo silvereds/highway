@@ -243,7 +243,9 @@ class _LoginPageState extends State<LoginPage> {
                                                 ),
                                                 TextButton(
                                                   onPressed: () async {
-                                                    print('Forgot password');
+                                                    Navigator.of(context)
+                                                        .pushNamed(AppRoutes
+                                                            .forgotPasswordScreen);
                                                   },
                                                   child: Text(
                                                     'Forgot password?',

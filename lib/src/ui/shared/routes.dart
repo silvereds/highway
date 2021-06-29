@@ -1,11 +1,8 @@
-
-
-import 'package:mobile/src/ui/views/policy_page.dart';
-
 class AppRoutes {
   static final splashScreenPage = '/';
   static final registerPage = '/register';
   static final loginPage = '/login';
+  static final forgotPasswordScreen = '/forgotPasswordScreen';
   static final dashboard = '/dashboard';
 
   static final createPassword = '/createPassword';

@@ -10,8 +10,9 @@ class NavDrawer extends StatelessWidget {
     return SafeArea(
       child: Drawer(
         child: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
           child: Container(
-            height: _pageSize - _notifySize,
+            height: _pageSize - _notifySize - 20,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
