@@ -34,7 +34,9 @@ class MyApp extends StatelessWidget {
       title: 'HIGHWEH',
       // Set the theme of the app to light
       theme: AppThemes.lightTheme,
-      initialRoute: AppRoutes.loginPage,
+
+      initialRoute: AppRoutes.conversationDetails,
+
       onGenerateTitle: (context) => "HIGHWEH",
       routes: {
         AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
@@ -62,7 +64,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.newConversationPage: (context) => NewConversationPage(),
         AppRoutes.homeScreen: (context) => HomeScreen(),
         AppRoutes.settingPreference: (context) => SettingPreference(),
-        AppRoutes.policyPage: (context) => PolicyPage(),
+        AppRoutes.conversationDetails: (context) => ConversationDetails(),
       },
     );
   }
