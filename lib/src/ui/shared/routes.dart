@@ -2,6 +2,8 @@ class AppRoutes {
   static final splashScreenPage = '/';
   static final registerPage = '/register';
   static final loginPage = '/login';
+  static final forgotPasswordScreen = '/forgotPasswordScreen';
+  static final resetPasswordScreen = '/resetPasswordScreen';
   static final dashboard = '/dashboard';
 
   static final createPassword = '/createPassword';
@@ -23,4 +25,6 @@ class AppRoutes {
   static final supportPage = '/supportPage';
   static final newConversationPage = '/newConversationPage';
   static final homeScreen = '/homeScreen';
+  static final settingPreference = '/settingPreference';
+  static final policyPage = '/policyPage';
 }

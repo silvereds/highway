@@ -9,7 +9,7 @@ abstract class AuthProvider {
 
 class Auth implements AuthRepository {
   @override
-  Future<void> login(User user) async {
+  Future<User> login(User user) async {
     final client = ApiService.create();
 
     try {

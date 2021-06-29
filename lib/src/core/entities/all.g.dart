@@ -336,3 +336,16 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'authorization': instance.authorization,
       'agent': instance.agent,
     };
+
+Validation _$ValidationFromJson(Map<String, dynamic> json) {
+  return Validation(
+    json['value'] as String,
+    json['error'] as String,
+  );
+}
+
+Map<String, dynamic> _$ValidationToJson(Validation instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'error': instance.error,
+    };
