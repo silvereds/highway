@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 
@@ -146,15 +144,13 @@ class _ConversationDetailsState extends State<ConversationDetails> {
               Padding(
                 padding:
                     EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
-                child: Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      _ReplyContainer(
-                          message: "Hello, Jane Doe and thanks for",
-                          time: "(December 23, 2018 - 10:30)"),
-                      CircleAvatar(),
-                    ],
-                  ),
+                child: Row(
+                  children: <Widget>[
+                    _ReplyContainer(
+                        message: "Hello, Jane Doe and thanks for",
+                        time: "(December 23, 2018 - 10:30)"),
+                    CircleAvatar(),
+                  ],
                 ),
               ),
               Padding(
