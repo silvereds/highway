@@ -296,7 +296,7 @@ class _SubMenuTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      splashColor: Colors.transparent,
+      splashColor: Colors.transparent, 
       highlightColor: Colors.transparent,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
