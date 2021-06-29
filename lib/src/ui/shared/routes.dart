@@ -3,6 +3,7 @@ class AppRoutes {
   static final registerPage = '/register';
   static final loginPage = '/login';
   static final forgotPasswordScreen = '/forgotPasswordScreen';
+  static final resetPasswordScreen = '/resetPasswordScreen';
   static final dashboard = '/dashboard';
 
   static final createPassword = '/createPassword';

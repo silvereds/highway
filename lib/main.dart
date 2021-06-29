@@ -5,6 +5,7 @@ import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/app_themes.dart';
 import 'package:mobile/src/ui/views/forgot_password_screen.dart';
 import 'package:mobile/src/ui/views/home_screen.dart';
+import 'package:mobile/src/ui/views/reset_password_screen.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
 void _setupLogging() {
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.registerPage: (context) => RegisterPage(),
         AppRoutes.loginPage: (context) => LoginPage(),
         AppRoutes.forgotPasswordScreen: (context) => ForgotPasswordScreen(),
+        AppRoutes.resetPasswordScreen: (context) => ResetPasswordScreen(),
         AppRoutes.dashboard: (context) => DashBoard(),
         AppRoutes.verifyPasscodePage: (context) => VerifyPasscodePage(),
         AppRoutes.accountsView: (context) => AccountsView(),

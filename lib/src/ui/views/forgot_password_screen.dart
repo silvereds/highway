@@ -156,7 +156,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                                   onPressed: () {
                                                     Navigator.of(context)
                                                         .pushNamed(AppRoutes
-                                                            .homeScreen);
+                                                            .resetPasswordScreen);
                                                   },
                                                   color: Color(0xFF4EB181),
                                                   textColor: Color(0xFFFFFFFF),
