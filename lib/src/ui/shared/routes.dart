@@ -1,12 +1,16 @@
 
 
+
 import 'package:mobile/src/ui/views/policy_page.dart';
 import 'package:mobile/src/ui/views/views.dart';
+
 
 class AppRoutes {
   static final splashScreenPage = '/';
   static final registerPage = '/register';
   static final loginPage = '/login';
+  static final forgotPasswordScreen = '/forgotPasswordScreen';
+  static final resetPasswordScreen = '/resetPasswordScreen';
   static final dashboard = '/dashboard';
 
   static final createPassword = '/createPassword';
