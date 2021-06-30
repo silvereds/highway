@@ -19,3 +19,6 @@ export '../views/support_page.dart';
 export '../views/transaction_details_page.dart';
 export '../views/transfer_completed_page.dart';
 export '../views/transfer_money_page.dart';
+export '../views/setting_preference_page.dart';
+export '../views/policy_page.dart';
+export '../views/conversation_details_page.dart';

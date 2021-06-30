@@ -5,6 +5,7 @@ import 'package:mobile/src/core/controllers/login_controller.dart';
 import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
@@ -13,11 +14,8 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-enum LoginOption { email, sms }
-
 class _LoginPageState extends State<LoginPage> {
   // _site is the variable that recieves registerOption and keeps
-  LoginOption _site = LoginOption.email;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   LoginController loginController = new LoginController();
 
@@ -229,10 +227,11 @@ class _LoginPageState extends State<LoginPage> {
                                                         fontFamily: 'Poppins',
                                                       ),
                                                     ),
-                                                    onPressed: validation
-                                                            .isValidateAuthForm
-                                                        ? _logUser
-                                                        : null,
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pushNamed(AppRoutes
+                                                              .homeScreen);
+                                                    },
                                                     color: Color(0xFF4EB181),
                                                     textColor:
                                                         Color(0xFFFFFFFF),
@@ -241,7 +240,9 @@ class _LoginPageState extends State<LoginPage> {
                                                 ),
                                                 TextButton(
                                                   onPressed: () async {
-                                                    print('Forgot password');
+                                                    Navigator.of(context)
+                                                        .pushNamed(AppRoutes
+                                                            .forgotPasswordScreen);
                                                   },
                                                   child: Text(
                                                     'Forgot password?',

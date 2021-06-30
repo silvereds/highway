@@ -4,7 +4,7 @@ import 'package:mobile/src/core/network/model_response.dart';
 
 import 'model_converter.dart';
 
-// This is necessary for the generator to work.
+// This is necessary for the generators to work.
 part "api_service.chopper.dart";
 
 const String baseUrl = "https://dev-admin.highweh.com";
