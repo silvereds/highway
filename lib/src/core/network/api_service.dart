@@ -19,6 +19,10 @@ abstract class ApiService extends ChopperService {
       converter: ModelConverter(),
       errorConverter: JsonConverter(),
       interceptors: [
+        HeadersInterceptor({
+          'Cache-Control': 'no-cache',
+          'content-type': 'application/json',
+        }),
         HttpLoggingInterceptor(),
       ],
       services: [
@@ -30,4 +34,7 @@ abstract class ApiService extends ChopperService {
 
   @Post(path: '/auth/login')
   Future<Response<Result<User>>> loginUser(@Body() User user);
+
+  @Post(path: '/users')
+  Future<Response<Result<List<User>>>> getUsers();
 }
