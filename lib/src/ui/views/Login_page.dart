@@ -14,11 +14,8 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-enum LoginOption { email, sms }
-
 class _LoginPageState extends State<LoginPage> {
   // _site is the variable that recieves registerOption and keeps
-  LoginOption _site = LoginOption.email;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   LoginController loginController = new LoginController();
 

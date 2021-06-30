@@ -23,4 +23,11 @@ class _$ApiService extends ApiService {
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<Result<User>, User>($request);
   }
+
+  @override
+  Future<Response<Result<List<User>>>> getUsers() {
+    final $url = '/users';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<Result<List<User>>, User>($request);
+  }
 }
