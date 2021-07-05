@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/app_themes.dart';
-import 'package:mobile/src/ui/views/forgot_password_screen.dart';
-import 'package:mobile/src/ui/views/home_screen.dart';
-import 'package:mobile/src/ui/views/reset_password_screen.dart';
-import 'package:mobile/src/ui/views/views.dart';
 
 void _setupLogging() {
   Logger.root.level = Level.ALL;
@@ -16,8 +12,8 @@ void _setupLogging() {
 }
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   _setupLogging();
-
   runApp(
     ProviderScope(
       child: MyApp(),
@@ -31,39 +27,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'HIGHWEH',
       // Set the theme of the app to light
       theme: AppThemes.lightTheme,
-      initialRoute: AppRoutes.splashScreenPage,
-      onGenerateTitle: (context) => "HIGHWEH",
-      routes: {
-        AppRoutes.splashScreenPage: (context) => SplashScreenPage(),
-        AppRoutes.registerPage: (context) => RegisterPage(),
-        AppRoutes.loginPage: (context) => LoginPage(),
-        AppRoutes.forgotPasswordScreen: (context) => ForgotPasswordScreen(),
-        AppRoutes.resetPasswordScreen: (context) => ResetPasswordScreen(),
-        AppRoutes.dashboard: (context) => DashBoard(),
-        AppRoutes.verifyPasscodePage: (context) => VerifyPasscodePage(),
-        AppRoutes.accountsView: (context) => AccountsView(),
-        AppRoutes.accoutsDetailsView: (context) => AccountsDetailsView(),
-        AppRoutes.rechargeAccountpage: (context) => RechargeAccountPage(),
-        AppRoutes.changeAlias: (context) => ChangeAliasView(),
-        AppRoutes.alldevicesPage: (context) => AllDevicesPage(),
-        AppRoutes.deviceDetailsPage: (context) => DeviceDetailsPage(),
-        AppRoutes.changeDevicePage: (context) => ChangeDevicePage(),
-        AppRoutes.blockDevicePage: (context) => BlockDevicePage(),
-        AppRoutes.changePinPage: (context) => ChangePinPage(),
-        AppRoutes.allTransactionsPage: (context) => AllTransactionsPage(),
-        AppRoutes.transferMoneyPage: (context) => TransferMoneyPage(),
-        AppRoutes.confirmTransferPage: (context) => ConfirmTransferPage(),
-        AppRoutes.transferCompletedPage: (context) => TransferCompletedPage(),
-        AppRoutes.transactionDetailsPage: (context) => TransactionDetailsPage(),
-        AppRoutes.supportPage: (context) => SupportPage(),
-        AppRoutes.newConversationPage: (context) => NewConversationPage(),
-        AppRoutes.homeScreen: (context) => HomeScreen(),
-        AppRoutes.settingPreference: (context) => SettingPreference(),
-        AppRoutes.conversationDetails: (context) => ConversationDetails(),
-      },
+      title: "HIGHWEH",
+      onGenerateTitle: (_) => "HIGHWEH",
+      onGenerateRoute: RouteGenerator.generateRoute,
+      navigatorKey: RouteGenerator.key,
+      initialRoute: RouteGenerator.splashScreenPage,
     );
   }
 }

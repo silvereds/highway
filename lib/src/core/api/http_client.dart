@@ -5,6 +5,7 @@ import 'json_parsers/json_parser.dart';
 class RequestREST {
   final String endpoint;
   final Map<String, dynamic> data;
+
   const RequestREST({
     this.endpoint,
     this.data = const {},
@@ -35,7 +36,22 @@ class RequestREST {
       endpoint,
       data: data,
     );
+    return parser.parseFromJson(response.data);
+  }
 
+  Future<T> executePut<T>(JsonParser<T> parser) async {
+    final response = await _client.put<String>(
+      endpoint,
+      data: data,
+    );
+    return parser.parseFromJson(response.data);
+  }
+
+  Future<T> executeDelete<T>(JsonParser<T> parser) async {
+    final response = await _client.delete<String>(
+      endpoint,
+      data: data,
+    );
     return parser.parseFromJson(response.data);
   }
 }
