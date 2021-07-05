@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
-import 'package:mobile/src/ui/views/accounts_detail_view.dart';
 import 'package:mobile/src/ui/views/all_accoutsView.dart';
-import 'package:mobile/src/ui/views/block_accountView.dart';
+import 'package:mobile/src/ui/views/all_maps.dart';
 import 'package:mobile/src/ui/views/dashboard.dart';
-import 'package:mobile/src/ui/views/transactions.dart';
+import 'package:mobile/src/ui/views/views.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _children = <Widget>[
     DashBoard(),
     AccountsView(),
-    TransactionsView(),
-    AccountsDetailsView(),
-    BlockAccountView(),
+    AllTransactionsPage(),
+    AllDevicesPage(),
+    AllMaps(),
   ];
 
   // getBody() {

@@ -98,7 +98,7 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print('New transfer');
+                                Navigator.pushNamed(context, '/tansferMoneyPage');
                                 },
                                 child: Text(
                                   'New Transfer',
@@ -114,7 +114,7 @@ class _DashBoardState extends State<DashBoard> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  print('Recharge');
+                                  Navigator.pushNamed(context, '/rechargeAccountPage');
                                 },
                                 child: Text(
                                   "Recharge",
@@ -268,7 +268,7 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print('New transfer');
+                                 Navigator.pushNamed(context, '/tansferMoneyPage');
                                 },
                                 child: Text(
                                   "Pay Now",
@@ -284,7 +284,7 @@ class _DashBoardState extends State<DashBoard> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  print('Recharge');
+                                   Navigator.pushNamed(context, '/rechargeAccountPage'); 
                                 },
                                 child: Text(
                                   "Recharge",
@@ -442,7 +442,7 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print('New transfer');
+                                  Navigator.pushNamed(context, '/tansferMoneyPage');
                                 },
                                 child: Text(
                                   'New Transfer',
@@ -458,7 +458,7 @@ class _DashBoardState extends State<DashBoard> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  print('Recharge');
+                                  Navigator.pushNamed(context, '/rechargeAccountPage');
                                 },
                                 child: Text(
                                   "Recharge",
@@ -604,7 +604,7 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print("View More");
+                                  Navigator.pushNamed(context, '/alldevicesPage');
                                 },
                                 child: Text(
                                   "View More",

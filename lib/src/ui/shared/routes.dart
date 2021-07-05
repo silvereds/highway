@@ -1,9 +1,6 @@
 
 
 
-import 'package:mobile/src/ui/views/policy_page.dart';
-import 'package:mobile/src/ui/views/views.dart';
-
 
 class AppRoutes {
   static final splashScreenPage = '/';

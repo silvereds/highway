@@ -136,6 +136,10 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => ConversationDetails(),
         );
+        case alldevicesPage: 
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => AllDevicesPage(),
+        );
       default:
         throw RouteException("Route Not found");
     }
