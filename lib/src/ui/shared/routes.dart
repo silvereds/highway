@@ -35,4 +35,5 @@ class AppRoutes {
   static final settingPreference = '/settingPreference';
   static final policyPage = '/policyPage';
   static final conversationDetails = '/conversationDetailsPage';
+  static final allMaps = '/allMapsPage';
 }

@@ -22,3 +22,4 @@ export '../views/transfer_money_page.dart';
 export '../views/setting_preference_page.dart';
 export '../views/policy_page.dart';
 export '../views/conversation_details_page.dart';
+export '../views/all_maps.dart';
