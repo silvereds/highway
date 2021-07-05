@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/src/core/controllers/register_controller.dart';
 import 'package:mobile/src/core/entities/entities.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
@@ -14,7 +13,6 @@ enum RegisterOption { email, sms }
 
 class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  RegisterController registerController = new RegisterController();
   AuthCredentials authCredentials = AuthCredentials();
   bool checkOption = false;
   // _site is the variable that receives register option and keeps
@@ -282,76 +280,17 @@ class _RegisterPageState extends State<RegisterPage> {
                                   height: 45.02,
                                   width: 130,
                                   child: FlatButton(
-                                    child: Text(
-                                      "Register",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: "Poppins",
+                                      child: Text(
+                                        "Register",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: "Poppins",
+                                        ),
+                                        textAlign: TextAlign.center,
                                       ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    onPressed: () {
-                                      String authType = "";
-                                      if (hintText() == "Email") {
-                                        authType = "email";
-                                        authCredentials.email =
-                                            emailPhoneNumberController.text
-                                                .trim();
-                                      } else {
-                                        authType = "phoneNumber";
-                                        authCredentials.phoneNumber =
-                                            emailPhoneNumberController.text
-                                                .trim();
-                                      }
-                                      // check if passwords match
-                                      if (passwordsMatch()) {
-                                        registerController
-                                            .firstTimeLogin(
-                                                authCredentials, authType)
-                                            .then((result) => {
-                                                  if (result == "success" &&
-                                                      this.checkOption == true)
-                                                    {
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          AppRoutes
-                                                              .verifyPasscodePage)
-                                                    }
-                                                  else
-                                                    {
-                                                      _scaffoldKey.currentState
-                                                          .showSnackBar(
-                                                              SnackBar(
-                                                        content: Text(
-                                                            "Registration Failed"),
-                                                        backgroundColor:
-                                                            Colors.red[600],
-                                                        duration: Duration(
-                                                            seconds: 3),
-                                                      ))
-                                                    }
-                                                });
-                                      } else {
-                                        _scaffoldKey.currentState
-                                            .showSnackBar(SnackBar(
-                                          content: Text("Invalid Password"),
-                                          backgroundColor: Colors.red[600],
-                                          duration: Duration(seconds: 3),
-                                        ));
-                                      }
-                                      if (checkOption == false) {
-                                        _scaffoldKey.currentState
-                                            .showSnackBar(SnackBar(
-                                          content:
-                                              Text("Check Terms and condtion"),
-                                          backgroundColor: Colors.red[600],
-                                          duration: Duration(seconds: 1),
-                                        ));
-                                      }
-                                    },
-                                  ),
+                                      onPressed: () {}),
                                 ),
                                 const SizedBox(width: 20),
                                 TextButton(
