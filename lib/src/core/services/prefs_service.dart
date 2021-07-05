@@ -25,7 +25,7 @@ class SharedPrefService implements PersistenceRepository {
   }
 
   @override
-  Future<Map<String, dynamic>?> getObject(String key) async {
+  Future<Map<String, dynamic>> getObject(String key) async {
     final prefs = await SharedPreferences.getInstance();
     final objectString = prefs.getString(key);
     if (objectString != null)
@@ -34,7 +34,7 @@ class SharedPrefService implements PersistenceRepository {
   }
 
   @override
-  Future<String?> getString(String key) async {
+  Future<String> getString(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(key);
   }
@@ -64,7 +64,7 @@ class SharedPrefService implements PersistenceRepository {
   }
 
   @override
-  Future<bool?> getBool(String key) async {
+  Future<bool> getBool(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(key);
   }
