@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/app_themes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void _setupLogging() {
   Logger.root.level = Level.ALL;
@@ -11,8 +12,9 @@ void _setupLogging() {
   });
 }
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
   _setupLogging();
   runApp(
     ProviderScope(
