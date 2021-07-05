@@ -14,20 +14,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   // _site is the variable that recieves registerOption and keeps
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswodController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
-  String _email;
   String _password;
+  String _confirmPassword;
 
   bool _isLoading = false;
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _passwordController.dispose();
+    _confirmPasswodController.dispose();
     super.dispose();
   }
 
@@ -93,13 +93,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     child: Column(
                                       children: [
                                         TextFormField(
-                                          controller: emailController,
+                                          controller: _passwordController,
                                           onChanged: (v) =>
                                               validation.validateEmail(v),
-                                          onSaved: (val) => _email = val,
+                                          onSaved: (val) => _password = val,
                                           decoration: InputDecoration(
                                             errorText: validation.email.error,
-                                            icon: Icon(Icons.person),
+                                            icon: Icon(Icons.lock),
                                             hintText: 'password',
                                             hintStyle: TextStyle(
                                               fontSize: 14,
@@ -111,8 +111,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                         ),
                                         Divider(color: Colors.grey),
                                         TextFormField(
-                                          controller: passwordController,
-                                          onSaved: (val) => _password = val,
+                                          controller: _confirmPasswodController,
+                                          onSaved: (val) =>
+                                              _confirmPassword = val,
                                           obscureText: true,
                                           onChanged: (v) =>
                                               validation.validatePassword(v),
