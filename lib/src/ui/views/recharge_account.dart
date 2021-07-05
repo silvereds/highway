@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 
 class RechargeAccountPage extends StatefulWidget {
@@ -17,7 +16,6 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: Container(
           height: 600,
@@ -25,9 +23,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
           margin: EdgeInsets.fromLTRB(10, 40, 10, 15),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(
-              6,
-            ),
+            borderRadius: BorderRadius.circular(6),
             boxShadow: [
               BoxShadow(
                 color: Color(
