@@ -31,6 +31,7 @@ class RouteGenerator {
   static const settingPreference = '/settingPreference';
   static const policyPage = '/policyPage';
   static const conversationDetails = '/conversationDetailsPage';
+  
 
   RouteGenerator._();
 

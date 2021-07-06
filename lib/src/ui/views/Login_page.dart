@@ -228,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pushNamed(AppRoutes
-                                                              .homeScreen);
+                                                              .verifyPasscode);
                                                     },
                                                     color: Color(0xFF4EB181),
                                                     textColor:

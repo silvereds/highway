@@ -66,7 +66,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "A short code has been sent to your phone number via SMS. Please enter the code below to verify your identity",
+                        "A short code has been send to email or sms, please enter the code to verify your identity",
                         style: TextStyle(
                           color: Color(0xFFCACACA),
                           fontSize: 18,
