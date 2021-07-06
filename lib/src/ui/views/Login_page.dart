@@ -60,9 +60,6 @@ class _LoginPageState extends State<LoginPage> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    if (FocusScope.of(context).hasPrimaryFocus) {
-                      FocusScope.of(context).unfocus();
-                    }
                     emailController.clear();
                     passwordController.clear();
                     Navigator.of(context).pop();
