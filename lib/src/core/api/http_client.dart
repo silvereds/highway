@@ -14,7 +14,7 @@ class RequestREST {
   /// HTTP dio client
   static final _client = Dio(
     BaseOptions(
-      baseUrl: "https://dev-admin.highweh.com",
+      baseUrl: "https://dev-api.highweh.com",
       connectTimeout: 3000, // 3 seconds
       receiveTimeout: 3000, // 3 seconds
       headers: {
@@ -23,6 +23,7 @@ class RequestREST {
     ),
   );
 
+  // Perform GET requests
   Future<T> executeGet<T>(JsonParser<T> parser) async {
     final response = await _client.get<String>(
       endpoint,
@@ -31,6 +32,7 @@ class RequestREST {
     return parser.parseFromJson(response.data);
   }
 
+  // Perform POST requests
   Future<T> executePost<T>(JsonParser<T> parser) async {
     final response = await _client.post<String>(
       endpoint,
@@ -39,6 +41,7 @@ class RequestREST {
     return parser.parseFromJson(response.data);
   }
 
+  // Perform PUT requests
   Future<T> executePut<T>(JsonParser<T> parser) async {
     final response = await _client.put<String>(
       endpoint,
@@ -47,6 +50,7 @@ class RequestREST {
     return parser.parseFromJson(response.data);
   }
 
+  // Perform DELETE requests
   Future<T> executeDelete<T>(JsonParser<T> parser) async {
     final response = await _client.delete<String>(
       endpoint,

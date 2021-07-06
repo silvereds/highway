@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/core/controllers/splash_screen_controller.dart';
+import 'package:mobile/src/core/services/prefs_service.dart';
+import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -10,7 +11,25 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
-  SplashScreenController _splashScreenController = new SplashScreenController();
+  void _isAlreadySee() {
+    SharedPrefService().saveBool('isSee', true);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil(RouteGenerator.loginPage, (route) => false);
+  }
+
+  void _moveToLoginPage() async {
+    final bool isSee = await SharedPrefService().getBool('isSee');
+    if (isSee == true) {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(RouteGenerator.loginPage, (route) => false);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _moveToLoginPage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -230,11 +249,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                     borderRadius: BorderRadius.circular(5.0),
                     side: BorderSide(color: Colors.green),
                   ),
-                  onPressed: () {
-                    _splashScreenController.isUserLoggedIn().then(
-                        (sessionExists) => _splashScreenController
-                            .navigateToNextPage(context, sessionExists));
-                  },
+                  onPressed: _isAlreadySee,
                   color: ThemeColors.Buttons,
                   textColor: Colors.white,
                   child: Text(
