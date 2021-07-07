@@ -4,9 +4,9 @@ import 'package:flutter/widgets.dart';
 class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var _pageSize = MediaQuery.of(context).size.height;
-    var _notifySize = MediaQuery.of(context).padding.top;
-    var _appBarSize = AppBar().preferredSize.height;
+    // var _pageSize = MediaQuery.of(context).size.height;
+    // var _notifySize = MediaQuery.of(context).padding.top;
+    // var _appBarSize = AppBar().preferredSize.height;
     return Drawer(
       child: Stack(
         clipBehavior: Clip.none,
