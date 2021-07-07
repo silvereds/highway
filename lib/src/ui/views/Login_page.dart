@@ -1,12 +1,13 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/src/core/controllers/login_controller.dart';
-import 'package:mobile/src/core/entities/entities.dart';
+import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/services/services.dart';
+import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
+import 'package:mobile/src/ui/widgets/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,19 +18,28 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // _site is the variable that recieves registerOption and keeps
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  LoginController loginController = new LoginController();
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  AuthCredentials authCredentials = AuthCredentials();
-
   final _formKey = GlobalKey<FormState>();
 
-  String _email;
-  String _password;
+  String _email = '';
+  String _password = '';
+  String _deviceName = '';
 
   bool _isLoading = false;
+
+  void _getDevicename() async {
+    _deviceName = await SharedPrefService().getString('deviceName');
+    print(_deviceName);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getDevicename();
+  }
 
   @override
   void dispose() {
@@ -38,8 +48,12 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _logUser() async {
+// Loginn user with email and password
+  void _loginWithEmailAndPassword() async {
+    FocusScope.of(context).unfocus();
+
     if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
       setState(() {
         _isLoading = true;
       });
@@ -47,15 +61,35 @@ class _LoginPageState extends State<LoginPage> {
         await context
             .read(AuthProvider.authProvider)
             .login(
-              User(
-                email: emailController.text,
-                password: passwordController.text,
-              ),
+              _email.trim(),
+              _password.trim(),
+              _deviceName,
             )
             .then((value) {
           setState(() {
             _isLoading = false;
           });
+
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: Text(
+                  'A verification code has been send by email. Please fill the next page with that code'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    emailController.clear();
+                    passwordController.clear();
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed(
+                        RouteGenerator.verifyPasscodePage,
+                        arguments: User(email: _email, password: _password));
+                  },
+                  child: Text('OK'),
+                )
+              ],
+            ),
+          );
         });
       } catch (e) {
         setState(() {
@@ -65,7 +99,10 @@ class _LoginPageState extends State<LoginPage> {
           content: Text(
             e.toString(),
             style: TextStyle(
-                color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           backgroundColor: Colors.red,
         ));
@@ -227,11 +264,10 @@ class _LoginPageState extends State<LoginPage> {
                                                         fontFamily: 'Poppins',
                                                       ),
                                                     ),
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pushNamed(AppRoutes
-                                                              .homeScreen);
-                                                    },
+                                                    onPressed: validation
+                                                            .isValidateAuthForm
+                                                        ? _loginWithEmailAndPassword
+                                                        : null,
                                                     color: Color(0xFF4EB181),
                                                     textColor:
                                                         Color(0xFFFFFFFF),
@@ -266,63 +302,8 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    Positioned(
-                      top: -40,
-                      left: 15,
-                      right: 15,
-                      height: 70,
-                      child: Container(
-                        child: Center(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "Poppins",
-                            ),
-                          ),
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(
-                                0x23000000,
-                              ),
-                              offset: Offset(
-                                0,
-                                4,
-                              ),
-                              blurRadius: 4,
-                            ),
-                            BoxShadow(
-                              color: Color(
-                                0x66E91E63,
-                              ),
-                              offset: Offset(
-                                0,
-                                7,
-                              ),
-                              blurRadius: 10,
-                              spreadRadius: -5,
-                            ),
-                          ],
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color(
-                                0xFF00CDAC,
-                              ),
-                              Color(
-                                0xFF4EB181,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    BoxTitle(
+                      title: "Login",
                     ),
                   ],
                 ),
@@ -332,17 +313,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  bool validCredentials() {
-    String email = emailController.text.trim();
-    String password = passwordController.text.trim();
-
-    if (email == email && password == password) {
-      authCredentials.password = password;
-      return true;
-    } else {
-      return false;
-    }
   }
 }
