@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/views/Create_password.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
@@ -37,7 +38,7 @@ class RouteGenerator {
   static final key = GlobalKey<NavigatorState>();
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    // const args = settings.arguments;
+    final args = settings.arguments;
     switch (settings.name) {
       case splashScreenPage:
         return MaterialPageRoute<dynamic>(
@@ -69,7 +70,9 @@ class RouteGenerator {
         );
       case verifyPasscodePage:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => VerifyPasscodePage(),
+          builder: (_) => VerifyPasscodePage(
+            user: args as User,
+          ),
         );
       case accountsView:
         return MaterialPageRoute<dynamic>(

@@ -12,13 +12,27 @@ abstract class AuthProvider {
 
 class Auth implements AuthRepository {
   @override
-  Future<void> login(String email, String password) async {
+  Future<void> login(String email, String password, String agent,
+      {String passcode}) async {
     try {
       final response = await RequestREST(
         endpoint: '/auth/login',
+        data: {'email': email, 'password': password, 'agent': agent},
+      ).executePost<LoginResponse>(LoginResponseParser());
+
+      print(response.toJson());
+    } on DioError catch (dioError) {
+      throw ApiException.fromDioError(dioError);
+    }
+  }
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    try {
+      final response = await RequestREST(
+        endpoint: '/auth/forgot-password',
         data: {
           'email': email,
-          'password': password,
         },
       ).executePost<LoginResponse>(LoginResponseParser());
 
@@ -29,5 +43,50 @@ class Auth implements AuthRepository {
   }
 
   @override
-  Future<void> resetPassword(String email) {}
+  Future<void> verifyPasscode(
+      String email, String password, String passCode, String agent) async {
+    try {
+      final response = await RequestREST(
+        endpoint: '/auth/verify-passcode',
+        data: {
+          'email': email,
+          'password': password,
+          'passcode': passCode,
+          'agent': agent
+        },
+      ).executePost<LoginResponse>(LoginResponseParser());
+
+      print(response.toJson());
+    } on DioError catch (dioError) {
+      throw ApiException.fromDioError(dioError);
+    }
+  }
+
+  @override
+  Future<void> logout() async {
+    try {
+      final response = await RequestREST(
+        endpoint: '/auth/logout',
+      ).executePost<LoginResponse>(LoginResponseParser());
+
+      print(response.toJson());
+    } on DioError catch (dioError) {
+      throw ApiException.fromDioError(dioError);
+    }
+  }
+
+  @override
+  Future<void> resetPassword(String password, String confirmPassword) async {
+    try {
+      final response =
+          await RequestREST(endpoint: '/auth/reset-password', data: {
+        'password': password,
+        'confirmPassword': confirmPassword,
+      }).executePost<LoginResponse>(LoginResponseParser());
+
+      print(response.toJson());
+    } on DioError catch (dioError) {
+      throw ApiException.fromDioError(dioError);
+    }
+  }
 }

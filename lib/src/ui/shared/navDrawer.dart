@@ -1,7 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/routes.dart';
 
-class NavDrawer extends StatelessWidget {
+class NavDrawer extends StatefulWidget {
+  @override
+  _NavDrawerState createState() => _NavDrawerState();
+}
+
+class _NavDrawerState extends State<NavDrawer> {
+  void _logout() async {
+    try {
+      await context.read(AuthProvider.authProvider).logout().then((_) {
+        Navigator.of(context).pop();
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            RouteGenerator.loginPage, (route) => false);
+      });
+    } catch (e) {
+      Navigator.of(context).pop();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          e.toString(),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        backgroundColor: Colors.red,
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var _pageSize = MediaQuery.of(context).size.height;
@@ -165,7 +196,7 @@ class NavDrawer extends StatelessWidget {
             right: 0,
             bottom: 16,
             child: ListTile(
-              onTap: () {},
+              onTap: _logout,
               leading: Icon(
                 Icons.logout,
                 color: Color(0xFFDADADA),

@@ -386,6 +386,7 @@ class Validation {
 
 @JsonSerializable()
 class LoginResponse {
+  final String message;
   final String accessToken;
   final int expiresIn;
   final String refreshToken;
@@ -396,6 +397,7 @@ class LoginResponse {
   final String scope;
 
   LoginResponse({
+    this.message,
     this.accessToken,
     this.expiresIn,
     this.refreshToken,

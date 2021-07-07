@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
@@ -22,10 +24,22 @@ class _LoginPageState extends State<LoginPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  String _email;
-  String _password;
+  String _email = '';
+  String _password = '';
+  String _deviceName = '';
 
   bool _isLoading = false;
+
+  void _getDevicename() async {
+    _deviceName = await SharedPrefService().getString('deviceName');
+    print(_deviceName);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getDevicename();
+  }
 
   @override
   void dispose() {
@@ -34,9 +48,12 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+// Loginn user with email and password
   void _loginWithEmailAndPassword() async {
+    FocusScope.of(context).unfocus();
+
     if (_formKey.currentState.validate()) {
-      FocusScope.of(context).unfocus();
+      _formKey.currentState.save();
       setState(() {
         _isLoading = true;
       });
@@ -44,8 +61,9 @@ class _LoginPageState extends State<LoginPage> {
         await context
             .read(AuthProvider.authProvider)
             .login(
-              emailController.text,
-              passwordController.text,
+              _email.trim(),
+              _password.trim(),
+              _deviceName,
             )
             .then((value) {
           setState(() {
@@ -63,8 +81,9 @@ class _LoginPageState extends State<LoginPage> {
                     emailController.clear();
                     passwordController.clear();
                     Navigator.of(context).pop();
-                    Navigator.of(context)
-                        .pushNamed(RouteGenerator.verifyPasscodePage);
+                    Navigator.of(context).pushNamed(
+                        RouteGenerator.verifyPasscodePage,
+                        arguments: User(email: _email, password: _password));
                   },
                   child: Text('OK'),
                 )
