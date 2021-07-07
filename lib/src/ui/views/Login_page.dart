@@ -57,6 +57,8 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         _isLoading = true;
       });
+
+      print(_password);
       try {
         await context
             .read(AuthProvider.authProvider)
@@ -65,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
               _password.trim(),
               _deviceName,
             )
-            .then((value) {
+            .then((_) {
           setState(() {
             _isLoading = false;
           });
@@ -82,8 +84,13 @@ class _LoginPageState extends State<LoginPage> {
                     passwordController.clear();
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed(
-                        RouteGenerator.verifyPasscodePage,
-                        arguments: User(email: _email, password: _password));
+                      RouteGenerator.verifyPasscodePage,
+                      arguments: User(
+                        email: _email.trim(),
+                        password: passwordController.text,
+                        agent: _deviceName,
+                      ),
+                    );
                   },
                   child: Text('OK'),
                 )

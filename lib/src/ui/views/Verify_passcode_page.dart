@@ -26,56 +26,115 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
 
   String _passcode = '';
 
-  String _deviceName = '';
-
-  void _getDevicename() async {
-    final String deviceName = await SharedPrefService().getString('deviceName');
-    _deviceName = deviceName;
-    print(_deviceName);
-  }
-
   // The function to resend passcode
   void _resendPasscode() async {
     FocusScope.of(context).unfocus();
 
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
+    try {
       setState(() {
         _isLoading = true;
       });
-      try {
-        await context
-            .read(AuthProvider.authProvider)
-            .login(
-              widget.user.email,
-              widget.user.password,
-              _deviceName,
-            )
-            .then((value) {
-          setState(() {
-            _isLoading = false;
-          });
 
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: Text(
-                  'A verification code has been send by email. Please fill the next page with that code'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                )
-              ],
-            ),
-          );
-        });
-      } catch (e) {
+      print(widget.user.email);
+
+      print(widget.user.password);
+      print(widget.user.agent);
+
+      await context
+          .read(AuthProvider.authProvider)
+          .login(
+            widget.user.email,
+            widget.user.password,
+            widget.user.agent,
+          )
+          .then((_) {
         setState(() {
           _isLoading = false;
         });
+
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text('We send you a verification passe code via email.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              )
+            ],
+          ),
+        );
+      });
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          e.toString(),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        backgroundColor: Colors.red,
+      ));
+    }
+  }
+
+  // The function to verify passcode
+  void _verifyPasscode(
+    String email,
+    String password,
+    String passcode,
+    String agent,
+  ) async {
+    FocusScope.of(context).unfocus();
+
+    print(widget.user.email);
+
+    print(widget.user.password);
+    print(widget.user.agent);
+
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      await context
+          .read(AuthProvider.authProvider)
+          .verifyPasscode(email, password, passcode, agent)
+          .then((value) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        SharedPrefService().saveBool('isPasscodeVerify', true);
+
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            RouteGenerator.homeScreen, (route) => false);
+      });
+    } catch (e) {
+      final String message = 'Please provide a valid passe code.';
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (e.toString().isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            message,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          backgroundColor: Colors.red,
+        ));
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
             e.toString(),
@@ -91,35 +150,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
     }
   }
 
-  // The function to verify passcode
-  void _verifyPasscode(
-      String email, String password, String passcode, String agent) async {
-    FocusScope.of(context).unfocus();
-    try {
-      setState(() {
-        _isLoading = true;
-      });
-      await context
-          .read(AuthProvider.authProvider)
-          .verifyPasscode(email.trim(), password.trim(), passcode.trim(), agent)
-          .then((value) {
-        setState(() {
-          _isLoading = false;
-        });
-
-        SharedPrefService().saveBool('isPasscodeVerify', true);
-
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            RouteGenerator.homeScreen, (route) => false);
-      });
-    } catch (e) {
-      setState(() {
-        _isLoading = false;
-      });
-      print(e);
-    }
-  }
-
   @override
   void dispose() {
     super.dispose();
@@ -129,7 +159,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   @override
   void initState() {
     super.initState();
-    _getDevicename();
   }
 
   @override
@@ -149,7 +178,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         inAsyncCall: _isLoading,
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height - 45,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -200,7 +229,14 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                         key: _formKey,
                         child: PinCodeTextField(
                             appContext: context,
-                            validator: (v) {},
+                            autoFocus: true,
+                            validator: (v) {
+                              if (v.isEmpty || v.length < 5) {
+                                return 'Please provide a valid code';
+                              } else {
+                                return null;
+                              }
+                            },
                             obscuringCharacter: '*',
                             textCapitalization: TextCapitalization.characters,
                             pastedTextStyle: TextStyle(
@@ -222,10 +258,11 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       const SizedBox(height: 6),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {
-                            _verifyPasscode(widget.user.email,
-                                widget.user.password, _passcode, _deviceName);
-                          },
+                          onPressed: () => _verifyPasscode(
+                              widget.user.email,
+                              widget.user.password,
+                              _passcode,
+                              widget.user.agent),
                           child: const Text('Verify'),
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
