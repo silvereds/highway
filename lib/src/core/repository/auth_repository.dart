@@ -1,7 +1,14 @@
-import 'package:mobile/src/core/entities/entities.dart';
+import 'package:mobile/src/core/entities/all.dart';
 
 abstract class AuthRepository {
-  Future<User> login(User user);
+  Future<void> login(User user);
 
-  Future<void> resetPassword(String email);
+  Future<void> verifyPasscode(
+      String email, String password, String passCode, String agent);
+
+  Future<void> forgotPassword(String email);
+
+  Future<void> resetPassword(String password, String confirmPassword);
+
+  Future<void> logout();
 }

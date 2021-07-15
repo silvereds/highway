@@ -321,31 +321,31 @@ class Transaction {
 
 @JsonSerializable()
 class User {
-  String uuid;
-  String name;
-  String email;
-  String phoneNumber;
-  String password;
-  String status;
-  String preferredLanguage;
-  String photoUrl;
-  String address;
-  String bornOn;
-  String registeredOn;
-  String organisation;
-  String city;
-  String gender;
-  String subdivision;
-  String idUrl;
-  String proofOfAddressUrl;
-  String role;
-  String authorization;
-  String agent = "mobile";
+  final String uuid;
+  final String name;
+  final String email;
+  final String phoneNumber;
+  final String password;
+  final String status;
+  final String preferredLanguage;
+  final String photoUrl;
+  final String address;
+  final String bornOn;
+  final String registeredOn;
+  final String organisation;
+  final String city;
+  final String gender;
+  final String subdivision;
+  final String idUrl;
+  final String proofOfAddressUrl;
+  final String role;
+  final String authorization;
+  final String agent;
 
   User(
       {this.name,
       this.address,
-      String password,
+      this.password,
       this.city,
       this.email,
       this.gender,
@@ -362,9 +362,7 @@ class User {
       this.status,
       this.subdivision,
       this.authorization,
-      this.agent}) {
-    this.agent = "mobile";
-  }
+      this.agent});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
@@ -382,4 +380,34 @@ class Validation {
       _$ValidationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ValidationToJson(this);
+}
+
+@JsonSerializable()
+class LoginResponse {
+  final String message;
+  final String accessToken;
+  final int expiresIn;
+  final String refreshToken;
+  final int refreshExpiresIn;
+  final String tokenType;
+  final int notBeforePolicy;
+  final String sessionState;
+  final String scope;
+
+  LoginResponse({
+    this.message,
+    this.accessToken,
+    this.expiresIn,
+    this.refreshToken,
+    this.refreshExpiresIn,
+    this.tokenType,
+    this.notBeforePolicy,
+    this.sessionState,
+    this.scope,
+  });
+
+  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 }
