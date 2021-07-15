@@ -1,9 +1,18 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/src/core/entities/all.dart';
+import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../routes.dart';
 
 class VerifyPasscodePage extends StatefulWidget {
+  final User user;
+
+  const VerifyPasscodePage({Key key, this.user}) : super(key: key);
   @override
   _VerifyPasscodePageState createState() => _VerifyPasscodePageState();
 }
@@ -12,6 +21,146 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final pinCodeController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  var _isLoading = false;
+
+  String _passcode = '';
+
+  // The function to resend passcode
+  void _resendPasscode() async {
+    FocusScope.of(context).unfocus();
+
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+
+      print(widget.user.email);
+
+      print(widget.user.password);
+      print(widget.user.agent);
+
+      await context
+          .read(AuthProvider.authProvider)
+          .login(
+            widget.user.email,
+            widget.user.password,
+            widget.user.agent,
+          )
+          .then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text('We send you a verification passe code via email.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              )
+            ],
+          ),
+        );
+      });
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          e.toString(),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        backgroundColor: Colors.red,
+      ));
+    }
+  }
+
+  // The function to verify passcode
+  void _verifyPasscode(
+    String email,
+    String password,
+    String passcode,
+    String agent,
+  ) async {
+    FocusScope.of(context).unfocus();
+
+    print(widget.user.email);
+
+    print(widget.user.password);
+    print(widget.user.agent);
+
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      await context
+          .read(AuthProvider.authProvider)
+          .verifyPasscode(email, password, passcode, agent)
+          .then((value) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        SharedPrefService().saveBool('isPasscodeVerify', true);
+
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            RouteGenerator.homeScreen, (route) => false);
+      });
+    } catch (e) {
+      final String message = 'Please provide a valid passe code.';
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (e.toString().isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            message,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          backgroundColor: Colors.red,
+        ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            e.toString(),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          backgroundColor: Colors.red,
+        ));
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    pinCodeController.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,147 +174,104 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: 880,
-          width: 800,
-          decoration: BoxDecoration(
+      body: ModalProgressHUD(
+        inAsyncCall: _isLoading,
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height - 45,
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                ThemeColors.Background,
-                ThemeColors.LightBackground
-              ])),
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
-          child: Center(
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(20.0),
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [ThemeColors.Background, ThemeColors.LightBackground],
+              ),
+            ),
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
                   color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Center(
-                        child: SizedBox(
-                          width: 327,
-                          child: Text(
-                            'Verify your Identity',
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 28,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w200,
-                            ),
-                          ),
+                      const Text(
+                        'Verify your Identity',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: ThemeColors.Buttons,
                         ),
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "A short code has been send to email or sms, please enter the code to verify your identity",
+                        "A short code has been send to your email or sms, please enter the code to verify your identity",
                         style: TextStyle(
-                          color: Color(0xFFCACACA),
+                          color: ThemeColors.VerifyIdentityText,
                           fontSize: 18,
-                          height: 1.5,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 15),
-                      Center(
-                        child: RichText(
-                          text: TextSpan(children: <TextSpan>[
-                            TextSpan(
-                                text: '  Resend Code',
-                                style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    color: Color(0xFF2AA694),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Poppins'),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    print('Resend code');
-                                  })
-                          ]),
                         ),
                       ),
-                      SizedBox(height: 30),
-                      PinCodeTextField(
-                        controller: pinCodeController,
-                        appContext: context,
-                        length: 5,
-                        onChanged: (valu) {
-                          print(valu);
-                        },
-                        pastedTextStyle: TextStyle(
-                          color: ThemeColors.CheckColor,
-                          fontWeight: FontWeight.bold,
+                      TextButton(
+                        onPressed: _resendPasscode,
+                        child: Text(
+                          'Resend',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
-                        obscureText: false,
-                        obscuringCharacter: '*',
-                        animationType: AnimationType.fade,
-                        pinTheme: PinTheme(
-                            shape: PinCodeFieldShape.box,
-                            borderRadius: BorderRadius.circular(5.0),
-                            fieldHeight: 86,
-                            fieldWidth: 32,
-                            activeFillColor: Colors.green),
-                        cursorColor: Colors.black,
-                        animationDuration: Duration(milliseconds: 300),
-                        keyboardType: TextInputType.number,
-                        onCompleted: (v) {
-                          print("Completed");
-                        },
                       ),
-                      SizedBox(height: 20),
-                      Container(
-                        alignment: Alignment.center,
-                        child: Column(
-                          children: [
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                                side: BorderSide(color: ThemeColors.Buttons),
-                              ),
-                              child: Text(
-                                'Login',
-                                style: TextStyle(
-                                    fontSize: 13, fontFamily: 'Poppins'),
-                              ),
-                              onPressed: () {
-                                if (pinCodeController != null) {
-                                  _scaffoldKey.currentState
-                                      .showSnackBar(SnackBar(
-                                    content: Text(pinCodeController.text),
-                                    backgroundColor: Colors.red[600],
-                                    duration: Duration(seconds: 3),
-                                  ));
-                                } else {
-                                  _scaffoldKey.currentState
-                                      .showSnackBar(SnackBar(
-                                    content: Text("Wrong PIN"),
-                                    backgroundColor: Colors.red[600],
-                                    duration: Duration(seconds: 3),
-                                  ));
-                                }
-                              },
-                              color: Color(0xFF4EB181),
-                              textColor: Color(0xFFFFFFFF),
-                              height: 40,
+                      Form(
+                        key: _formKey,
+                        child: PinCodeTextField(
+                            appContext: context,
+                            autoFocus: true,
+                            validator: (v) {
+                              if (v.isEmpty || v.length < 5) {
+                                return 'Please provide a valid code';
+                              } else {
+                                return null;
+                              }
+                            },
+                            obscuringCharacter: '*',
+                            textCapitalization: TextCapitalization.characters,
+                            pastedTextStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
                             ),
-                          ],
-                        ),
+                            textStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
+                            length: 5,
+                            onChanged: (v) {
+                              setState(() {
+                                _passcode = v;
+                              });
+                              print(_passcode);
+                            }),
                       ),
+                      const SizedBox(height: 6),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () => _verifyPasscode(
+                              widget.user.email,
+                              widget.user.password,
+                              _passcode,
+                              widget.user.agent),
+                          child: const Text('Verify'),
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ),
