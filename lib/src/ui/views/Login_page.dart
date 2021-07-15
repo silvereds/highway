@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
 
-  void _getDevicename() async {
+  void _getDeviceName() async {
     _deviceName = await SharedPrefService().getString('deviceName');
     print(_deviceName);
   }
@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _getDevicename();
+    _getDeviceName();
   }
 
   @override
@@ -48,8 +48,9 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-// Loginn user with email and password
+// Login user with email and password
   void _loginWithEmailAndPassword() async {
+    // Remove the keyboard when the button is pressed
     FocusScope.of(context).unfocus();
 
     if (_formKey.currentState.validate()) {
@@ -58,14 +59,15 @@ class _LoginPageState extends State<LoginPage> {
         _isLoading = true;
       });
 
-      print(_password);
       try {
         await context
             .read(AuthProvider.authProvider)
             .login(
-              _email.trim(),
-              _password.trim(),
-              _deviceName,
+              User(
+                email: _email.trim(),
+                password: _password.trim(),
+                agent: _deviceName,
+              ),
             )
             .then((_) {
           setState(() {
@@ -87,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                       RouteGenerator.verifyPasscodePage,
                       arguments: User(
                         email: _email.trim(),
-                        password: passwordController.text,
+                        password: _password.trim(),
                         agent: _deviceName,
                       ),
                     );
@@ -172,9 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
+                          const SizedBox(height: 10),
                           Container(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -193,8 +193,10 @@ class _LoginPageState extends State<LoginPage> {
                                         children: [
                                           TextFormField(
                                             controller: emailController,
-                                            onChanged: (v) =>
-                                                validation.validateEmail(v),
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            onChanged: (v) => validation
+                                                .validateEmailOrPhoneNumber(v),
                                             onSaved: (val) => _email = val,
                                             decoration: InputDecoration(
                                               errorText: validation.email.error,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../routes.dart';
 
@@ -13,6 +13,7 @@ class VerifyPasscodePage extends StatefulWidget {
   final User user;
 
   const VerifyPasscodePage({Key key, this.user}) : super(key: key);
+
   @override
   _VerifyPasscodePageState createState() => _VerifyPasscodePageState();
 }
@@ -43,9 +44,11 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       await context
           .read(AuthProvider.authProvider)
           .login(
-            widget.user.email,
-            widget.user.password,
-            widget.user.agent,
+            User(
+              email: widget.user.email,
+              password: widget.user.password,
+              agent: widget.user.agent,
+            ),
           )
           .then((_) {
         setState(() {
@@ -105,8 +108,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       });
       await context
           .read(AuthProvider.authProvider)
-          .verifyPasscode(email, password, passcode, agent)
-          .then((value) {
+          .verifyPasscode(email, password, passcode.toUpperCase(), agent)
+          .then((_) {
         setState(() {
           _isLoading = false;
         });

@@ -14,9 +14,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-#  Get info about the device
+  #  Get info about the device
   device_info: ^1.0.0
-#  device_preview: ^0.4.8
+#  ua_client_hints: ^0.0.1
+  #  device_preview: ^0.4.8
   intl_phone_number_input: ^0.5.2+2
   form_field_validator: ^1.0.1
   flutter_riverpod: ^0.12.4
@@ -43,7 +44,6 @@ dependencies:
   ## Persistence
   shared_preferences: ^0.5.12+4
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,8 +60,6 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/icon/Highweh.png"
-
-
 
 flutter:
   uses-material-design: true

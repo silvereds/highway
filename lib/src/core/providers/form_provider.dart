@@ -32,7 +32,7 @@ class FormProvider extends ChangeNotifier {
 
   Validation get newConfirmPassword => _newConfirmPassword;
 
-  void validateEmail(String val) {
+  void validateEmailOrPhoneNumber(String val) {
     if (val.isValidEmail) {
       _email = Validation(val, null);
     } else {
