@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
@@ -44,15 +43,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              content:
-                  Text('A reset password link has been sending to your email.'),
+              content: Text(
+                  'A reset password link has been send to your email or phone number.'),
               actions: [
                 TextButton(
                   onPressed: () {
                     _emailController.clear();
                     Navigator.of(context).pop();
-                    Navigator.of(context)
-                        .pushNamed(RouteGenerator.resetPasswordScreen);
+                    Navigator.of(context).pushNamed(RouteGenerator.loginPage);
                   },
                   child: Text('OK'),
                 )

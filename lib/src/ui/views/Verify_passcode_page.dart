@@ -37,14 +37,15 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       });
 
       print(widget.user.email);
-
       print(widget.user.password);
       print(widget.user.agent);
+      print(widget.user.phoneNumber);
 
       await context
           .read(AuthProvider.authProvider)
           .login(
             User(
+              phoneNumber: widget.user.phoneNumber,
               email: widget.user.email,
               password: widget.user.password,
               agent: widget.user.agent,
@@ -58,7 +59,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('We send you a verification passe code via email.'),
+            content: Text(
+                'A short code has been send  to your phone number or your email.'),
             actions: [
               TextButton(
                 onPressed: () {
