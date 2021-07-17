@@ -940,7 +940,7 @@ class _DashBoardState extends State<DashBoard> {
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+              margin: EdgeInsets.fromLTRB(20, 20, 20, 40),
               // height: 329,
               // width: 323,
               child: Stack(

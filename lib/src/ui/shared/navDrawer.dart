@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 
 class NavDrawer extends StatefulWidget {
@@ -13,6 +14,7 @@ class _NavDrawerState extends State<NavDrawer> {
   void _logout() async {
     try {
       await context.read(AuthProvider.authProvider).logout().then((_) {
+        SharedPrefService().saveBool('isPasscodeVerify', false);
         Navigator.of(context).pop();
         Navigator.of(context).pushNamedAndRemoveUntil(
             RouteGenerator.loginPage, (route) => false);
@@ -38,183 +40,185 @@ class _NavDrawerState extends State<NavDrawer> {
     // var _pageSize = MediaQuery.of(context).size.height;
     // var _notifySize = MediaQuery.of(context).padding.top;
     // var _appBarSize = AppBar().preferredSize.height;
-    return Drawer(
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fitHeight,
-                image: AssetImage('assets/images/bg.png'),
-              ),
-            ),
-          ),
-          _Overlay(),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const SizedBox(height: 24),
-              ListTile(
-                leading: Icon(
-                  Icons.notifications_outlined,
-                  size: 30,
-                  color: Color(0xFFDADADA),
-                ),
-                title: Text(
-                  "Notifications",
-                  style: TextStyle(
-                    color: Color(
-                      0xffdadada,
-                    ),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: "Poppins",
-                  ),
-                ),
-                onTap: () => Navigator.pop(context),
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.chat_outlined,
-                  color: Color(0xFFDADADA),
-                ),
-                title: Text(
-                  "Support",
-                  style: TextStyle(
-                    color: Color(
-                      0xffdadada,
-                    ),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: "Poppins",
-                  ),
-                ),
-                onTap: () => Navigator.pop(context),
-              ),
-              ExpansionTile(
-                collapsedIconColor: Color(0xFFDADADA),
-                iconColor: Color(0xFFDADADA),
-                leading: Icon(
-                  Icons.settings,
-                  color: Color(0xFFDADADA),
-                ),
-                title: Text(
-                  "Settings",
-                  style: TextStyle(
-                    color: Color(
-                      0xffdadada,
-                    ),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: "Poppins",
-                  ),
-                ),
-                childrenPadding: EdgeInsets.only(bottom: 16),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _SubMenuTextButton(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          text: 'Preferences',
-                          fontSize: 16,
-                        ),
-                        _SubMenuTextButton(
-                          onTap: () {},
-                          text: 'General Information',
-                          fontSize: 16,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 24),
-                          child: Column(
-                            children: [
-                              _SubMenu(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                text: 'Police',
-                              ),
-                              _SubMenu(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                text: 'Terms & Conditions',
-                              ),
-                              _SubMenu(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                text: 'License Agreement',
-                              ),
-                              _SubMenu(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                text: 'Product & Service Info',
-                              ),
-                            ],
-                          ),
-                        ),
-                        _SubMenuTextButton(
-                          onTap: () {},
-                          text: 'About',
-                          fontSize: 16,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 24),
-                          child: Column(
-                            children: [
-                              _SubMenu(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                text: 'About Us',
-                              ),
-                              _SubMenu(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                text: 'Follow Us',
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 16,
-            child: ListTile(
-              onTap: _logout,
-              leading: Icon(
-                Icons.logout,
-                color: Color(0xFFDADADA),
-              ),
-              title: Text(
-                "Logout",
-                style: TextStyle(
-                  color: Color(
-                    0xffdadada,
-                  ),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: "Poppins",
+    return SafeArea(
+      child: Drawer(
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fitHeight,
+                  image: AssetImage('assets/images/bg.png'),
                 ),
               ),
             ),
-          )
-        ],
+            _Overlay(),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(height: 24),
+                ListTile(
+                  leading: Icon(
+                    Icons.notifications_outlined,
+                    size: 30,
+                    color: Color(0xFFDADADA),
+                  ),
+                  title: Text(
+                    "Notifications",
+                    style: TextStyle(
+                      color: Color(
+                        0xffdadada,
+                      ),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                  onTap: () => Navigator.pop(context),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.chat_outlined,
+                    color: Color(0xFFDADADA),
+                  ),
+                  title: Text(
+                    "Support",
+                    style: TextStyle(
+                      color: Color(
+                        0xffdadada,
+                      ),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                  onTap: () => Navigator.pop(context),
+                ),
+                ExpansionTile(
+                  collapsedIconColor: Color(0xFFDADADA),
+                  iconColor: Color(0xFFDADADA),
+                  leading: Icon(
+                    Icons.settings,
+                    color: Color(0xFFDADADA),
+                  ),
+                  title: Text(
+                    "Settings",
+                    style: TextStyle(
+                      color: Color(
+                        0xffdadada,
+                      ),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                  childrenPadding: EdgeInsets.only(bottom: 16),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _SubMenuTextButton(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            text: 'Preferences',
+                            fontSize: 16,
+                          ),
+                          _SubMenuTextButton(
+                            onTap: () {},
+                            text: 'General Information',
+                            fontSize: 16,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 24),
+                            child: Column(
+                              children: [
+                                _SubMenu(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'Police',
+                                ),
+                                _SubMenu(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'Terms & Conditions',
+                                ),
+                                _SubMenu(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'License Agreement',
+                                ),
+                                _SubMenu(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'Product & Service Info',
+                                ),
+                              ],
+                            ),
+                          ),
+                          _SubMenuTextButton(
+                            onTap: () {},
+                            text: 'About',
+                            fontSize: 16,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 24),
+                            child: Column(
+                              children: [
+                                _SubMenu(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'About Us',
+                                ),
+                                _SubMenu(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'Follow Us',
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 16,
+              child: ListTile(
+                onTap: _logout,
+                leading: Icon(
+                  Icons.logout,
+                  color: Color(0xFFDADADA),
+                ),
+                title: Text(
+                  "Logout",
+                  style: TextStyle(
+                    color: Color(
+                      0xffdadada,
+                    ),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Poppins",
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

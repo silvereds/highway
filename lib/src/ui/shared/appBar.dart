@@ -8,7 +8,7 @@ class AppBarView extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 8,
+      elevation: 4,
       brightness: Brightness.light,
       iconTheme: IconThemeData(
         color: Colors.black,
