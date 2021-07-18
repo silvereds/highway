@@ -213,10 +213,9 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                           color: ThemeColors.Buttons,
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'A short code has been send to your phone number via Email. Please enter the code below to verify your identity',
-                        textAlign: TextAlign.center,
+                      SizedBox(height: 20),
+                      Text(
+                        "A short code has been send to your email or sms, please enter the code to verify your identity",
                         style: TextStyle(
                           color: ThemeColors.VerifyIdentityText,
                           fontSize: 18,

@@ -32,6 +32,7 @@ class RouteGenerator {
   static const settingPreference = '/settingPreference';
   static const policyPage = '/policyPage';
   static const conversationDetails = '/conversationDetailsPage';
+  
 
   RouteGenerator._();
 
@@ -138,6 +139,10 @@ class RouteGenerator {
       case conversationDetails:
         return MaterialPageRoute<dynamic>(
           builder: (_) => ConversationDetails(),
+        );
+        case alldevicesPage: 
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => AllDevicesPage(),
         );
       default:
         throw RouteException("Route Not found");

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
@@ -207,6 +208,7 @@ class _LoginPageState extends State<LoginPage> {
 
                                     return Form(
                                       key: _formKey,
+
                                       child: Column(
                                         children: [
                                           TextFormField(
@@ -231,9 +233,8 @@ class _LoginPageState extends State<LoginPage> {
                                                 color: Color(0xFFAAAAAA),
                                                 fontFamily: 'Roboto',
                                               ),
-                                              border: InputBorder.none,
                                             ),
-                                          ),
+
                                           Divider(color: Colors.grey),
                                           TextFormField(
                                             controller: _passwordController,
@@ -251,80 +252,82 @@ class _LoginPageState extends State<LoginPage> {
                                                 color: Color(0xFFAAAAAA),
                                                 fontFamily: 'Roboto',
                                               ),
-                                              border: InputBorder.none,
+                                              onEditingComplete: () => TextInput
+                                                  .finishAutofillContext(),
                                             ),
-                                          ),
-                                          Divider(color: Colors.grey),
-                                          SizedBox(height: 30),
-                                          Container(
-                                            alignment: Alignment.bottomRight,
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  height: 35.02,
-                                                  width: 120,
-                                                  decoration: BoxDecoration(
-                                                    color: Color(
-                                                      0xff4eb181,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      4,
-                                                    ),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Color(
-                                                          0x3d109cf1,
-                                                        ),
-                                                        blurRadius: 10,
+                                            Divider(color: Colors.grey),
+                                            SizedBox(height: 30),
+                                            Container(
+                                              alignment: Alignment.bottomRight,
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    height: 35.02,
+                                                    width: 120,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(
+                                                        0xff4eb181,
                                                       ),
-                                                    ],
-                                                  ),
-                                                  child: FlatButton(
-                                                    shape:
-                                                        RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              5.0),
-                                                      side: BorderSide(
-                                                          color: ThemeColors
-                                                              .Buttons),
+                                                        4,
+                                                      ),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Color(
+                                                            0x3d109cf1,
+                                                          ),
+                                                          blurRadius: 10,
+                                                        ),
+                                                      ],
                                                     ),
+                                                    child: FlatButton(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5.0),
+                                                        side: BorderSide(
+                                                            color: ThemeColors
+                                                                .Buttons),
+                                                      ),
+                                                      child: Text(
+                                                        'Login',
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontFamily: 'Poppins',
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pushNamed(AppRoutes
+                                                                .verifyPasscodePage);
+                                                      },
+                                                      color: Color(0xFF4EB181),
+                                                      textColor:
+                                                          Color(0xFFFFFFFF),
+                                                      height: 33,
+                                                    ),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () async {
+                                                      Navigator.of(context)
+                                                          .pushNamed(AppRoutes
+                                                              .forgotPasswordScreen);
+                                                    },
                                                     child: Text(
-                                                      'Login',
+                                                      'Forgot password?',
                                                       style: TextStyle(
                                                         fontSize: 16,
-                                                        fontFamily: 'Poppins',
+                                                        color: Colors.blue,
                                                       ),
                                                     ),
-                                                    onPressed: validation
-                                                            .isValidateAuthForm
-                                                        ? _loginWithEmailAndPassword
-                                                        : null,
-                                                    color: Color(0xFF4EB181),
-                                                    textColor:
-                                                        Color(0xFFFFFFFF),
-                                                    height: 33,
                                                   ),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () async {
-                                                    Navigator.of(context)
-                                                        .pushNamed(AppRoutes
-                                                            .forgotPasswordScreen);
-                                                  },
-                                                  child: Text(
-                                                    'Forgot password?',
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: Colors.blue,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     );
                                   }),
