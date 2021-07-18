@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
@@ -21,7 +22,7 @@ class VerifyPasscodePage extends StatefulWidget {
 class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final pinCodeController = TextEditingController();
+  final _pinCodeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   var _isLoading = false;
 
@@ -78,7 +79,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
-          e.toString(),
+          parseApiError(e),
           style: TextStyle(
             color: Colors.white,
             fontSize: 14,
@@ -142,7 +143,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-            e.toString(),
+            parseApiError(e),
             style: TextStyle(
               color: Colors.white,
               fontSize: 14,
@@ -158,7 +159,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   @override
   void dispose() {
     super.dispose();
-    pinCodeController.dispose();
+    _pinCodeController.dispose();
   }
 
   @override
@@ -233,6 +234,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       Form(
                         key: _formKey,
                         child: PinCodeTextField(
+                            controller: _pinCodeController,
                             appContext: context,
                             autoFocus: true,
                             validator: (v) {
