@@ -5,8 +5,10 @@ import 'json_parsers/json_parser.dart';
 class RequestREST {
   final String endpoint;
   final Map<String, dynamic> data;
+  final Map<String, dynamic> params;
 
   const RequestREST({
+    this.params,
     this.endpoint,
     this.data = const {},
   });
@@ -15,8 +17,8 @@ class RequestREST {
   static final _client = Dio(
     BaseOptions(
       baseUrl: "https://dev-api.highweh.com",
-      connectTimeout: 3000, // 3 seconds
-      receiveTimeout: 3000, // 3 seconds
+      connectTimeout: 5000, // 5 seconds
+      receiveTimeout: 5000, // 5 seconds
       headers: {
         'content-Type': 'application/json; charset=UTF-8',
       },
@@ -37,6 +39,7 @@ class RequestREST {
     final response = await _client.post<String>(
       endpoint,
       data: data,
+      queryParameters: params,
     );
     return parser.parseFromJson(response.data);
   }

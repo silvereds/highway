@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../routes.dart';
 
@@ -34,12 +34,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       setState(() {
         _isLoading = true;
       });
-
-      print(widget.user.email);
-
-      print(widget.user.password);
-      print(widget.user.agent);
-
       await context
           .read(AuthProvider.authProvider)
           .login(
@@ -93,12 +87,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
     String agent,
   ) async {
     FocusScope.of(context).unfocus();
-
-    print(widget.user.email);
-
-    print(widget.user.password);
-    print(widget.user.agent);
-
     try {
       setState(() {
         _isLoading = true;
@@ -110,9 +98,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         setState(() {
           _isLoading = false;
         });
-
         SharedPrefService().saveBool('isPasscodeVerify', true);
-
         Navigator.of(context).pushNamedAndRemoveUntil(
             RouteGenerator.homeScreen, (route) => false);
       });

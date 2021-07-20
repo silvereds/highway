@@ -58,7 +58,9 @@ class RouteGenerator {
         );
       case resetPasswordScreen:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => ResetPasswordScreen(),
+          builder: (_) => ResetPasswordScreen(
+            email: args as String,
+          ),
         );
       case homeScreen:
         return MaterialPageRoute<dynamic>(

@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
 
-  void _getDevicename() async {
+  void _getDeviceName() async {
     _deviceName = await SharedPrefService().getString('deviceName');
     print(_deviceName);
   }
@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _getDevicename();
+    _getDeviceName();
   }
 
   @override
@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-// Loginn user with email and password
+// Login user with email and password
   void _loginWithEmailAndPassword() async {
     FocusScope.of(context).unfocus();
 
@@ -58,7 +58,6 @@ class _LoginPageState extends State<LoginPage> {
         _isLoading = true;
       });
 
-      print(_password);
       try {
         await context
             .read(AuthProvider.authProvider)
@@ -87,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                       RouteGenerator.verifyPasscodePage,
                       arguments: User(
                         email: _email.trim(),
-                        password: passwordController.text,
+                        password: _password,
                         agent: _deviceName,
                       ),
                     );
@@ -165,16 +164,14 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const SizedBox(height: 55),
-                          Text(
+                          const Text(
                             'Login with:',
                             style: TextStyle(
                               color: Color(0xFF4EB181),
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
+                          const SizedBox(height: 10),
                           Container(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,

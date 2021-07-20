@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
@@ -25,9 +24,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   // Reset user password
   void _resetPassword() async {
     FocusScope.of(context).unfocus();
-
-    print(_email);
-
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       setState(() {
@@ -51,8 +47,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   onPressed: () {
                     _emailController.clear();
                     Navigator.of(context).pop();
-                    Navigator.of(context)
-                        .pushNamed(RouteGenerator.resetPasswordScreen);
+                    Navigator.of(context).pushNamed(
+                        RouteGenerator.resetPasswordScreen,
+                        arguments: _email);
                   },
                   child: Text('OK'),
                 )

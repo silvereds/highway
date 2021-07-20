@@ -44,7 +44,11 @@ class Auth implements AuthRepository {
 
   @override
   Future<void> verifyPasscode(
-      String email, String password, String passCode, String agent) async {
+    String email,
+    String password,
+    String passCode,
+    String agent,
+  ) async {
     try {
       final response = await RequestREST(
         endpoint: '/auth/verify-passcode',
@@ -76,13 +80,22 @@ class Auth implements AuthRepository {
   }
 
   @override
-  Future<void> resetPassword(String password, String confirmPassword) async {
+  Future<void> resetPassword(
+    String email,
+    String password,
+    String agent,
+    String nonce,
+  ) async {
     try {
-      final response =
-          await RequestREST(endpoint: '/auth/reset-password', data: {
-        'password': password,
-        'confirmPassword': confirmPassword,
-      }).executePost<LoginResponse>(LoginResponseParser());
+      final response = await RequestREST(
+        endpoint: '/auth/reset-password/$nonce',
+        data: {
+          'password': password,
+          'agent': agent,
+          'email': email,
+          'nonce': nonce,
+        },
+      ).executePost<LoginResponse>(LoginResponseParser());
 
       print(response.toJson());
     } on DioError catch (dioError) {

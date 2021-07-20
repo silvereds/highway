@@ -26,6 +26,7 @@ void _getDeviceInfo() async {
     deviceName = androidDeviceInfo.model;
   } else if (Platform.isIOS) {
     var iosDeviceInfo = await device.iosInfo;
+
     deviceName = iosDeviceInfo.utsname.machine;
   }
 
