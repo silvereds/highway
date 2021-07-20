@@ -14,9 +14,9 @@ class _AllTransactionsPageState extends State<AllTransactionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F8),
-      drawer: NavDrawer(),
-      appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+      // drawer: NavDrawer(),
+      // appBar: AppBarView(),
+      // bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: SingleChildScrollView(
           child: Container(

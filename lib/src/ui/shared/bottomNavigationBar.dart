@@ -25,7 +25,7 @@ class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
   // getBody() {
   //   if (this._currentIndex == 0) {
   //     Navigator.pushNamed(context, AppRoutes.loginPage);
-  //   } else if (this._currentIndex == 1) {
+  //   } else if (this._currenatIndex == 1) {
   //      Navigator.pushNamed(context, AppRoutes.loginPage);
   //   } else {
   //     Navigator.pushNamed(context, AppRoutes.loginPage);

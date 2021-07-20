@@ -13,6 +13,7 @@ class VerifyPasscodePage extends StatefulWidget {
   final User user;
 
   const VerifyPasscodePage({Key key, this.user}) : super(key: key);
+
   @override
   _VerifyPasscodePageState createState() => _VerifyPasscodePageState();
 }
@@ -37,9 +38,12 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       await context
           .read(AuthProvider.authProvider)
           .login(
-            widget.user.email,
-            widget.user.password,
-            widget.user.agent,
+            User(
+              phoneNumber: widget.user.phoneNumber,
+              email: widget.user.email,
+              password: widget.user.password,
+              agent: widget.user.agent,
+            ),
           )
           .then((_) {
         setState(() {
@@ -49,7 +53,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('We send you a verification passe code via email.'),
+            content: Text(
+                'A short code has been send  to your phone number or your email.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -93,8 +98,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       });
       await context
           .read(AuthProvider.authProvider)
-          .verifyPasscode(email, password, passcode, agent)
-          .then((value) {
+          .verifyPasscode(email, password, passcode.toUpperCase(), agent)
+          .then((_) {
         setState(() {
           _isLoading = false;
         });
@@ -193,10 +198,9 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                           color: ThemeColors.Buttons,
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'A short code has been send to your phone number via Email. Please enter the code below to verify your identity',
-                        textAlign: TextAlign.center,
+                      SizedBox(height: 20),
+                      Text(
+                        "A short code has been send to your email or sms, please enter the code to verify your identity",
                         style: TextStyle(
                           color: ThemeColors.VerifyIdentityText,
                           fontSize: 18,

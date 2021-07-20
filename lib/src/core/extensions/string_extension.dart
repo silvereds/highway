@@ -16,7 +16,7 @@ extension extString on String {
   }
 
   bool get isValidPhone {
-    final phoneRegExp = RegExp(r"^\+?0[0-9]{10}$");
+    final phoneRegExp = RegExp(r"^\+?0[0-9]{13}$");
     return phoneRegExp.hasMatch(this);
   }
 }

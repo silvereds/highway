@@ -26,8 +26,7 @@ void _getDeviceInfo() async {
     deviceName = androidDeviceInfo.model;
   } else if (Platform.isIOS) {
     var iosDeviceInfo = await device.iosInfo;
-
-    deviceName = iosDeviceInfo.utsname.machine;
+    deviceName = iosDeviceInfo.model;
   }
 
   SharedPrefService().saveString('deviceName', deviceName);
@@ -48,6 +47,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

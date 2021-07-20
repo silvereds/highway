@@ -12,13 +12,13 @@ class _AllDevicesPageState extends State<AllDevicesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
-      backgroundColor: Color(0xFFF5F6F8),
-      appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+      // drawer: NavDrawer(),
+      // backgroundColor: Color(0xFFF5F6F8),
+      // appBar: AppBarView(),
+      // bottomNavigationBar: BottomNavigationBarView(),
       body: Stack(children: [
         Positioned(
-          top: 20,
+          top: 15,
           right: 30,
           child: Container(
             width: 127,

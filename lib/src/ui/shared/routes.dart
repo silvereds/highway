@@ -1,9 +1,6 @@
 
 
 
-import 'package:mobile/src/ui/views/policy_page.dart';
-import 'package:mobile/src/ui/views/views.dart';
-
 
 class AppRoutes {
   static final splashScreenPage = '/';
@@ -35,4 +32,5 @@ class AppRoutes {
   static final settingPreference = '/settingPreference';
   static final policyPage = '/policyPage';
   static final conversationDetails = '/conversationDetailsPage';
+  static final allMaps = '/allMapsPage';
 }

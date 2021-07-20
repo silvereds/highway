@@ -19,24 +19,18 @@ class FormProvider extends ChangeNotifier {
   Validation _newConfirmPassword = Validation(null, null);
 
   Validation get email => _email;
-
   Validation get password => _password;
-
   Validation get phone => _phone;
-
   Validation get name => _name;
-
   Validation get resetPasswordEmail => _resetPasswordEmail;
-
   Validation get newPassword => _newPassword;
-
   Validation get newConfirmPassword => _newConfirmPassword;
 
-  void validateEmail(String val) {
-    if (val.isValidEmail) {
+  void validateEmailOrPhoneNumber(String val) {
+    if (val.isValidEmail || val.isValidPhone) {
       _email = Validation(val, null);
     } else {
-      _email = Validation(null, 'Please Enter a Valid Email');
+      _email = Validation(null, 'Please enter a calid Email or Phone number');
     }
     notifyListeners();
   }

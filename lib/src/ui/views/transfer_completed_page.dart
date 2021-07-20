@@ -15,7 +15,7 @@ class _TransferCompletedPageState extends State<TransferCompletedPage> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+    //  bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: Container(
           height: 470,
@@ -323,8 +323,7 @@ class _TransferCompletedPageState extends State<TransferCompletedPage> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.transactionDetailsPage);
+                            Navigator.pushNamed(context, AppRoutes.homeScreen);;
                           },
                           color: Color(0xFF4EB181),
                           textColor: Colors.white,

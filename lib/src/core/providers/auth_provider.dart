@@ -12,12 +12,11 @@ abstract class AuthProvider {
 
 class Auth implements AuthRepository {
   @override
-  Future<void> login(String email, String password, String agent,
-      {String passcode}) async {
+  Future<void> login(User user) async {
     try {
       final response = await RequestREST(
         endpoint: '/auth/login',
-        data: {'email': email, 'password': password, 'agent': agent},
+        data: user.toJson(),
       ).executePost<LoginResponse>(LoginResponseParser());
 
       print(response.toJson());

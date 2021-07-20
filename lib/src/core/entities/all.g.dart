@@ -352,6 +352,7 @@ Map<String, dynamic> _$ValidationToJson(Validation instance) =>
 
 LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
   return LoginResponse(
+    error: json['error'] as String,
     message: json['message'] as String,
     accessToken: json['accessToken'] as String,
     expiresIn: json['expiresIn'] as int,
@@ -367,6 +368,7 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
+      'error': instance.error,
       'accessToken': instance.accessToken,
       'expiresIn': instance.expiresIn,
       'refreshToken': instance.refreshToken,

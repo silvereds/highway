@@ -18,7 +18,7 @@ class _ConfirmTransferPageState extends State<ConfirmTransferPage> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+     // bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: Container(
           height: 437,
@@ -326,7 +326,7 @@ class _ConfirmTransferPageState extends State<ConfirmTransferPage> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         onPressed: () {
-                          print('Cancel');
+                         Navigator.pushNamed(context, AppRoutes.homeScreen);
                         },
                         color: Color(0xFFF44336),
                         textColor: Colors.white,

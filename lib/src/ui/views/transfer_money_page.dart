@@ -16,10 +16,10 @@ class _TransferMoneyPageState extends State<TransferMoneyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F6F8),
-      drawer: NavDrawer(),
+      // backgroundColor: Color(0xFFF5F6F8),
+       drawer: NavDrawer(),
       appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+      // bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: Container(
           margin: EdgeInsets.fromLTRB(20, 30, 20, 20),
@@ -445,7 +445,7 @@ class _TransferMoneyPageState extends State<TransferMoneyPage> {
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   onPressed: () {
-                                    print('Cancel');
+                                    Navigator.pop(context);
                                   },
                                   color: Color(0xFFF44336),
                                   textColor: Colors.white,

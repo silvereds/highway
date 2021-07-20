@@ -362,7 +362,7 @@ class User {
       this.status,
       this.subdivision,
       this.authorization,
-      this.agent}) {}
+      this.agent});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

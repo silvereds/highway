@@ -62,11 +62,14 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                         context, AppRoutes.accountsView);
                                   },
                                 ),
-                                Text("Back",
-                                    style: TextStyle(
-                                        color: Color(0xFFFFFFFF),
-                                        fontSize: 14,
-                                        fontFamily: 'Poppins'))
+                                Text(
+                                  "Back",
+                                  style: TextStyle(
+                                    color: Color(0xFFFFFFFF),
+                                    fontSize: 14,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                )
                               ],
                             ),
                             decoration: BoxDecoration(
@@ -100,30 +103,20 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                               color: Color(
                                 0xff4eb181,
                               ),
-                              borderRadius: BorderRadius.circular(
-                                3,
-                              ),
+                              borderRadius: BorderRadius.circular(3),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Container(
                         decoration: BoxDecoration(
-                          color: Color(
-                            0xFFFFFFFF,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            6,
-                          ),
+                          color: const Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(6),
                           boxShadow: [
                             BoxShadow(
-                              color: Color(
-                                0x23000000,
-                              ),
+                              color: const Color(0x23000000),
                               offset: Offset(
                                 0,
                                 1,
@@ -188,9 +181,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                       TextSpan(
                                         text: 'Jane Doe',
                                         style: TextStyle(
-                                          color: Color(
-                                            0xff192a3e,
-                                          ),
+                                          color: const Color(0xff192a3e),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,
                                           fontFamily: "Poppins",
@@ -207,10 +198,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                     children: <TextSpan>[
                                       TextSpan(
                                         text: 'Alias/Tag:  ',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff818e9b,
-                                          ),
+                                        style: const TextStyle(
+                                          color: Color(0xff818e9b),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,
                                           fontFamily: "Poppins",
@@ -218,10 +207,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                       ),
                                       TextSpan(
                                         text: 'Personal',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff2f80ed,
-                                          ),
+                                        style: const TextStyle(
+                                          color: Color(0xff2f80ed),
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                           fontFamily: "Poppins",
@@ -231,9 +218,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 8,
-                              ),
+                              const SizedBox(height: 8),
                               SizedBox(
                                 width: 200,
                                 child: RichText(
@@ -241,7 +226,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                     children: <TextSpan>[
                                       TextSpan(
                                         text: 'Account Balance ',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Color(
                                             0xff818e9b,
                                           ),
@@ -252,10 +237,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                       ),
                                       TextSpan(
                                         text: 'FCFA 32,850',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff192a3e,
-                                          ),
+                                        style: const TextStyle(
+                                          color: Color(0xff192a3e),
                                           fontSize: 22,
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins",
@@ -265,9 +248,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 8,
-                              ),
+                              const SizedBox(height: 8),
                               SizedBox(
                                 width: 200,
                                 child: RichText(
