@@ -55,7 +55,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('We send you a verification passe code via email.'),
+            content: Text('We send you a verification passe code via email or sms.'),
             actions: [
               TextButton(
                 onPressed: () {

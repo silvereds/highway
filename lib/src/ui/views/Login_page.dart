@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
             context: context,
             builder: (context) => AlertDialog(
               content: Text(
-                  'A verification code has been send to your email or sms. Please fill the next page with that code'),
+                  'A verification code has been send to your mail or sms. Please fill the next page with that code'),
               actions: [
                 TextButton(
                   onPressed: () {

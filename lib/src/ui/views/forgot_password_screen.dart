@@ -45,7 +45,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             context: context,
             builder: (context) => AlertDialog(
               content:
-                  Text('A reset password link has been sending to your email.'),
+                  Text('A reset password link has been send to your email or sms.'),
               actions: [
                 TextButton(
                   onPressed: () {
