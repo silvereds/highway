@@ -160,17 +160,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                                 .validateResetPasswordEmail(v),
                                             decoration: InputDecoration(
                                               errorText: validation.email.error,
-                                              icon: Icon(Icons.person),
+                                              prefixIcon:
+                                                  const Icon(Icons.person),
                                               hintText: 'Email or Phone number',
                                               hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xFFAAAAAA),
                                                 fontFamily: 'Roboto',
                                               ),
-                                              border: InputBorder.none,
                                             ),
                                           ),
-                                          Divider(color: Colors.grey),
                                           SizedBox(height: 30),
                                           Container(
                                             alignment: Alignment.bottomRight,

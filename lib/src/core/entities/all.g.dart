@@ -378,3 +378,39 @@ Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
       'sessionState': instance.sessionState,
       'scope': instance.scope,
     };
+
+ApiException _$ApiExceptionFromJson(Map<String, dynamic> json) {
+  return ApiException(
+    code: json['code'] as int,
+    message: json['message'] as String,
+    name: json['name'] as String,
+    status: json['status'] as int,
+  );
+}
+
+Map<String, dynamic> _$ApiExceptionToJson(ApiException instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'message': instance.message,
+      'code': instance.code,
+      'status': instance.status,
+    };
+
+ApiDataValidationException _$ApiDataValidationExceptionFromJson(
+    Map<String, dynamic> json) {
+  return ApiDataValidationException(
+    statusCode: json['statusCode'] as int,
+    message: json['message'] as String,
+    rawErrors: (json['rawErrors'] as Map<String, dynamic>)?.map(
+      (k, e) => MapEntry(k, (e as List)?.map((e) => e as String)?.toList()),
+    ),
+  );
+}
+
+Map<String, dynamic> _$ApiDataValidationExceptionToJson(
+        ApiDataValidationException instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'message': instance.message,
+      'rawErrors': instance.rawErrors,
+    };

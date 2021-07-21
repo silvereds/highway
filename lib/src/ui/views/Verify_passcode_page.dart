@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
@@ -21,7 +22,7 @@ class VerifyPasscodePage extends StatefulWidget {
 class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final pinCodeController = TextEditingController();
+  final _pinCodeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   var _isLoading = false;
 
@@ -72,7 +73,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
-          e.toString(),
+          parseApiError(e),
           style: TextStyle(
             color: Colors.white,
             fontSize: 14,
@@ -92,51 +93,54 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
     String agent,
   ) async {
     FocusScope.of(context).unfocus();
-    try {
-      setState(() {
-        _isLoading = true;
-      });
-      await context
-          .read(AuthProvider.authProvider)
-          .verifyPasscode(email, password, passcode.toUpperCase(), agent)
-          .then((_) {
+
+    if (_formKey.currentState.validate()) {
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+        await context
+            .read(AuthProvider.authProvider)
+            .verifyPasscode(email, password, passcode.toUpperCase(), agent)
+            .then((_) {
+          setState(() {
+            _isLoading = false;
+          });
+          SharedPrefService().saveBool('isPasscodeVerify', true);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              RouteGenerator.homeScreen, (route) => false);
+        });
+      } catch (e) {
+        final String message = 'Please provide a valid passe code.';
         setState(() {
           _isLoading = false;
         });
-        SharedPrefService().saveBool('isPasscodeVerify', true);
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            RouteGenerator.homeScreen, (route) => false);
-      });
-    } catch (e) {
-      final String message = 'Please provide a valid passe code.';
-      setState(() {
-        _isLoading = false;
-      });
 
-      if (e.toString().isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            message,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+        if (e.toString().isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              message,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          backgroundColor: Colors.red,
-        ));
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            e.toString(),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+            backgroundColor: Colors.red,
+          ));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              parseApiError(e),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          backgroundColor: Colors.red,
-        ));
+            backgroundColor: Colors.red,
+          ));
+        }
       }
     }
   }
@@ -144,7 +148,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   @override
   void dispose() {
     super.dispose();
-    pinCodeController.dispose();
+    _pinCodeController.dispose();
   }
 
   @override
@@ -218,6 +222,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       Form(
                         key: _formKey,
                         child: PinCodeTextField(
+                            controller: _pinCodeController,
                             appContext: context,
                             autoFocus: true,
                             validator: (v) {

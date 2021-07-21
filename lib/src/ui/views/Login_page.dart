@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
   var _isPasscodeVerify;
 
-  void _getDeviceName() async {
+  void _getUserAgent() async {
     _userAgent = await SharedPrefService().getString('deviceName');
     print(_userAgent);
   }
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     // _isPassCodeVerify();
-    _getDeviceName();
+    _getUserAgent();
   }
 
   @override
@@ -123,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              e.toString(),
+              parseApiError(e),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
@@ -207,7 +208,6 @@ class _LoginPageState extends State<LoginPage> {
 
                                     return Form(
                                       key: _formKey,
-
                                       child: Column(
                                         children: [
                                           TextFormField(
@@ -225,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
                                                     : _email = val,
                                             decoration: InputDecoration(
                                               errorText: validation.email.error,
-                                              icon: Icon(Icons.person),
+                                              prefixIcon: Icon(Icons.person),
                                               hintText: 'Email or Phone number',
                                               hintStyle: TextStyle(
                                                 fontSize: 14,
@@ -233,8 +233,8 @@ class _LoginPageState extends State<LoginPage> {
                                                 fontFamily: 'Roboto',
                                               ),
                                             ),
-
-                                          Divider(color: Colors.grey),
+                                          ),
+                                          const SizedBox(height: 10),
                                           TextFormField(
                                             controller: _passwordController,
                                             onSaved: (val) => _password = val,
@@ -244,89 +244,85 @@ class _LoginPageState extends State<LoginPage> {
                                             decoration: InputDecoration(
                                               errorText:
                                                   validation.password.error,
-                                              icon: Icon(Icons.lock),
+                                              prefixIcon: Icon(Icons.lock),
                                               hintText: 'Password',
                                               hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xFFAAAAAA),
                                                 fontFamily: 'Roboto',
                                               ),
-                                              onEditingComplete: () => TextInput
-                                                  .finishAutofillContext(),
                                             ),
-                                            Divider(color: Colors.grey),
-                                            SizedBox(height: 30),
-                                            Container(
-                                              alignment: Alignment.bottomRight,
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    height: 35.02,
-                                                    width: 120,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(
-                                                        0xff4eb181,
+                                          ),
+                                          SizedBox(height: 30),
+                                          Container(
+                                            alignment: Alignment.bottomRight,
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 35.02,
+                                                  width: 120,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(
+                                                      0xff4eb181,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      4,
+                                                    ),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Color(
+                                                          0x3d109cf1,
+                                                        ),
+                                                        blurRadius: 10,
                                                       ),
+                                                    ],
+                                                  ),
+                                                  child: FlatButton(
+                                                    shape:
+                                                        RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                        4,
-                                                      ),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: Color(
-                                                            0x3d109cf1,
-                                                          ),
-                                                          blurRadius: 10,
-                                                        ),
-                                                      ],
+                                                              5.0),
+                                                      side: BorderSide(
+                                                          color: ThemeColors
+                                                              .Buttons),
                                                     ),
-                                                    child: FlatButton(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.0),
-                                                        side: BorderSide(
-                                                            color: ThemeColors
-                                                                .Buttons),
-                                                      ),
-                                                      child: Text(
-                                                        'Login',
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          fontFamily: 'Poppins',
-                                                        ),
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.of(context)
-                                                            .pushNamed(AppRoutes
-                                                                .verifyPasscodePage);
-                                                      },
-                                                      color: Color(0xFF4EB181),
-                                                      textColor:
-                                                          Color(0xFFFFFFFF),
-                                                      height: 33,
-                                                    ),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () async {
-                                                      Navigator.of(context)
-                                                          .pushNamed(AppRoutes
-                                                              .forgotPasswordScreen);
-                                                    },
                                                     child: Text(
-                                                      'Forgot password?',
+                                                      'Login',
                                                       style: TextStyle(
                                                         fontSize: 16,
-                                                        color: Colors.blue,
+                                                        fontFamily: 'Poppins',
                                                       ),
                                                     ),
+                                                    onPressed: validation
+                                                            .isValidateAuthForm
+                                                        ? _loginWithEmailAndPassword
+                                                        : null,
+                                                    color: Color(0xFF4EB181),
+                                                    textColor:
+                                                        Color(0xFFFFFFFF),
+                                                    height: 33,
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () async {
+                                                    Navigator.of(context)
+                                                        .pushNamed(AppRoutes
+                                                            .forgotPasswordScreen);
+                                                  },
+                                                  child: Text(
+                                                    'Forgot password?',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     );
                                   }),

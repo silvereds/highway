@@ -413,3 +413,42 @@ class LoginResponse {
 
   Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 }
+
+@JsonSerializable()
+class ApiException {
+  String name;
+  String message;
+  int code;
+  int status;
+
+  ApiException({this.code, this.message, this.name, this.status});
+
+  factory ApiException.fromJson(Map<String, dynamic> json) =>
+      _$ApiExceptionFromJson(json);
+  Map<String, dynamic> toJson() => _$ApiExceptionToJson(this);
+}
+
+@JsonSerializable()
+class ApiDataValidationException {
+  // @JsonKey(name: "status_code")
+  int statusCode;
+  String message;
+  // @JsonKey(name: "errors")
+  Map<String, List<String>> rawErrors;
+
+  ApiDataValidationException({
+    this.statusCode,
+    this.message,
+    this.rawErrors,
+  });
+
+  factory ApiDataValidationException.fromJson(Map<String, dynamic> json) =>
+      _$ApiDataValidationExceptionFromJson(json);
+  Map<String, dynamic> toJson() => _$ApiDataValidationExceptionToJson(this);
+
+  String get errors {
+    List<String> result = [];
+    rawErrors.forEach((k, v) => result.add(v.map((error) => error).join("\n")));
+    return result.join("\n");
+  }
+}

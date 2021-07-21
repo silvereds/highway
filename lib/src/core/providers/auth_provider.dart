@@ -1,6 +1,4 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/src/core/api/api_exceptions.dart';
 import 'package:mobile/src/core/api/http_client.dart';
 import 'package:mobile/src/core/api/json_parsers/reponse_parser.dart';
 import 'package:mobile/src/core/entities/all.dart';
@@ -20,8 +18,8 @@ class Auth implements AuthRepository {
       ).executePost<LoginResponse>(LoginResponseParser());
 
       print(response.toJson());
-    } on DioError catch (dioError) {
-      throw ApiException.fromDioError(dioError);
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -36,8 +34,8 @@ class Auth implements AuthRepository {
       ).executePost<LoginResponse>(LoginResponseParser());
 
       print(response.toJson());
-    } on DioError catch (dioError) {
-      throw ApiException.fromDioError(dioError);
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -60,8 +58,8 @@ class Auth implements AuthRepository {
       ).executePost<LoginResponse>(LoginResponseParser());
 
       print(response.toJson());
-    } on DioError catch (dioError) {
-      throw ApiException.fromDioError(dioError);
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -73,8 +71,8 @@ class Auth implements AuthRepository {
       ).executePost<LoginResponse>(LoginResponseParser());
 
       print(response.toJson());
-    } on DioError catch (dioError) {
-      throw ApiException.fromDioError(dioError);
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -97,8 +95,8 @@ class Auth implements AuthRepository {
       ).executePost<LoginResponse>(LoginResponseParser());
 
       print(response.toJson());
-    } on DioError catch (dioError) {
-      throw ApiException.fromDioError(dioError);
+    } catch (e) {
+      throw e;
     }
   }
 }
