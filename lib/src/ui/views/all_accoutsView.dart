@@ -47,7 +47,7 @@ class _AccountsViewState extends State<AccountsView> {
                     ),
                   ),
 
-                  Divider(
+                  const Divider(
                     color: Color(
                       0xFFD2D2D2,
                     ),
@@ -55,41 +55,18 @@ class _AccountsViewState extends State<AccountsView> {
                     endIndent: 5,
                   ),
 
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   // contiunue here
                   Container(
-                    //  color: Colors.blue,
-                    width: 326,
-                    height: 133,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Color(
-                                    0xFF4EB181,
-                                  ),
-                                  borderRadius: BorderRadius.circular(4)),
-                              height: 15.81,
-                              width: 93.43,
-                              child: Center(
-                                  child: SizedBox(
-                                child: Text(
-                                  "Active",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Poppins",
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                width: 140,
-                                height: 22,
-                              )),
+                            AccountStatus(
+                              status: "Active",
                             ),
                             SizedBox(
                               child: Text(
@@ -107,14 +84,13 @@ class _AccountsViewState extends State<AccountsView> {
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
+                        const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   "CMR12344459876-01",
@@ -125,9 +101,7 @@ class _AccountsViewState extends State<AccountsView> {
                                     fontFamily: "Poppins",
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ),
+                                const SizedBox(height: 5),
                                 RichText(
                                   text: TextSpan(
                                     children: <TextSpan>[
@@ -152,9 +126,7 @@ class _AccountsViewState extends State<AccountsView> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              width: 15,
-                            ),
+                            const SizedBox(width: 15),
                             Text(
                               "FCFA  24,000",
                               style: TextStyle(
@@ -171,53 +143,19 @@ class _AccountsViewState extends State<AccountsView> {
                       ],
                     ),
                   ),
-                  Divider(
-                    color: Color(
-                      0xFFD2D2D2,
-                    ),
-                    indent: 5,
-                    endIndent: 5,
-                  ),
-
+                  const SizedBox(height: 15),
+                  const Divider(),
+                  const SizedBox(height: 8),
                   Container(
-                    //  color: Colors.blue,
-                    width: 326,
-                    height: 133,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Color(
-                                    0xFFF44336,
-                                  ),
-                                  borderRadius: BorderRadius.circular(4)),
-                              height: 15.81,
-                              width: 93.43,
-                              child: Center(
-                                  child: SizedBox(
-                                child: Text(
-                                  "Blocked",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Poppins",
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                width: 140,
-                                height: 22,
-                              )),
-                            ),
-                          ],
+                        AccountStatus(
+                          status: "Blocked",
+                          color: Colors.red,
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
+                        const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -233,19 +171,18 @@ class _AccountsViewState extends State<AccountsView> {
                                     fontFamily: "Poppins",
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ),
+                                const SizedBox(height: 5),
                                 RichText(
                                   text: TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
                                         text: 'Jane Doe ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14,
-                                            color: Color(0xFF000000),
-                                            fontFamily: 'Poppins'),
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 14,
+                                          color: const Color(0xFF000000),
+                                          fontFamily: 'Poppins',
+                                        ),
                                       ),
                                       TextSpan(
                                         text: '-  Business',
@@ -260,9 +197,7 @@ class _AccountsViewState extends State<AccountsView> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              width: 15,
-                            ),
+                            const SizedBox(width: 15),
                             Text(
                               "FCFA  -900",
                               style: TextStyle(
@@ -279,61 +214,26 @@ class _AccountsViewState extends State<AccountsView> {
                       ],
                     ),
                   ),
-
-                  Divider(
-                    color: Color(
-                      0xFFD2D2D2,
-                    ),
-                    indent: 5,
-                    endIndent: 5,
-                  ),
-
+                  const SizedBox(height: 15),
+                  const Divider(),
+                  const SizedBox(height: 8),
                   Container(
-                    //  color: Colors.blue,
-                    width: 326,
-                    height: 133,
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Color(
-                                    0xFF4EB181,
-                                  ),
-                                  borderRadius: BorderRadius.circular(4)),
-                              height: 15.81,
-                              width: 93.43,
-                              child: Center(
-                                  child: SizedBox(
-                                child: Text(
-                                  "Active",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Poppins",
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                width: 140,
-                                height: 22,
-                              )),
-                            ),
-                          ],
+                        AccountStatus(
+                          status: "Active",
+                          color: Color(0xFF4EB181),
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
+                        const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "CMR12344459876-03",
                                   style: TextStyle(
                                     color: Colors.black,
@@ -342,9 +242,7 @@ class _AccountsViewState extends State<AccountsView> {
                                     fontFamily: "Poppins",
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ),
+                                const SizedBox(height: 5),
                                 RichText(
                                   text: TextSpan(
                                     children: <TextSpan>[
@@ -369,9 +267,7 @@ class _AccountsViewState extends State<AccountsView> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              width: 15,
-                            ),
+                            const SizedBox(width: 15),
                             Text(
                               "FCFA  3,700",
                               style: TextStyle(
@@ -389,49 +285,92 @@ class _AccountsViewState extends State<AccountsView> {
                     ),
                   ),
 
-                  Divider(
-                    color: Color(
-                      0xFFD2D2D2,
-                    ),
-                    indent: 5,
-                    endIndent: 5,
-                  ),
+                  const Divider(),
                 ],
               ),
-              Positioned(
-                top: -30,
-                left: 15,
-                height: 63,
-                width: 63,
-                child: Container(
-                  width: 49.8,
-                  height: 51.39,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      3,
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        Color(
-                          0xff00cdac,
-                        ),
-                        Color(
-                          0xff4eb181,
-                        ),
-                      ],
-                      stops: [
-                        0,
-                        0.98,
-                      ],
-                    ),
-                  ),
-                  child: Center(child: Icon(Icons.person_outline_outlined)),
-                ),
-              ),
+              _AccountBoxIcon(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AccountBoxIcon extends StatelessWidget {
+  const _AccountBoxIcon({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: -30,
+      left: 15,
+      height: 63,
+      width: 63,
+      child: Container(
+        width: 49.8,
+        height: 51.39,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3),
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              const Color(0xff00cdac),
+              const Color(0xff4eb181),
+            ],
+            stops: [
+              0,
+              0.98,
+            ],
+          ),
+        ),
+        child: Center(
+          child: Icon(
+            Icons.person_outline_outlined,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AccountStatus extends StatelessWidget {
+  final String status;
+  final Color color;
+
+  const AccountStatus({
+    Key key,
+    this.status,
+    this.color = const Color(0xFF4EB181),
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      height: 15.81,
+      width: 93.43,
+      child: Center(
+        child: SizedBox(
+          child: Text(
+            status,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              fontFamily: "Poppins",
+            ),
+            textAlign: TextAlign.center,
+          ),
+          width: 140,
+          height: 22,
         ),
       ),
     );

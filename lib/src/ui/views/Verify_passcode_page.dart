@@ -171,21 +171,23 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       ),
       body: ModalProgressHUD(
         inAsyncCall: _isLoading,
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height - 45,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  ThemeColors.Background,
-                  ThemeColors.LightBackground,
-                ],
-              ),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                ThemeColors.Background,
+                ThemeColors.LightBackground,
+              ],
             ),
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
-            child: Center(
+          ),
+          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -255,11 +257,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       const SizedBox(height: 6),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () => _verifyPasscode(
-                              widget.user.email,
-                              widget.user.password,
-                              _passcode,
-                              widget.user.agent),
+                          onPressed: () => _verifyPasscode(widget.user.email,
+                              widget.user.password, _passcode, widget.user.agent),
                           child: const Text('Verify'),
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
