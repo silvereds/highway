@@ -290,7 +290,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           ],
                         ),
                       ),
-                      BoxTitle(title: 'Reset Password'),
+                      BoxTitle(title: 'Create new password'),
                     ],
                   ),
                 ),

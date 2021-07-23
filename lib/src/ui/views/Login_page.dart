@@ -150,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
           height: 45,
         ),
         centerTitle: true,
+        brightness: Brightness.dark,
       ),
       body: ModalProgressHUD(
         inAsyncCall: _isLoading,
