@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:mobile/src/core/common/logging.dart';
 
 import 'json_parsers/json_parser.dart';
 
 class RequestREST {
   final String endpoint;
   final Map<String, dynamic> data;
+  final Map<String, dynamic> params;
 
   const RequestREST({
+    this.params,
     this.endpoint,
     this.data = const {},
   });
@@ -15,13 +18,13 @@ class RequestREST {
   static final _client = Dio(
     BaseOptions(
       baseUrl: "https://dev-api.highweh.com",
-      connectTimeout: 3000, // 3 seconds
-      receiveTimeout: 3000, // 3 seconds
+      connectTimeout: 30000, // 30 seconds
+      receiveTimeout: 30000, // 30 seconds
       headers: {
         'content-Type': 'application/json; charset=UTF-8',
       },
     ),
-  );
+  )..interceptors.add(Logging());
 
   // Perform GET requests
   Future<T> executeGet<T>(JsonParser<T> parser) async {
@@ -37,6 +40,7 @@ class RequestREST {
     final response = await _client.post<String>(
       endpoint,
       data: data,
+      queryParameters: params,
     );
     return parser.parseFromJson(response.data);
   }

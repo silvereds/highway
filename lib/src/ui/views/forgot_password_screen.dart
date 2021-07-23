@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
@@ -25,9 +24,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   // Reset user password
   void _resetPassword() async {
     FocusScope.of(context).unfocus();
-
-    print(_email);
-
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       setState(() {
@@ -44,15 +40,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              content:
-                  Text('A reset password link has been send to your email or sms.'),
+              content: Text(
+                  'A reset password link has been send to your email or phone number.'),
               actions: [
                 TextButton(
                   onPressed: () {
                     _emailController.clear();
                     Navigator.of(context).pop();
-                    Navigator.of(context)
-                        .pushNamed(RouteGenerator.resetPasswordScreen);
+                    Navigator.of(context).pushNamed(RouteGenerator.loginPage);
                   },
                   child: Text('OK'),
                 )
@@ -165,17 +160,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                                 .validateResetPasswordEmail(v),
                                             decoration: InputDecoration(
                                               errorText: validation.email.error,
-                                              icon: Icon(Icons.person),
+                                              prefixIcon:
+                                                  const Icon(Icons.person),
                                               hintText: 'Email or Phone number',
                                               hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xFFAAAAAA),
                                                 fontFamily: 'Roboto',
                                               ),
-                                              border: InputBorder.none,
                                             ),
                                           ),
-                                          Divider(color: Colors.grey),
                                           SizedBox(height: 30),
                                           Container(
                                             alignment: Alignment.bottomRight,

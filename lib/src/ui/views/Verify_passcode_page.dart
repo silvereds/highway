@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../routes.dart';
 
@@ -13,6 +14,7 @@ class VerifyPasscodePage extends StatefulWidget {
   final User user;
 
   const VerifyPasscodePage({Key key, this.user}) : super(key: key);
+
   @override
   _VerifyPasscodePageState createState() => _VerifyPasscodePageState();
 }
@@ -20,7 +22,6 @@ class VerifyPasscodePage extends StatefulWidget {
 class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final pinCodeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   var _isLoading = false;
 
@@ -34,18 +35,15 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       setState(() {
         _isLoading = true;
       });
-
-      print(widget.user.email);
-
-      print(widget.user.password);
-      print(widget.user.agent);
-
       await context
           .read(AuthProvider.authProvider)
           .login(
-            widget.user.email,
-            widget.user.password,
-            widget.user.agent,
+            User(
+              phoneNumber: widget.user.phoneNumber,
+              email: widget.user.email,
+              password: widget.user.password,
+              agent: widget.user.agent,
+            ),
           )
           .then((_) {
         setState(() {
@@ -55,7 +53,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('We send you a verification passe code via email or sms.'),
+            content:
+                Text('We send you a verification passe code via email or sms.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -73,7 +72,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
       });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
-          e.toString(),
+          parseApiError(e),
           style: TextStyle(
             color: Colors.white,
             fontSize: 14,
@@ -94,58 +93,55 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   ) async {
     FocusScope.of(context).unfocus();
 
-    print(widget.user.email);
-
-    print(widget.user.password);
-    print(widget.user.agent);
-
-    try {
-      setState(() {
-        _isLoading = true;
-      });
-      await context
-          .read(AuthProvider.authProvider)
-          .verifyPasscode(email, password, passcode, agent)
-          .then((value) {
+    if (_formKey.currentState.validate()) {
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+        await context
+            .read(AuthProvider.authProvider)
+            .verifyPasscode(email, password, passcode.toUpperCase(), agent)
+            .then((_) {
+          setState(() {
+            _isLoading = false;
+          });
+          SharedPrefService().saveBool('isPasscodeVerify', true);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              RouteGenerator.homeScreen, (route) => false);
+        });
+      } catch (e) {
+        final String message = 'Please provide a valid passe code.';
         setState(() {
           _isLoading = false;
         });
 
-        SharedPrefService().saveBool('isPasscodeVerify', true);
-
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            RouteGenerator.homeScreen, (route) => false);
-      });
-    } catch (e) {
-      final String message = 'Please provide a valid passe code.';
-      setState(() {
-        _isLoading = false;
-      });
-
-      if (e.toString().isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            message,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+        if (e.toString().isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              message,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          backgroundColor: Colors.red,
-        ));
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            e.toString(),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+            backgroundColor: Colors.red,
+          ));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                parseApiError(e),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              backgroundColor: Colors.red,
             ),
-          ),
-          backgroundColor: Colors.red,
-        ));
+          );
+        }
       }
     }
   }
@@ -153,7 +149,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   @override
   void dispose() {
     super.dispose();
-    pinCodeController.dispose();
   }
 
   @override
@@ -183,7 +178,10 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [ThemeColors.Background, ThemeColors.LightBackground],
+                colors: [
+                  ThemeColors.Background,
+                  ThemeColors.LightBackground,
+                ],
               ),
             ),
             padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
@@ -207,8 +205,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                           color: ThemeColors.Buttons,
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         "A short code has been send to your email or sms, please enter the code to verify your identity",
                         style: TextStyle(
                           color: ThemeColors.VerifyIdentityText,
@@ -217,7 +215,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       ),
                       TextButton(
                         onPressed: _resendPasscode,
-                        child: Text(
+                        child: const Text(
                           'Resend',
                           style: TextStyle(
                             decoration: TextDecoration.underline,

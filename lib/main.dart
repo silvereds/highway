@@ -1,8 +1,6 @@
-import 'dart:io';
-
-import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_user_agent/flutter_user_agent.dart';
 import 'package:logging/logging.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
@@ -17,20 +15,26 @@ void _setupLogging() {
 }
 
 void _getDeviceInfo() async {
-  var device = DeviceInfoPlugin();
+  // var device = DeviceInfoPlugin();
 
-  var deviceName = '';
+  var _userAgent = '';
 
-  if (Platform.isAndroid) {
-    var androidDeviceInfo = await device.androidInfo;
-    deviceName = androidDeviceInfo.model;
-  } else if (Platform.isIOS) {
-    var iosDeviceInfo = await device.iosInfo;
-    deviceName = iosDeviceInfo.utsname.machine;
+  // if (Platform.isAndroid) {
+  //   var androidDeviceInfo = await device.androidInfo;
+  //   deviceName = androidDeviceInfo.model;
+  // } else if (Platform.isIOS) {
+  //   var iosDeviceInfo = await device.iosInfo;
+  //   deviceName = iosDeviceInfo.model;
+  // }
+  try {
+    _userAgent = await FlutterUserAgent.getPropertyAsync('userAgent');
+    SharedPrefService()
+        .saveString('deviceName', 'mobile: $_userAgent'.toLowerCase());
+  } catch (e) {
+    _userAgent = 'mobile';
   }
 
-  SharedPrefService().saveString('deviceName', deviceName);
-  print('device name: $deviceName');
+  print('user agent: $_userAgent');
 }
 
 void main() async {
@@ -47,6 +51,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

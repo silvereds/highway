@@ -1,5 +1,6 @@
 // The themes of the app
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppThemes {
   static ThemeData get lightTheme {
@@ -11,7 +12,9 @@ class AppThemes {
       fontFamily: 'Roboto',
       appBarTheme: AppBarTheme(
         elevation: 0,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
+        backwardsCompatibility: false,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
     );
   }

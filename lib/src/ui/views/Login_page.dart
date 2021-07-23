@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
@@ -20,37 +21,53 @@ class _LoginPageState extends State<LoginPage> {
   // _site is the variable that recieves registerOption and keeps
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailOrPhoneNumberController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   String _email = '';
   String _password = '';
-  String _deviceName = '';
+  String _userAgent = '';
+  String _phoneNumber = '';
 
   bool _isLoading = false;
 
-  void _getDevicename() async {
-    _deviceName = await SharedPrefService().getString('deviceName');
-    print(_deviceName);
+  var _isPasscodeVerify;
+
+  void _getUserAgent() async {
+    _userAgent = await SharedPrefService().getString('deviceName');
+    print(_userAgent);
+  }
+
+  // check if the passcode has been verify
+  // if [yes] then we move to the home screen
+  // else we do nothing
+  void _isPassCodeVerify() async {
+    _isPasscodeVerify = await SharedPrefService().getBool('isPasscodeVerify');
+    if (_isPasscodeVerify == true) {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(RouteGenerator.homeScreen, (route) => false);
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _getDevicename();
+    // _isPassCodeVerify();
+    _getUserAgent();
   }
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailOrPhoneNumberController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
-// Loginn user with email and password
+// Login user with email and password
   void _loginWithEmailAndPassword() async {
+    // Remove the keyboard when the button is pressed
     FocusScope.of(context).unfocus();
 
     if (_formKey.currentState.validate()) {
@@ -58,38 +75,39 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         _isLoading = true;
       });
-
-      print(_password);
       try {
         await context
             .read(AuthProvider.authProvider)
             .login(
-              _email.trim(),
-              _password.trim(),
-              _deviceName,
+              User(
+                email: _email.trim(),
+                password: _password.trim(),
+                phoneNumber: _phoneNumber.trim(),
+                agent: _userAgent,
+              ),
             )
             .then((_) {
           setState(() {
             _isLoading = false;
           });
-
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
               content: Text(
-                  'A verification code has been send to your mail or sms. Please fill the next page with that code'),
+                  'A short code has been send  to your phone number or your email. Please fill the next page with that code.'),
               actions: [
                 TextButton(
                   onPressed: () {
-                    emailController.clear();
-                    passwordController.clear();
+                    _emailOrPhoneNumberController.clear();
+                    _passwordController.clear();
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed(
                       RouteGenerator.verifyPasscodePage,
                       arguments: User(
                         email: _email.trim(),
-                        password: passwordController.text,
-                        agent: _deviceName,
+                        password: _password.trim(),
+                        phoneNumber: _phoneNumber.trim(),
+                        agent: _userAgent,
                       ),
                     );
                   },
@@ -103,17 +121,19 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           _isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            e.toString(),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              parseApiError(e),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
             ),
+            backgroundColor: Colors.red,
           ),
-          backgroundColor: Colors.red,
-        ));
+        );
       }
     }
   }
@@ -130,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
           height: 45,
         ),
         centerTitle: true,
+        brightness: Brightness.dark,
       ),
       body: ModalProgressHUD(
         inAsyncCall: _isLoading,
@@ -166,16 +187,14 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const SizedBox(height: 55),
-                          Text(
+                          const Text(
                             'Login with:',
                             style: TextStyle(
                               color: Color(0xFF4EB181),
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
+                          const SizedBox(height: 10),
                           Container(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -190,133 +209,121 @@ class _LoginPageState extends State<LoginPage> {
 
                                     return Form(
                                       key: _formKey,
-                                      child: AutofillGroup(
-                                        child: Column(
-                                          children: [
-                                            TextFormField(
-                                              keyboardType:
-                                                  TextInputType.emailAddress,
-                                              autofillHints: [
-                                                AutofillHints.email
-                                              ],
-                                              controller: emailController,
-                                              onChanged: (v) =>
-                                                  validation.validateEmail(v),
-                                              onSaved: (val) => _email = val,
-                                              decoration: InputDecoration(
-                                                errorText:
-                                                    validation.email.error,
-                                                icon: Icon(Icons.person),
-                                                hintText:
-                                                    'Email or Phone number',
-                                                hintStyle: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Color(0xFFAAAAAA),
-                                                  fontFamily: 'Roboto',
-                                                ),
-                                                border: InputBorder.none,
+                                      child: Column(
+                                        children: [
+                                          TextFormField(
+                                            controller:
+                                                _emailOrPhoneNumberController,
+                                            keyboardType: TextInputType.text,
+                                            onChanged: (v) => validation
+                                                .validateEmailOrPhoneNumber(v),
+                                            onSaved: (val) =>
+                                                _emailOrPhoneNumberController
+                                                        .text[0]
+                                                        .contains(
+                                                            RegExp(r"^[0-9]$"))
+                                                    ? _phoneNumber = val
+                                                    : _email = val,
+                                            decoration: InputDecoration(
+                                              errorText: validation.email.error,
+                                              prefixIcon: Icon(Icons.person),
+                                              hintText: 'Email or Phone number',
+                                              hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto',
                                               ),
                                             ),
-                                            Divider(color: Colors.grey),
-                                            TextFormField(
-                                              keyboardType:
-                                                  TextInputType.visiblePassword,
-                                              autofillHints: [
-                                                AutofillHints.password
-                                              ],
-                                              controller: passwordController,
-                                              onSaved: (val) => _password = val,
-                                              obscureText: true,
-                                              onChanged: (v) => validation
-                                                  .validatePassword(v),
-                                              decoration: InputDecoration(
-                                                errorText:
-                                                    validation.password.error,
-                                                icon: Icon(Icons.lock),
-                                                hintText: 'Password',
-                                                hintStyle: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Color(0xFFAAAAAA),
-                                                  fontFamily: 'Roboto',
-                                                ),
-                                                border: InputBorder.none,
+                                          ),
+                                          const SizedBox(height: 10),
+                                          TextFormField(
+                                            controller: _passwordController,
+                                            onSaved: (val) => _password = val,
+                                            obscureText: true,
+                                            onChanged: (v) =>
+                                                validation.validatePassword(v),
+                                            decoration: InputDecoration(
+                                              errorText:
+                                                  validation.password.error,
+                                              prefixIcon: Icon(Icons.lock),
+                                              hintText: 'Password',
+                                              hintStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA),
+                                                fontFamily: 'Roboto',
                                               ),
-                                              onEditingComplete: () => TextInput
-                                                  .finishAutofillContext(),
                                             ),
-                                            Divider(color: Colors.grey),
-                                            SizedBox(height: 30),
-                                            Container(
-                                              alignment: Alignment.bottomRight,
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    height: 35.02,
-                                                    width: 120,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(
-                                                        0xff4eb181,
+                                          ),
+                                          SizedBox(height: 30),
+                                          Container(
+                                            alignment: Alignment.bottomRight,
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 35.02,
+                                                  width: 120,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(
+                                                      0xff4eb181,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      4,
+                                                    ),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Color(
+                                                          0x3d109cf1,
+                                                        ),
+                                                        blurRadius: 10,
                                                       ),
+                                                    ],
+                                                  ),
+                                                  child: FlatButton(
+                                                    shape:
+                                                        RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                        4,
-                                                      ),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: Color(
-                                                            0x3d109cf1,
-                                                          ),
-                                                          blurRadius: 10,
-                                                        ),
-                                                      ],
+                                                              5.0),
+                                                      side: BorderSide(
+                                                          color: ThemeColors
+                                                              .Buttons),
                                                     ),
-                                                    child: FlatButton(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.0),
-                                                        side: BorderSide(
-                                                            color: ThemeColors
-                                                                .Buttons),
-                                                      ),
-                                                      child: Text(
-                                                        'Login',
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          fontFamily: 'Poppins',
-                                                        ),
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.of(context)
-                                                            .pushNamed(AppRoutes
-                                                                .verifyPasscodePage);
-                                                      },
-                                                      color: Color(0xFF4EB181),
-                                                      textColor:
-                                                          Color(0xFFFFFFFF),
-                                                      height: 33,
-                                                    ),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () async {
-                                                      Navigator.of(context)
-                                                          .pushNamed(AppRoutes
-                                                              .forgotPasswordScreen);
-                                                    },
                                                     child: Text(
-                                                      'Forgot password?',
+                                                      'Login',
                                                       style: TextStyle(
                                                         fontSize: 16,
-                                                        color: Colors.blue,
+                                                        fontFamily: 'Poppins',
                                                       ),
                                                     ),
+                                                    onPressed: validation
+                                                            .isValidateAuthForm
+                                                        ? _loginWithEmailAndPassword
+                                                        : null,
+                                                    color: Color(0xFF4EB181),
+                                                    textColor:
+                                                        Color(0xFFFFFFFF),
+                                                    height: 33,
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () async {
+                                                    Navigator.of(context)
+                                                        .pushNamed(AppRoutes
+                                                            .forgotPasswordScreen);
+                                                  },
+                                                  child: Text(
+                                                    'Forgot password?',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     );
                                   }),
@@ -327,9 +334,7 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    BoxTitle(
-                      title: "Login",
-                    ),
+                    BoxTitle(title: "Login"),
                   ],
                 ),
               ),
