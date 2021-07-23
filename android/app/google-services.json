@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639791796197",
+    "project_id": "highweh-mobile",
+    "storage_bucket": "highweh-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639791796197:android:30819b1f80eeeb5bff690c",
+        "android_client_info": {
+          "package_name": "com.goapp.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639791796197-acmocq4jf5vd3pfk59njt7kqvfqgid67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLHpC6Fk41xL9ho1BTC_WrH3HnfqmOj2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639791796197-acmocq4jf5vd3pfk59njt7kqvfqgid67.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

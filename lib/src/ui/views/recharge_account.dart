@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
 
 class RechargeAccountPage extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                               icon: Icon(Icons.keyboard_arrow_left_outlined),
                               color: Color(0xFFFFFFFF),
                               onPressed: () {
-                                print('Back');
+                                Navigator.pop(context);
                               },
                             ),
                             Text("Back",
@@ -256,7 +257,9 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                   ),
                 ),
                 TextFormField(
+                  
                   style: TextStyle(
+                    
                     color: Color(
                       0xff323c47,
                     ),
@@ -266,6 +269,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                   ),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
+                    hintText: "0.0",
                     border: InputBorder.none,
                   ),
                 ),
@@ -283,7 +287,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         onPressed: () {
-                          print('Cancel');
+                          Navigator.pushNamed(context, AppRoutes.homeScreen);
                         },
                         color: Color(0xFFF44336),
                         textColor: Colors.white,
@@ -306,7 +310,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         onPressed: () {
-                          print('Recharge Account');
+                          Navigator.pushNamed(context, AppRoutes.homeScreen);
                         },
                         color: Color(0xFF4EB181),
                         textColor: Colors.white,

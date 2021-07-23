@@ -12,10 +12,9 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
-      backgroundColor: Color(0xFFF5F6F8),
-      appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+      // drawer: NavDrawer(),
+      // backgroundColor: Color(0xFFF5F6F8),
+      // appBar: AppBarView(),
       body: Center(
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 35, 10, 15),

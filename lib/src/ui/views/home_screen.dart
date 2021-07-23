@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
-import 'package:mobile/src/ui/views/accounts_detail_view.dart';
 import 'package:mobile/src/ui/views/all_accoutsView.dart';
-import 'package:mobile/src/ui/views/block_accountView.dart';
+import 'package:mobile/src/ui/views/all_maps.dart';
 import 'package:mobile/src/ui/views/dashboard.dart';
-import 'package:mobile/src/ui/views/transactions.dart';
+import 'package:mobile/src/ui/views/views.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,34 +15,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex;
 
+  // List of Widget display in the body
   final List<Widget> _children = <Widget>[
     DashBoard(),
     AccountsView(),
-    TransactionsView(),
-    AccountsDetailsView(),
-    BlockAccountView(),
+    AllTransactionsPage(),
+    AllDevicesPage(),
+    AllMaps(),
   ];
-
-  // getBody() {
-  //   if (this._currentIndex == 0) {
-  //     Navigator.pushNamed(context, AppRoutes.loginPage);
-  //   } else if (this._currentIndex == 1) {
-  //      Navigator.pushNamed(context, AppRoutes.loginPage);
-  //   } else {
-  //     Navigator.pushNamed(context, AppRoutes.loginPage);
-  //   }
-  // }
-
-  // void onTapHandler(int index) {
-  //   this.setState(() {
-  //     this._currentIndex = index;
-  //   });
-  //   getBody();
-  // }
 
   @override
   void initState() {
     super.initState();
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
+
     _currentIndex = 0;
   }
 

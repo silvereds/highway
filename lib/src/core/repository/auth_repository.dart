@@ -8,7 +8,8 @@ abstract class AuthRepository {
 
   Future<void> forgotPassword(String email);
 
-  Future<void> resetPassword(String password, String confirmPassword);
+  Future<void> resetPassword(
+      String email, String password, String agent, String nonce);
 
   Future<void> logout();
 }

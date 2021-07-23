@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/widgets/box_title.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:nonce/nonce.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
+  final String email;
+
+  const ResetPasswordScreen({Key key, this.email}) : super(key: key);
   @override
   _ResetPasswordScreenState createState() => _ResetPasswordScreenState();
 }
@@ -17,14 +22,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final _passwordController = TextEditingController();
-  final _confirmPasswodController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
+  String _deviceName = '';
   String _password = '';
   String _confirmPassword = '';
 
   bool _isLoading = false;
+
+  void _getDeviceName() async {
+    _deviceName = await SharedPrefService().getString('deviceName');
+    print(_deviceName);
+  }
 
   // Reset user password
   void _resetPassword() async {
@@ -35,11 +46,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       setState(() {
         _isLoading = true;
       });
+
+      print(widget.email);
+      print(_password);
+      print(_deviceName);
+      print(Nonce.generate());
+
       try {
         await context
             .read(AuthProvider.authProvider)
-            .resetPassword(_password.trim(), _confirmPassword.trim())
-            .then((value) {
+            .resetPassword(
+                widget.email, _password, _deviceName, Nonce.generate())
+            .then((_) {
+          print(Nonce.generate());
+
           setState(() {
             _isLoading = false;
           });
@@ -52,7 +72,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 TextButton(
                   onPressed: () {
                     _passwordController.clear();
-                    _confirmPasswodController.clear();
+                    _confirmPasswordController.clear();
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         RouteGenerator.loginPage, (route) => false);
@@ -85,8 +105,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   void dispose() {
     _passwordController.dispose();
-    _confirmPasswodController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getDeviceName();
   }
 
   @override
@@ -177,7 +203,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                             Divider(color: Colors.grey),
                                             TextFormField(
                                               controller:
-                                                  _confirmPasswodController,
+                                                  _confirmPasswordController,
                                               onSaved: (val) =>
                                                   _confirmPassword = val,
                                               obscureText: true,
@@ -264,7 +290,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           ],
                         ),
                       ),
-                      BoxTitle(title: 'Reset Password'),
+                      BoxTitle(title: 'Create new password'),
                     ],
                   ),
                 ),

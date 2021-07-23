@@ -98,7 +98,8 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print('New transfer');
+                                  Navigator.pushNamed(
+                                      context, '/tansferMoneyPage');
                                 },
                                 child: Text(
                                   'New Transfer',
@@ -114,7 +115,8 @@ class _DashBoardState extends State<DashBoard> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  print('Recharge');
+                                  Navigator.pushNamed(
+                                      context, '/rechargeAccountPage');
                                 },
                                 child: Text(
                                   "Recharge",
@@ -268,7 +270,8 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print('New transfer');
+                                  Navigator.pushNamed(
+                                      context, '/tansferMoneyPage');
                                 },
                                 child: Text(
                                   "Pay Now",
@@ -284,7 +287,8 @@ class _DashBoardState extends State<DashBoard> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  print('Recharge');
+                                  Navigator.pushNamed(
+                                      context, '/rechargeAccountPage');
                                 },
                                 child: Text(
                                   "Recharge",
@@ -442,7 +446,8 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print('New transfer');
+                                  Navigator.pushNamed(
+                                      context, '/tansferMoneyPage');
                                 },
                                 child: Text(
                                   'New Transfer',
@@ -458,7 +463,8 @@ class _DashBoardState extends State<DashBoard> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  print('Recharge');
+                                  Navigator.pushNamed(
+                                      context, '/rechargeAccountPage');
                                 },
                                 child: Text(
                                   "Recharge",
@@ -604,7 +610,8 @@ class _DashBoardState extends State<DashBoard> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  print("View More");
+                                  Navigator.pushNamed(
+                                      context, '/alldevicesPage');
                                 },
                                 child: Text(
                                   "View More",
@@ -940,7 +947,7 @@ class _DashBoardState extends State<DashBoard> {
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+              margin: EdgeInsets.fromLTRB(20, 20, 20, 40),
               // height: 329,
               // width: 323,
               child: Stack(
@@ -989,6 +996,7 @@ class _DashBoardState extends State<DashBoard> {
                             ),
                             PieChart(
                               dataMap: dataMap,
+
                               animationDuration: Duration(milliseconds: 800),
                               chartType: ChartType.ring,
                               centerText: _showCenterText ? "60 %" : null,
@@ -1002,16 +1010,18 @@ class _DashBoardState extends State<DashBoard> {
                               legendOptions: LegendOptions(
                                 legendPosition: LegendPosition.right,
                                 showLegends: false,
-                                legendTextStyle: TextStyle(),
                               ),
                               //   centerText:
 
                               chartValuesOptions: ChartValuesOptions(
-                                  showChartValues: false,
-                                  chartValueStyle: TextStyle(
-                                      fontSize: 56, color: Color(0xFF2ED47A)),
-                                  showChartValueBackground:
-                                      _showChartValueBackground),
+                                showChartValues: false,
+                                chartValueStyle: TextStyle(
+                                  fontSize: 36,
+                                  color: Color(0xFF2ED47A),
+                                ),
+                                showChartValueBackground:
+                                    _showChartValueBackground,
+                              ),
                             ),
                             Divider(
                               thickness: 1,

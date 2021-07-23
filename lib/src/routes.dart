@@ -23,8 +23,7 @@ class RouteGenerator {
   static const changePinPage = '/changePinPage';
   static const allTransactionsPage = '/allTransactionsPage';
   static const transferMoneyPage = '/tansferMoneyPage';
-  static const confirmTransferPage = '/confirmTransferPage';
-  static const transferCompletedPage = '/transferCompletedPage';
+
   static const transactionDetailsPage = '/transactionDetailsPage';
   static const supportPage = '/supportPage';
   static const newConversationPage = '/newConversationPage';
@@ -58,7 +57,9 @@ class RouteGenerator {
         );
       case resetPasswordScreen:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => ResetPasswordScreen(),
+          builder: (_) => ResetPasswordScreen(
+            email: args as String,
+          ),
         );
       case homeScreen:
         return MaterialPageRoute<dynamic>(
@@ -103,18 +104,7 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => AllTransactionsPage(),
         );
-      case transferMoneyPage:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => TransferMoneyPage(),
-        );
-      case confirmTransferPage:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => ConfirmTransferPage(),
-        );
-      case transferCompletedPage:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => TransferCompletedPage(),
-        );
+
       case transactionDetailsPage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => TransactionDetailsPage(),
@@ -138,6 +128,10 @@ class RouteGenerator {
       case conversationDetails:
         return MaterialPageRoute<dynamic>(
           builder: (_) => ConversationDetails(),
+        );
+      case alldevicesPage:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => AllDevicesPage(),
         );
       default:
         throw RouteException("Route Not found");
