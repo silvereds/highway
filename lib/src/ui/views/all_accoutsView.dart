@@ -153,7 +153,6 @@ class _AccountsViewState extends State<AccountsView> {
                       children: [
                         AccountStatus(
                           status: "Blocked",
-                          color: Colors.red,
                         ),
                         const SizedBox(height: 20),
                         Row(
@@ -224,7 +223,6 @@ class _AccountsViewState extends State<AccountsView> {
                       children: [
                         AccountStatus(
                           status: "Active",
-                          color: Color(0xFF4EB181),
                         ),
                         const SizedBox(height: 20),
                         Row(
@@ -340,19 +338,17 @@ class _AccountBoxIcon extends StatelessWidget {
 
 class AccountStatus extends StatelessWidget {
   final String status;
-  final Color color;
 
   const AccountStatus({
     Key key,
     this.status,
-    this.color = const Color(0xFF4EB181),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: color,
+        color: status == "Active" ? const Color(0xFF4EB181) : Colors.red,
         borderRadius: BorderRadius.circular(4),
       ),
       height: 15.81,
