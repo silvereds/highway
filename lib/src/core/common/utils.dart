@@ -20,11 +20,11 @@ String parseApiError(Exception exception) {
         return "Send timeout in connection with API server";
         break;
       case DioErrorType.other:
-        return "Connection to API server failed due to internet connection";
+        return exception.error?.toString() ?? exception.message;
         break;
-      case DioErrorType.response:
-        return _handleError(exception.response.statusCode);
-        break;
+      // case DioErrorType.response:
+      //   return _handleError(exception.response.statusCode);
+      //   break;
 
       default:
         break;
@@ -38,7 +38,6 @@ String parseApiError(Exception exception) {
       }
     }
 
-    // final validationErrors = ApiDataValidationException.fromJson(json.encode(exception.response.data));
     final validationErrors =
         ApiDataValidationException.fromJson(exception.response.data);
     if (validationErrors != null) {

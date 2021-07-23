@@ -17,7 +17,7 @@ dependencies:
   flutter_statusbarcolor: ^0.2.3
   #  Get info about the device
   device_info: ^1.0.0
-  #  ua_client_hints: ^0.0.1
+  flutter_user_agent: ^1.2.2
 
   intl_phone_number_input: ^0.5.2+2
   form_field_validator: ^1.0.1

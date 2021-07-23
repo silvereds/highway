@@ -22,7 +22,6 @@ class VerifyPasscodePage extends StatefulWidget {
 class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final _pinCodeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   var _isLoading = false;
 
@@ -129,17 +128,19 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
             backgroundColor: Colors.red,
           ));
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              parseApiError(e),
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                parseApiError(e),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
+              backgroundColor: Colors.red,
             ),
-            backgroundColor: Colors.red,
-          ));
+          );
         }
       }
     }
@@ -148,7 +149,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   @override
   void dispose() {
     super.dispose();
-    _pinCodeController.dispose();
   }
 
   @override
@@ -178,7 +178,10 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [ThemeColors.Background, ThemeColors.LightBackground],
+                colors: [
+                  ThemeColors.Background,
+                  ThemeColors.LightBackground,
+                ],
               ),
             ),
             padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
@@ -202,8 +205,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                           color: ThemeColors.Buttons,
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         "A short code has been send to your email or sms, please enter the code to verify your identity",
                         style: TextStyle(
                           color: ThemeColors.VerifyIdentityText,
@@ -212,7 +215,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       ),
                       TextButton(
                         onPressed: _resendPasscode,
-                        child: Text(
+                        child: const Text(
                           'Resend',
                           style: TextStyle(
                             decoration: TextDecoration.underline,
@@ -222,7 +225,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       Form(
                         key: _formKey,
                         child: PinCodeTextField(
-                            controller: _pinCodeController,
                             appContext: context,
                             autoFocus: true,
                             validator: (v) {

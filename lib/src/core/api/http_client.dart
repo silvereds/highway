@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:mobile/src/core/common/logging.dart';
 
 import 'json_parsers/json_parser.dart';
 
@@ -17,13 +18,13 @@ class RequestREST {
   static final _client = Dio(
     BaseOptions(
       baseUrl: "https://dev-api.highweh.com",
-      connectTimeout: 5000, // 5 seconds
-      receiveTimeout: 5000, // 5 seconds
+      connectTimeout: 30000, // 30 seconds
+      receiveTimeout: 30000, // 30 seconds
       headers: {
         'content-Type': 'application/json; charset=UTF-8',
       },
     ),
-  );
+  )..interceptors.add(Logging());
 
   // Perform GET requests
   Future<T> executeGet<T>(JsonParser<T> parser) async {

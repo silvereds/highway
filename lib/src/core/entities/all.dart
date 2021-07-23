@@ -430,16 +430,14 @@ class ApiException {
 
 @JsonSerializable()
 class ApiDataValidationException {
-  // @JsonKey(name: "status_code")
   int statusCode;
   String message;
-  // @JsonKey(name: "errors")
-  Map<String, List<String>> rawErrors;
+  String error;
 
   ApiDataValidationException({
     this.statusCode,
     this.message,
-    this.rawErrors,
+    this.error,
   });
 
   factory ApiDataValidationException.fromJson(Map<String, dynamic> json) =>
@@ -447,8 +445,6 @@ class ApiDataValidationException {
   Map<String, dynamic> toJson() => _$ApiDataValidationExceptionToJson(this);
 
   String get errors {
-    List<String> result = [];
-    rawErrors.forEach((k, v) => result.add(v.map((error) => error).join("\n")));
-    return result.join("\n");
+    return error;
   }
 }

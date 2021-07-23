@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
@@ -11,27 +12,32 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
+  // This function logout the user
   void _logout() async {
     try {
-      await context.read(AuthProvider.authProvider).logout().then((_) {
-        SharedPrefService().saveBool('isPasscodeVerify', false);
-        Navigator.of(context).pop();
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            RouteGenerator.loginPage, (route) => false);
-      });
+      await context.read(AuthProvider.authProvider).logout().then(
+        (_) {
+          SharedPrefService().saveBool('isPasscodeVerify', false);
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              RouteGenerator.loginPage, (route) => false);
+        },
+      );
     } catch (e) {
       Navigator.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          e.toString(),
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            parseApiError(e),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
           ),
+          backgroundColor: Colors.red,
         ),
-        backgroundColor: Colors.red,
-      ));
+      );
     }
   }
 
@@ -251,11 +257,6 @@ class _Overlay extends StatelessWidget {
     );
   }
 }
-//
-// ListTile(
-// leading: Icon(Icons.logout),
-// title: Text('Logout'),
-// )
 
 class _SubMenu extends StatelessWidget {
   final String text;

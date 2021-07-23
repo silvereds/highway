@@ -401,9 +401,7 @@ ApiDataValidationException _$ApiDataValidationExceptionFromJson(
   return ApiDataValidationException(
     statusCode: json['statusCode'] as int,
     message: json['message'] as String,
-    rawErrors: (json['rawErrors'] as Map<String, dynamic>)?.map(
-      (k, e) => MapEntry(k, (e as List)?.map((e) => e as String)?.toList()),
-    ),
+    error: json['error'] as String,
   );
 }
 
@@ -412,5 +410,5 @@ Map<String, dynamic> _$ApiDataValidationExceptionToJson(
     <String, dynamic>{
       'statusCode': instance.statusCode,
       'message': instance.message,
-      'rawErrors': instance.rawErrors,
+      'error': instance.error,
     };
