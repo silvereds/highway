@@ -53,8 +53,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text(
-                'A short code has been send  to your phone number or your email.'),
+            content:
+                Text('We send you a verification passe code via email or sms.'),
             actions: [
               TextButton(
                 onPressed: () {
