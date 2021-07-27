@@ -291,6 +291,11 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
 
 User _$UserFromJson(Map<String, dynamic> json) {
   return User(
+    branch: json['branch'] as String,
+    bornAt: json['bornAt'] as String,
+    license: json['license'] as String,
+    session: json['session'] as String,
+    date: json['date'] as String,
     name: json['name'] as String,
     address: json['address'] as String,
     password: json['password'] as String,
@@ -300,16 +305,12 @@ User _$UserFromJson(Map<String, dynamic> json) {
     uuid: json['uuid'] as String,
     idUrl: json['idUrl'] as String,
     bornOn: json['bornOn'] as String,
-    registeredOn: json['registeredOn'] as String,
-    organisation: json['organisation'] as String,
     phoneNumber: json['phoneNumber'] as String,
     photoUrl: json['photoUrl'] as String,
     preferredLanguage: json['preferredLanguage'] as String,
-    proofOfAddressUrl: json['proofOfAddressUrl'] as String,
+    proofOfAddress: json['proofOfAddress'] as String,
     role: json['role'] as String,
     status: json['status'] as String,
-    subdivision: json['subdivision'] as String,
-    authorization: json['authorization'] as String,
     agent: json['agent'] as String,
   );
 }
@@ -318,22 +319,23 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'uuid': instance.uuid,
       'name': instance.name,
       'email': instance.email,
-      'phoneNumber': instance.phoneNumber,
       'password': instance.password,
-      'status': instance.status,
+      'phoneNumber': instance.phoneNumber,
       'preferredLanguage': instance.preferredLanguage,
       'photoUrl': instance.photoUrl,
+      'branch': instance.branch,
       'address': instance.address,
-      'bornOn': instance.bornOn,
-      'registeredOn': instance.registeredOn,
-      'organisation': instance.organisation,
       'city': instance.city,
       'gender': instance.gender,
-      'subdivision': instance.subdivision,
+      'bornOn': instance.bornOn,
+      'bornAt': instance.bornAt,
       'idUrl': instance.idUrl,
-      'proofOfAddressUrl': instance.proofOfAddressUrl,
+      'proofOfAddress': instance.proofOfAddress,
+      'license': instance.license,
+      'status': instance.status,
       'role': instance.role,
-      'authorization': instance.authorization,
+      'session': instance.session,
+      'date': instance.date,
       'agent': instance.agent,
     };
 
@@ -382,7 +384,7 @@ Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
 ApiException _$ApiExceptionFromJson(Map<String, dynamic> json) {
   return ApiException(
     code: json['code'] as int,
-    message: json['message'] as String,
+    error: json['error'] as String,
     name: json['name'] as String,
     status: json['status'] as int,
   );
@@ -391,7 +393,7 @@ ApiException _$ApiExceptionFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ApiExceptionToJson(ApiException instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'message': instance.message,
+      'error': instance.error,
       'code': instance.code,
       'status': instance.status,
     };

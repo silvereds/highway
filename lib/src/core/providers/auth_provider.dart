@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/api/http_client.dart';
+import 'package:mobile/src/core/api/json_parsers/json_parser.dart';
 import 'package:mobile/src/core/api/json_parsers/reponse_parser.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/auth_repository.dart';
@@ -8,7 +9,21 @@ abstract class AuthProvider {
   static final authProvider = Provider<Auth>((ref) => Auth());
 }
 
+abstract class UserDetailProvider {
+  static final userDetailProvider = Provider<User>(
+    (ref) {
+      final authProvider = ref.read(AuthProvider.authProvider);
+      final user = authProvider.user;
+      return user;
+    },
+  );
+}
+
 class Auth implements AuthRepository {
+  User user = User();
+
+  User get userDetails => user;
+
   @override
   Future<void> login(User user) async {
     try {
@@ -55,12 +70,14 @@ class Auth implements AuthRepository {
           'passcode': passCode,
           'agent': agent
         },
-      ).executePost<LoginResponse>(LoginResponseParser());
+      ).executePost<User>(UserParser());
 
-      print(response.toJson());
+      user = response;
     } catch (e) {
       throw e;
     }
+
+    return user;
   }
 
   @override

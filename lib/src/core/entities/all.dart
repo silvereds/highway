@@ -324,26 +324,32 @@ class User {
   final String uuid;
   final String name;
   final String email;
-  final String phoneNumber;
   final String password;
-  final String status;
+  final String phoneNumber;
   final String preferredLanguage;
   final String photoUrl;
+  final String branch;
   final String address;
-  final String bornOn;
-  final String registeredOn;
-  final String organisation;
   final String city;
   final String gender;
-  final String subdivision;
+  final String bornOn;
+  final String bornAt;
   final String idUrl;
-  final String proofOfAddressUrl;
+  final String proofOfAddress;
+  final String license;
+  final String status;
   final String role;
-  final String authorization;
+  final String session;
+  final String date;
   final String agent;
 
   User(
-      {this.name,
+      {this.branch,
+      this.bornAt,
+      this.license,
+      this.session,
+      this.date,
+      this.name,
       this.address,
       this.password,
       this.city,
@@ -352,16 +358,16 @@ class User {
       this.uuid,
       this.idUrl,
       this.bornOn,
-      this.registeredOn,
-      this.organisation,
+      // this.registeredOn,
+      // this.organisation,
       this.phoneNumber,
       this.photoUrl,
       this.preferredLanguage,
-      this.proofOfAddressUrl,
+      this.proofOfAddress,
       this.role,
       this.status,
-      this.subdivision,
-      this.authorization,
+      // this.subdivision,
+      // this.authorization,
       this.agent});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -417,11 +423,11 @@ class LoginResponse {
 @JsonSerializable()
 class ApiException {
   String name;
-  String message;
+  String error;
   int code;
   int status;
 
-  ApiException({this.code, this.message, this.name, this.status});
+  ApiException({this.code, this.error, this.name, this.status});
 
   factory ApiException.fromJson(Map<String, dynamic> json) =>
       _$ApiExceptionFromJson(json);

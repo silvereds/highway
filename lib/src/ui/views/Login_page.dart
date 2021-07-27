@@ -177,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                   clipBehavior: Clip.none,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.white,
