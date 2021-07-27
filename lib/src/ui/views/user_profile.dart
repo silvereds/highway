@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
@@ -21,6 +22,10 @@ class _UserProfileState extends State<UserProfile> {
         appBar: AppBarView(),
         body: Consumer(builder: (context, watch, __) {
           final userDetail = watch(UserDetailProvider.userDetailProvider);
+          // Get date in a correct format
+          String date = userDetail.bornOn;
+          String dateWithT = date.substring(0, 10);
+          DateTime dateTime = DateTime.parse(dateWithT);
           return SafeArea(
             child: SingleChildScrollView(
               child: Container(
@@ -150,13 +155,15 @@ class _UserProfileState extends State<UserProfile> {
                                 fontSize: 14,
                               )),
                           const SizedBox(height: 10),
-                          const Text('Date of Birth:',
-                              style: TextStyle(
-                                color: Color(0xFF818E9B),
-                                fontSize: 14,
-                              )),
+                          const Text(
+                            'Date of Birth:',
+                            style: TextStyle(
+                              color: Color(0xFF818E9B),
+                              fontSize: 14,
+                            ),
+                          ),
                           Text(
-                            'January 21st, 1990',
+                            DateFormat('MMMM dd, ' 'yyyy').format(dateTime),
                             style: TextStyle(
                               color: Color(0xFF192A3E),
                               fontSize: 14,
@@ -168,11 +175,13 @@ class _UserProfileState extends State<UserProfile> {
                                 color: Color(0xFF818E9B),
                                 fontSize: 14,
                               )),
-                          Text(userDetail.bornAt,
-                              style: TextStyle(
-                                color: Color(0xFF192A3E),
-                                fontSize: 14,
-                              )),
+                          Text(
+                            userDetail.bornAt,
+                            style: TextStyle(
+                              color: Color(0xFF192A3E),
+                              fontSize: 14,
+                            ),
+                          ),
                           const SizedBox(height: 10),
                           const Text('Profession:',
                               style: TextStyle(
@@ -272,13 +281,13 @@ class _UserProfileState extends State<UserProfile> {
                           padding: const EdgeInsets.all(10.0),
                           child: Container(
                             child: Card(
-                              margin: EdgeInsets.only(
+                              margin: const EdgeInsets.only(
                                   left: 30, right: 30, bottom: 30, top: 20),
                               clipBehavior: Clip.none,
                               elevation: 5,
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),
-                                child: Text(
+                                child: const Text(
                                   'Please contact support if any of these details are not correct or need to be updated',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(

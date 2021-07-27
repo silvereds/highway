@@ -50,6 +50,8 @@ dependencies:
   shared_preferences: ^0.5.12+4
   ## Nonce generator
   nonce: ^0.2.1
+  intl: ^0.16.1
+
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +64,7 @@ dev_dependencies:
   ## HTTP Client
   build_runner: ^1.10.0
   json_serializable: ^3.5.1
+
 
 flutter_icons:
   android: true

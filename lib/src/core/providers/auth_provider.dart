@@ -13,16 +13,16 @@ abstract class UserDetailProvider {
   static final userDetailProvider = Provider<User>(
     (ref) {
       final authProvider = ref.read(AuthProvider.authProvider);
-      final user = authProvider.user;
+      final user = authProvider.userDetails;
       return user;
     },
   );
 }
 
 class Auth implements AuthRepository {
-  User user = User();
+  User _user = User();
 
-  User get userDetails => user;
+  User get userDetails => _user;
 
   @override
   Future<void> login(User user) async {
@@ -72,12 +72,10 @@ class Auth implements AuthRepository {
         },
       ).executePost<User>(UserParser());
 
-      user = response;
+      _user = response;
     } catch (e) {
       throw e;
     }
-
-    return user;
   }
 
   @override
