@@ -2,12 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
-import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
-
-import 'change_password_screen.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -304,11 +302,8 @@ class _UserProfileState extends State<UserProfile> {
                                 style: TextStyle(fontSize: 13),
                               ),
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ChangePassword()),
-                                );
+                                Navigator.of(context).pushNamed(
+                                    RouteGenerator.changePasswordScreen);
                               },
                               color: Color(0xFF4EB181),
                               textColor: Color(0xFFFFFFFF),
@@ -326,8 +321,9 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               onPressed: () {
                                 // Navigator.pop(context);
-                                Navigator.pushNamed(
-                                    context, AppRoutes.dashboard);
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    RouteGenerator.homeScreen,
+                                    (route) => false);
                               },
                               color: Color(0xFF4EB181),
                               textColor: Color(0xFFFFFFFF),

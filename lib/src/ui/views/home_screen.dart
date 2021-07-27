@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    FlutterStatusbarcolor.setStatusBarColor(Color(0xFF02AAB0));
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
 
     _currentIndex = 0;
   }

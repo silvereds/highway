@@ -4,15 +4,15 @@ part 'all.g.dart';
 
 @JsonSerializable()
 class Account {
-  int id;
-  String userId;
-  String accountNumber;
-  String balance;
-  String alias;
-  String notificationType;
-  String notificationAddress;
-  String status;
-  String createdOn;
+  final int id;
+  final String userId;
+  final String accountNumber;
+  final String balance;
+  final String alias;
+  final String notificationType;
+  final String notificationAddress;
+  final String status;
+  final String createdOn;
 
   Account({
     this.id,
@@ -34,10 +34,10 @@ class Account {
 
 @JsonSerializable()
 class AuthCredentials {
-  String email;
-  String phoneNumber;
+  final String email;
+  final String phoneNumber;
   String password;
-  String passcode;
+  final String passcode;
   String agent = "mobile";
 
   AuthCredentials({
@@ -58,14 +58,14 @@ class AuthCredentials {
 
 @JsonSerializable()
 class Device {
-  int id;
-  String assignedTo;
-  String accountId;
-  String pin;
-  String rentedOn;
-  String returnedOn;
-  String rentedState;
-  String status;
+  final int id;
+  final String assignedTo;
+  final String accountId;
+  final String pin;
+  final String rentedOn;
+  final String returnedOn;
+  final String rentedState;
+  final String status;
 
   Device({
     this.id,
@@ -86,12 +86,12 @@ class Device {
 @JsonSerializable()
 class Geolocation {
   int id;
-  String itemId;
-  String category;
-  String latitude;
-  String longitude;
-  String status;
-  String lastSeen;
+  final String itemId;
+  final String category;
+  final String latitude;
+  final String longitude;
+  final String status;
+  final String lastSeen;
 
   Geolocation({
     this.id,
@@ -112,13 +112,13 @@ class Geolocation {
 @JsonSerializable()
 class Message {
   int id;
-  String ticketId;
-  String sentOn;
-  String sender;
-  String body;
-  String subject;
-  String handledBy;
-  String status;
+  final String ticketId;
+  final String sentOn;
+  final String sender;
+  final String body;
+  final String subject;
+  final String handledBy;
+  final String status;
 
   Message({
     this.id,
@@ -139,16 +139,16 @@ class Message {
 
 @JsonSerializable()
 class Notification {
-  String id;
-  String uuid;
-  String channel;
-  String category;
-  String receiver;
-  String user;
-  String status;
-  String title;
-  String body;
-  String sentOn;
+  final String id;
+  final String uuid;
+  final String channel;
+  final String category;
+  final String receiver;
+  final String user;
+  final String status;
+  final String title;
+  final String body;
+  final String sentOn;
 
   Notification(
       {this.id,
@@ -170,19 +170,19 @@ class Notification {
 
 @JsonSerializable()
 class Organisation {
-  int id;
-  String uuid;
-  String contactPersonId;
-  String name;
-  String industry;
-  String size;
-  String status;
-  String photoUrl;
-  String address;
-  String foundedOn;
-  String contactPersonRole;
-  String businessLicenceUrl;
-  String proofOfAddressUrl;
+  final int id;
+  final String uuid;
+  final String contactPersonId;
+  final String name;
+  final String industry;
+  final String size;
+  final String status;
+  final String photoUrl;
+  final String address;
+  final String foundedOn;
+  final String contactPersonRole;
+  final String businessLicenceUrl;
+  final String proofOfAddressUrl;
 
   Organisation({
     this.id,
@@ -208,13 +208,13 @@ class Organisation {
 
 @JsonSerializable()
 class Payment {
-  int id;
-  String status;
-  String provider;
-  String amount;
-  String from;
-  String to;
-  String dateOn;
+  final int id;
+  final String status;
+  final String provider;
+  final String amount;
+  final String from;
+  final String to;
+  final String dateOn;
 
   Payment({
     this.id,
@@ -235,9 +235,9 @@ class Payment {
 @JsonSerializable()
 class Session {
   int id;
-  String userId;
-  String accessToken;
-  String role;
+  final String userId;
+  final String accessToken;
+  final String role;
 
   Session({this.id, this.userId, this.accessToken, this.role});
 
@@ -251,9 +251,9 @@ class Session {
 class Setting {
   int id;
 
-  String name;
-  String value;
-  String defaultValue;
+  final String name;
+  final String value;
+  final String defaultValue;
 
   Setting({this.id, this.name, this.value, this.defaultValue});
 
@@ -265,13 +265,13 @@ class Setting {
 
 @JsonSerializable()
 class Ticket {
-  int id;
+  final int id;
 
-  String openedOn;
-  String topic;
-  String openedBy;
-  String handledBy; //must be operator
-  String status;
+  final String openedOn;
+  final String topic;
+  final String openedBy;
+  final String handledBy; //must be operator
+  final String status;
 
   Ticket({
     this.id,
@@ -289,16 +289,16 @@ class Ticket {
 
 @JsonSerializable()
 class Transaction {
-  int id;
-  String status;
-  String category;
-  String amount;
-  String accountFrom;
-  String accountTo;
-  String reference;
-  String initiatedOn;
-  String deviceFrom;
-  String deviceTo;
+  final int id;
+  final String status;
+  final String category;
+  final String amount;
+  final String accountFrom;
+  final String accountTo;
+  final String reference;
+  final String initiatedOn;
+  final String deviceFrom;
+  final String deviceTo;
 
   Transaction({
     this.id,
@@ -422,10 +422,10 @@ class LoginResponse {
 
 @JsonSerializable()
 class ApiException {
-  String name;
-  String error;
-  int code;
-  int status;
+  final String name;
+  final String error;
+  final int code;
+  final int status;
 
   ApiException({this.code, this.error, this.name, this.status});
 
@@ -436,9 +436,9 @@ class ApiException {
 
 @JsonSerializable()
 class ApiDataValidationException {
-  int statusCode;
-  String message;
-  String error;
+  final int statusCode;
+  final String message;
+  final String error;
 
   ApiDataValidationException({
     this.statusCode,

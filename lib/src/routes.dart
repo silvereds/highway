@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/views/Create_password.dart';
+import 'package:mobile/src/ui/views/change_password_screen.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
 class RouteGenerator {
@@ -31,6 +32,7 @@ class RouteGenerator {
   static const settingPreference = '/settingPreference';
   static const policyPage = '/policyPage';
   static const conversationDetails = '/conversationDetailsPage';
+  static const changePasswordScreen = '/changePasswordScreen';
 
   RouteGenerator._();
 
@@ -132,6 +134,10 @@ class RouteGenerator {
       case alldevicesPage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => AllDevicesPage(),
+        );
+      case changePasswordScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const ChangePassword(),
         );
       default:
         throw RouteException("Route Not found");
