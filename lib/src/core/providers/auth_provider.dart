@@ -4,6 +4,8 @@ import 'package:mobile/src/core/api/json_parsers/json_parser.dart';
 import 'package:mobile/src/core/api/json_parsers/reponse_parser.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/auth_repository.dart';
+import 'package:mobile/src/core/services/services.dart';
+import 'package:mobile/src/ui/views/reset_password_screen.dart';
 
 abstract class AuthProvider {
   static final authProvider = Provider<Auth>((ref) => Auth());
@@ -24,6 +26,7 @@ class Auth implements AuthRepository {
 
   User get userDetails => _user;
 
+  /// Log the user
   @override
   Future<void> login(User user) async {
     try {
@@ -38,6 +41,10 @@ class Auth implements AuthRepository {
     }
   }
 
+  /// Get the link to reset password
+  /// This link should return the user to app into the
+  /// [ResetPasswordScreen] in case the user has the app
+  /// otherwise into the store
   @override
   Future<void> forgotPassword(String email) async {
     try {
@@ -54,6 +61,7 @@ class Auth implements AuthRepository {
     }
   }
 
+  /// Verify passcode send to the user by email
   @override
   Future<void> verifyPasscode(
     String email,
@@ -73,11 +81,14 @@ class Auth implements AuthRepository {
       ).executePost<User>(UserParser());
 
       _user = response;
+
+      SharedPrefService().saveString('sessionId', response.session);
     } catch (e) {
       throw e;
     }
   }
 
+  /// Logout user
   @override
   Future<void> logout() async {
     try {
@@ -91,6 +102,7 @@ class Auth implements AuthRepository {
     }
   }
 
+  /// Reset password
   @override
   Future<void> resetPassword(
     String email,
@@ -109,6 +121,28 @@ class Auth implements AuthRepository {
         },
       ).executePost<LoginResponse>(LoginResponseParser());
 
+      print(response.toJson());
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  /// Get Auth JWT Token
+  @override
+  Future<void> getAuthToken(
+      String sessionId, String agent, String nonce) async {
+    sessionId = await SharedPrefService().getString('sessionId') ?? '';
+
+    try {
+      final response = await RequestREST(
+        endpoint: '/auth/session/$nonce',
+        data: {
+          'session': sessionId,
+          'agent': agent,
+        },
+      ).executePost<LoginResponse>(LoginResponseParser());
+
+      print('Session: ' + sessionId);
       print(response.toJson());
     } catch (e) {
       throw e;
