@@ -118,7 +118,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         if (e.toString().isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              message,
+              'message',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
@@ -257,8 +257,11 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       const SizedBox(height: 6),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () => _verifyPasscode(widget.user.email,
-                              widget.user.password, _passcode, widget.user.agent),
+                          onPressed: () => _verifyPasscode(
+                              widget.user.email,
+                              widget.user.password,
+                              _passcode,
+                              widget.user.agent),
                           child: const Text('Verify'),
                           style: ElevatedButton.styleFrom(
                             elevation: 0,

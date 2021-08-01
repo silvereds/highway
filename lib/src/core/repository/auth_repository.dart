@@ -13,5 +13,5 @@ abstract class AuthRepository {
 
   Future<void> logout();
 
-  Future<void> getAuthToken(String sessionId, String agent, String nonce);
+  Future<void> getAuthToken(String sessionId, String agent);
 }

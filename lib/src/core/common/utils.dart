@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:mobile/src/core/entities/all.dart';
 
-/// parse exception occured during api call and output a potable text
+/// parse exception occurred during api call and output a potable text
 String parseApiError(Exception exception) {
   if (exception == null)
     return "";
@@ -31,9 +33,10 @@ String parseApiError(Exception exception) {
     }
     if (exception.response.statusCode != 422) {
       try {
-        final error = ApiException.fromJson(exception.response.data);
-        return error.error;
-      } catch (Exception) {
+        final ApiException apiException =
+            ApiException.fromJson(json.decode(exception.response.data));
+        return apiException.error;
+      } catch (e) {
         return exception.response.statusMessage;
       }
     }

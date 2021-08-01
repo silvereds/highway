@@ -311,6 +311,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     proofOfAddress: json['proofOfAddress'] as String,
     role: json['role'] as String,
     status: json['status'] as String,
+    authorization: json['authorization'] as String,
     agent: json['agent'] as String,
   );
 }
@@ -336,6 +337,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'role': instance.role,
       'session': instance.session,
       'date': instance.date,
+      'authorization': instance.authorization,
       'agent': instance.agent,
     };
 
@@ -383,26 +385,18 @@ Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
 
 ApiException _$ApiExceptionFromJson(Map<String, dynamic> json) {
   return ApiException(
-    code: json['code'] as int,
     error: json['error'] as String,
-    name: json['name'] as String,
-    status: json['status'] as int,
   );
 }
 
 Map<String, dynamic> _$ApiExceptionToJson(ApiException instance) =>
     <String, dynamic>{
-      'name': instance.name,
       'error': instance.error,
-      'code': instance.code,
-      'status': instance.status,
     };
 
 ApiDataValidationException _$ApiDataValidationExceptionFromJson(
     Map<String, dynamic> json) {
   return ApiDataValidationException(
-    statusCode: json['statusCode'] as int,
-    message: json['message'] as String,
     error: json['error'] as String,
   );
 }
@@ -410,7 +404,5 @@ ApiDataValidationException _$ApiDataValidationExceptionFromJson(
 Map<String, dynamic> _$ApiDataValidationExceptionToJson(
         ApiDataValidationException instance) =>
     <String, dynamic>{
-      'statusCode': instance.statusCode,
-      'message': instance.message,
       'error': instance.error,
     };

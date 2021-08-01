@@ -129,18 +129,17 @@ class Auth implements AuthRepository {
 
   /// Get Auth JWT Token
   @override
-  Future<void> getAuthToken(
-      String sessionId, String agent, String nonce) async {
-    sessionId = await SharedPrefService().getString('sessionId') ?? '';
+  Future<void> getAuthToken(String sessionId, String agent) async {
+    sessionId = await SharedPrefService()?.getString('sessionId') ?? '';
 
     try {
       final response = await RequestREST(
-        endpoint: '/auth/session/$nonce',
+        endpoint: '/auth/session',
         data: {
           'session': sessionId,
           'agent': agent,
         },
-      ).executePost<LoginResponse>(LoginResponseParser());
+      ).executePost<User>(UserParser());
 
       print('Session: ' + sessionId);
       print(response.toJson());
