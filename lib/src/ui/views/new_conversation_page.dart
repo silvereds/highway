@@ -16,7 +16,7 @@ class _NewConversationPageState extends State<NewConversationPage> {
       drawer: NavDrawer(),
       backgroundColor: Color(0xFFF5F6F8),
       appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+      // bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
@@ -211,7 +211,10 @@ class _NewConversationPageState extends State<NewConversationPage> {
                       ],
                     ),
                     child: FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, '/conversationDetailsPage');
+                      },
                       child: Center(
                         child: Text(
                           "Start conversation",

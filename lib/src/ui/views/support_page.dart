@@ -13,10 +13,9 @@ class _SupportPageState extends State<SupportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       drawer: NavDrawer(),
       appBar: AppBarView(),
-     // bottomNavigationBar: BottomNavigationBarView(),
+      // bottomNavigationBar: BottomNavigationBarView(),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -71,347 +70,141 @@ class _SupportPageState extends State<SupportPage> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                width: 338,
-                height: 110,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(
-                        0x3f000000,
-                      ),
-                      offset: Offset(
-                        0,
-                        4,
-                      ),
-                      blurRadius: 4,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: 80,
-                        ),
-                        Text(
-                          "OPEN",
-                          style: TextStyle(
-                            color: Color(
-                              0xff14a09f,
-                            ),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      "     Request New RFID Card",
-                      style: TextStyle(
-                        color: Color(
-                          0xff323c47,
-                        ),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    Text(
-                      "      Date: December 23, 2018",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    SizedBox(
-                      width: 280,
-                      child: Center(
-                        child: Text(
-                          "     Hello Support, I would like to request ....",
-                          style: TextStyle(
-                            color: Color(
-                              0xff707683,
-                            ),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              MainContainer(
+                process: 'OPEN',
+                topic: 'Request New RFID Card',
+                date: 'December 23, 2018',
+                message: 'Hello support, i would like to request...',
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                width: 338,
-                height: 110,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(
-                        0x3f000000,
-                      ),
-                      offset: Offset(
-                        0,
-                        4,
-                      ),
-                      blurRadius: 4,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: 80,
-                        ),
-                        Text(
-                          "CLOSED",
-                          style: TextStyle(
-                            color: Color(
-                              0xff14a09f,
-                            ),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      "     Update my profile info",
-                      style: TextStyle(
-                        color: Color(
-                          0xff323c47,
-                        ),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    Text(
-                      "      Date: December 23, 2018",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    SizedBox(
-                      width: 280,
-                      child: Center(
-                        child: Text(
-                          "     Hello Support, I would like to request ....",
-                          style: TextStyle(
-                            color: Color(
-                              0xff707683,
-                            ),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              MainContainer(
+                process: 'CLOSED',
+                topic: "Update my profile info",
+                date: "Date: December 23, 2018",
+                message: "Hello Support, I would like to request ....",
               ),
               SizedBox(
                 height: 10,
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                width: 338,
-                height: 110,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(
-                        0x3f000000,
-                      ),
-                      offset: Offset(
-                        0,
-                        4,
-                      ),
-                      blurRadius: 4,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: 80,
-                        ),
-                        Text(
-                          "CLOSED",
-                          style: TextStyle(
-                            color: Color(
-                              0xff14a09f,
-                            ),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      "     Need help with card",
-                      style: TextStyle(
-                        color: Color(
-                          0xff323c47,
-                        ),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    Text(
-                      "      Date: December 23, 2018",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    SizedBox(
-                      width: 280,
-                      child: Center(
-                        child: Text(
-                          "     Hello Support, I would like to request ....",
-                          style: TextStyle(
-                            color: Color(
-                              0xff707683,
-                            ),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              MainContainer(
+                process: 'CLOSED',
+                topic: 'Need help with card',
+                date: 'Date: December 23, 2018',
+                message: 'Helo support, i will like to request',
               ),
               SizedBox(
                 height: 10,
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                width: 338,
-                height: 110,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(
-                        0x3f000000,
-                      ),
-                      offset: Offset(
-                        0,
-                        4,
-                      ),
-                      blurRadius: 4,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: 80,
-                        ),
-                        Text(
-                          "CLOSED",
-                          style: TextStyle(
-                            color: Color(
-                              0xff14a09f,
-                            ),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      "     Need Second Account",
-                      style: TextStyle(
-                        color: Color(
-                          0xff323c47,
-                        ),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    Text(
-                      "      Date: December 23, 2018",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    SizedBox(
-                      width: 280,
-                      child: Center(
-                        child: Text(
-                          "     Hello Support, I would like to request ....",
-                          style: TextStyle(
-                            color: Color(
-                              0xff707683,
-                            ),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              MainContainer(
+                process: 'CLOSED',
+                topic: 'Need help with card',
+                date: 'Date: December 23, 2018',
+                message: 'Helo support, i will like to request',
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MainContainer extends StatelessWidget {
+  const MainContainer({
+    Key key,
+    this.process,
+    this.topic,
+    this.date,
+    this.message,
+  }) : super(key: key);
+
+  final String process;
+  final String topic;
+  final String date;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+      width: 338,
+      height: 110,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Color(
+              0x3f000000,
+            ),
+            offset: Offset(
+              0,
+              4,
+            ),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                width: 80,
+              ),
+              Text(
+                process,
+                style: TextStyle(
+                  color: Color(
+                    0xff14a09f,
+                  ),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: "Poppins",
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          Text(
+            topic,
+            style: TextStyle(
+              color: Color(
+                0xff323c47,
+              ),
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              fontFamily: "Poppins",
+            ),
+          ),
+          Text(
+            date,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
+              fontFamily: "Poppins",
+            ),
+          ),
+          SizedBox(
+            width: 280,
+            child: Center(
+              child: Text(
+                message,
+                style: TextStyle(
+                  color: Color(
+                    0xff707683,
+                  ),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Poppins",
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
