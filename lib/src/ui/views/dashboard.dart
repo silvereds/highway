@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:mobile/src/ui/themes/const_color.dart';
+import 'package:mobile/src/ui/views/splash_screen_page.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class DashBoard extends StatefulWidget {
@@ -93,43 +94,7 @@ class _DashBoardState extends State<DashBoard> {
                           ),
                           Expanded(child: Divider()),
                           SizedBox(height: 5),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, '/tansferMoneyPage');
-                                },
-                                child: Text(
-                                  'New Transfer',
-                                  style: TextStyle(
-                                    color: Color(
-                                      0xff219653,
-                                    ),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, '/rechargeAccountPage');
-                                },
-                                child: Text(
-                                  "Recharge",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          NewTransferBuildButton(),
                         ],
                       ),
                     ),
@@ -441,43 +406,7 @@ class _DashBoardState extends State<DashBoard> {
                           ),
                           Expanded(child: Divider()),
                           SizedBox(height: 5),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, '/tansferMoneyPage');
-                                },
-                                child: Text(
-                                  'New Transfer',
-                                  style: TextStyle(
-                                    color: Color(
-                                      0xff219653,
-                                    ),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, '/rechargeAccountPage');
-                                },
-                                child: Text(
-                                  "Recharge",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
+                          NewTransferBuildButton(),
                         ],
                       ),
                     ),
@@ -1026,26 +955,43 @@ class _DashBoardState extends State<DashBoard> {
                             Divider(
                               thickness: 1,
                             ),
-                            Text('LEGEND',
-                                style: TextStyle(
-                                  color: Color(0xFF999999),
-                                  fontSize: 12,
-                                ),
-                                textAlign: TextAlign.left),
+                            Text(
+                              'LEGEND',
+                              style: TextStyle(
+                                color: Color(0xFF999999),
+                                fontSize: 12,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-//                                       Container(
-//   width: MediaQuery.of(context).size.width,
-//   decoration: BoxDecoration(
-//     border: Border.all(
-//       color: Color(
-//         0xffffb946,
-//       ),
-//       width: 2,
-//     ),
-//     shape: BoxShape.circle,
-//   ),
-// ),
+                                LegendLable(
+                                  text: 'buisness',
+                                  color: Color(
+                                    0xFFFfB946,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                LegendLable(
+                                  text: 'Personal',
+                                  color: Color(
+                                    0xFF2ED47A,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                LegendLable(
+                                  text: 'Others',
+                                  color: Color(
+                                    0xFFF7685B,
+                                  ),
+                                ),
                               ],
                             )
                           ],
@@ -1116,6 +1062,84 @@ class _DashBoardState extends State<DashBoard> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class LegendLable extends StatelessWidget {
+  const LegendLable({Key key, @required this.text, @required this.color})
+      : super(key: key);
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          // width: MediaQuery.of(context).size.width / 2,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: color,
+              width: 5,
+            ),
+            shape: BoxShape.circle,
+          ),
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Text(text,
+            style: TextStyle(
+              color: Color(0xFF192A3E),
+              fontSize: 10,
+            ))
+      ],
+    );
+  }
+}
+
+class NewTransferBuildButton extends StatelessWidget {
+  const NewTransferBuildButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/tansferMoneyPage');
+          },
+          child: Text(
+            'New Transfer',
+            style: TextStyle(
+              color: Color(
+                0xff219653,
+              ),
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              fontFamily: "Poppins",
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/rechargeAccountPage');
+          },
+          child: Text(
+            "Recharge",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              fontFamily: "Poppins",
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

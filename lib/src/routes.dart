@@ -4,6 +4,8 @@ import 'package:mobile/src/ui/views/Create_password.dart';
 import 'package:mobile/src/ui/views/change_password_screen.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
+import 'ui/views/transactions/transaction_new_transfer.dart';
+
 class RouteGenerator {
   static const splashScreenPage = '/';
   static const registerPage = '/register';
@@ -139,6 +141,10 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const ChangePassword(),
         );
+      case transferMoneyPage:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => TransactionWidgetNewTransfer());
+
       default:
         throw RouteException("Route Not found");
     }

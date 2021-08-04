@@ -30,7 +30,7 @@ class FormProvider extends ChangeNotifier {
     if (val.isValidEmail || val.isValidPhone) {
       _email = Validation(val, null);
     } else {
-      _email = Validation(null, 'Please enter a calid Email or Phone number');
+      _email = Validation(null, 'Please enter a valid Email or Phone number');
     }
     notifyListeners();
   }
@@ -39,7 +39,7 @@ class FormProvider extends ChangeNotifier {
     if (val.isValidEmail) {
       _resetPasswordEmail = Validation(val, null);
     } else {
-      _resetPasswordEmail = Validation(null, 'Please Enter a Valid Email');
+      _resetPasswordEmail = Validation(null, 'Please Enter a valid Email');
     }
     notifyListeners();
   }
