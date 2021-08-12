@@ -3,6 +3,7 @@ import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/views/Create_password.dart';
 import 'package:mobile/src/ui/views/change_password_screen.dart';
 import 'package:mobile/src/ui/views/licence_page.dart';
+import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
 import 'package:mobile/src/ui/views/product_services_info.dart';
 import 'package:mobile/src/ui/views/terms_page.dart';
 import 'package:mobile/src/ui/views/views.dart';
@@ -41,6 +42,7 @@ class RouteGenerator {
   static const prouctServices = '/productServicesPage';
   static const conversationDetails = '/conversationDetailsPage';
   static const changePasswordScreen = '/changePasswordScreen';
+  static const notificationScreen = '/notificationScreen';
 
   RouteGenerator._();
 
@@ -156,6 +158,8 @@ class RouteGenerator {
       case transferMoneyPage:
         return MaterialPageRoute<dynamic>(
             builder: (_) => TransactionWidgetNewTransfer());
+      case notificationScreen:
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
 
       default:
         throw RouteException("Route Not found");

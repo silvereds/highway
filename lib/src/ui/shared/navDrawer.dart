@@ -5,6 +5,7 @@ import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
 
 class NavDrawer extends StatefulWidget {
   @override
@@ -81,7 +82,10 @@ class _NavDrawerState extends State<NavDrawer> {
                       fontFamily: "Poppins",
                     ),
                   ),
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/notificationScreen');
+                  },
                 ),
                 ListTile(
                   leading: Icon(
