@@ -15,7 +15,7 @@ class ThemeColors {
   static const Group = Color(0xFF4CAF50);
   static const RegisterC = Color(0xFF00CDAC);
   static const RegisterCl = Color(0xFF4EB181);
- 
+
   static const CheckColor = Color(0xFF4EB181);
   static const CheckText = Color(0xFFAAAAAA);
   static const Buttons = Color(0xFF4EB181);
@@ -24,7 +24,6 @@ class ThemeColors {
   static const VerifyIdentityText = Color(0xFFCACACA);
   static const ResendCode = Color(0xFF2AA694);
   static const black = Color(0xFF000000);
-
 
   static const BackgroundGradient = LinearGradient(
       begin: Alignment.topRight,
@@ -39,16 +38,16 @@ class ThemeColors {
 // Dashboard
 
   static const SelectedItemColor = Color(0xFF53B27F);
-  
+
   static const UnSelectedItemColor = Color(0xFF334D6E);
-  static const  LightText = Color(0xFF6A707E);
+  static const LightText = Color(0xFF6A707E);
   static const TransferCurrency = Color(0xFF5CB460);
   static const Text = Color(0xFF219653);
-  
+  static const deficiteColor = Color(0xFFF44336);
 }
 
-  List<Color> colorList = [
-    Color(0xFFF7685B),
-    Color(0xFF2ED47A),
-    Color(0xFFFFB946),
-  ];
+List<Color> colorList = [
+  Color(0xFFF7685B),
+  Color(0xFF2ED47A),
+  Color(0xFFFFB946),
+];
