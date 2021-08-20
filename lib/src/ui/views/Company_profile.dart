@@ -3,7 +3,7 @@ import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
-import 'dashboard.dart';
+import 'dashboard/dashboard.dart';
 
 class CompanyProfileView extends StatefulWidget {
   @override

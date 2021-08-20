@@ -9,7 +9,7 @@ export '../views/change_alias.dart';
 export '../views/change_device_page.dart';
 export '../views/change_pin_page.dart';
 export '../views/conversation_details_page.dart';
-export '../views/dashboard.dart';
+export 'dashboard/dashboard.dart';
 export '../views/device_details_page.dart';
 export '../views/forgot_password_screen.dart';
 export '../views/home_screen.dart';

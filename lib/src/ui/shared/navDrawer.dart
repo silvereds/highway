@@ -5,6 +5,7 @@ import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
 
 class NavDrawer extends StatefulWidget {
   @override
@@ -81,7 +82,10 @@ class _NavDrawerState extends State<NavDrawer> {
                       fontFamily: "Poppins",
                     ),
                   ),
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/notificationScreen');
+                  },
                 ),
                 ListTile(
                   leading: Icon(
@@ -99,7 +103,10 @@ class _NavDrawerState extends State<NavDrawer> {
                       fontFamily: "Poppins",
                     ),
                   ),
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/supportPage');
+                  },
                 ),
                 ExpansionTile(
                   collapsedIconColor: Color(0xFFDADADA),
@@ -129,6 +136,8 @@ class _NavDrawerState extends State<NavDrawer> {
                           _SubMenuTextButton(
                             onTap: () {
                               Navigator.pop(context);
+                              Navigator.pushNamed(
+                                  context, '/settingPreference');
                             },
                             text: 'Preferences',
                             fontSize: 16,
@@ -145,24 +154,31 @@ class _NavDrawerState extends State<NavDrawer> {
                                 _SubMenu(
                                   onTap: () {
                                     Navigator.pop(context);
+                                    Navigator.pushNamed(context, '/policyPage');
                                   },
-                                  text: 'Police',
+                                  text: 'Policy',
                                 ),
                                 _SubMenu(
                                   onTap: () {
                                     Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                        context, '/termsAndConditions');
                                   },
                                   text: 'Terms & Conditions',
                                 ),
                                 _SubMenu(
                                   onTap: () {
                                     Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                        context, '/licenceAgreement');
                                   },
                                   text: 'License Agreement',
                                 ),
                                 _SubMenu(
                                   onTap: () {
                                     Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                        context, '/productServicesPage');
                                   },
                                   text: 'Product & Service Info',
                                 ),

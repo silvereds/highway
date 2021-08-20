@@ -4,7 +4,7 @@ import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/views/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/all_maps.dart';
-import 'package:mobile/src/ui/views/dashboard.dart';
+import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
 class HomeScreen extends StatefulWidget {
