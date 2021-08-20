@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
           setState(() {
             _isLoading = false;
           });
+
           showDialog(
             context: context,
             builder: (context) => AlertDialog(

@@ -20,7 +20,7 @@ class _NavDrawerState extends State<NavDrawer> {
           SharedPrefService().saveBool('isPasscodeVerify', false);
           Navigator.of(context).pop();
           Navigator.of(context).pushNamedAndRemoveUntil(
-              RouteGenerator.loginPage, (route) => false);
+              RouteGenerator.loginPage, (route) => true);
         },
       );
     } catch (e) {

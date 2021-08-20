@@ -33,7 +33,7 @@ class Auth implements AuthRepository {
       final response = await RequestREST(
         endpoint: '/auth/login',
         data: user.toJson(),
-      ).executePost<LoginResponse>(LoginResponseParser());
+      ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
     } catch (e) {
@@ -53,7 +53,7 @@ class Auth implements AuthRepository {
         data: {
           'email': email,
         },
-      ).executePost<LoginResponse>(LoginResponseParser());
+      ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
     } catch (e) {
@@ -94,7 +94,7 @@ class Auth implements AuthRepository {
     try {
       final response = await RequestREST(
         endpoint: '/auth/logout',
-      ).executePost<LoginResponse>(LoginResponseParser());
+      ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
     } catch (e) {
@@ -119,7 +119,7 @@ class Auth implements AuthRepository {
           'email': email,
           'nonce': nonce,
         },
-      ).executePost<LoginResponse>(LoginResponseParser());
+      ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
     } catch (e) {

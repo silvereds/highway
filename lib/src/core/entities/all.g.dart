@@ -354,33 +354,17 @@ Map<String, dynamic> _$ValidationToJson(Validation instance) =>
       'error': instance.error,
     };
 
-LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
-  return LoginResponse(
-    error: json['error'] as String,
+SimpleMessageResponse _$SimpleMessageResponseFromJson(
+    Map<String, dynamic> json) {
+  return SimpleMessageResponse(
     message: json['message'] as String,
-    accessToken: json['accessToken'] as String,
-    expiresIn: json['expiresIn'] as int,
-    refreshToken: json['refreshToken'] as String,
-    refreshExpiresIn: json['refreshExpiresIn'] as int,
-    tokenType: json['tokenType'] as String,
-    notBeforePolicy: json['notBeforePolicy'] as int,
-    sessionState: json['sessionState'] as String,
-    scope: json['scope'] as String,
   );
 }
 
-Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
+Map<String, dynamic> _$SimpleMessageResponseToJson(
+        SimpleMessageResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'error': instance.error,
-      'accessToken': instance.accessToken,
-      'expiresIn': instance.expiresIn,
-      'refreshToken': instance.refreshToken,
-      'refreshExpiresIn': instance.refreshExpiresIn,
-      'tokenType': instance.tokenType,
-      'notBeforePolicy': instance.notBeforePolicy,
-      'sessionState': instance.sessionState,
-      'scope': instance.scope,
     };
 
 ApiException _$ApiExceptionFromJson(Map<String, dynamic> json) {
