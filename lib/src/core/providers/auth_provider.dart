@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile/src/core/api/http_client.dart';
 import 'package:mobile/src/core/api/json_parsers/json_parser.dart';
 import 'package:mobile/src/core/api/json_parsers/reponse_parser.dart';
@@ -7,24 +10,52 @@ import 'package:mobile/src/core/repository/auth_repository.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/ui/views/reset_password_screen.dart';
 
-abstract class AuthProvider {
-  static final authProvider = Provider<Auth>((ref) => Auth());
+part 'auth_provider.freezed.dart';
+
+@freezed
+abstract class AuthState with _$AuthState {
+  const AuthState._();
+  const factory AuthState.initial() = Initial;
+  const factory AuthState.loading() = Loading;
+  const factory AuthState.login() = Login;
+  const factory AuthState.unauthenticated() = _Unauthenticated;
+  const factory AuthState.authenticated() = _Authenticated;
+  const factory AuthState.failure([String error]) = _Failure;
 }
 
-abstract class UserDetailProvider {
-  static final userDetailProvider = Provider<User>(
-    (ref) {
-      final authProvider = ref.read(AuthProvider.authProvider);
-      final user = authProvider.userDetails;
-      return user;
-    },
-  );
-}
-
-class Auth implements AuthRepository {
+class Auth extends StateNotifier<AuthState> implements AuthRepository {
   User _user = User();
 
+  Auth() : super(const AuthState.initial());
+
+  static const _userKey = 'userInfo';
+
   User get userDetails => _user;
+
+  /// Chech user status
+
+  Future<void> checkAndUpdateStatus() async {
+    state = (await isSigned())
+        ? const AuthState.authenticated()
+        : const AuthState.unauthenticated();
+  }
+
+  /// Get user cached info
+  Future<User> getUserInfo() async {
+    try {
+      final user = await SharedPrefService().getObject(_userKey);
+      if (user != null) {
+        return User.fromJson(user);
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// Verified if the user is signed in
+
+  Future<bool> isSigned() => getUserInfo().then((user) => user != null);
 
   /// Log the user
   @override
@@ -36,6 +67,8 @@ class Auth implements AuthRepository {
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
+
+      state = AuthState.login();
     } catch (e) {
       throw e;
     }
@@ -83,6 +116,8 @@ class Auth implements AuthRepository {
       _user = response;
 
       SharedPrefService().saveString('sessionId', response.session);
+      SharedPrefService().saveObject(_userKey, _user.toJson());
+      state = AuthState.authenticated();
     } catch (e) {
       throw e;
     }
@@ -97,6 +132,8 @@ class Auth implements AuthRepository {
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
+      await SharedPrefService().removeObject(_userKey);
+      state = AuthState.unauthenticated();
     } catch (e) {
       throw e;
     }

@@ -5,6 +5,7 @@ import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
@@ -33,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
 
-  var _isPasscodeVerify;
+  // var _isPasscodeVerify;
 
   void _getUserAgent() async {
     _userAgent = await SharedPrefService().getString('deviceName');
@@ -43,13 +44,13 @@ class _LoginPageState extends State<LoginPage> {
   // check if the passcode has been verify
   // if [yes] then we move to the home screen
   // else we do nothing
-  void _isPassCodeVerify() async {
-    _isPasscodeVerify = await SharedPrefService().getBool('isPasscodeVerify');
-    if (_isPasscodeVerify == true) {
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(RouteGenerator.homeScreen, (route) => false);
-    }
-  }
+  // void _isPassCodeVerify() async {
+  //   _isPasscodeVerify = await SharedPrefService().getBool('isPasscodeVerify');
+  //   if (_isPasscodeVerify == true) {
+  //     Navigator.of(context)
+  //         .pushNamedAndRemoveUntil(RouteGenerator.homeScreen, (route) => false);
+  //   }
+  // }
 
   @override
   void initState() {
