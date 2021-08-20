@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       onGenerateTitle: (_) => "HIGHWEH",
       onGenerateRoute: RouteGenerator.generateRoute,
       navigatorKey: RouteGenerator.key,
-      initialRoute: RouteGenerator.splashScreenPage,
+      initialRoute: RouteGenerator.homeScreen,
     );
   }
 }
