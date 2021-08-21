@@ -15,6 +15,18 @@ class RequestREST {
     this.data = const {},
   });
 
+  // static dynamic requestInterceptor(RequestOptions options) async {
+  //   // Get your JWT token
+  //   final String token = await SharedPrefService().getString('token') ?? '';
+  //   options.headers.addAll(
+  //     {
+  //       'content-Type': 'application/json; charset=UTF-8',
+  //       "Authorization": "$token",
+  //     },
+  //   );
+  //   return options;
+  // }
+
   /// HTTP dio client
   static final _client = Dio(
     BaseOptions(

@@ -74,26 +74,6 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     }
   }
 
-  /// Get the link to reset password
-  /// This link should return the user to app into the
-  /// [ResetPasswordScreen] in case the user has the app
-  /// otherwise into the store
-  @override
-  Future<void> forgotPassword(String email) async {
-    try {
-      final response = await RequestREST(
-        endpoint: '/auth/forgot-password',
-        data: {
-          'email': email,
-        },
-      ).executePost<SimpleMessageResponse>(LoginResponseParser());
-
-      print(response.toJson());
-    } catch (e) {
-      throw e;
-    }
-  }
-
   /// Verify passcode send to the user by email
   @override
   Future<void> verifyPasscode(
@@ -121,22 +101,43 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     }
   }
 
+  /// Get the link to reset password
+  /// This link should return the user to app into the
+  /// [ResetPasswordScreen] in case the user has the app
+  /// otherwise into the store
+  @override
+  Future<void> forgotPassword(String email) async {
+    try {
+      final response = await RequestREST(
+        endpoint: '/auth/forgot-password',
+        data: {
+          'email': email,
+        },
+      ).executePost<SimpleMessageResponse>(LoginResponseParser());
+
+      print(response.toJson());
+    } catch (e) {
+      throw e;
+    }
+  }
+
   /// Reset password
   @override
   Future<void> resetPassword(
     String email,
     String password,
     String agent,
-    String nonce,
   ) async {
+    final mapData = await _prefService.getObject(_userKey) ?? '';
+    final user = User.fromJson(mapData);
     try {
       final response = await RequestREST(
-        endpoint: '/auth/reset-password/$nonce',
+        endpoint: '/auth/reset-password/${user.session}',
         data: {
           'password': password,
           'agent': agent,
           'email': email,
-          'nonce': nonce,
+          'nonce': user.session,
         },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 

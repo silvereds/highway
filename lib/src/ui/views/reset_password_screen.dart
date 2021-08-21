@@ -53,7 +53,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       try {
         await context
             .read(AuthProvider.authProvider)
-            .resetPassword(widget.email, _password, _deviceName, "nonce")
+            .resetPassword(widget.email, _password, _deviceName)
             .then((_) {
           setState(() {
             _isLoading = false;
