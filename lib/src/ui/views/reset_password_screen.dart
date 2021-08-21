@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/widgets/box_title.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:nonce/nonce.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   final String email;
@@ -50,16 +49,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       print(widget.email);
       print(_password);
       print(_deviceName);
-      print(Nonce.generate());
 
       try {
         await context
             .read(AuthProvider.authProvider)
-            .resetPassword(
-                widget.email, _password, _deviceName, Nonce.generate())
+            .resetPassword(widget.email, _password, _deviceName)
             .then((_) {
-          print(Nonce.generate());
-
           setState(() {
             _isLoading = false;
           });

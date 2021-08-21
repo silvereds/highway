@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/views/all_accoutsView.dart';
@@ -24,12 +26,21 @@ class _HomeScreenState extends State<HomeScreen> {
     AllMaps(),
   ];
 
+  void displayToken() async {
+    await context.read(AuthProvider.authProvider).getAuthToken();
+  }
+
+  void displayTransaction() async {
+    await context.read(AuthProvider.authProvider).getAllTransactions();
+  }
+
   @override
   void initState() {
     super.initState();
     FlutterStatusbarcolor.setStatusBarColor(Colors.black);
-
     _currentIndex = 0;
+    displayToken();
+    displayTransaction();
   }
 
   @override

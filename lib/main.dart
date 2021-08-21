@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_user_agent/flutter_user_agent.dart';
@@ -6,6 +8,7 @@ import 'package:mobile/src/core/services/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/app_widget.dart';
+import 'src/core/api/http_client.dart';
 
 void _setupLogging() {
   Logger.root.level = Level.ALL;
@@ -30,6 +33,7 @@ void _getDeviceInfo() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
+  // RequestREST().init();
   _setupLogging();
   _getDeviceInfo();
   runApp(

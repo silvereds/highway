@@ -289,16 +289,17 @@ class Ticket {
 
 @JsonSerializable()
 class Transaction {
-  final int id;
+  final String id;
   final String status;
   final String category;
-  final String amount;
+  final int amount;
   final String accountFrom;
   final String accountTo;
   final String reference;
-  final String initiatedOn;
+  final String initiatedON;
   final String deviceFrom;
   final String deviceTo;
+  final int charges;
 
   Transaction({
     this.id,
@@ -308,9 +309,10 @@ class Transaction {
     this.accountFrom,
     this.accountTo,
     this.reference,
-    this.initiatedOn,
+    this.initiatedON,
     this.deviceFrom,
     this.deviceTo,
+    this.charges,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
@@ -391,35 +393,17 @@ class Validation {
 }
 
 @JsonSerializable()
-class LoginResponse {
+class SimpleMessageResponse {
   final String message;
-  final String error;
-  final String accessToken;
-  final int expiresIn;
-  final String refreshToken;
-  final int refreshExpiresIn;
-  final String tokenType;
-  final int notBeforePolicy;
-  final String sessionState;
-  final String scope;
 
-  LoginResponse({
-    this.error,
+  SimpleMessageResponse({
     this.message,
-    this.accessToken,
-    this.expiresIn,
-    this.refreshToken,
-    this.refreshExpiresIn,
-    this.tokenType,
-    this.notBeforePolicy,
-    this.sessionState,
-    this.scope,
   });
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponseFromJson(json);
+  factory SimpleMessageResponse.fromJson(Map<String, dynamic> json) =>
+      _$SimpleMessageResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
+  Map<String, dynamic> toJson() => _$SimpleMessageResponseToJson(this);
 }
 
 @JsonSerializable()

@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
@@ -33,22 +33,10 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
 
-  var _isPasscodeVerify;
+  // var _isPasscodeVerify;
 
   void _getUserAgent() async {
     _userAgent = await SharedPrefService().getString('deviceName');
-    print(_userAgent);
-  }
-
-  // check if the passcode has been verify
-  // if [yes] then we move to the home screen
-  // else we do nothing
-  void _isPassCodeVerify() async {
-    _isPasscodeVerify = await SharedPrefService().getBool('isPasscodeVerify');
-    if (_isPasscodeVerify == true) {
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(RouteGenerator.homeScreen, (route) => false);
-    }
   }
 
   @override
@@ -90,6 +78,7 @@ class _LoginPageState extends State<LoginPage> {
           setState(() {
             _isLoading = false;
           });
+
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
