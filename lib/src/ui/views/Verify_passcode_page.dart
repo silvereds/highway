@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';

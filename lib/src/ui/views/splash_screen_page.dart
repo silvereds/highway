@@ -12,7 +12,7 @@ class SplashScreenPage extends StatefulWidget {
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
   void _isAlreadySee() {
-    SharedPrefService().saveBool('isSee', true);
+    // SharedPrefService().saveBool('isSee', true);
     Navigator.of(context)
         .pushNamedAndRemoveUntil(RouteGenerator.loginPage, (route) => false);
   }

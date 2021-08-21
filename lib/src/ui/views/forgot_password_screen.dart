@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/routes.dart';

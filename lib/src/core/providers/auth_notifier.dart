@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile/src/core/api/http_client.dart';
@@ -23,16 +21,18 @@ abstract class AuthState with _$AuthState {
   const factory AuthState.failure([String error]) = _Failure;
 }
 
-class Auth extends StateNotifier<AuthState> implements AuthRepository {
-  User _user = User();
+class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
+  SharedPrefService _prefService;
 
-  Auth() : super(const AuthState.initial());
+  AuthNotifier(this._prefService) : super(const AuthState.initial());
+
+  // User _user = User();
 
   static const _userKey = 'userInfo';
 
-  User get userDetails => _user;
+  // User get userDetails => _user;
 
-  /// Chech user status
+  /// Chech user statusb
 
   Future<void> checkAndUpdateStatus() async {
     state = (await isSigned())
@@ -43,7 +43,7 @@ class Auth extends StateNotifier<AuthState> implements AuthRepository {
   /// Get user cached info
   Future<User> getUserInfo() async {
     try {
-      final user = await SharedPrefService().getObject(_userKey);
+      final user = await _prefService.getObject(_userKey);
       if (user != null) {
         return User.fromJson(user);
       }
@@ -54,7 +54,6 @@ class Auth extends StateNotifier<AuthState> implements AuthRepository {
   }
 
   /// Verified if the user is signed in
-
   Future<bool> isSigned() => getUserInfo().then((user) => user != null);
 
   /// Log the user
@@ -113,10 +112,8 @@ class Auth extends StateNotifier<AuthState> implements AuthRepository {
         },
       ).executePost<User>(UserParser());
 
-      _user = response;
-
-      SharedPrefService().saveString('sessionId', response.session);
-      SharedPrefService().saveObject(_userKey, _user.toJson());
+      _prefService.saveString('sessionId', response.session);
+      _prefService.saveObject(_userKey, response.toJson());
       state = AuthState.authenticated();
     } catch (e) {
       throw e;
@@ -132,7 +129,7 @@ class Auth extends StateNotifier<AuthState> implements AuthRepository {
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
-      await SharedPrefService().removeObject(_userKey);
+      await _prefService.removeObject(_userKey);
       state = AuthState.unauthenticated();
     } catch (e) {
       throw e;
