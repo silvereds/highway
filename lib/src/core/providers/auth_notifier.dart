@@ -29,6 +29,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
   // User _user = User();
 
   static const _userKey = 'userInfo';
+  static const _token = 'token';
 
   // User get userDetails => _user;
 
@@ -120,22 +121,6 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     }
   }
 
-  /// Logout user
-  @override
-  Future<void> logout() async {
-    try {
-      final response = await RequestREST(
-        endpoint: '/auth/logout',
-      ).executePost<SimpleMessageResponse>(LoginResponseParser());
-
-      print(response.toJson());
-      await _prefService.removeObject(_userKey);
-      state = AuthState.unauthenticated();
-    } catch (e) {
-      throw e;
-    }
-  }
-
   /// Reset password
   @override
   Future<void> resetPassword(
@@ -161,22 +146,37 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     }
   }
 
+  /// Logout user
+  @override
+  Future<void> logout() async {
+    try {
+      final response = await RequestREST(
+        endpoint: '/auth/logout',
+      ).executePost<SimpleMessageResponse>(LoginResponseParser());
+
+      print(response.toJson());
+      await _prefService.removeObject(_userKey);
+      state = AuthState.unauthenticated();
+    } catch (e) {
+      throw e;
+    }
+  }
+
   /// Get Auth JWT Token
   @override
   Future<void> getAuthToken(String sessionId, String agent) async {
-    sessionId = await SharedPrefService()?.getString('sessionId') ?? '';
+    final mapData = await _prefService.getObject(_userKey) ?? '';
+    final user = User.fromJson(mapData);
 
     try {
       final response = await RequestREST(
         endpoint: '/auth/session',
         data: {
-          'session': sessionId,
+          'session': user.session,
           'agent': agent,
         },
       ).executePost<User>(UserParser());
-
-      print('Session: ' + sessionId);
-      print(response.toJson());
+      _prefService.saveString(_token, response.authorization);
     } catch (e) {
       throw e;
     }
