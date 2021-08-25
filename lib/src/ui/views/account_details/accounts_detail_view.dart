@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
+
+import 'components/linked_devices.dart';
 
 class AccountsDetailsView extends StatefulWidget {
   @override
@@ -59,7 +62,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                   color: Color(0xFFFFFFFF),
                                   onPressed: () {
                                     Navigator.pushNamed(
-                                        context, AppRoutes.accountsView);
+                                        context, AppRoutes.homeScreen);
                                   },
                                 ),
                                 Text(
@@ -334,183 +337,20 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                     ),
                     Opacity(
                       opacity: 0.5,
-                      child: Container(
-                        height: 36,
-                        width: 306,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              'ID',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff323c47,
-                                ),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                            Text(
-                              'Type',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff323c47,
-                                ),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                            Text(
-                              'Alias',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff323c47,
-                                ),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(
-                                0x3f000000,
-                              ),
-                              offset: Offset(
-                                0,
-                                4,
-                              ),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
+                      child: LinkedDevicesSubTiltles(
+                        alias: 'Alias',
+                        id: 'ID',
+                        type: 'Type',
                       ),
                     ),
-                    Opacity(
-                      opacity: 0.5,
-                      child: Container(
-                        height: 56,
-                        width: 306,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              '00987',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff333333,
-                                ),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                            Text(
-                              'RFID CARD',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff333333,
-                                ),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                            Text(
-                              'Joe Kamga',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff333333,
-                                ),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(
-                                0x3f000000,
-                              ),
-                              offset: Offset(
-                                0,
-                                4,
-                              ),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Opacity(
-                      opacity: 0.5,
-                      child: Container(
-                        height: 56,
-                        width: 306,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              '00345',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff333333,
-                                ),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                            Text(
-                              'CARD READER',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff333333,
-                                ),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                            Text(
-                              'Peter Ndi',
-                              style: TextStyle(
-                                color: Color(
-                                  0xff333333,
-                                ),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Poppins",
-                              ),
-                            ),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(
-                                0x3f000000,
-                              ),
-                              offset: Offset(
-                                0,
-                                4,
-                              ),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                      ),
+                    Column(
+                      children: List.generate(5, (index) {
+                        return LinkedDevices(
+                          alias: 'Joe Kamga',
+                          id: '0098',
+                          type: 'RFID CARD',
+                        );
+                      }),
                     ),
                     SizedBox(
                       height: 20,
@@ -520,7 +360,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                       children: [
                         FlatButton(
                             minWidth: 93,
-                            height: 35,
+                            height: 40,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
@@ -540,7 +380,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             )),
                         FlatButton(
                             minWidth: 93,
-                            height: 35,
+                            height: 40,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
@@ -561,7 +401,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             )),
                         FlatButton(
                             minWidth: 93,
-                            height: 35,
+                            height: 40,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
@@ -588,5 +428,76 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
             ),
           ));
         });
+  }
+}
+
+class LinkedDevicesSubTiltles extends StatelessWidget {
+  const LinkedDevicesSubTiltles({
+    Key key,
+    @required this.id,
+    @required this.type,
+    @required this.alias,
+  }) : super(key: key);
+  final String id, type, alias;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 36,
+      width: 306,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            id,
+            style: TextStyle(
+              color: Color(
+                0xff323c47,
+              ),
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Poppins",
+            ),
+          ),
+          Text(
+            type,
+            style: TextStyle(
+              color: Color(
+                0xff323c47,
+              ),
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Poppins",
+            ),
+          ),
+          Text(
+            alias,
+            style: TextStyle(
+              color: Color(
+                0xff323c47,
+              ),
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Poppins",
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Color(
+              0x3f000000,
+            ),
+            offset: Offset(
+              0,
+              4,
+            ),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+    );
   }
 }

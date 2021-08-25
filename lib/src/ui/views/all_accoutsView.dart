@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
 
 class AccountsView extends StatefulWidget {
   @override
@@ -59,88 +60,94 @@ class _AccountsViewState extends State<AccountsView> {
                   // contiunue here
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AccountStatus(
-                              status: "Active",
-                            ),
-                            SizedBox(
-                              child: Text(
-                                "DEFAULT",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff14a09f,
-                                  ),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Poppins",
-                                ),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, AppRoutes.accoutsDetailsView);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AccountStatus(
+                                status: "Active",
                               ),
-                              width: 65.9879150390625,
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "CMR12344459876-01",
+                              SizedBox(
+                                child: Text(
+                                  "DEFAULT",
                                   style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
+                                    color: Color(
+                                      0xff14a09f,
+                                    ),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
                                     fontFamily: "Poppins",
                                   ),
                                 ),
-                                const SizedBox(height: 5),
-                                RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Jane Doe ',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14,
-                                            color: Color(0xFF000000),
-                                            fontFamily: 'Poppins'),
-                                      ),
-                                      TextSpan(
-                                        text: '-  Personal',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF333333),
-                                        ),
-                                      ),
-                                    ],
+                                width: 65.9879150390625,
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "CMR12344459876-01",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "Poppins",
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 15),
-                            Text(
-                              "FCFA  24,000",
-                              style: TextStyle(
-                                color: Color(
-                                  0xff27ae60,
-                                ),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "Roboto",
+                                  const SizedBox(height: 5),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Jane Doe ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 14,
+                                              color: Color(0xFF000000),
+                                              fontFamily: 'Poppins'),
+                                        ),
+                                        TextSpan(
+                                          text: '-  Personal',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF333333),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              const SizedBox(width: 15),
+                              Text(
+                                "FCFA  24,000",
+                                style: TextStyle(
+                                  color: Color(
+                                    0xff27ae60,
+                                  ),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "Roboto",
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 15),
