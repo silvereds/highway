@@ -8,6 +8,12 @@ class AccountsView extends StatefulWidget {
 
 class _AccountsViewState extends State<AccountsView> {
   final List<String> entries = <String>['Active', 'Blocked' 'Active'];
+  Map<String, dynamic> account = {
+    'accountNumber': 'CMR122334455-01',
+    'balance': "27,0987",
+    'alias': 'Jane doe',
+    'status': 'Active'
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,8 @@ class _AccountsViewState extends State<AccountsView> {
       backgroundColor: Color(0xFFF5F6F8),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.fromLTRB(16, 55, 16, 20),
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 55),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),
@@ -58,98 +65,7 @@ class _AccountsViewState extends State<AccountsView> {
 
                   const SizedBox(height: 15),
                   // contiunue here
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, AppRoutes.accoutsDetailsView);
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AccountStatus(
-                                status: "Active",
-                              ),
-                              SizedBox(
-                                child: Text(
-                                  "DEFAULT",
-                                  style: TextStyle(
-                                    color: Color(
-                                      0xff14a09f,
-                                    ),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                width: 65.9879150390625,
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    "CMR12344459876-01",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: 'Jane Doe ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 14,
-                                              color: Color(0xFF000000),
-                                              fontFamily: 'Poppins'),
-                                        ),
-                                        TextSpan(
-                                          text: '-  Personal',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF333333),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(width: 15),
-                              Text(
-                                "FCFA  24,000",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff27ae60,
-                                  ),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Roboto",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  AllAccountsCard(),
                   const SizedBox(height: 15),
                   const Divider(),
                   const SizedBox(height: 8),
@@ -296,6 +212,107 @@ class _AccountsViewState extends State<AccountsView> {
               _AccountBoxIcon(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class AllAccountsCard extends StatelessWidget {
+  const AllAccountsCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, AppRoutes.accoutsDetailsView);
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AccountStatus(
+                  status: "Active",
+                ),
+                SizedBox(
+                  child: Text(
+                    "DEFAULT",
+                    style: TextStyle(
+                      color: Color(
+                        0xff14a09f,
+                      ),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                  width: 65.9879150390625,
+                )
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "CMR12344459876-01",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Jane Doe ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 14,
+                                color: Color(0xFF000000),
+                                fontFamily: 'Poppins'),
+                          ),
+                          TextSpan(
+                            text: '-  Personal',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'Poppins',
+                              color: Color(0xFF333333),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 15),
+                Text(
+                  "FCFA  24,000",
+                  style: TextStyle(
+                    color: Color(
+                      0xff27ae60,
+                    ),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Roboto",
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
