@@ -1,7 +1,7 @@
 export '../views/Login_page.dart';
 export '../views/Verify_passcode_page.dart';
 export 'account_details/accounts_detail_view.dart';
-export '../views/all_accoutsView.dart';
+export 'all_accounts_view/all_accoutsView.dart';
 export 'all_devices/all_devices_page.dart';
 export '../views/all_transactions_page.dart';
 export '../views/block_device_page.dart';

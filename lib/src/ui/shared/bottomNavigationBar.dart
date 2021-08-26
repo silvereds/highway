@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/views/account_details/accounts_detail_view.dart';
-import 'package:mobile/src/ui/views/all_accoutsView.dart';
+import 'package:mobile/src/ui/views/all_accounts_view/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/block_accountView.dart';
 import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
 import 'package:mobile/src/ui/views/transactions.dart';
