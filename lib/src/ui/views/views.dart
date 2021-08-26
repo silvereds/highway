@@ -20,5 +20,5 @@ export '../views/register_page.dart';
 export '../views/reset_password_screen.dart';
 export '../views/setting_preference_page.dart';
 export '../views/splash_screen_page.dart';
-export '../views/support_page.dart';
+export 'support_page/support_page.dart';
 export '../views/transaction_details_page.dart';
