@@ -15,7 +15,7 @@ class _BlockDevicePageState extends State<BlockDevicePage> {
         backgroundColor: Color(0xFFF5F6F8),
         drawer: NavDrawer(),
         appBar: AppBarView(),
-        bottomNavigationBar: BottomNavigationBarView(),
+        //  bottomNavigationBar: BottomNavigationBarView(),
         body: Center(
           child: Container(
             margin: EdgeInsets.fromLTRB(20, 55, 20, 20),

@@ -103,6 +103,8 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => ChangeAliasView(),
         );
+      case deviceDetailsPage:
+        return MaterialPageRoute(builder: (_) => DeviceDetailsPage());
 
       case changeDevicePage:
         return MaterialPageRoute<dynamic>(
@@ -160,6 +162,8 @@ class RouteGenerator {
             builder: (_) => TransactionWidgetNewTransfer());
       case notificationScreen:
         return MaterialPageRoute(builder: (_) => NotificationScreen());
+      case blockDevicePage:
+        return MaterialPageRoute(builder: (_) => BlockDevicePage());
 
       default:
         throw RouteException("Route Not found");

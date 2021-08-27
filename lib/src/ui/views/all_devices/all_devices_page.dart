@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
 
 import 'components/device_card.dart';
 
@@ -123,11 +124,17 @@ class Body extends StatelessWidget {
                         thickness: 2,
                         color: Color(0xFFD8D8D8),
                       ),
-                      DeviceCard(
-                        accountId: 'ABC00987',
-                        assignedTo: ' Jane Doe',
-                        deviceType: 'RFID CARD',
-                        status: 'Active',
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AppRoutes.deviceDetailsPage);
+                        },
+                        child: DeviceCard(
+                          accountId: 'ABC00987',
+                          assignedTo: ' Jane Doe',
+                          deviceType: 'RFID CARD',
+                          status: 'Active',
+                        ),
                       ),
                       Divider(),
                       DeviceCard(
