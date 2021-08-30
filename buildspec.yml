@@ -1,0 +1,96 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #secrets-manager:
+     # key: secret-id:json-key:version-stage:version-id
+     # key: secret-id:json-key:version-stage:version-id
+  #exported-variables:
+     # - variable
+     # - variable
+  #git-credential-helper: yes
+#batch:
+  #fast-fail: true
+  #build-list:
+  #build-matrix:
+  #build-graph:
+phases:
+  install:
+    #Si vous utilisez l'image standard Ubuntu 2.0 ou version ultérieure, vous devez spécifier l'exécution des versions.
+    #Si vous spécifiez l'exécution des versions d'exécution et n'utilisez pas l'image Ubuntu 2.0, la génération échoue.
+    runtime-versions:
+       android: 29
+       nodejs: latest
+       ruby: 2.7
+       
+  # commands:
+      # - echo "Checking some details.."
+      # - pwd
+      # - ruby --version
+      # - node -v
+      # - java -version
+      # - flutter doctor
+       
+  pre_build:
+    commands:
+       - echo Pre Build started on `date`
+       - echo "Checking some details.."
+      # - pwd
+      # - ruby --version
+      # - node -v
+      # - java -version
+       - git clone https://github.com/flutter/flutter.git -b stable
+       - export PATH="$PATH:`pwd`/flutter/bin"
+       - flutter precache
+       - flutter doctor
+      # - gem install bundler
+      # - gem install fastlane
+       - ls -lsat
+       - echo pre_build completed on `date`
+  build:
+    commands:
+      - echo build started on `date`
+      - echo "Build starting.."
+      - flutter build appbundle
+      #- cd android && bundle exec fastlane init
+      - ls -last
+      # - cd android && bundle exec fastlane action validate_play_store_json_key
+      # - cd ../
+      # - cd android && bundle exec fastlane supply init
+      # - ls -lsat
+      # - echo pwd
+      # - bundle exec fastlane supply --aab path/to/app.aab
+      - cd ../
+      - echo Build completed on `date`
+      # - command
+  post_build:
+    commands:
+      - echo post_build started on `date`
+      # - ls -lsat build/app/outputs/bundle/release/
+      - echo post_build completed on `date`
+#reports:
+  #report-name-or-arn:
+    #files:
+      # - location
+      # - location
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+artifacts:
+  files:
+    # - "app.apk"
+      - "*-release.aab"
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: 'build/app/outputs/flutter-apk/'
+  base-directory: 'build/app/outputs/bundle/release/'
+cache:
+  paths:
+     - "flutter/**/*"
+     - "/root/.gradle/caches/**/*"
+     - "/root/.npm/**/*"
