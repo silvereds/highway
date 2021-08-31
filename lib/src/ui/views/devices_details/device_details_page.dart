@@ -4,6 +4,10 @@ import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 
+import 'components/LinkedDevices.dart';
+import 'components/button_alias_history.dart';
+import 'components/linked_devices_lable.dart';
+
 class DeviceDetailsPage extends StatefulWidget {
   @override
   _DeviceDetailsPageState createState() => _DeviceDetailsPageState();
@@ -16,11 +20,12 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
       drawer: NavDrawer(),
       backgroundColor: Color(0xFFF5F6F8),
       appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+      //bottomNavigationBar: BottomNavigationBarView(),
       body: SingleChildScrollView(
         child: Container(
             margin: EdgeInsets.fromLTRB(10, 35, 10, 15),
-            height: 700,
+            width: double.infinity,
+            height: 800,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(
@@ -58,7 +63,9 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             IconButton(
                               icon: Icon(Icons.keyboard_arrow_left_outlined),
                               color: Color(0xFFFFFFFF),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                             ),
                             Text("Back",
                                 style: TextStyle(
@@ -445,228 +452,100 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                 SizedBox(
                   height: 8,
                 ),
-                Container(
-                  height: 160,
-                  width: 326,
-                  margin: EdgeInsets.fromLTRB(10, 10, 16, 20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(
-                      6,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(
-                          0x23000000,
-                        ),
-                        offset: Offset(
-                          0,
-                          1,
-                        ),
-                        blurRadius: 4,
-                      ),
-                    ],
-                  ),
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Column(
-                        children: [
-                          SizedBox(height: 20),
-                          Center(
-                              child: Text(
-                            "Linked Account",
-                            style: TextStyle(
-                              color: Color(
-                                0xff3c4858,
-                              ),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300,
-                              fontFamily: "Roboto",
-                            ),
-                          )),
-                          SizedBox(height: 20),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Account Number",
-                                    style: TextStyle(
-                                      color: Color(
-                                        0xff323c47,
-                                      ),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Poppins",
-                                    )),
-                                Text("Account ",
-                                    style: TextStyle(
-                                      color: Color(
-                                        0xff323c47,
-                                      ),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Poppins",
-                                    )),
-                              ],
-                            ),
-                          ),
-                          Divider(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "CMR1235723609-01",
-                                  style: TextStyle(
-                                    color: Color(
-                                      0xff192a3e,
-                                    ),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                Text(
-                                  "Jane Doe ",
-                                  style: TextStyle(
-                                    color: Color(
-                                      0xff192a3e,
-                                    ),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Positioned(
-                        top: -25,
-                        left: 15,
-                        height: 65,
-                        width: 63,
-                        child: Container(
-                          width: 48,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              3,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(
-                                  0x23000000,
-                                ),
-                                offset: Offset(
-                                  0,
-                                  4,
-                                ),
-                                blurRadius: 4,
-                              ),
-                            ],
-                            gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                                Color(
-                                  0xff00cdac,
-                                ),
-                                Color(
-                                  0xff4eb181,
-                                ),
-                              ],
-                              stops: [
-                                0,
-                                0.98,
-                              ],
-                            ),
-                          ),
-                          child: Center(
-                              child: Icon(
-                            Icons.credit_card,
-                            size: 30,
-                            color: Colors.white,
-                          )),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: [
                       Container(
-                        child: Center(
-                            child: FlatButton(
-                          child: Text(
-                            "Alias History",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300,
-                              fontFamily: "Roboto",
-                            ),
-                          ),
-                          onPressed: () {
-                            print('Alias History');
-                          },
-                        )),
-                        width: 144,
-                        height: 41,
+                        width: 48,
+                        height: 50,
                         decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
                           borderRadius: BorderRadius.circular(
                             3,
                           ),
                           boxShadow: [
                             BoxShadow(
                               color: Color(
-                                0x234caf50,
+                                0x23000000,
                               ),
                               offset: Offset(
                                 0,
-                                2,
+                                4,
                               ),
                               blurRadius: 4,
                             ),
-                            BoxShadow(
-                              color: Color(
-                                0x334caf50,
+                          ],
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              Color(
+                                0xff00cdac,
                               ),
-                              offset: Offset(
-                                0,
-                                3,
+                              Color(
+                                0xff4eb181,
                               ),
-                              blurRadius: 1,
-                              spreadRadius: -2,
+                            ],
+                            stops: [
+                              0,
+                              0.98,
+                            ],
+                          ),
+                        ),
+                        child: Center(
+                            child: Icon(
+                          Icons.person_outline_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        )),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      SizedBox(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 15,
                             ),
-                            BoxShadow(
-                              color: Color(
-                                0x1e4caf50,
+                            Text(
+                              "Linked Account",
+                              style: TextStyle(
+                                color: Color(
+                                  0xff3c4858,
+                                ),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300,
+                                fontFamily: "Roboto",
                               ),
-                              offset: Offset(
-                                0,
-                                1,
-                              ),
-                              blurRadius: 5,
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 20,
                       )
                     ],
                   ),
                 ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: LinkedDevicesLable(
+                      accountNumber: 'Account Number', name: 'Account'),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                Column(
+                  children: List.generate(5, (index) {
+                    return LinkedDevices(
+                      accountName: 'Jane Doe',
+                      accountNumber: 'CMR123456784-01',
+                    );
+                  }),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ButtonAliasHistory(),
                 SizedBox(
                   height: 20,
                 ),
@@ -680,7 +559,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                       ),
                       FlatButton(
                           minWidth: 128,
-                          height: 37,
+                          height: 45,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
@@ -704,13 +583,12 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                       ),
                       FlatButton(
                           minWidth: 128,
-                          height: 40,
+                          height: 45,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.changeDevicePage);
+                            Navigator.pushNamed(context, AppRoutes.changeAlias);
                           },
                           color: Color(0xFF4EB181),
                           textColor: Colors.white,

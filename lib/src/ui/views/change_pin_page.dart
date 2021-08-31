@@ -16,7 +16,7 @@ class _ChangePinPageState extends State<ChangePinPage> {
       backgroundColor: Color(0xFFF5F6F8),
       drawer: NavDrawer(),
       appBar: AppBarView(),
-      bottomNavigationBar: BottomNavigationBarView(),
+      // bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 35, 10, 15),
