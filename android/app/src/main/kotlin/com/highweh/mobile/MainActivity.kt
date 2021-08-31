@@ -1,4 +1,4 @@
-package com.goapp.mobile
+package com.highweh
 
 import io.flutter.embedding.android.FlutterActivity
 

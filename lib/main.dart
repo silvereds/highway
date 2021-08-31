@@ -19,13 +19,6 @@ void _getDeviceInfo() async {
 
   var _userAgent = '';
 
-  // if (Platform.isAndroid) {
-  //   var androidDeviceInfo = await device.androidInfo;
-  //   deviceName = androidDeviceInfo.model;
-  // } else if (Platform.isIOS) {
-  //   var iosDeviceInfo = await device.iosInfo;
-  //   deviceName = iosDeviceInfo.model;
-  // }
   try {
     _userAgent = await FlutterUserAgent.getPropertyAsync('userAgent');
     SharedPrefService()
@@ -61,7 +54,7 @@ class MyApp extends StatelessWidget {
       onGenerateTitle: (_) => "HIGHWEH",
       onGenerateRoute: RouteGenerator.generateRoute,
       navigatorKey: RouteGenerator.key,
-      initialRoute: RouteGenerator.splashScreenPage,
+      initialRoute: RouteGenerator.homeScreen,
     );
   }
 }

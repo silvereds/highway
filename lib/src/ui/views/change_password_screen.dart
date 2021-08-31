@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/views/user_profile.dart';
 
 class ChangePassword extends StatefulWidget {
+  const ChangePassword();
   @override
   _ChangePasswordState createState() => _ChangePasswordState();
 }
@@ -13,6 +13,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF5F6F8),
       drawer: NavDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -50,130 +51,97 @@ class _ChangePasswordState extends State<ChangePassword> {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarView(),
-      body: Container(
-        color: Color(0xFFF5F6F8),
-        padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
-        child: Center(
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                padding: EdgeInsets.all(20.0),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
                 color: Colors.white,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Change Password',
-                              style: TextStyle(
-                                fontSize: 26,
-                                color: ThemeColors.TextGreen,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Old Password',
-                                hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF14A09F),
-                                  fontFamily: 'Poppins',
-                                ),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                            Divider(color: Colors.grey),
-                            SizedBox(height: 20),
-                            TextField(
-                              decoration: InputDecoration(
-                                hintText: 'New password',
-                                hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF14A09F),
-                                ),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                            Divider(color: Colors.grey),
-                            SizedBox(height: 20),
-                            TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Confirm password',
-                                hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF14A09F),
-                                ),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                            Divider(color: Colors.grey),
-                          ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      const Text(
+                        'Change Password',
+                        style: TextStyle(
+                          fontSize: 26,
+                          color: ThemeColors.TextGreen,
+                          fontFamily: 'Poppins',
                         ),
                       ),
-                      SizedBox(height: 20),
-                      SizedBox(height: 50),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            FlatButton(
-                                minWidth: 97,
-                                height: 37,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: ThemeColors.Buttons),
-                                ),
-                                onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => LoginEmail()),
-                                  //  );
-                                },
-                                color: Color(0xFFF44336),
-                                textColor: Colors.white,
-                                child: Text("Cancel")),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            FlatButton(
-                                minWidth: 86,
-                                height: 31,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: ThemeColors.Buttons),
-                                ),
-                                onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => LoginEmail()),
-                                  //  );
-                                },
-                                color: ThemeColors.Buttons,
-                                textColor: Colors.white,
-                                child: Text("Save")),
-                          ],
+                      const SizedBox(height: 20),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Old Password',
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF14A09F),
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'New password',
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF14A09F),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Confirm password',
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF14A09F),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 20),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FlatButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            side: BorderSide(color: ThemeColors.Buttons),
+                          ),
+                          onPressed: () {},
+                          color: Color(0xFFF44336),
+                          textColor: Colors.white,
+                          child: Text("Cancel"),
+                        ),
+                        const SizedBox(width: 20),
+                        FlatButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            side: BorderSide(color: ThemeColors.Buttons),
+                          ),
+                          onPressed: () {},
+                          color: ThemeColors.Buttons,
+                          textColor: Colors.white,
+                          child: Text("Save"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

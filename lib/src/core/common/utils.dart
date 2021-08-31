@@ -32,7 +32,7 @@ String parseApiError(Exception exception) {
     if (exception.response.statusCode != 422) {
       try {
         final error = ApiException.fromJson(exception.response.data);
-        return error.message;
+        return error.error;
       } catch (Exception) {
         return exception.response.statusMessage;
       }

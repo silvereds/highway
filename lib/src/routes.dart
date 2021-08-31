@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/views/Create_password.dart';
+import 'package:mobile/src/ui/views/change_password_screen.dart';
+import 'package:mobile/src/ui/views/licence_page.dart';
+import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
+import 'package:mobile/src/ui/views/product_services_info.dart';
+import 'package:mobile/src/ui/views/terms_page.dart';
 import 'package:mobile/src/ui/views/views.dart';
+
+import 'ui/views/transactions/transaction_new_transfer.dart';
 
 class RouteGenerator {
   static const splashScreenPage = '/';
@@ -30,7 +37,12 @@ class RouteGenerator {
   static const homeScreen = '/homeScreen';
   static const settingPreference = '/settingPreference';
   static const policyPage = '/policyPage';
+  static const termsAndConditions = '/termsAndConditions';
+  static const licenceAgreement = '/licenceAgreement';
+  static const prouctServices = '/productServicesPage';
   static const conversationDetails = '/conversationDetailsPage';
+  static const changePasswordScreen = '/changePasswordScreen';
+  static const notificationScreen = '/notificationScreen';
 
   RouteGenerator._();
 
@@ -91,6 +103,8 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => ChangeAliasView(),
         );
+      case deviceDetailsPage:
+        return MaterialPageRoute(builder: (_) => DeviceDetailsPage());
 
       case changeDevicePage:
         return MaterialPageRoute<dynamic>(
@@ -125,6 +139,12 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => PolicyPage(),
         );
+      case termsAndConditions:
+        return MaterialPageRoute(builder: (_) => TermsAndConditions());
+      case licenceAgreement:
+        return MaterialPageRoute(builder: (_) => LicenceAgreement());
+      case prouctServices:
+        return MaterialPageRoute(builder: (_) => ProductServicesInfo());
       case conversationDetails:
         return MaterialPageRoute<dynamic>(
           builder: (_) => ConversationDetails(),
@@ -133,6 +153,18 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => AllDevicesPage(),
         );
+      case changePasswordScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const ChangePassword(),
+        );
+      case transferMoneyPage:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => TransactionWidgetNewTransfer());
+      case notificationScreen:
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
+      case blockDevicePage:
+        return MaterialPageRoute(builder: (_) => BlockDevicePage());
+
       default:
         throw RouteException("Route Not found");
     }

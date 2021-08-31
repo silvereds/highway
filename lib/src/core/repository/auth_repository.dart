@@ -12,4 +12,6 @@ abstract class AuthRepository {
       String email, String password, String agent, String nonce);
 
   Future<void> logout();
+
+  Future<void> getAuthToken(String sessionId, String agent, String nonce);
 }

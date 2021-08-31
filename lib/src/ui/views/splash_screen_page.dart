@@ -25,11 +25,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _moveToLoginPage();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _moveToLoginPage();
+  // }
 
   @override
   Widget build(BuildContext context) {

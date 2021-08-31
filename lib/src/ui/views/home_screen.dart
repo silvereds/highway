@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
-import 'package:mobile/src/ui/views/all_accoutsView.dart';
+import 'package:mobile/src/ui/views/all_accounts_view/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/all_maps.dart';
-import 'package:mobile/src/ui/views/dashboard.dart';
+import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
 class HomeScreen extends StatefulWidget {

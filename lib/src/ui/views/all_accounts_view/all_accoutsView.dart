@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
+
+import 'components/accounts_card_with_text.dart';
+import 'components/accounts_status.dart';
 
 class AccountsView extends StatefulWidget {
   @override
@@ -8,13 +12,21 @@ class AccountsView extends StatefulWidget {
 class _AccountsViewState extends State<AccountsView> {
   final List<String> entries = <String>['Active', 'Blocked' 'Active'];
 
+  Map<String, dynamic> account = {
+    'accountNumber': 'CMR122334455-01',
+    'balance': "27,0987",
+    'alias': 'Jane doe',
+    'status': 'Active'
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F8),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.fromLTRB(16, 55, 16, 20),
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 55),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),
@@ -56,96 +68,23 @@ class _AccountsViewState extends State<AccountsView> {
                   ),
 
                   const SizedBox(height: 15),
-                  // contiunue here
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AccountStatus(
-                              status: "Active",
-                            ),
-                            SizedBox(
-                              child: Text(
-                                "DEFAULT",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xff14a09f,
-                                  ),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Poppins",
-                                ),
-                              ),
-                              width: 65.9879150390625,
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "CMR12344459876-01",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Jane Doe ',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14,
-                                            color: Color(0xFF000000),
-                                            fontFamily: 'Poppins'),
-                                      ),
-                                      TextSpan(
-                                        text: '-  Personal',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF333333),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 15),
-                            Text(
-                              "FCFA  24,000",
-                              style: TextStyle(
-                                color: Color(
-                                  0xff27ae60,
-                                ),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "Roboto",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+
+                  AccountsCard(
+                    press: () {
+                      Navigator.pushNamed(
+                          context, AppRoutes.accoutsDetailsView);
+                    },
+                    text: "DEFAULT",
+                    amount: 'FCFA 24,00',
+                    accountNumber: 'CMR12344459876-0',
+                    alias: 'Jane Doe',
+                    type: ' - personal',
                   ),
                   const SizedBox(height: 15),
-                  const Divider(),
+                  const Divider(thickness: 1),
                   const SizedBox(height: 8),
+                  // We will need way to extract accouts card for this widget but
+                  // considering the amounts collor and status because they have different collors
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
@@ -330,43 +269,6 @@ class _AccountBoxIcon extends StatelessWidget {
             Icons.person_outline_outlined,
             color: Colors.white,
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class AccountStatus extends StatelessWidget {
-  final String status;
-
-  const AccountStatus({
-    Key key,
-    this.status,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: status == "Active" ? const Color(0xFF4EB181) : Colors.red,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      height: 15.81,
-      width: 93.43,
-      child: Center(
-        child: SizedBox(
-          child: Text(
-            status,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              fontFamily: "Poppins",
-            ),
-            textAlign: TextAlign.center,
-          ),
-          width: 140,
-          height: 22,
         ),
       ),
     );

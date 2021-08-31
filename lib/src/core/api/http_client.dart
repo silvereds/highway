@@ -22,6 +22,7 @@ class RequestREST {
       receiveTimeout: 30000, // 30 seconds
       headers: {
         'content-Type': 'application/json; charset=UTF-8',
+        // 'User-Agent': SharedPrefService().getString('deviceName') ?? '',
       },
     ),
   )..interceptors.add(Logging());
