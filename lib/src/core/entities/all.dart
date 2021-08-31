@@ -289,16 +289,17 @@ class Ticket {
 
 @JsonSerializable()
 class Transaction {
-  final int id;
+  final String id;
   final String status;
   final String category;
-  final String amount;
+  final int amount;
   final String accountFrom;
   final String accountTo;
   final String reference;
-  final String initiatedOn;
+  final String initiatedON;
   final String deviceFrom;
   final String deviceTo;
+  final int charges;
 
   Transaction({
     this.id,
@@ -308,9 +309,10 @@ class Transaction {
     this.accountFrom,
     this.accountTo,
     this.reference,
-    this.initiatedOn,
+    this.initiatedON,
     this.deviceFrom,
     this.deviceTo,
+    this.charges,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
@@ -341,34 +343,36 @@ class User {
   final String role;
   final String session;
   final String date;
+  final String authorization;
   final String agent;
 
-  User(
-      {this.branch,
-      this.bornAt,
-      this.license,
-      this.session,
-      this.date,
-      this.name,
-      this.address,
-      this.password,
-      this.city,
-      this.email,
-      this.gender,
-      this.uuid,
-      this.idUrl,
-      this.bornOn,
-      // this.registeredOn,
-      // this.organisation,
-      this.phoneNumber,
-      this.photoUrl,
-      this.preferredLanguage,
-      this.proofOfAddress,
-      this.role,
-      this.status,
-      // this.subdivision,
-      // this.authorization,
-      this.agent});
+  User({
+    this.branch,
+    this.bornAt,
+    this.license,
+    this.session,
+    this.date,
+    this.name,
+    this.address,
+    this.password,
+    this.city,
+    this.email,
+    this.gender,
+    this.uuid,
+    this.idUrl,
+    this.bornOn,
+    // this.registeredOn,
+    // this.organisation,
+    this.phoneNumber,
+    this.photoUrl,
+    this.preferredLanguage,
+    this.proofOfAddress,
+    this.role,
+    this.status,
+    // this.subdivision,
+    this.authorization,
+    this.agent,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
@@ -389,45 +393,24 @@ class Validation {
 }
 
 @JsonSerializable()
-class LoginResponse {
+class SimpleMessageResponse {
   final String message;
-  final String error;
-  final String accessToken;
-  final int expiresIn;
-  final String refreshToken;
-  final int refreshExpiresIn;
-  final String tokenType;
-  final int notBeforePolicy;
-  final String sessionState;
-  final String scope;
 
-  LoginResponse({
-    this.error,
+  SimpleMessageResponse({
     this.message,
-    this.accessToken,
-    this.expiresIn,
-    this.refreshToken,
-    this.refreshExpiresIn,
-    this.tokenType,
-    this.notBeforePolicy,
-    this.sessionState,
-    this.scope,
   });
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponseFromJson(json);
+  factory SimpleMessageResponse.fromJson(Map<String, dynamic> json) =>
+      _$SimpleMessageResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
+  Map<String, dynamic> toJson() => _$SimpleMessageResponseToJson(this);
 }
 
 @JsonSerializable()
 class ApiException {
-  final String name;
   final String error;
-  final int code;
-  final int status;
 
-  ApiException({this.code, this.error, this.name, this.status});
+  ApiException({this.error});
 
   factory ApiException.fromJson(Map<String, dynamic> json) =>
       _$ApiExceptionFromJson(json);
@@ -436,13 +419,9 @@ class ApiException {
 
 @JsonSerializable()
 class ApiDataValidationException {
-  final int statusCode;
-  final String message;
   final String error;
 
   ApiDataValidationException({
-    this.statusCode,
-    this.message,
     this.error,
   });
 

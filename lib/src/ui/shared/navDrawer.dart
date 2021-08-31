@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/core/providers/auth_notifier.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
@@ -21,7 +22,7 @@ class _NavDrawerState extends State<NavDrawer> {
           SharedPrefService().saveBool('isPasscodeVerify', false);
           Navigator.of(context).pop();
           Navigator.of(context).pushNamedAndRemoveUntil(
-              RouteGenerator.loginPage, (route) => false);
+              RouteGenerator.loginPage, (route) => true);
         },
       );
     } catch (e) {

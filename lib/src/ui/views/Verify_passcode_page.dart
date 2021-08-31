@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -118,7 +118,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         if (e.toString().isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              message,
+              'message',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
@@ -257,8 +257,11 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       const SizedBox(height: 6),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () => _verifyPasscode(widget.user.email,
-                              widget.user.password, _passcode, widget.user.agent),
+                          onPressed: () => _verifyPasscode(
+                              widget.user.email,
+                              widget.user.password,
+                              _passcode,
+                              widget.user.agent),
                           child: const Text('Verify'),
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
