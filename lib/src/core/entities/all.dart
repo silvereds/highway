@@ -437,113 +437,92 @@ class ApiDataValidationException {
 }
 
 // ------------------------------------------------------------------------------.------------------------ //
-
+@JsonSerializable()
 class UserId {
   final int id;
 
   UserId({this.id});
 
-  factory UserId.fromJson(dynamic json) {
-    return UserId(id: json['id'] as int);
-  }
+  factory UserId.fromJson(Map<String, dynamic> json) => _$UserIdFromJson(json);
 
-  @override
-  String toString() {
-    return '{${this.id}}';
-  }
+  Map<String, dynamic> json() => _$UserIdToJson(this);
 }
 
+@JsonSerializable()
 class Location {
-  String lat;
-  String lon;
+  final String lat;
+  final String lon;
 
   Location({
     this.lat,
     this.lon,
   });
 
-  factory Location.fromJson(dynamic json) {
-    return Location(
-        lat: json(
-      ['lat'] as String,
-      lon: json['lon'] as String,
-    ));
-  }
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
+
+  Map<String, dynamic> json() => _$LocationToJson(this);
 }
 
+@JsonSerializable()
 class Balance {
-  double numberLong;
+  final String numberLong;
 
   Balance({this.numberLong});
 
-  factory Balance.fromJson(dynamic json) {
-    return Balance(numberLong: json['numberLong'] as double);
-  }
+  factory Balance.fromJson(dynamic json) => _$BalanceFromJson(json);
 
-  @override
-  String toString() {
-    return '{${this.numberLong}}';
-  }
+  Map<String, dynamic> json() => _$BalanceToJson(this);
 }
 
+@JsonSerializable()
 class AddedOn {
   Date date;
 
   AddedOn({this.date});
 
-  factory AddedOn.fromJson(dynamic json) {
-    return AddedOn(date: json['date']);
-  }
+  factory AddedOn.fromJson(Map<String, dynamic> json) =>
+      _$AddedOnFromJson(json);
 
-  @override
-  String toString() {
-    return '{${this.date}}';
-  }
+  Map<String, dynamic> toJson() => _$AddedOnToJson(this);
 }
 
+@JsonSerializable()
 class CreatedOn {
-  Date date;
+  final Date date;
 
   CreatedOn({this.date});
 
-  factory CreatedOn.fromjson(dynamic json) {
-    return CreatedOn(date: json['date']);
-  }
+  factory CreatedOn.fromjson(Map<String, dynamic> json) =>
+      _$CreatedOnFromJson(json);
 
-  @override
-  String toString() {
-    return ' {${this.date}}';
-  }
+  Map<String, dynamic> toJson() => _$CreatedOnToJson(this);
 }
 
+@JsonSerializable()
 class Date {
-  String numberLong;
+  final String numberLong;
 
   Date({this.numberLong});
 
-  factory Date.fromjson(dynamic json) {
-    return Date(numberLong: json['numberLong'] as String);
-  }
-  @override
-  String toString() {
-    return ' {${this.numberLong}}';
-  }
+  factory Date.fromjson(Map<String, dynamic> json) => _$DateFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DateToJson(this);
 }
 
+@JsonSerializable()
 class AssignedTo {
-  String numberLong;
+  final String numberLong;
 
   AssignedTo({this.numberLong});
 
-  factory AssignedTo.fromjson(dynamic json) {
-    return AssignedTo(numberLong: json['numberLong'] as String);
-  }
-  @override
-  String toString() {
-    return ' {${this.numberLong}}';
-  }
+  factory AssignedTo.fromjson(Map<String, dynamic> json) =>
+      _$AssignedToFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AssignedToToJson(this);
 }
 
+@JsonSerializable()
 class Alias {
   String name;
   String phoneNumber;
@@ -552,29 +531,21 @@ class Alias {
 
   Alias({this.name, this.phoneNumber, this.email, this.language});
 
-  factory Alias.fromJson(dynamic json) {
-    return Alias(
-        name: json['name'] as String,
-        phoneNumber: json['phoneNumber'] as String,
-        email: json['email'] as String,
-        language: json['language'] as String);
-  }
+  factory Alias.fromJson(Map<String, dynamic> json) => _$AliasFromJson(json);
 
-  @override
-  String toString() {
-    return '{${this.name}, ${this.phoneNumber}, ${this.email}, ${this.language}}';
-  }
+  Map<String, dynamic> toJson() => _$AliasToJson(this);
 }
 
+@JsonSerializable()
 class Devices {
-  String id;
-  String type;
-  String pin;
-  AddedOn addedOn;
-  AssignedTo assignedTo;
-  String status;
-  Location location;
-  Alias alias;
+  final int id;
+  final String type;
+  final String pin;
+  final AddedOn addedOn;
+  final AssignedTo assignedTo;
+  final String status;
+  final Location location;
+  final Alias alias;
 
   Devices(
       {this.id,
@@ -586,151 +557,111 @@ class Devices {
       this.location,
       this.alias});
 
-  factory Devices.fromJson(dynamic json) {
-    return Devices(
-        id: json['id'] as String,
-        type: json['type'] as String,
-        pin: json['pin'] as String,
-        addedOn: json['addedOn'],
-        assignedTo: json['assignedTo'],
-        status: json['status'] as String,
-        location: json['location'],
-        alias: json['alias']);
-  }
+  factory Devices.fromJson(Map<String, dynamic> json) =>
+      _$DevicesFromJson(json);
 
-  @override
-  String toString() {
-    return '{${this.id}, ${this.type}, ${this.pin}, ${this.addedOn}, ${this.assignedTo}, ${this.status}, ${this.location}, ${this.alias} }';
-  }
+  Map<String, dynamic> toJson() => _$DevicesToJson(this);
 }
 
+@JsonSerializable()
 class Accounts {
-  String id;
-  Balance balance;
-  int number;
-  int key;
-  String tag;
-  String type;
-  String status;
-  CreatedOn createdOn;
-  List<Devices> devices;
-  Alias alias;
-
+  final int id;
+  final Balance balance;
+  final String number;
+  final int key;
+  final String tag;
+  final String type;
+  final String status;
+  final CreatedOn createdOn;
+  final List<Devices> devices;
+  final Alias alias;
   Accounts(
       {this.id,
       this.balance,
       this.number,
       this.key,
       this.tag,
+      this.type,
       this.status,
       this.createdOn,
-      this.devices});
+      this.devices,
+      this.alias});
 
-  factory Accounts.fromJson(dynamic json) {
-    return Accounts(
-      id: json['id'] as String,
-      balance: json['balance'],
-      number: json['number'] as int,
-      key: json['key'] as int,
-      status: json['status'] as String,
-      createdOn: json['createdOn'],
-      devices: json['device'],
-    );
-  }
+  factory Accounts.fromJson(Map<String, dynamic> json) =>
+      _$AccountsFromJson(json);
 
-  String toSting() {
-    return '{${this.id}, ${this.balance}, ${this.number}, ${this.key}, ${this.status}, ${this.createdOn}, ${this.devices}}';
-  }
+  Map<String, dynamic> toJson() => _$AccountsToJson(this);
 }
 
+@JsonSerializable()
 class Amount {
   String numberLong;
 
   Amount({this.numberLong});
 
-  factory Amount.fromjson(dynamic json) {
-    return Amount(numberLong: json['numberLong'] as String);
-  }
+  factory Amount.fromjson(Map<String, dynamic> json) => _$AmountFromJson(json);
 
-  String toSting() {
-    return ' {${this.numberLong}}';
-  }
+  Map<String, dynamic> toJson() => _$AmountToJson(this);
 }
 
+@JsonSerializable()
 class Charges {
-  String numberLong;
+  final String numberLong;
 
   Charges({this.numberLong});
 
-  factory Charges.fromjson(dynamic json) {
-    return Charges(numberLong: json['numberLong'] as String);
-  }
+  factory Charges.fromjson(Map<String, dynamic> json) =>
+      _$ChargesFromJson(json);
 
-  String toSting() {
-    return ' {${this.numberLong}}';
-  }
+  Map<String, dynamic> toJson() => _$ChargesToJson(this);
 }
 
+@JsonSerializable()
 class Receipts {
-  String id;
-  String title;
-  Amount amount;
-  Charges charges;
+  final int id;
+  final String title;
+  final Amount amount;
+  final Charges charges;
 
   Receipts({this.id, this.title, this.amount, this.charges});
 
-  factory Receipts.fromJson(dynamic json) {
-    return Receipts(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      amount: json['amount'],
-      charges: json['charges'],
-    );
-  }
+  factory Receipts.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptsFromJson(json);
 
-  String toString() {
-    return ' {${this.id}, ${this.title}, ${this.amount}, ${this.charges}}';
-  }
+  Map<String, dynamic> toJson() => _$ReceiptsToJson(this);
 }
 
+@JsonSerializable()
 class OpenedOn {
-  Date date;
+  final Date date;
 
   OpenedOn({this.date});
 
-  factory OpenedOn.fromJson(dynamic json) {
-    return OpenedOn(date: json['date']);
-  }
+  factory OpenedOn.fromJson(Map<String, dynamic> json) =>
+      _$OpenedOnFromJson(json);
 
-  @override
-  String toString() {
-    return ' {${this.date}}';
-  }
+  Map<String, dynamic> toJson() => _$OpenedOnToJson(this);
 }
 
+@JsonSerializable()
 class HandledBy {
-  String operator;
-  Date date;
+  final String operator;
+  final Date date;
 
   HandledBy({this.operator, this.date});
 
-  factory HandledBy.fromJson(dynamic json) {
-    return HandledBy(
-      operator: json['operator'] as String,
-      date: json['date'],
-    );
-  }
-  @override
-  String toString() {
-    return ' {${this.operator}, ${this.date}}';
-  }
+  factory HandledBy.fromJson(Map<String, dynamic> json) =>
+      _$HandledByFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HandledByToJson(this);
 }
 
+@JsonSerializable()
 class Tickets {
-  String id;
-  String status;
+  final String id;
+  final String status;
   OpenedOn openedOn;
-  String topic;
+  final String topic;
   List<HandledBy> handledBy;
   List<Messages> messages;
 
@@ -742,74 +673,52 @@ class Tickets {
       this.handledBy,
       this.messages});
 
-  factory Tickets.fromJson(dynamic json) {
-    return Tickets(
-      id: json['id'] as String,
-      status: json['status'] as String,
-      openedOn: json['openedOn'],
-      topic: json['topic'] as String,
-      handledBy: json['handledBy'],
-      messages: json['messages'],
-    );
-  }
-  @override
-  String toString() {
-    return '{ ${this.id}, ${this.status}, ${this.openedOn},${this.topic}, ${this.handledBy}, ${this.messages}}';
-  }
+  factory Tickets.fromJson(Map<String, dynamic> json) =>
+      _$TicketsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TicketsToJson(this);
 }
 
+@JsonSerializable()
 class SendOn {
   Date date;
 
   SendOn({this.date});
 
-  factory SendOn.fromJson(dynamic json) {
-    return SendOn(date: json['date']);
-  }
-
-  @override
-  String toString() {
-    return ' {${this.date}}';
-  }
+  factory SendOn.fromJson(Map<String, dynamic> json) => _$SendOnFromJson(json);
+  Map<String, dynamic> toJson() => _$SendOnToJson(this);
 }
 
+@JsonSerializable()
 class Messages {
-  String id;
-  String sentBy;
-  SendOn sentOn;
-  String body;
+  final int id;
+  final String sentBy;
+  final SendOn sendOn;
+  final String body;
 
-  Messages({this.id, this.sentBy, this.sentOn, this.body});
+  Messages({this.id, this.sentBy, this.sendOn, this.body});
 
-  factory Messages.fromJson(dynamic json) {
-    return Messages(
-        id: json['id'] as String,
-        sentBy: json['sentBy'] as String,
-        sentOn: json['sentOn'],
-        body: json['body'] as String);
-  }
-
-  @override
-  String toString() {
-    return '{${this.id}, ${this.sentBy}, ${this.sentOn}, ${this.body}}';
-  }
+  factory Messages.fromJson(Map<String, dynamic> json) =>
+      _$MessagesFromJson(json);
+  Map<String, dynamic> toJson() => _$MessagesToJson(this);
 }
 
+@JsonSerializable()
 class Users {
-  String id;
-  String name;
-  String email;
-  String phoneNumber;
-  String preferredLanguage;
-  String photoUrl;
-  String branch;
-  String address;
-  String city;
-  String gender;
-  String bornOn;
-  String bornAt;
-  String idUrl;
-  String proofOfAddress;
+  final int id;
+  final String name;
+  final String email;
+  final String phoneNumber;
+  final String preferredLanguage;
+  final String photoUrl;
+  final String branch;
+  final String address;
+  final String city;
+  final String gender;
+  final String bornOn;
+  final String bornAt;
+  final String idUrl;
+  final String proofOfAddress;
   List<Accounts> accounts;
   List<Devices> devices;
   List<Receipts> receipts;
@@ -834,29 +743,12 @@ class Users {
       this.devices,
       this.receipts});
 
-  factory Users.fromJson(dynamic json) {
-    return Users(
-      branch: json['branch'] as String,
-      bornAt: json['bornAt'] as String,
-      name: json['name'] as String,
-      address: json['address'] as String,
-      city: json['city'] as String,
-      email: json['email'] as String,
-      gender: json['gender'] as String,
-      id: json['id'] as String,
-      idUrl: json['idUrl'] as String,
-      bornOn: json['bornAt'] as String,
-      phoneNumber: json['phoneNumber'] as String,
-      photoUrl: json['photoUrl'] as String,
-      preferredLanguage: json['preferredLanguage'] as String,
-      proofOfAddress: json['proofOfAddress'] as String,
-      accounts: json['accounts'],
-      devices: json['Devices'],
-      receipts: json['receipts'],
-    );
-  }
+  factory Users.fromJson(Map<String, dynamic> json) => _$UsersFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UsersToJson(this);
 }
 
+@JsonSerializable()
 class UserInfoApi {
   UserId userId;
   String name;
@@ -879,22 +771,7 @@ class UserInfoApi {
       this.users,
       this.uuid});
 
-  factory UserInfoApi.fromJson(dynamic json) {
-    return UserInfoApi(
-      userId: json['userId'],
-      name: json['name'] as String,
-      city: json['city'] as String,
-      country: json['country'] as String,
-      code: json['code'] as int,
-      location: json['location'],
-      accounts: json['accounts'],
-      users: json['users'],
-      uuid: json['uuid'],
-    );
-  }
-
-  @override
-  String toString() {
-    return '{  ${this.userId}, ${this.name},  ${this.city}, ${this.country}, ${this.code}, ${this.location}, ${this.accounts}, ${this.users}, ${this.uuid} }';
-  }
+  factory UserInfoApi.fromJson(Map<String, dynamic> json) =>
+      _$UserInfoApiFromJson(json);
+  Map<String, dynamic> toJson() => _$UserInfoApiToJson(this);
 }
