@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
@@ -12,6 +13,7 @@ import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/widgets/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+// https://79029730-aa0b-4bdb-b648-fbea0fccbff5.mock.pstmn.io/branches
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -43,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     // _isPassCodeVerify();
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     _getUserAgent();
   }
 
@@ -155,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(

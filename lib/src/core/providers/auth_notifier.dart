@@ -75,7 +75,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     }
   }
 
-  /// Verify passcode send to the user by email
+  /// Verify passcode send to the user by email or sms
   @override
   Future<void> verifyPasscode(
     String email,
@@ -138,7 +138,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
           'password': password,
           'agent': agent,
           'email': email,
-          'nonce': user.session,
+          'nonce': user.session ?? '',
         },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
@@ -181,18 +181,6 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
       ).executePost<User>(UserParser());
       _prefService.saveString(_token, response.authorization);
       print(response.authorization);
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  Future<void> getAllTransactions() async {
-    try {
-      final response = await RequestREST(
-        endpoint: '/transactions',
-      ).executeGet<List<Transaction>>(TransactionListParser());
-
-      print('Charges: ' + response.first.deviceFrom);
     } catch (e) {
       throw e;
     }

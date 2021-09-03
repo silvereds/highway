@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
 import 'package:mobile/src/core/providers/providers.dart';
@@ -78,6 +79,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   void dispose() {
     _emailController.dispose();
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     super.dispose();
   }
 

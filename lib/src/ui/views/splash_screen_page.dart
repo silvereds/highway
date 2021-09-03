@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
@@ -40,17 +39,13 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(
-                0xff02aab0,
-              ),
-              Color(
-                0xff00cdac,
-              ),
+              const Color(0xff02aab0),
+              const Color(0xff00cdac),
             ],
           ),
         ),
         child: Container(
-          margin: EdgeInsets.fromLTRB(30, 50, 30, 50),
+          margin: const EdgeInsets.fromLTRB(30, 50, 30, 50),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -61,9 +56,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 SizedBox(
                   child: Text(
                     "WELCOME TO HIGHWEH ",
@@ -88,7 +81,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            child: Icon(
+                            child: const Icon(
                               Icons.timeline,
                               color: ThemeColors.Timeline,
                             ),
@@ -99,7 +92,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  child: Text(
+                                  child: const Text(
                                     "Transfer Money ",
                                     style: TextStyle(
                                       color: Colors.black,
@@ -110,7 +103,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                   ),
                                   width: 115,
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 SizedBox(
                                   child: Text(
                                     "Send free up to 100,000 FCFA to your loved ones free of charge",
@@ -134,14 +127,14 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Container(
                   child: Column(
                     children: [
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             child: Icon(
                               Icons.code,
                               color: ThemeColors.Code,
@@ -165,7 +158,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                   width: 160,
                                   height: 18,
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 SizedBox(
                                   child: Text(
                                     "Manage your payment card for your expenses and / or your payment reader for your receipts.",
@@ -195,7 +188,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             child: Icon(Icons.group, color: Color(0xFF4CAF50)),
                             width: 40,
                           ),
