@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'all.g.dart';
@@ -431,5 +433,468 @@ class ApiDataValidationException {
 
   String get errors {
     return error;
+  }
+}
+
+// ------------------------------------------------------------------------------.------------------------ //
+
+class UserId {
+  final int id;
+
+  UserId({this.id});
+
+  factory UserId.fromJson(dynamic json) {
+    return UserId(id: json['id'] as int);
+  }
+
+  @override
+  String toString() {
+    return '{${this.id}}';
+  }
+}
+
+class Location {
+  String lat;
+  String lon;
+
+  Location({
+    this.lat,
+    this.lon,
+  });
+
+  factory Location.fromJson(dynamic json) {
+    return Location(
+        lat: json(
+      ['lat'] as String,
+      lon: json['lon'] as String,
+    ));
+  }
+}
+
+class Balance {
+  double numberLong;
+
+  Balance({this.numberLong});
+
+  factory Balance.fromJson(dynamic json) {
+    return Balance(numberLong: json['numberLong'] as double);
+  }
+
+  @override
+  String toString() {
+    return '{${this.numberLong}}';
+  }
+}
+
+class AddedOn {
+  Date date;
+
+  AddedOn({this.date});
+
+  factory AddedOn.fromJson(dynamic json) {
+    return AddedOn(date: json['date']);
+  }
+
+  @override
+  String toString() {
+    return '{${this.date}}';
+  }
+}
+
+class CreatedOn {
+  Date date;
+
+  CreatedOn({this.date});
+
+  factory CreatedOn.fromjson(dynamic json) {
+    return CreatedOn(date: json['date']);
+  }
+
+  @override
+  String toString() {
+    return ' {${this.date}}';
+  }
+}
+
+class Date {
+  String numberLong;
+
+  Date({this.numberLong});
+
+  factory Date.fromjson(dynamic json) {
+    return Date(numberLong: json['numberLong'] as String);
+  }
+  @override
+  String toString() {
+    return ' {${this.numberLong}}';
+  }
+}
+
+class AssignedTo {
+  String numberLong;
+
+  AssignedTo({this.numberLong});
+
+  factory AssignedTo.fromjson(dynamic json) {
+    return AssignedTo(numberLong: json['numberLong'] as String);
+  }
+  @override
+  String toString() {
+    return ' {${this.numberLong}}';
+  }
+}
+
+class Alias {
+  String name;
+  String phoneNumber;
+  String email;
+  String language;
+
+  Alias({this.name, this.phoneNumber, this.email, this.language});
+
+  factory Alias.fromJson(dynamic json) {
+    return Alias(
+        name: json['name'] as String,
+        phoneNumber: json['phoneNumber'] as String,
+        email: json['email'] as String,
+        language: json['language'] as String);
+  }
+
+  @override
+  String toString() {
+    return '{${this.name}, ${this.phoneNumber}, ${this.email}, ${this.language}}';
+  }
+}
+
+class Devices {
+  String id;
+  String type;
+  String pin;
+  AddedOn addedOn;
+  AssignedTo assignedTo;
+  String status;
+  Location location;
+  Alias alias;
+
+  Devices(
+      {this.id,
+      this.type,
+      this.pin,
+      this.addedOn,
+      this.assignedTo,
+      this.status,
+      this.location,
+      this.alias});
+
+  factory Devices.fromJson(dynamic json) {
+    return Devices(
+        id: json['id'] as String,
+        type: json['type'] as String,
+        pin: json['pin'] as String,
+        addedOn: json['addedOn'],
+        assignedTo: json['assignedTo'],
+        status: json['status'] as String,
+        location: json['location'],
+        alias: json['alias']);
+  }
+
+  @override
+  String toString() {
+    return '{${this.id}, ${this.type}, ${this.pin}, ${this.addedOn}, ${this.assignedTo}, ${this.status}, ${this.location}, ${this.alias} }';
+  }
+}
+
+class Accounts {
+  String id;
+  Balance balance;
+  int number;
+  int key;
+  String tag;
+  String type;
+  String status;
+  CreatedOn createdOn;
+  List<Devices> devices;
+  Alias alias;
+
+  Accounts(
+      {this.id,
+      this.balance,
+      this.number,
+      this.key,
+      this.tag,
+      this.status,
+      this.createdOn,
+      this.devices});
+
+  factory Accounts.fromJson(dynamic json) {
+    return Accounts(
+      id: json['id'] as String,
+      balance: json['balance'],
+      number: json['number'] as int,
+      key: json['key'] as int,
+      status: json['status'] as String,
+      createdOn: json['createdOn'],
+      devices: json['device'],
+    );
+  }
+
+  String toSting() {
+    return '{${this.id}, ${this.balance}, ${this.number}, ${this.key}, ${this.status}, ${this.createdOn}, ${this.devices}}';
+  }
+}
+
+class Amount {
+  String numberLong;
+
+  Amount({this.numberLong});
+
+  factory Amount.fromjson(dynamic json) {
+    return Amount(numberLong: json['numberLong'] as String);
+  }
+
+  String toSting() {
+    return ' {${this.numberLong}}';
+  }
+}
+
+class Charges {
+  String numberLong;
+
+  Charges({this.numberLong});
+
+  factory Charges.fromjson(dynamic json) {
+    return Charges(numberLong: json['numberLong'] as String);
+  }
+
+  String toSting() {
+    return ' {${this.numberLong}}';
+  }
+}
+
+class Receipts {
+  String id;
+  String title;
+  Amount amount;
+  Charges charges;
+
+  Receipts({this.id, this.title, this.amount, this.charges});
+
+  factory Receipts.fromJson(dynamic json) {
+    return Receipts(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      amount: json['amount'],
+      charges: json['charges'],
+    );
+  }
+
+  String toString() {
+    return ' {${this.id}, ${this.title}, ${this.amount}, ${this.charges}}';
+  }
+}
+
+class OpenedOn {
+  Date date;
+
+  OpenedOn({this.date});
+
+  factory OpenedOn.fromJson(dynamic json) {
+    return OpenedOn(date: json['date']);
+  }
+
+  @override
+  String toString() {
+    return ' {${this.date}}';
+  }
+}
+
+class HandledBy {
+  String operator;
+  Date date;
+
+  HandledBy({this.operator, this.date});
+
+  factory HandledBy.fromJson(dynamic json) {
+    return HandledBy(
+      operator: json['operator'] as String,
+      date: json['date'],
+    );
+  }
+  @override
+  String toString() {
+    return ' {${this.operator}, ${this.date}}';
+  }
+}
+
+class Tickets {
+  String id;
+  String status;
+  OpenedOn openedOn;
+  String topic;
+  List<HandledBy> handledBy;
+  List<Messages> messages;
+
+  Tickets(
+      {this.id,
+      this.status,
+      this.openedOn,
+      this.topic,
+      this.handledBy,
+      this.messages});
+
+  factory Tickets.fromJson(dynamic json) {
+    return Tickets(
+      id: json['id'] as String,
+      status: json['status'] as String,
+      openedOn: json['openedOn'],
+      topic: json['topic'] as String,
+      handledBy: json['handledBy'],
+      messages: json['messages'],
+    );
+  }
+  @override
+  String toString() {
+    return '{ ${this.id}, ${this.status}, ${this.openedOn},${this.topic}, ${this.handledBy}, ${this.messages}}';
+  }
+}
+
+class SendOn {
+  Date date;
+
+  SendOn({this.date});
+
+  factory SendOn.fromJson(dynamic json) {
+    return SendOn(date: json['date']);
+  }
+
+  @override
+  String toString() {
+    return ' {${this.date}}';
+  }
+}
+
+class Messages {
+  String id;
+  String sentBy;
+  SendOn sentOn;
+  String body;
+
+  Messages({this.id, this.sentBy, this.sentOn, this.body});
+
+  factory Messages.fromJson(dynamic json) {
+    return Messages(
+        id: json['id'] as String,
+        sentBy: json['sentBy'] as String,
+        sentOn: json['sentOn'],
+        body: json['body'] as String);
+  }
+
+  @override
+  String toString() {
+    return '{${this.id}, ${this.sentBy}, ${this.sentOn}, ${this.body}}';
+  }
+}
+
+class Users {
+  String id;
+  String name;
+  String email;
+  String phoneNumber;
+  String preferredLanguage;
+  String photoUrl;
+  String branch;
+  String address;
+  String city;
+  String gender;
+  String bornOn;
+  String bornAt;
+  String idUrl;
+  String proofOfAddress;
+  List<Accounts> accounts;
+  List<Devices> devices;
+  List<Receipts> receipts;
+  List<Tickets> tickets;
+
+  Users(
+      {this.branch,
+      this.bornAt,
+      this.name,
+      this.address,
+      this.city,
+      this.email,
+      this.gender,
+      this.id,
+      this.idUrl,
+      this.bornOn,
+      this.phoneNumber,
+      this.photoUrl,
+      this.preferredLanguage,
+      this.proofOfAddress,
+      this.accounts,
+      this.devices,
+      this.receipts});
+
+  factory Users.fromJson(dynamic json) {
+    return Users(
+      branch: json['branch'] as String,
+      bornAt: json['bornAt'] as String,
+      name: json['name'] as String,
+      address: json['address'] as String,
+      city: json['city'] as String,
+      email: json['email'] as String,
+      gender: json['gender'] as String,
+      id: json['id'] as String,
+      idUrl: json['idUrl'] as String,
+      bornOn: json['bornAt'] as String,
+      phoneNumber: json['phoneNumber'] as String,
+      photoUrl: json['photoUrl'] as String,
+      preferredLanguage: json['preferredLanguage'] as String,
+      proofOfAddress: json['proofOfAddress'] as String,
+      accounts: json['accounts'],
+      devices: json['Devices'],
+      receipts: json['receipts'],
+    );
+  }
+}
+
+class UserInfoApi {
+  UserId userId;
+  String name;
+  String city;
+  String country;
+  int code;
+  Location location;
+  Accounts accounts;
+  List<Users> users;
+  String uuid;
+
+  UserInfoApi(
+      {this.userId,
+      this.name,
+      this.city,
+      this.country,
+      this.code,
+      this.location,
+      this.accounts,
+      this.users,
+      this.uuid});
+
+  factory UserInfoApi.fromJson(dynamic json) {
+    return UserInfoApi(
+      userId: json['userId'],
+      name: json['name'] as String,
+      city: json['city'] as String,
+      country: json['country'] as String,
+      code: json['code'] as int,
+      location: json['location'],
+      accounts: json['accounts'],
+      users: json['users'],
+      uuid: json['uuid'],
+    );
+  }
+
+  @override
+  String toString() {
+    return '{  ${this.userId}, ${this.name},  ${this.city}, ${this.country}, ${this.code}, ${this.location}, ${this.accounts}, ${this.users}, ${this.uuid} }';
   }
 }

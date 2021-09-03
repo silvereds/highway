@@ -5,7 +5,7 @@ import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
-import 'package:mobile/src/ui/views/all_accoutsView.dart';
+import 'package:mobile/src/ui/views/all_accounts_view/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/all_maps.dart';
 import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
 import 'package:mobile/src/ui/views/views.dart';
