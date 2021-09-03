@@ -554,10 +554,10 @@ class Alias {
 
   factory Alias.fromJson(dynamic json) {
     return Alias(
-        name: json['name'],
-        phoneNumber: json['phoneNumber'],
-        email: json['email'],
-        language: json['language']);
+        name: json['name'] as String,
+        phoneNumber: json['phoneNumber'] as String,
+        email: json['email'] as String,
+        language: json['language'] as String);
   }
 
   @override
@@ -588,12 +588,12 @@ class Devices {
 
   factory Devices.fromJson(dynamic json) {
     return Devices(
-        id: json['id'],
-        type: json['type'],
-        pin: json['pin'],
+        id: json['id'] as String,
+        type: json['type'] as String,
+        pin: json['pin'] as String,
         addedOn: json['addedOn'],
         assignedTo: json['assignedTo'],
-        status: json['status'],
+        status: json['status'] as String,
         location: json['location'],
         alias: json['alias']);
   }
@@ -681,8 +681,8 @@ class Receipts {
 
   factory Receipts.fromJson(dynamic json) {
     return Receipts(
-      id: json['id'],
-      title: json['title'],
+      id: json['id'] as String,
+      title: json['title'] as String,
       amount: json['amount'],
       charges: json['charges'],
     );
@@ -716,7 +716,7 @@ class HandledBy {
 
   factory HandledBy.fromJson(dynamic json) {
     return HandledBy(
-      operator: json['operator'],
+      operator: json['operator'] as String,
       date: json['date'],
     );
   }
@@ -744,10 +744,10 @@ class Tickets {
 
   factory Tickets.fromJson(dynamic json) {
     return Tickets(
-      id: json['id'],
-      status: json['status'],
+      id: json['id'] as String,
+      status: json['status'] as String,
       openedOn: json['openedOn'],
-      topic: json['topic'],
+      topic: json['topic'] as String,
       handledBy: json['handledBy'],
       messages: json['messages'],
     );
@@ -783,10 +783,10 @@ class Messages {
 
   factory Messages.fromJson(dynamic json) {
     return Messages(
-        id: json['id'],
-        sentBy: json['sentBy'],
+        id: json['id'] as String,
+        sentBy: json['sentBy'] as String,
         sentOn: json['sentOn'],
-        body: json['body']);
+        body: json['body'] as String);
   }
 
   @override
@@ -849,7 +849,7 @@ class Users {
       phoneNumber: json['phoneNumber'] as String,
       photoUrl: json['photoUrl'] as String,
       preferredLanguage: json['preferredLanguage'] as String,
-      proofOfAddress: json['proofOfAddress'],
+      proofOfAddress: json['proofOfAddress'] as String,
       accounts: json['accounts'],
       devices: json['Devices'],
       receipts: json['receipts'],
