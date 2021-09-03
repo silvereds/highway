@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'all.g.dart';
@@ -477,7 +475,7 @@ class Balance {
 
 @JsonSerializable()
 class AddedOn {
-  Date date;
+  final String date;
 
   AddedOn({this.date});
 
@@ -489,34 +487,23 @@ class AddedOn {
 
 @JsonSerializable()
 class CreatedOn {
-  final Date date;
+  final String date;
 
   CreatedOn({this.date});
 
-  factory CreatedOn.fromjson(Map<String, dynamic> json) =>
+  factory CreatedOn.fromJson(Map<String, dynamic> json) =>
       _$CreatedOnFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreatedOnToJson(this);
 }
 
 @JsonSerializable()
-class Date {
-  final String numberLong;
-
-  Date({this.numberLong});
-
-  factory Date.fromjson(Map<String, dynamic> json) => _$DateFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DateToJson(this);
-}
-
-@JsonSerializable()
 class AssignedTo {
-  final String numberLong;
+  final String date;
 
-  AssignedTo({this.numberLong});
+  AssignedTo({this.date});
 
-  factory AssignedTo.fromjson(Map<String, dynamic> json) =>
+  factory AssignedTo.fromJson(Map<String, dynamic> json) =>
       _$AssignedToFromJson(json);
 
   Map<String, dynamic> toJson() => _$AssignedToToJson(this);
@@ -529,7 +516,12 @@ class Alias {
   String email;
   String language;
 
-  Alias({this.name, this.phoneNumber, this.email, this.language});
+  Alias({
+    this.name,
+    this.phoneNumber,
+    this.email,
+    this.language,
+  });
 
   factory Alias.fromJson(Map<String, dynamic> json) => _$AliasFromJson(json);
 
@@ -547,15 +539,16 @@ class Devices {
   final Location location;
   final Alias alias;
 
-  Devices(
-      {this.id,
-      this.type,
-      this.pin,
-      this.addedOn,
-      this.assignedTo,
-      this.status,
-      this.location,
-      this.alias});
+  Devices({
+    this.id,
+    this.type,
+    this.pin,
+    this.addedOn,
+    this.assignedTo,
+    this.status,
+    this.location,
+    this.alias,
+  });
 
   factory Devices.fromJson(Map<String, dynamic> json) =>
       _$DevicesFromJson(json);
@@ -572,20 +565,21 @@ class Accounts {
   final String tag;
   final String type;
   final String status;
-  final CreatedOn createdOn;
+  final CreatedOn createdAt;
   final List<Devices> devices;
   final Alias alias;
-  Accounts(
-      {this.id,
-      this.balance,
-      this.number,
-      this.key,
-      this.tag,
-      this.type,
-      this.status,
-      this.createdOn,
-      this.devices,
-      this.alias});
+  Accounts({
+    this.id,
+    this.balance,
+    this.number,
+    this.key,
+    this.tag,
+    this.type,
+    this.status,
+    this.createdAt,
+    this.devices,
+    this.alias,
+  });
 
   factory Accounts.fromJson(Map<String, dynamic> json) =>
       _$AccountsFromJson(json);
@@ -620,8 +614,8 @@ class Charges {
 class Receipts {
   final int id;
   final String title;
-  final Amount amount;
-  final Charges charges;
+  final int amount;
+  final int charges;
 
   Receipts({this.id, this.title, this.amount, this.charges});
 
@@ -633,7 +627,7 @@ class Receipts {
 
 @JsonSerializable()
 class OpenedOn {
-  final Date date;
+  final String date;
 
   OpenedOn({this.date});
 
@@ -646,7 +640,7 @@ class OpenedOn {
 @JsonSerializable()
 class HandledBy {
   final String operator;
-  final Date date;
+  final String date;
 
   HandledBy({this.operator, this.date});
 
@@ -681,7 +675,7 @@ class Tickets {
 
 @JsonSerializable()
 class SendOn {
-  Date date;
+  final String date;
 
   SendOn({this.date});
 
@@ -760,16 +754,17 @@ class UserInfoApi {
   List<Users> users;
   String uuid;
 
-  UserInfoApi(
-      {this.userId,
-      this.name,
-      this.city,
-      this.country,
-      this.code,
-      this.location,
-      this.accounts,
-      this.users,
-      this.uuid});
+  UserInfoApi({
+    this.userId,
+    this.name,
+    this.city,
+    this.country,
+    this.code,
+    this.location,
+    this.accounts,
+    this.users,
+    this.uuid,
+  });
 
   factory UserInfoApi.fromJson(Map<String, dynamic> json) =>
       _$UserInfoApiFromJson(json);

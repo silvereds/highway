@@ -427,9 +427,7 @@ Map<String, dynamic> _$BalanceToJson(Balance instance) => <String, dynamic>{
 
 AddedOn _$AddedOnFromJson(Map<String, dynamic> json) {
   return AddedOn(
-    date: json['date'] == null
-        ? null
-        : Date.fromJson(json['date'] as Map<String, dynamic>),
+    date: json['date'] as String,
   );
 }
 
@@ -439,9 +437,7 @@ Map<String, dynamic> _$AddedOnToJson(AddedOn instance) => <String, dynamic>{
 
 CreatedOn _$CreatedOnFromJson(Map<String, dynamic> json) {
   return CreatedOn(
-    date: json['date'] == null
-        ? null
-        : Date.fromJson(json['date'] as Map<String, dynamic>),
+    date: json['date'] as String,
   );
 }
 
@@ -449,25 +445,15 @@ Map<String, dynamic> _$CreatedOnToJson(CreatedOn instance) => <String, dynamic>{
       'date': instance.date,
     };
 
-Date _$DateFromJson(Map<String, dynamic> json) {
-  return Date(
-    numberLong: json['numberLong'] as String,
-  );
-}
-
-Map<String, dynamic> _$DateToJson(Date instance) => <String, dynamic>{
-      'numberLong': instance.numberLong,
-    };
-
 AssignedTo _$AssignedToFromJson(Map<String, dynamic> json) {
   return AssignedTo(
-    numberLong: json['numberLong'] as String,
+    date: json['date'] as String,
   );
 }
 
 Map<String, dynamic> _$AssignedToToJson(AssignedTo instance) =>
     <String, dynamic>{
-      'numberLong': instance.numberLong,
+      'date': instance.date,
     };
 
 Alias _$AliasFromJson(Map<String, dynamic> json) {
@@ -527,9 +513,9 @@ Accounts _$AccountsFromJson(Map<String, dynamic> json) {
     tag: json['tag'] as String,
     type: json['type'] as String,
     status: json['status'] as String,
-    createdOn: json['createdOn'] == null
+    createdAt: json['createdAt'] == null
         ? null
-        : CreatedOn.fromJson(json['createdOn'] as Map<String, dynamic>),
+        : CreatedOn.fromJson(json['createdAt'] as Map<String, dynamic>),
     devices: (json['devices'] as List)
         ?.map((e) =>
             e == null ? null : Devices.fromJson(e as Map<String, dynamic>))
@@ -548,7 +534,7 @@ Map<String, dynamic> _$AccountsToJson(Accounts instance) => <String, dynamic>{
       'tag': instance.tag,
       'type': instance.type,
       'status': instance.status,
-      'createdOn': instance.createdOn,
+      'createdAt': instance.createdAt,
       'devices': instance.devices,
       'alias': instance.alias,
     };
@@ -577,12 +563,8 @@ Receipts _$ReceiptsFromJson(Map<String, dynamic> json) {
   return Receipts(
     id: json['id'] as int,
     title: json['title'] as String,
-    amount: json['amount'] == null
-        ? null
-        : Amount.fromJson(json['amount'] as Map<String, dynamic>),
-    charges: json['charges'] == null
-        ? null
-        : Charges.fromJson(json['charges'] as Map<String, dynamic>),
+    amount: json['amount'] as int,
+    charges: json['charges'] as int,
   );
 }
 
@@ -595,9 +577,7 @@ Map<String, dynamic> _$ReceiptsToJson(Receipts instance) => <String, dynamic>{
 
 OpenedOn _$OpenedOnFromJson(Map<String, dynamic> json) {
   return OpenedOn(
-    date: json['date'] == null
-        ? null
-        : Date.fromJson(json['date'] as Map<String, dynamic>),
+    date: json['date'] as String,
   );
 }
 
@@ -608,9 +588,7 @@ Map<String, dynamic> _$OpenedOnToJson(OpenedOn instance) => <String, dynamic>{
 HandledBy _$HandledByFromJson(Map<String, dynamic> json) {
   return HandledBy(
     operator: json['operator'] as String,
-    date: json['date'] == null
-        ? null
-        : Date.fromJson(json['date'] as Map<String, dynamic>),
+    date: json['date'] as String,
   );
 }
 
@@ -649,9 +627,7 @@ Map<String, dynamic> _$TicketsToJson(Tickets instance) => <String, dynamic>{
 
 SendOn _$SendOnFromJson(Map<String, dynamic> json) {
   return SendOn(
-    date: json['date'] == null
-        ? null
-        : Date.fromJson(json['date'] as Map<String, dynamic>),
+    date: json['date'] as String,
   );
 }
 

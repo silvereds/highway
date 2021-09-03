@@ -3,13 +3,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile/src/core/api/http_client.dart';
 import 'package:mobile/src/core/api/json_parsers/json_parser.dart';
 import 'package:mobile/src/core/api/json_parsers/reponse_parser.dart';
-import 'package:mobile/src/core/api/json_parsers/transactions/transactions_list_parser.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/auth_repository.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/ui/views/reset_password_screen.dart';
 
-part 'auth_provider.freezed.dart';
+part 'auth_notifier.freezed.dart';
 
 @freezed
 abstract class AuthState with _$AuthState {
