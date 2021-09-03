@@ -262,16 +262,17 @@ Map<String, dynamic> _$TicketToJson(Ticket instance) => <String, dynamic>{
 
 Transaction _$TransactionFromJson(Map<String, dynamic> json) {
   return Transaction(
-    id: json['id'] as int,
+    id: json['id'] as String,
     status: json['status'] as String,
     category: json['category'] as String,
-    amount: json['amount'] as String,
+    amount: json['amount'] as int,
     accountFrom: json['accountFrom'] as String,
     accountTo: json['accountTo'] as String,
     reference: json['reference'] as String,
-    initiatedOn: json['initiatedOn'] as String,
+    initiatedON: json['initiatedON'] as String,
     deviceFrom: json['deviceFrom'] as String,
     deviceTo: json['deviceTo'] as String,
+    charges: json['charges'] as int,
   );
 }
 
@@ -284,9 +285,10 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
       'accountFrom': instance.accountFrom,
       'accountTo': instance.accountTo,
       'reference': instance.reference,
-      'initiatedOn': instance.initiatedOn,
+      'initiatedON': instance.initiatedON,
       'deviceFrom': instance.deviceFrom,
       'deviceTo': instance.deviceTo,
+      'charges': instance.charges,
     };
 
 User _$UserFromJson(Map<String, dynamic> json) {
@@ -311,6 +313,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     proofOfAddress: json['proofOfAddress'] as String,
     role: json['role'] as String,
     status: json['status'] as String,
+    authorization: json['authorization'] as String,
     agent: json['agent'] as String,
   );
 }
@@ -336,6 +339,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'role': instance.role,
       'session': instance.session,
       'date': instance.date,
+      'authorization': instance.authorization,
       'agent': instance.agent,
     };
 
@@ -352,57 +356,33 @@ Map<String, dynamic> _$ValidationToJson(Validation instance) =>
       'error': instance.error,
     };
 
-LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
-  return LoginResponse(
-    error: json['error'] as String,
+SimpleMessageResponse _$SimpleMessageResponseFromJson(
+    Map<String, dynamic> json) {
+  return SimpleMessageResponse(
     message: json['message'] as String,
-    accessToken: json['accessToken'] as String,
-    expiresIn: json['expiresIn'] as int,
-    refreshToken: json['refreshToken'] as String,
-    refreshExpiresIn: json['refreshExpiresIn'] as int,
-    tokenType: json['tokenType'] as String,
-    notBeforePolicy: json['notBeforePolicy'] as int,
-    sessionState: json['sessionState'] as String,
-    scope: json['scope'] as String,
   );
 }
 
-Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
+Map<String, dynamic> _$SimpleMessageResponseToJson(
+        SimpleMessageResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'error': instance.error,
-      'accessToken': instance.accessToken,
-      'expiresIn': instance.expiresIn,
-      'refreshToken': instance.refreshToken,
-      'refreshExpiresIn': instance.refreshExpiresIn,
-      'tokenType': instance.tokenType,
-      'notBeforePolicy': instance.notBeforePolicy,
-      'sessionState': instance.sessionState,
-      'scope': instance.scope,
     };
 
 ApiException _$ApiExceptionFromJson(Map<String, dynamic> json) {
   return ApiException(
-    code: json['code'] as int,
     error: json['error'] as String,
-    name: json['name'] as String,
-    status: json['status'] as int,
   );
 }
 
 Map<String, dynamic> _$ApiExceptionToJson(ApiException instance) =>
     <String, dynamic>{
-      'name': instance.name,
       'error': instance.error,
-      'code': instance.code,
-      'status': instance.status,
     };
 
 ApiDataValidationException _$ApiDataValidationExceptionFromJson(
     Map<String, dynamic> json) {
   return ApiDataValidationException(
-    statusCode: json['statusCode'] as int,
-    message: json['message'] as String,
     error: json['error'] as String,
   );
 }
@@ -410,7 +390,5 @@ ApiDataValidationException _$ApiDataValidationExceptionFromJson(
 Map<String, dynamic> _$ApiDataValidationExceptionToJson(
         ApiDataValidationException instance) =>
     <String, dynamic>{
-      'statusCode': instance.statusCode,
-      'message': instance.message,
       'error': instance.error,
     };

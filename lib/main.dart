@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_user_agent/flutter_user_agent.dart';
 import 'package:logging/logging.dart';
 import 'package:mobile/src/core/services/services.dart';
-import 'package:mobile/src/routes.dart';
-import 'package:mobile/src/ui/themes/app_themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'src/app_widget.dart';
+import 'src/core/api/http_client.dart';
 
 void _setupLogging() {
   Logger.root.level = Level.ALL;
@@ -16,9 +19,7 @@ void _setupLogging() {
 
 void _getDeviceInfo() async {
   // var device = DeviceInfoPlugin();
-
   var _userAgent = '';
-
   try {
     _userAgent = await FlutterUserAgent.getPropertyAsync('userAgent');
     SharedPrefService()
@@ -26,35 +27,18 @@ void _getDeviceInfo() async {
   } catch (e) {
     _userAgent = 'mobile';
   }
-
   print('user agent: $_userAgent');
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
+  // RequestREST().init();
   _setupLogging();
   _getDeviceInfo();
   runApp(
     ProviderScope(
-      child: MyApp(),
+      child: AppWidget(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppThemes.lightTheme,
-      title: "HIGHWEH",
-      onGenerateTitle: (_) => "HIGHWEH",
-      onGenerateRoute: RouteGenerator.generateRoute,
-      navigatorKey: RouteGenerator.key,
-      initialRoute: RouteGenerator.homeScreen,
-    );
-  }
 }

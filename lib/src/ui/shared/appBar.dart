@@ -28,7 +28,9 @@ class AppBarView extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => UserProfile()),
+                MaterialPageRoute(
+                  builder: (context) => UserProfile(),
+                ),
               );
             },
             child: Container(

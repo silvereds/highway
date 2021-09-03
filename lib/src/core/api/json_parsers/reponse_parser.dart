@@ -2,13 +2,13 @@ import 'package:mobile/src/core/entities/all.dart';
 
 import 'json_parser.dart';
 
-class LoginResponseParser extends JsonParser<LoginResponse>
-    with ObjectDecoder<LoginResponse> {
+class LoginResponseParser extends JsonParser<SimpleMessageResponse>
+    with ObjectDecoder<SimpleMessageResponse> {
   const LoginResponseParser();
 
   @override
-  Future<LoginResponse> parseFromJson(String json) async {
+  Future<SimpleMessageResponse> parseFromJson(String json) async {
     final decoded = decodeJsonObject(json);
-    return LoginResponse.fromJson(decoded);
+    return SimpleMessageResponse.fromJson(decoded);
   }
 }
