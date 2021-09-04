@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ui/themes/app_themes.dart';
 

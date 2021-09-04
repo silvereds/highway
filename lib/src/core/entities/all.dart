@@ -170,32 +170,30 @@ class Notification {
 
 @JsonSerializable()
 class Organisation {
-  final int id;
-  final String uuid;
-  final String contactPersonId;
+  final String id;
+  final String contact;
   final String name;
   final String industry;
   final String size;
-  final String status;
-  final String photoUrl;
+  final String logoUrl;
   final String address;
-  final String foundedOn;
-  final String contactPersonRole;
+  final String city;
+  final AddedOn foundedOn;
   final String businessLicenceUrl;
   final String proofOfAddressUrl;
+  final String country;
 
   Organisation({
     this.id,
-    this.uuid,
-    this.contactPersonId,
     this.name,
+    this.contact,
+    this.logoUrl,
+    this.city,
+    this.country,
     this.industry,
     this.size,
-    this.status,
-    this.photoUrl,
     this.address,
     this.foundedOn,
-    this.contactPersonRole,
     this.businessLicenceUrl,
     this.proofOfAddressUrl,
   });
@@ -475,10 +473,10 @@ class Balance {
 
 @JsonSerializable()
 class AddedOn {
-  final String date;
-
-  AddedOn({this.date});
-
+  final String $date;
+  AddedOn({
+    this.$date,
+  });
   factory AddedOn.fromJson(Map<String, dynamic> json) =>
       _$AddedOnFromJson(json);
 
@@ -530,11 +528,11 @@ class Alias {
 
 @JsonSerializable()
 class Devices {
-  final int id;
+  final String id;
   final String type;
   final String pin;
   final AddedOn addedOn;
-  final AssignedTo assignedTo;
+  final AddedOn assignedOn;
   final String status;
   final Location location;
   final Alias alias;
@@ -544,7 +542,7 @@ class Devices {
     this.type,
     this.pin,
     this.addedOn,
-    this.assignedTo,
+    this.assignedOn,
     this.status,
     this.location,
     this.alias,
@@ -558,27 +556,23 @@ class Devices {
 
 @JsonSerializable()
 class Accounts {
-  final int id;
-  final Balance balance;
+  final String id;
   final String number;
-  final int key;
+  final String key;
+  final int balance;
   final String tag;
-  final String type;
   final String status;
-  final CreatedOn createdAt;
   final List<Devices> devices;
-  final Alias alias;
+  final AddedOn createdOn;
   Accounts({
     this.id,
     this.balance,
     this.number,
     this.key,
     this.tag,
-    this.type,
     this.status,
-    this.createdAt,
+    this.createdOn,
     this.devices,
-    this.alias,
   });
 
   factory Accounts.fromJson(Map<String, dynamic> json) =>
@@ -589,9 +583,11 @@ class Accounts {
 
 @JsonSerializable()
 class Amount {
-  String numberLong;
+  final String numberLong;
 
-  Amount({this.numberLong});
+  Amount({
+    this.numberLong,
+  });
 
   factory Amount.fromjson(Map<String, dynamic> json) => _$AmountFromJson(json);
 
@@ -602,7 +598,9 @@ class Amount {
 class Charges {
   final String numberLong;
 
-  Charges({this.numberLong});
+  Charges({
+    this.numberLong,
+  });
 
   factory Charges.fromjson(Map<String, dynamic> json) =>
       _$ChargesFromJson(json);
@@ -612,12 +610,17 @@ class Charges {
 
 @JsonSerializable()
 class Receipts {
-  final int id;
+  final String id;
   final String title;
   final int amount;
   final int charges;
 
-  Receipts({this.id, this.title, this.amount, this.charges});
+  Receipts({
+    this.id,
+    this.title,
+    this.amount,
+    this.charges,
+  });
 
   factory Receipts.fromJson(Map<String, dynamic> json) =>
       _$ReceiptsFromJson(json);
@@ -640,7 +643,7 @@ class OpenedOn {
 @JsonSerializable()
 class HandledBy {
   final String operator;
-  final String date;
+  final AddedOn date;
 
   HandledBy({this.operator, this.date});
 
@@ -654,18 +657,19 @@ class HandledBy {
 class Tickets {
   final String id;
   final String status;
-  OpenedOn openedOn;
+  final AddedOn openedOn;
   final String topic;
-  List<HandledBy> handledBy;
-  List<Messages> messages;
+  final List<HandledBy> handledBy;
+  final List<Messages> messages;
 
-  Tickets(
-      {this.id,
-      this.status,
-      this.openedOn,
-      this.topic,
-      this.handledBy,
-      this.messages});
+  Tickets({
+    this.id,
+    this.status,
+    this.openedOn,
+    this.topic,
+    this.handledBy,
+    this.messages,
+  });
 
   factory Tickets.fromJson(Map<String, dynamic> json) =>
       _$TicketsFromJson(json);
@@ -685,12 +689,17 @@ class SendOn {
 
 @JsonSerializable()
 class Messages {
-  final int id;
+  final String id;
   final String sentBy;
-  final SendOn sendOn;
+  final AddedOn sentOn;
   final String body;
 
-  Messages({this.id, this.sentBy, this.sendOn, this.body});
+  Messages({
+    this.id,
+    this.sentBy,
+    this.sentOn,
+    this.body,
+  });
 
   factory Messages.fromJson(Map<String, dynamic> json) =>
       _$MessagesFromJson(json);
@@ -699,43 +708,39 @@ class Messages {
 
 @JsonSerializable()
 class Users {
-  final int id;
+  final String id;
   final String name;
-  final String email;
-  final String phoneNumber;
-  final String preferredLanguage;
+  final String langauge;
   final String photoUrl;
-  final String branch;
   final String address;
   final String city;
   final String gender;
-  final String bornOn;
+  final AddedOn bornOn;
   final String bornAt;
+  final AddedOn registeredOn;
   final String idUrl;
   final String proofOfAddress;
-  List<Accounts> accounts;
-  List<Devices> devices;
-  List<Receipts> receipts;
-  List<Tickets> tickets;
+  final List<Accounts> accounts;
+  final List<Receipts> receipts;
+  final List<Tickets> tickets;
 
-  Users(
-      {this.branch,
-      this.bornAt,
-      this.name,
-      this.address,
-      this.city,
-      this.email,
-      this.gender,
-      this.id,
-      this.idUrl,
-      this.bornOn,
-      this.phoneNumber,
-      this.photoUrl,
-      this.preferredLanguage,
-      this.proofOfAddress,
-      this.accounts,
-      this.devices,
-      this.receipts});
+  Users({
+    this.registeredOn,
+    this.name,
+    this.address,
+    this.city,
+    this.gender,
+    this.id,
+    this.bornOn,
+    this.photoUrl,
+    this.langauge,
+    this.proofOfAddress,
+    this.bornAt,
+    this.idUrl,
+    this.accounts,
+    this.tickets,
+    this.receipts,
+  });
 
   factory Users.fromJson(Map<String, dynamic> json) => _$UsersFromJson(json);
 
@@ -743,30 +748,31 @@ class Users {
 }
 
 @JsonSerializable()
-class UserInfoApi {
-  UserId userId;
-  String name;
-  String city;
-  String country;
-  int code;
-  Location location;
-  Accounts accounts;
-  List<Users> users;
-  String uuid;
+class Branche {
+  final String name;
+  final String city;
+  final String country;
+  final String code;
+  final Location location;
+  final Accounts account;
+  final List<Users> users;
+  final List<Organisation> organisations;
+  @JsonKey(name: 'uuid')
+  final String id;
 
-  UserInfoApi({
-    this.userId,
+  Branche({
+    this.id,
     this.name,
     this.city,
     this.country,
     this.code,
     this.location,
-    this.accounts,
+    this.account,
     this.users,
-    this.uuid,
+    this.organisations,
   });
 
-  factory UserInfoApi.fromJson(Map<String, dynamic> json) =>
-      _$UserInfoApiFromJson(json);
-  Map<String, dynamic> toJson() => _$UserInfoApiToJson(this);
+  factory Branche.fromJson(Map<String, dynamic> json) =>
+      _$BrancheFromJson(json);
+  Map<String, dynamic> toJson() => _$BrancheToJson(this);
 }

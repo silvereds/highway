@@ -153,17 +153,18 @@ Map<String, dynamic> _$NotificationToJson(Notification instance) =>
 
 Organisation _$OrganisationFromJson(Map<String, dynamic> json) {
   return Organisation(
-    id: json['id'] as int,
-    uuid: json['uuid'] as String,
-    contactPersonId: json['contactPersonId'] as String,
+    id: json['id'] as String,
     name: json['name'] as String,
+    contact: json['contact'] as String,
+    logoUrl: json['logoUrl'] as String,
+    city: json['city'] as String,
+    country: json['country'] as String,
     industry: json['industry'] as String,
     size: json['size'] as String,
-    status: json['status'] as String,
-    photoUrl: json['photoUrl'] as String,
     address: json['address'] as String,
-    foundedOn: json['foundedOn'] as String,
-    contactPersonRole: json['contactPersonRole'] as String,
+    foundedOn: json['foundedOn'] == null
+        ? null
+        : AddedOn.fromJson(json['foundedOn'] as Map<String, dynamic>),
     businessLicenceUrl: json['businessLicenceUrl'] as String,
     proofOfAddressUrl: json['proofOfAddressUrl'] as String,
   );
@@ -172,18 +173,17 @@ Organisation _$OrganisationFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$OrganisationToJson(Organisation instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'uuid': instance.uuid,
-      'contactPersonId': instance.contactPersonId,
+      'contact': instance.contact,
       'name': instance.name,
       'industry': instance.industry,
       'size': instance.size,
-      'status': instance.status,
-      'photoUrl': instance.photoUrl,
+      'logoUrl': instance.logoUrl,
       'address': instance.address,
+      'city': instance.city,
       'foundedOn': instance.foundedOn,
-      'contactPersonRole': instance.contactPersonRole,
       'businessLicenceUrl': instance.businessLicenceUrl,
       'proofOfAddressUrl': instance.proofOfAddressUrl,
+      'country': instance.country,
     };
 
 Payment _$PaymentFromJson(Map<String, dynamic> json) {
@@ -427,12 +427,12 @@ Map<String, dynamic> _$BalanceToJson(Balance instance) => <String, dynamic>{
 
 AddedOn _$AddedOnFromJson(Map<String, dynamic> json) {
   return AddedOn(
-    date: json['date'] as String,
+    $date: json[r'$date'] as String,
   );
 }
 
 Map<String, dynamic> _$AddedOnToJson(AddedOn instance) => <String, dynamic>{
-      'date': instance.date,
+      r'$date': instance.$date,
     };
 
 CreatedOn _$CreatedOnFromJson(Map<String, dynamic> json) {
@@ -474,15 +474,15 @@ Map<String, dynamic> _$AliasToJson(Alias instance) => <String, dynamic>{
 
 Devices _$DevicesFromJson(Map<String, dynamic> json) {
   return Devices(
-    id: json['id'] as int,
+    id: json['id'] as String,
     type: json['type'] as String,
     pin: json['pin'] as String,
     addedOn: json['addedOn'] == null
         ? null
         : AddedOn.fromJson(json['addedOn'] as Map<String, dynamic>),
-    assignedTo: json['assignedTo'] == null
+    assignedOn: json['assignedOn'] == null
         ? null
-        : AssignedTo.fromJson(json['assignedTo'] as Map<String, dynamic>),
+        : AddedOn.fromJson(json['assignedOn'] as Map<String, dynamic>),
     status: json['status'] as String,
     location: json['location'] == null
         ? null
@@ -498,7 +498,7 @@ Map<String, dynamic> _$DevicesToJson(Devices instance) => <String, dynamic>{
       'type': instance.type,
       'pin': instance.pin,
       'addedOn': instance.addedOn,
-      'assignedTo': instance.assignedTo,
+      'assignedOn': instance.assignedOn,
       'status': instance.status,
       'location': instance.location,
       'alias': instance.alias,
@@ -506,37 +506,31 @@ Map<String, dynamic> _$DevicesToJson(Devices instance) => <String, dynamic>{
 
 Accounts _$AccountsFromJson(Map<String, dynamic> json) {
   return Accounts(
-    id: json['id'] as int,
-    balance: json['balance'] == null ? null : Balance.fromJson(json['balance']),
+    id: json['id'] as String,
+    balance: json['balance'] as int,
     number: json['number'] as String,
-    key: json['key'] as int,
+    key: json['key'] as String,
     tag: json['tag'] as String,
-    type: json['type'] as String,
     status: json['status'] as String,
-    createdAt: json['createdAt'] == null
+    createdOn: json['createdOn'] == null
         ? null
-        : CreatedOn.fromJson(json['createdAt'] as Map<String, dynamic>),
+        : AddedOn.fromJson(json['createdOn'] as Map<String, dynamic>),
     devices: (json['devices'] as List)
         ?.map((e) =>
             e == null ? null : Devices.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    alias: json['alias'] == null
-        ? null
-        : Alias.fromJson(json['alias'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$AccountsToJson(Accounts instance) => <String, dynamic>{
       'id': instance.id,
-      'balance': instance.balance,
       'number': instance.number,
       'key': instance.key,
+      'balance': instance.balance,
       'tag': instance.tag,
-      'type': instance.type,
       'status': instance.status,
-      'createdAt': instance.createdAt,
       'devices': instance.devices,
-      'alias': instance.alias,
+      'createdOn': instance.createdOn,
     };
 
 Amount _$AmountFromJson(Map<String, dynamic> json) {
@@ -561,7 +555,7 @@ Map<String, dynamic> _$ChargesToJson(Charges instance) => <String, dynamic>{
 
 Receipts _$ReceiptsFromJson(Map<String, dynamic> json) {
   return Receipts(
-    id: json['id'] as int,
+    id: json['id'] as String,
     title: json['title'] as String,
     amount: json['amount'] as int,
     charges: json['charges'] as int,
@@ -588,7 +582,9 @@ Map<String, dynamic> _$OpenedOnToJson(OpenedOn instance) => <String, dynamic>{
 HandledBy _$HandledByFromJson(Map<String, dynamic> json) {
   return HandledBy(
     operator: json['operator'] as String,
-    date: json['date'] as String,
+    date: json['date'] == null
+        ? null
+        : AddedOn.fromJson(json['date'] as Map<String, dynamic>),
   );
 }
 
@@ -603,7 +599,7 @@ Tickets _$TicketsFromJson(Map<String, dynamic> json) {
     status: json['status'] as String,
     openedOn: json['openedOn'] == null
         ? null
-        : OpenedOn.fromJson(json['openedOn'] as Map<String, dynamic>),
+        : AddedOn.fromJson(json['openedOn'] as Map<String, dynamic>),
     topic: json['topic'] as String,
     handledBy: (json['handledBy'] as List)
         ?.map((e) =>
@@ -637,11 +633,11 @@ Map<String, dynamic> _$SendOnToJson(SendOn instance) => <String, dynamic>{
 
 Messages _$MessagesFromJson(Map<String, dynamic> json) {
   return Messages(
-    id: json['id'] as int,
+    id: json['id'] as String,
     sentBy: json['sentBy'] as String,
-    sendOn: json['sendOn'] == null
+    sentOn: json['sentOn'] == null
         ? null
-        : SendOn.fromJson(json['sendOn'] as Map<String, dynamic>),
+        : AddedOn.fromJson(json['sentOn'] as Map<String, dynamic>),
     body: json['body'] as String,
   );
 }
@@ -649,97 +645,93 @@ Messages _$MessagesFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$MessagesToJson(Messages instance) => <String, dynamic>{
       'id': instance.id,
       'sentBy': instance.sentBy,
-      'sendOn': instance.sendOn,
+      'sentOn': instance.sentOn,
       'body': instance.body,
     };
 
 Users _$UsersFromJson(Map<String, dynamic> json) {
   return Users(
-    branch: json['branch'] as String,
-    bornAt: json['bornAt'] as String,
+    registeredOn: json['registeredOn'] == null
+        ? null
+        : AddedOn.fromJson(json['registeredOn'] as Map<String, dynamic>),
     name: json['name'] as String,
     address: json['address'] as String,
     city: json['city'] as String,
-    email: json['email'] as String,
     gender: json['gender'] as String,
-    id: json['id'] as int,
-    idUrl: json['idUrl'] as String,
-    bornOn: json['bornOn'] as String,
-    phoneNumber: json['phoneNumber'] as String,
+    id: json['id'] as String,
+    bornOn: json['bornOn'] == null
+        ? null
+        : AddedOn.fromJson(json['bornOn'] as Map<String, dynamic>),
     photoUrl: json['photoUrl'] as String,
-    preferredLanguage: json['preferredLanguage'] as String,
+    langauge: json['langauge'] as String,
     proofOfAddress: json['proofOfAddress'] as String,
+    bornAt: json['bornAt'] as String,
+    idUrl: json['idUrl'] as String,
     accounts: (json['accounts'] as List)
         ?.map((e) =>
             e == null ? null : Accounts.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    devices: (json['devices'] as List)
+    tickets: (json['tickets'] as List)
         ?.map((e) =>
-            e == null ? null : Devices.fromJson(e as Map<String, dynamic>))
+            e == null ? null : Tickets.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     receipts: (json['receipts'] as List)
         ?.map((e) =>
             e == null ? null : Receipts.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-  )..tickets = (json['tickets'] as List)
-      ?.map(
-          (e) => e == null ? null : Tickets.fromJson(e as Map<String, dynamic>))
-      ?.toList();
+  );
 }
 
 Map<String, dynamic> _$UsersToJson(Users instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'email': instance.email,
-      'phoneNumber': instance.phoneNumber,
-      'preferredLanguage': instance.preferredLanguage,
+      'langauge': instance.langauge,
       'photoUrl': instance.photoUrl,
-      'branch': instance.branch,
       'address': instance.address,
       'city': instance.city,
       'gender': instance.gender,
       'bornOn': instance.bornOn,
       'bornAt': instance.bornAt,
+      'registeredOn': instance.registeredOn,
       'idUrl': instance.idUrl,
       'proofOfAddress': instance.proofOfAddress,
       'accounts': instance.accounts,
-      'devices': instance.devices,
       'receipts': instance.receipts,
       'tickets': instance.tickets,
     };
 
-UserInfoApi _$UserInfoApiFromJson(Map<String, dynamic> json) {
-  return UserInfoApi(
-    userId: json['userId'] == null
-        ? null
-        : UserId.fromJson(json['userId'] as Map<String, dynamic>),
+Branche _$BrancheFromJson(Map<String, dynamic> json) {
+  return Branche(
+    id: json['uuid'] as String,
     name: json['name'] as String,
     city: json['city'] as String,
     country: json['country'] as String,
-    code: json['code'] as int,
+    code: json['code'] as String,
     location: json['location'] == null
         ? null
         : Location.fromJson(json['location'] as Map<String, dynamic>),
-    accounts: json['accounts'] == null
+    account: json['account'] == null
         ? null
-        : Accounts.fromJson(json['accounts'] as Map<String, dynamic>),
+        : Accounts.fromJson(json['account'] as Map<String, dynamic>),
     users: (json['users'] as List)
         ?.map(
             (e) => e == null ? null : Users.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    uuid: json['uuid'] as String,
+    organisations: (json['organisations'] as List)
+        ?.map((e) =>
+            e == null ? null : Organisation.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
-Map<String, dynamic> _$UserInfoApiToJson(UserInfoApi instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
+Map<String, dynamic> _$BrancheToJson(Branche instance) => <String, dynamic>{
       'name': instance.name,
       'city': instance.city,
       'country': instance.country,
       'code': instance.code,
       'location': instance.location,
-      'accounts': instance.accounts,
+      'account': instance.account,
       'users': instance.users,
-      'uuid': instance.uuid,
+      'organisations': instance.organisations,
+      'uuid': instance.id,
     };

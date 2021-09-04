@@ -28,12 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   void _getJwtToken() async {
-    if (await SharedPrefService().getString('deviceName') == null) {
+    await context.read(brancheNotifier).getAllBranch();
+    if ((await SharedPrefService().getString('deviceName')) == null) {
       await context.read(AuthProvider.authProvider).getAuthToken();
     }
   }
-
-  void displayTransaction() async {}
 
   @override
   void initState() {
@@ -41,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
     FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     _currentIndex = 0;
     _getJwtToken();
-    displayTransaction();
   }
 
   @override

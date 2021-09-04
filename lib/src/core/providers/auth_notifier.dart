@@ -26,15 +26,10 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
 
   AuthNotifier(this._prefService) : super(const AuthState.initial());
 
-  // User _user = User();
-
   static const _userKey = 'userInfo';
   static const _token = 'token';
 
-  // User get userDetails => _user;
-
-  /// Chech user statusb
-
+  /// Check user status
   Future<void> checkAndUpdateStatus() async {
     state = (await isSigned())
         ? const AuthState.authenticated()
@@ -179,7 +174,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
         },
       ).executePost<User>(UserParser());
       _prefService.saveString(_token, response.authorization);
-      print(response.authorization);
+      print('Token: ' + response.authorization);
     } catch (e) {
       throw e;
     }

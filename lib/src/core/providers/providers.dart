@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
+import 'package:mobile/src/core/providers/branch_notifier.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 
 final sharedPrefsProvider = Provider((ref) => SharedPrefService());
@@ -19,3 +20,12 @@ abstract class UserDetailProvider {
     },
   );
 }
+
+final brancheNotifier =
+    ChangeNotifierProvider<BrancheNotifier>((ref) => BrancheNotifier());
+
+final branchesProvider = FutureProvider<List<Branche>>((ref) async {
+  final listOfBranchesProvider = ref.watch(brancheNotifier);
+  final branches = await listOfBranchesProvider.getAllBranch();
+  return branches;
+});

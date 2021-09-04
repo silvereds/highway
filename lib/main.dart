@@ -15,7 +15,6 @@ void _setupLogging() {
 }
 
 void _getDeviceInfo() async {
-  // var device = DeviceInfoPlugin();
   var _userAgent = '';
   try {
     _userAgent = await FlutterUserAgent.getPropertyAsync('userAgent');

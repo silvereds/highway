@@ -47,8 +47,8 @@ class _AccountsViewState extends State<AccountsView> {
               Column(
                 children: [
                   const SizedBox(height: 20),
-                  const Text(
-                    "All Accounts",
+                  Text(
+                    'All accounts',
                     style: TextStyle(
                       color: Color(
                         0xFF3C4858,
@@ -265,7 +265,7 @@ class _AccountBoxIcon extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Icon(
+          child: const Icon(
             Icons.person_outline_outlined,
             color: Colors.white,
           ),
