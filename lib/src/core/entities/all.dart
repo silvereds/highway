@@ -247,8 +247,7 @@ class Session {
 
 @JsonSerializable()
 class Setting {
-  int id;
-
+  final int id;
   final String name;
   final String value;
   final String defaultValue;
@@ -264,7 +263,6 @@ class Setting {
 @JsonSerializable()
 class Ticket {
   final int id;
-
   final String openedOn;
   final String topic;
   final String openedBy;
@@ -584,7 +582,6 @@ class Accounts {
 @JsonSerializable()
 class Amount {
   final String numberLong;
-
   Amount({
     this.numberLong,
   });
@@ -597,7 +594,6 @@ class Amount {
 @JsonSerializable()
 class Charges {
   final String numberLong;
-
   Charges({
     this.numberLong,
   });
@@ -678,16 +674,6 @@ class Tickets {
 }
 
 @JsonSerializable()
-class SendOn {
-  final String date;
-
-  SendOn({this.date});
-
-  factory SendOn.fromJson(Map<String, dynamic> json) => _$SendOnFromJson(json);
-  Map<String, dynamic> toJson() => _$SendOnToJson(this);
-}
-
-@JsonSerializable()
 class Messages {
   final String id;
   final String sentBy;
@@ -754,9 +740,9 @@ class Branche {
   final String country;
   final String code;
   final Location location;
-  final Accounts account;
-  final List<Users> users;
-  final List<Organisation> organisations;
+  // final Accounts account;
+  // final List<Users> users;
+  // final List<Organisation> organisations;
   @JsonKey(name: 'uuid')
   final String id;
 
@@ -767,9 +753,9 @@ class Branche {
     this.country,
     this.code,
     this.location,
-    this.account,
-    this.users,
-    this.organisations,
+    // this.account,
+    // this.users,
+    // this.organisations,
   });
 
   factory Branche.fromJson(Map<String, dynamic> json) =>

@@ -621,16 +621,6 @@ Map<String, dynamic> _$TicketsToJson(Tickets instance) => <String, dynamic>{
       'messages': instance.messages,
     };
 
-SendOn _$SendOnFromJson(Map<String, dynamic> json) {
-  return SendOn(
-    date: json['date'] as String,
-  );
-}
-
-Map<String, dynamic> _$SendOnToJson(SendOn instance) => <String, dynamic>{
-      'date': instance.date,
-    };
-
 Messages _$MessagesFromJson(Map<String, dynamic> json) {
   return Messages(
     id: json['id'] as String,
@@ -710,17 +700,6 @@ Branche _$BrancheFromJson(Map<String, dynamic> json) {
     location: json['location'] == null
         ? null
         : Location.fromJson(json['location'] as Map<String, dynamic>),
-    account: json['account'] == null
-        ? null
-        : Accounts.fromJson(json['account'] as Map<String, dynamic>),
-    users: (json['users'] as List)
-        ?.map(
-            (e) => e == null ? null : Users.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    organisations: (json['organisations'] as List)
-        ?.map((e) =>
-            e == null ? null : Organisation.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
   );
 }
 
@@ -730,8 +709,5 @@ Map<String, dynamic> _$BrancheToJson(Branche instance) => <String, dynamic>{
       'country': instance.country,
       'code': instance.code,
       'location': instance.location,
-      'account': instance.account,
-      'users': instance.users,
-      'organisations': instance.organisations,
       'uuid': instance.id,
     };

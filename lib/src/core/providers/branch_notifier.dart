@@ -16,6 +16,7 @@ class BrancheNotifier extends ChangeNotifier implements BranchRepository {
         endpoint: '/branches',
       ).executeGet<List<Branche>>(BranchesListParser());
       _branches = response;
+      print(_branches.first.country);
       notifyListeners();
       return _branches;
     } catch (e) {
