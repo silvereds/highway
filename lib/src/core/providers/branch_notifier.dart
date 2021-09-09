@@ -5,7 +5,7 @@ import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/branch_repository.dart';
 
 class BrancheNotifier extends ChangeNotifier implements BranchRepository {
-  List<Branche> _branches;
+  List<Branche> _branches = [];
 
   List<Branche> get branches => _branches;
 
@@ -15,12 +15,12 @@ class BrancheNotifier extends ChangeNotifier implements BranchRepository {
       final response = await RequestREST(
         endpoint: '/branches',
       ).executeGet<List<Branche>>(BranchesListParser());
+      print(response);
       _branches = response;
-      print(_branches.first.country);
       notifyListeners();
-      return _branches;
     } catch (e) {
-      print(e);
+      throw e;
     }
+    return _branches;
   }
 }
