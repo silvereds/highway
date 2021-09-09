@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/providers.dart';
+import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ui/themes/app_themes.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   final auth = ref.read(AuthProvider.authProvider);
+  final userAgentProvider = ref.watch(userAgentServiceProvider);
+  await userAgentProvider.getUserAgent();
   await auth.checkAndUpdateStatus();
   return unit;
 });
 
 class AppWidget extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ProviderListener(
@@ -26,10 +27,17 @@ class AppWidget extends StatelessWidget {
         onChange: (context, state) {
           state.maybeWhen(
             orElse: () {},
-            unauthenticated: () {
+            unauthenticated: () async {
               print('unauthenticated');
-              return RouteGenerator.key.currentState.pushNamedAndRemoveUntil(
-                  RouteGenerator.splashScreenPage, (route) => false);
+              final isSplashSee =
+                  await SharedPrefService().getBool('isSee') ?? false;
+              if (isSplashSee) {
+                return RouteGenerator.key.currentState.pushNamedAndRemoveUntil(
+                    RouteGenerator.loginPage, (route) => false);
+              } else {
+                return RouteGenerator.key.currentState.pushNamedAndRemoveUntil(
+                    RouteGenerator.splashScreenPage, (route) => false);
+              }
             },
             authenticated: () {
               print('authenticated');

@@ -15,9 +15,10 @@ abstract class AuthState with _$AuthState {
   const AuthState._();
   const factory AuthState.initial() = Initial;
   const factory AuthState.loading() = Loading;
-  const factory AuthState.login() = Login;
+  const factory AuthState.login() = _Login;
   const factory AuthState.unauthenticated() = _Unauthenticated;
   const factory AuthState.authenticated() = _Authenticated;
+  const factory AuthState.logout() = _Logout;
   const factory AuthState.failure([String error]) = _Failure;
 }
 

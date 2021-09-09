@@ -35,7 +35,7 @@ Map<String, dynamic> _$AccountToJson(Account instance) => <String, dynamic>{
 AuthCredentials _$AuthCredentialsFromJson(Map<String, dynamic> json) {
   return AuthCredentials(
     email: json['email'] as String,
-    phoneNumber: json['phoneNumber'] as String,
+    phone: json['phone'] as String,
     password: json['password'] as String,
     passcode: json['passcode'] as String,
     agent: json['agent'] as String,
@@ -45,7 +45,7 @@ AuthCredentials _$AuthCredentialsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$AuthCredentialsToJson(AuthCredentials instance) =>
     <String, dynamic>{
       'email': instance.email,
-      'phoneNumber': instance.phoneNumber,
+      'phone': instance.phone,
       'password': instance.password,
       'passcode': instance.passcode,
       'agent': instance.agent,
@@ -307,7 +307,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     uuid: json['uuid'] as String,
     idUrl: json['idUrl'] as String,
     bornOn: json['bornOn'] as String,
-    phoneNumber: json['phoneNumber'] as String,
+    phone: json['phone'] as String,
     photoUrl: json['photoUrl'] as String,
     preferredLanguage: json['preferredLanguage'] as String,
     proofOfAddress: json['proofOfAddress'] as String,
@@ -323,7 +323,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
       'password': instance.password,
-      'phoneNumber': instance.phoneNumber,
+      'phone': instance.phone,
       'preferredLanguage': instance.preferredLanguage,
       'photoUrl': instance.photoUrl,
       'branch': instance.branch,
@@ -459,7 +459,7 @@ Map<String, dynamic> _$AssignedToToJson(AssignedTo instance) =>
 Alias _$AliasFromJson(Map<String, dynamic> json) {
   return Alias(
     name: json['name'] as String,
-    phoneNumber: json['phoneNumber'] as String,
+    phone: json['phone'] as String,
     email: json['email'] as String,
     language: json['language'] as String,
   );
@@ -467,7 +467,7 @@ Alias _$AliasFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AliasToJson(Alias instance) => <String, dynamic>{
       'name': instance.name,
-      'phoneNumber': instance.phoneNumber,
+      'phone': instance.phone,
       'email': instance.email,
       'language': instance.language,
     };
@@ -700,6 +700,17 @@ Branche _$BrancheFromJson(Map<String, dynamic> json) {
     location: json['location'] == null
         ? null
         : Location.fromJson(json['location'] as Map<String, dynamic>),
+    account: json['account'] == null
+        ? null
+        : Accounts.fromJson(json['account'] as Map<String, dynamic>),
+    users: (json['users'] as List)
+        ?.map(
+            (e) => e == null ? null : Users.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    organisations: (json['organisations'] as List)
+        ?.map((e) =>
+            e == null ? null : Organisation.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -709,5 +720,8 @@ Map<String, dynamic> _$BrancheToJson(Branche instance) => <String, dynamic>{
       'country': instance.country,
       'code': instance.code,
       'location': instance.location,
+      'account': instance.account,
+      'users': instance.users,
+      'organisations': instance.organisations,
       'uuid': instance.id,
     };

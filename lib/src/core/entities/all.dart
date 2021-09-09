@@ -35,14 +35,14 @@ class Account {
 @JsonSerializable()
 class AuthCredentials {
   final String email;
-  final String phoneNumber;
+  final String phone;
   String password;
   final String passcode;
   String agent = "mobile";
 
   AuthCredentials({
     this.email,
-    this.phoneNumber,
+    this.phone,
     this.password,
     this.passcode,
     this.agent,
@@ -323,7 +323,7 @@ class User {
   final String name;
   final String email;
   final String password;
-  final String phoneNumber;
+  final String phone;
   final String preferredLanguage;
   final String photoUrl;
   final String branch;
@@ -359,7 +359,7 @@ class User {
     this.bornOn,
     // this.registeredOn,
     // this.organisation,
-    this.phoneNumber,
+    this.phone,
     this.photoUrl,
     this.preferredLanguage,
     this.proofOfAddress,
@@ -508,13 +508,13 @@ class AssignedTo {
 @JsonSerializable()
 class Alias {
   String name;
-  String phoneNumber;
+  String phone;
   String email;
   String language;
 
   Alias({
     this.name,
-    this.phoneNumber,
+    this.phone,
     this.email,
     this.language,
   });
@@ -740,9 +740,9 @@ class Branche {
   final String country;
   final String code;
   final Location location;
-  // final Accounts account;
-  // final List<Users> users;
-  // final List<Organisation> organisations;
+  final Accounts account;
+  final List<Users> users;
+  final List<Organisation> organisations;
   @JsonKey(name: 'uuid')
   final String id;
 
@@ -753,9 +753,9 @@ class Branche {
     this.country,
     this.code,
     this.location,
-    // this.account,
-    // this.users,
-    // this.organisations,
+    this.account,
+    this.users,
+    this.organisations,
   });
 
   factory Branche.fromJson(Map<String, dynamic> json) =>

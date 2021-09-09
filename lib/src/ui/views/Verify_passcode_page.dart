@@ -39,7 +39,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
           .read(AuthProvider.authProvider)
           .login(
             User(
-              phoneNumber: widget.user.phoneNumber,
+              phone: widget.user.phone,
               email: widget.user.email,
               password: widget.user.password,
               agent: widget.user.agent,

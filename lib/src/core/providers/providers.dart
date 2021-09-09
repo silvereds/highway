@@ -3,6 +3,8 @@ import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/branch_notifier.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
+import 'package:mobile/src/core/services/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPrefsProvider = Provider((ref) => SharedPrefService());
 
@@ -19,7 +21,15 @@ abstract class UserDetailProvider {
       return user;
     },
   );
-}
+} // User detail information provider
+
+final userAgentServiceProvider = Provider<UserAgentService>((ref) {
+  return UserAgentService();
+});
+
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError();
+});
 
 final brancheNotifier =
     ChangeNotifierProvider<BrancheNotifier>((ref) => BrancheNotifier());

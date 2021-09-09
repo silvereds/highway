@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
@@ -11,23 +12,14 @@ class SplashScreenPage extends StatefulWidget {
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
   void _isAlreadySee() {
-    // SharedPrefService().saveBool('isSee', true);
+    SharedPrefService().saveBool('isSee', true);
     Navigator.of(context)
         .pushNamedAndRemoveUntil(RouteGenerator.loginPage, (route) => false);
   }
 
-  // void _moveToLoginPage() async {
-  //   final bool isSee = await SharedPrefService().getBool('isSee');
-  //   if (isSee == true) {
-  //     Navigator.of(context)
-  //         .pushNamedAndRemoveUntil(RouteGenerator.loginPage, (route) => false);
-  //   }
-  // }
-
   @override
   void initState() {
     super.initState();
-    // _moveToLoginPage();
   }
 
   @override
