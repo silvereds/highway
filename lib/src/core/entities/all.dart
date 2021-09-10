@@ -596,7 +596,7 @@ class Charges {
   final String numberLong;
   Charges({
     this.numberLong,
-  });
+  }); 
 
   factory Charges.fromjson(Map<String, dynamic> json) =>
       _$ChargesFromJson(json);
@@ -740,9 +740,9 @@ class Branche {
   final String country;
   final String code;
   final Location location;
-  // final Accounts account;
-  // final List<Users> users;
-  // final List<Organisation> organisations;
+  final Accounts account;
+  final List<Users> users;
+  final List<Organisation> organisations;
   @JsonKey(name: 'uuid')
   final String id;
 
@@ -753,9 +753,9 @@ class Branche {
     this.country,
     this.code,
     this.location,
-    // this.account,
-    // this.users,
-    // this.organisations,
+    this.account,
+    this.users,
+    this.organisations,
   });
 
   factory Branche.fromJson(Map<String, dynamic> json) =>

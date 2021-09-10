@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
-import 'package:mobile/src/core/providers/branch_notifier.dart';
+import 'package:mobile/src/core/providers/branches_notifier.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 
 final sharedPrefsProvider = Provider((ref) => SharedPrefService());

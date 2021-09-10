@@ -700,6 +700,17 @@ Branche _$BrancheFromJson(Map<String, dynamic> json) {
     location: json['location'] == null
         ? null
         : Location.fromJson(json['location'] as Map<String, dynamic>),
+    account: json['account'] == null
+        ? null
+        : Accounts.fromJson(json['account'] as Map<String, dynamic>),
+    users: (json['users'] as List)
+        ?.map(
+            (e) => e == null ? null : Users.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    organisations: (json['organisations'] as List)
+        ?.map((e) =>
+            e == null ? null : Organisation.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -709,5 +720,8 @@ Map<String, dynamic> _$BrancheToJson(Branche instance) => <String, dynamic>{
       'country': instance.country,
       'code': instance.code,
       'location': instance.location,
+      'account': instance.account,
+      'users': instance.users,
+      'organisations': instance.organisations,
       'uuid': instance.id,
     };
