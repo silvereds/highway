@@ -34,8 +34,8 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
 final brancheNotifier =
     ChangeNotifierProvider<BrancheNotifier>((ref) => BrancheNotifier());
 
-final branchesProvider = FutureProvider<List<Branche>>((ref) async {
-  final listOfBranchesProvider = ref.watch(brancheNotifier);
+final branchesFutureProvider = FutureProvider<List<Branche>>((ref) async {
+  final listOfBranchesProvider = ref.read(brancheNotifier);
   final branches = await listOfBranchesProvider.getAllBranch();
   return branches;
 });

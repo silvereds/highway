@@ -1,9 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:mobile/src/core/common/dio_extension.dart';
 import 'package:mobile/src/core/entities/all.dart';
-import './date_extensions.dart';
 
 /// parse exception occurred during api call and output a potable text
 String parseApiError(Exception exception) {
@@ -23,12 +22,15 @@ String parseApiError(Exception exception) {
       case DioErrorType.sendTimeout:
         return "Send timeout in connection with API server";
         break;
+
       case DioErrorType.other:
-        return exception.error?.toString() ?? exception.message;
+        return exception.error is SocketException
+            ? 'You are not connected.'
+            : 'Somehting when wrong.';
         break;
-      // case DioErrorType.response:
-      //   return _handleError(exception.response.statusCode);
-      //   break;
+      case DioErrorType.other:
+        return 'Oops something when wrong.';
+        break;
 
       default:
         break;

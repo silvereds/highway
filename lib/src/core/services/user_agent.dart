@@ -7,7 +7,7 @@ class UserAgentService {
     try {
       _userAgent = await FlutterUserAgent.getPropertyAsync('userAgent');
       SharedPrefService()
-          .saveString('deviceName', 'mobile: $_userAgent'.toLowerCase());
+          .saveString('deviceName', 'mobile-$_userAgent'.toLowerCase());
     } catch (e) {
       _userAgent = 'mobile';
     }
