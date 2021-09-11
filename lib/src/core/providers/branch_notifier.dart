@@ -1,45 +1,35 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/src/core/api/http_client.dart';
-import 'package:mobile/src/core/api/json_parsers/branches/branch_list_parser.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/branch_repository.dart';
 
-class BrancheNotifier extends ChangeNotifier implements BranchRepository {
-  List<Branche> _branches = [];
+part 'branch_notifier.freezed.dart';
 
-  List<Branche> get branches => _branches;
-
-  @override
-  Future<List<Branche>> getAllBranch() async {
-    try {
-      final response = await RequestREST(
-        endpoint: '/branches',
-      ).executeGet<List<Branche>>(BranchesListParser());
-      _branches = response;
-      notifyListeners();
-    } catch (e) {
-      throw e;
-    }
-    return _branches;
-  }
+@freezed
+abstract class BranchesState with _$BranchesState {
+  const BranchesState._();
+  const factory BranchesState.initial() = _Initial;
+  const factory BranchesState.loading() = _Loading;
+  const factory BranchesState.loaded(List<Branche> branches) = _Loaded;
+  const factory BranchesState.error([String error]) = _Error;
 }
 
-/*final brancheStateNotifier = StateNotifierProvider((ref) => BranchesNot());
+class BrancheNotifier extends StateNotifier<BranchesState> {
+  final BrancheRepository _brancheRepository;
+  BrancheNotifier(this._brancheRepository) : super(BranchesState.initial());
 
-class BranchesNot extends StateNotifier<List<Branche>> {
-  BranchesNot() : super([]);
-
-  Future<void> getAllBranch() async {
+  Future<void> getBranches() async {
     try {
-      final response = await RequestREST(
-        endpoint: '/branches',
-      ).executeGet<List<Branche>>(BranchesListParser());
-      state = response;
-      print('List égale : ${state.length}');
+      state = BranchesState.loading();
+      final branches = await _brancheRepository.getAllBranch();
+      state = BranchesState.loaded(branches);
+    } on SocketException {
+      state = BranchesState.error('Please check your internet connexion.');
     } catch (e) {
-      throw e;
+      state = BranchesState.error('Failed to load data.');
     }
   }
 }
-*/

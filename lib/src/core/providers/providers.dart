@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/branch_notifier.dart';
+import 'package:mobile/src/core/repository/branch_repository.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,11 +32,10 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError();
 });
 
-final brancheNotifier =
-    ChangeNotifierProvider<BrancheNotifier>((ref) => BrancheNotifier());
+final brancheRepository = Provider((ref) => BrancheRepository());
 
-final branchesFutureProvider = FutureProvider<List<Branche>>((ref) async {
-  final listOfBranchesProvider = ref.read(brancheNotifier);
-  final branches = await listOfBranchesProvider.getAllBranch();
-  return branches;
-});
+final brancheNotifier = StateNotifierProvider<BrancheNotifier>(
+  (ref) => BrancheNotifier(
+    ref.watch(brancheRepository),
+  ),
+);
