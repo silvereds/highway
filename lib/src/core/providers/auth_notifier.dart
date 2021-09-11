@@ -13,8 +13,8 @@ part 'auth_notifier.freezed.dart';
 @freezed
 abstract class AuthState with _$AuthState {
   const AuthState._();
-  const factory AuthState.initial() = Initial;
-  const factory AuthState.loading() = Loading;
+  const factory AuthState.initial() = _Initial;
+  const factory AuthState.loading() = _Loading;
   const factory AuthState.login() = _Login;
   const factory AuthState.unauthenticated() = _Unauthenticated;
   const factory AuthState.authenticated() = _Authenticated;
@@ -79,6 +79,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     String agent,
   ) async {
     try {
+      state = AuthState.loading();
       final response = await RequestREST(
         endpoint: '/auth/verify-passcode',
         data: {
@@ -108,6 +109,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
         endpoint: '/auth/forgot-password',
         data: {
           'email': email,
+          'agent': 'mobile-',
         },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 

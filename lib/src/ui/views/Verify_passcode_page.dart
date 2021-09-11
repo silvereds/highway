@@ -147,16 +147,6 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,

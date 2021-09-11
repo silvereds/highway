@@ -11,7 +11,10 @@ final sharedPrefsProvider = Provider((ref) => SharedPrefService());
 
 abstract class AuthProvider {
   static final authProvider = StateNotifierProvider<AuthNotifier>(
-      (ref) => AuthNotifier(ref.watch(sharedPrefsProvider)));
+    (ref) => AuthNotifier(
+      ref.watch(sharedPrefsProvider),
+    ),
+  );
 }
 
 abstract class UserDetailProvider {

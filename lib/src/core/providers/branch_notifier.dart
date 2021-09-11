@@ -24,7 +24,7 @@ class BrancheNotifier extends StateNotifier<BranchesState> {
   Future<void> getBranches() async {
     try {
       state = BranchesState.loading();
-      final branches = await _brancheRepository.getAllBranch();
+      final branches = await _brancheRepository.getAllBranches();
       state = BranchesState.loaded(branches);
     } on SocketException {
       state = BranchesState.error('Please check your internet connexion.');

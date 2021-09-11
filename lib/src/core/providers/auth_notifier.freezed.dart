@@ -14,13 +14,13 @@ class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
 // ignore: unused_element
-  Initial initial() {
-    return const Initial();
+  _Initial initial() {
+    return const _Initial();
   }
 
 // ignore: unused_element
-  Loading loading() {
-    return const Loading();
+  _Loading loading() {
+    return const _Loading();
   }
 
 // ignore: unused_element
@@ -80,8 +80,8 @@ mixin _$AuthState {
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -90,8 +90,8 @@ mixin _$AuthState {
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
@@ -117,24 +117,24 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $InitialCopyWith<$Res> {
-  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
-      _$InitialCopyWithImpl<$Res>;
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $InitialCopyWith<$Res> {
-  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
-      : super(_value, (v) => _then(v as Initial));
+class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  Initial get _value => super._value as Initial;
+  _Initial get _value => super._value as _Initial;
 }
 
 /// @nodoc
-class _$Initial extends Initial {
-  const _$Initial() : super._();
+class _$_Initial extends _Initial {
+  const _$_Initial() : super._();
 
   @override
   String toString() {
@@ -143,7 +143,7 @@ class _$Initial extends Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) || (other is _Initial);
   }
 
   @override
@@ -192,8 +192,8 @@ class _$Initial extends Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -213,8 +213,8 @@ class _$Initial extends Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
@@ -230,30 +230,30 @@ class _$Initial extends Initial {
   }
 }
 
-abstract class Initial extends AuthState {
-  const Initial._() : super._();
-  const factory Initial() = _$Initial;
+abstract class _Initial extends AuthState {
+  const _Initial._() : super._();
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
+class __$LoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
 
   @override
-  Loading get _value => super._value as Loading;
+  _Loading get _value => super._value as _Loading;
 }
 
 /// @nodoc
-class _$Loading extends Loading {
-  const _$Loading() : super._();
+class _$_Loading extends _Loading {
+  const _$_Loading() : super._();
 
   @override
   String toString() {
@@ -262,7 +262,7 @@ class _$Loading extends Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) || (other is _Loading);
   }
 
   @override
@@ -311,8 +311,8 @@ class _$Loading extends Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -332,8 +332,8 @@ class _$Loading extends Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
@@ -349,9 +349,9 @@ class _$Loading extends Loading {
   }
 }
 
-abstract class Loading extends AuthState {
-  const Loading._() : super._();
-  const factory Loading() = _$Loading;
+abstract class _Loading extends AuthState {
+  const _Loading._() : super._();
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -430,8 +430,8 @@ class _$_Login extends _Login {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -451,8 +451,8 @@ class _$_Login extends _Login {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
@@ -551,8 +551,8 @@ class _$_Unauthenticated extends _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -572,8 +572,8 @@ class _$_Unauthenticated extends _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
@@ -672,8 +672,8 @@ class _$_Authenticated extends _Authenticated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -693,8 +693,8 @@ class _$_Authenticated extends _Authenticated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
@@ -791,8 +791,8 @@ class _$_Logout extends _Logout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -812,8 +812,8 @@ class _$_Logout extends _Logout {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
@@ -932,8 +932,8 @@ class _$_Failure extends _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult loading(Loading value),
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
@@ -953,8 +953,8 @@ class _$_Failure extends _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult loading(Loading value),
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
