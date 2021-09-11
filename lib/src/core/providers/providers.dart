@@ -2,7 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/branches_notifier.dart';
+import 'package:mobile/src/core/repository/branch_repository.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
+import 'package:mobile/src/core/services/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPrefsProvider = Provider((ref) => SharedPrefService());
 
@@ -19,13 +22,28 @@ abstract class UserDetailProvider {
       return user;
     },
   );
-}
+} // User detail information provider
 
-final brancheNotifier =
-    ChangeNotifierProvider<BrancheNotifier>((ref) => BrancheNotifier());
-
-final branchesProvider = FutureProvider<List<Branche>>((ref) async {
-  final listOfBranchesProvider = ref.watch(brancheNotifier);
-  final branches = await listOfBranchesProvider.getAllBranch();
-  return branches;
+final userAgentServiceProvider = Provider<UserAgentService>((ref) {
+  return UserAgentService();
 });
+
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError();
+});
+
+final brancheRepository = Provider((ref) => brancheRepository());
+
+final branchesNotifier = StateNotifierProvider(
+  (ref) => BrancheNotifier(
+    ref.watch(brancheRepository),
+  ),
+);
+
+// final brancheNotifier = StateNotifierProvider((ref) => BrancheNotifier());
+
+// final branchesFutureProvider = FutureProvider<List<Branche>>((ref) async {
+//   final listOfBranchesProvider = ref.read(brancheNotifier);
+//   final branches = await listOfBranchesProvider.getAllBranch();
+//   return branches;
+// });

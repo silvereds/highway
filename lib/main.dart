@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_user_agent/flutter_user_agent.dart';
 import 'package:logging/logging.dart';
-import 'package:mobile/src/core/services/services.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/app_widget.dart';
@@ -14,26 +13,15 @@ void _setupLogging() {
   });
 }
 
-void _getDeviceInfo() async {
-  var _userAgent = '';
-  try {
-    _userAgent = await FlutterUserAgent.getPropertyAsync('userAgent');
-    SharedPrefService()
-        .saveString('deviceName', 'mobile: $_userAgent'.toLowerCase());
-  } catch (e) {
-    _userAgent = 'mobile';
-  }
-  print('user agent: $_userAgent');
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPreferences.getInstance();
-
+  final sharedPreferences = await SharedPreferences.getInstance();
   _setupLogging();
-  _getDeviceInfo();
   runApp(
     ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
       child: AppWidget(),
     ),
   );

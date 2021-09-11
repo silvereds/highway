@@ -101,7 +101,7 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                user.phoneNumber,
+                                user.phone,
                                 style: TextStyle(
                                     color: Color(0xFF192A3E),
                                     fontSize: 18,

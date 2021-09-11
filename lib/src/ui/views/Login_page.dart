@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
               User(
                 email: _email.trim(),
                 password: _password.trim(),
-                phoneNumber: _phoneNumber.trim(),
+                phone: _phoneNumber.trim(),
                 agent: _userAgent,
               ),
             )
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                       arguments: User(
                         email: _email.trim(),
                         password: _password.trim(),
-                        phoneNumber: _phoneNumber.trim(),
+                        phone: _phoneNumber.trim(),
                         agent: _userAgent,
                       ),
                     );

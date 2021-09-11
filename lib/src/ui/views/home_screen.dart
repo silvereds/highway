@@ -28,7 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   void _getJwtToken() async {
-    await context.read(brancheNotifier).getAllBranch();
     if ((await SharedPrefService().getString('deviceName')) == null) {
       await context.read(AuthProvider.authProvider).getAuthToken();
     }

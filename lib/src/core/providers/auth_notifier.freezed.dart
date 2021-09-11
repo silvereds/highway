@@ -24,8 +24,8 @@ class _$AuthStateTearOff {
   }
 
 // ignore: unused_element
-  Login login() {
-    return const Login();
+  _Login login() {
+    return const _Login();
   }
 
 // ignore: unused_element
@@ -36,6 +36,11 @@ class _$AuthStateTearOff {
 // ignore: unused_element
   _Authenticated authenticated() {
     return const _Authenticated();
+  }
+
+// ignore: unused_element
+  _Logout logout() {
+    return const _Logout();
   }
 
 // ignore: unused_element
@@ -59,6 +64,7 @@ mixin _$AuthState {
     @required TResult login(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
+    @required TResult logout(),
     @required TResult failure(String error),
   });
   @optionalTypeArgs
@@ -68,6 +74,7 @@ mixin _$AuthState {
     TResult login(),
     TResult unauthenticated(),
     TResult authenticated(),
+    TResult logout(),
     TResult failure(String error),
     @required TResult orElse(),
   });
@@ -75,18 +82,20 @@ mixin _$AuthState {
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
     @required TResult loading(Loading value),
-    @required TResult login(Login value),
+    @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
     @required TResult failure(_Failure value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
     TResult loading(Loading value),
-    TResult login(Login value),
+    TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
     TResult failure(_Failure value),
     @required TResult orElse(),
   });
@@ -148,6 +157,7 @@ class _$Initial extends Initial {
     @required TResult login(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
+    @required TResult logout(),
     @required TResult failure(String error),
   }) {
     assert(initial != null);
@@ -155,6 +165,7 @@ class _$Initial extends Initial {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return initial();
   }
@@ -167,6 +178,7 @@ class _$Initial extends Initial {
     TResult login(),
     TResult unauthenticated(),
     TResult authenticated(),
+    TResult logout(),
     TResult failure(String error),
     @required TResult orElse(),
   }) {
@@ -182,9 +194,10 @@ class _$Initial extends Initial {
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
     @required TResult loading(Loading value),
-    @required TResult login(Login value),
+    @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
     @required TResult failure(_Failure value),
   }) {
     assert(initial != null);
@@ -192,6 +205,7 @@ class _$Initial extends Initial {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return initial(this);
   }
@@ -201,9 +215,10 @@ class _$Initial extends Initial {
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
     TResult loading(Loading value),
-    TResult login(Login value),
+    TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
     TResult failure(_Failure value),
     @required TResult orElse(),
   }) {
@@ -261,6 +276,7 @@ class _$Loading extends Loading {
     @required TResult login(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
+    @required TResult logout(),
     @required TResult failure(String error),
   }) {
     assert(initial != null);
@@ -268,6 +284,7 @@ class _$Loading extends Loading {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return loading();
   }
@@ -280,6 +297,7 @@ class _$Loading extends Loading {
     TResult login(),
     TResult unauthenticated(),
     TResult authenticated(),
+    TResult logout(),
     TResult failure(String error),
     @required TResult orElse(),
   }) {
@@ -295,9 +313,10 @@ class _$Loading extends Loading {
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
     @required TResult loading(Loading value),
-    @required TResult login(Login value),
+    @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
     @required TResult failure(_Failure value),
   }) {
     assert(initial != null);
@@ -305,6 +324,7 @@ class _$Loading extends Loading {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return loading(this);
   }
@@ -314,9 +334,10 @@ class _$Loading extends Loading {
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
     TResult loading(Loading value),
-    TResult login(Login value),
+    TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
     TResult failure(_Failure value),
     @required TResult orElse(),
   }) {
@@ -334,24 +355,24 @@ abstract class Loading extends AuthState {
 }
 
 /// @nodoc
-abstract class $LoginCopyWith<$Res> {
-  factory $LoginCopyWith(Login value, $Res Function(Login) then) =
-      _$LoginCopyWithImpl<$Res>;
+abstract class _$LoginCopyWith<$Res> {
+  factory _$LoginCopyWith(_Login value, $Res Function(_Login) then) =
+      __$LoginCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $LoginCopyWith<$Res> {
-  _$LoginCopyWithImpl(Login _value, $Res Function(Login) _then)
-      : super(_value, (v) => _then(v as Login));
+class __$LoginCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$LoginCopyWith<$Res> {
+  __$LoginCopyWithImpl(_Login _value, $Res Function(_Login) _then)
+      : super(_value, (v) => _then(v as _Login));
 
   @override
-  Login get _value => super._value as Login;
+  _Login get _value => super._value as _Login;
 }
 
 /// @nodoc
-class _$Login extends Login {
-  const _$Login() : super._();
+class _$_Login extends _Login {
+  const _$_Login() : super._();
 
   @override
   String toString() {
@@ -360,7 +381,7 @@ class _$Login extends Login {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Login);
+    return identical(this, other) || (other is _Login);
   }
 
   @override
@@ -374,6 +395,7 @@ class _$Login extends Login {
     @required TResult login(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
+    @required TResult logout(),
     @required TResult failure(String error),
   }) {
     assert(initial != null);
@@ -381,6 +403,7 @@ class _$Login extends Login {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return login();
   }
@@ -393,6 +416,7 @@ class _$Login extends Login {
     TResult login(),
     TResult unauthenticated(),
     TResult authenticated(),
+    TResult logout(),
     TResult failure(String error),
     @required TResult orElse(),
   }) {
@@ -408,9 +432,10 @@ class _$Login extends Login {
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
     @required TResult loading(Loading value),
-    @required TResult login(Login value),
+    @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
     @required TResult failure(_Failure value),
   }) {
     assert(initial != null);
@@ -418,6 +443,7 @@ class _$Login extends Login {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return login(this);
   }
@@ -427,9 +453,10 @@ class _$Login extends Login {
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
     TResult loading(Loading value),
-    TResult login(Login value),
+    TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
     TResult failure(_Failure value),
     @required TResult orElse(),
   }) {
@@ -441,9 +468,9 @@ class _$Login extends Login {
   }
 }
 
-abstract class Login extends AuthState {
-  const Login._() : super._();
-  const factory Login() = _$Login;
+abstract class _Login extends AuthState {
+  const _Login._() : super._();
+  const factory _Login() = _$_Login;
 }
 
 /// @nodoc
@@ -489,6 +516,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     @required TResult login(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
+    @required TResult logout(),
     @required TResult failure(String error),
   }) {
     assert(initial != null);
@@ -496,6 +524,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return unauthenticated();
   }
@@ -508,6 +537,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     TResult login(),
     TResult unauthenticated(),
     TResult authenticated(),
+    TResult logout(),
     TResult failure(String error),
     @required TResult orElse(),
   }) {
@@ -523,9 +553,10 @@ class _$_Unauthenticated extends _Unauthenticated {
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
     @required TResult loading(Loading value),
-    @required TResult login(Login value),
+    @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
     @required TResult failure(_Failure value),
   }) {
     assert(initial != null);
@@ -533,6 +564,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return unauthenticated(this);
   }
@@ -542,9 +574,10 @@ class _$_Unauthenticated extends _Unauthenticated {
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
     TResult loading(Loading value),
-    TResult login(Login value),
+    TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
     TResult failure(_Failure value),
     @required TResult orElse(),
   }) {
@@ -604,6 +637,7 @@ class _$_Authenticated extends _Authenticated {
     @required TResult login(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
+    @required TResult logout(),
     @required TResult failure(String error),
   }) {
     assert(initial != null);
@@ -611,6 +645,7 @@ class _$_Authenticated extends _Authenticated {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return authenticated();
   }
@@ -623,6 +658,7 @@ class _$_Authenticated extends _Authenticated {
     TResult login(),
     TResult unauthenticated(),
     TResult authenticated(),
+    TResult logout(),
     TResult failure(String error),
     @required TResult orElse(),
   }) {
@@ -638,9 +674,10 @@ class _$_Authenticated extends _Authenticated {
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
     @required TResult loading(Loading value),
-    @required TResult login(Login value),
+    @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
     @required TResult failure(_Failure value),
   }) {
     assert(initial != null);
@@ -648,6 +685,7 @@ class _$_Authenticated extends _Authenticated {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return authenticated(this);
   }
@@ -657,9 +695,10 @@ class _$_Authenticated extends _Authenticated {
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
     TResult loading(Loading value),
-    TResult login(Login value),
+    TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
     TResult failure(_Failure value),
     @required TResult orElse(),
   }) {
@@ -674,6 +713,125 @@ class _$_Authenticated extends _Authenticated {
 abstract class _Authenticated extends AuthState {
   const _Authenticated._() : super._();
   const factory _Authenticated() = _$_Authenticated;
+}
+
+/// @nodoc
+abstract class _$LogoutCopyWith<$Res> {
+  factory _$LogoutCopyWith(_Logout value, $Res Function(_Logout) then) =
+      __$LogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LogoutCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$LogoutCopyWith<$Res> {
+  __$LogoutCopyWithImpl(_Logout _value, $Res Function(_Logout) _then)
+      : super(_value, (v) => _then(v as _Logout));
+
+  @override
+  _Logout get _value => super._value as _Logout;
+}
+
+/// @nodoc
+class _$_Logout extends _Logout {
+  const _$_Logout() : super._();
+
+  @override
+  String toString() {
+    return 'AuthState.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Logout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult login(),
+    @required TResult unauthenticated(),
+    @required TResult authenticated(),
+    @required TResult logout(),
+    @required TResult failure(String error),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(login != null);
+    assert(unauthenticated != null);
+    assert(authenticated != null);
+    assert(logout != null);
+    assert(failure != null);
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult login(),
+    TResult unauthenticated(),
+    TResult authenticated(),
+    TResult logout(),
+    TResult failure(String error),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult loading(Loading value),
+    @required TResult login(_Login value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
+    @required TResult failure(_Failure value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(login != null);
+    assert(unauthenticated != null);
+    assert(authenticated != null);
+    assert(logout != null);
+    assert(failure != null);
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult loading(Loading value),
+    TResult login(_Login value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
+    TResult failure(_Failure value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Logout extends AuthState {
+  const _Logout._() : super._();
+  const factory _Logout() = _$_Logout;
 }
 
 /// @nodoc
@@ -739,6 +897,7 @@ class _$_Failure extends _Failure {
     @required TResult login(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
+    @required TResult logout(),
     @required TResult failure(String error),
   }) {
     assert(initial != null);
@@ -746,6 +905,7 @@ class _$_Failure extends _Failure {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return failure(error);
   }
@@ -758,6 +918,7 @@ class _$_Failure extends _Failure {
     TResult login(),
     TResult unauthenticated(),
     TResult authenticated(),
+    TResult logout(),
     TResult failure(String error),
     @required TResult orElse(),
   }) {
@@ -773,9 +934,10 @@ class _$_Failure extends _Failure {
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
     @required TResult loading(Loading value),
-    @required TResult login(Login value),
+    @required TResult login(_Login value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
     @required TResult failure(_Failure value),
   }) {
     assert(initial != null);
@@ -783,6 +945,7 @@ class _$_Failure extends _Failure {
     assert(login != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
+    assert(logout != null);
     assert(failure != null);
     return failure(this);
   }
@@ -792,9 +955,10 @@ class _$_Failure extends _Failure {
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
     TResult loading(Loading value),
-    TResult login(Login value),
+    TResult login(_Login value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
     TResult failure(_Failure value),
     @required TResult orElse(),
   }) {
