@@ -5,7 +5,6 @@ import 'package:mobile/src/ui/views/change_password_screen.dart';
 import 'package:mobile/src/ui/views/licence_page.dart';
 import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
 import 'package:mobile/src/ui/views/product_services_info.dart';
-import 'package:mobile/src/ui/views/reset_password_verify_passcode.dart';
 import 'package:mobile/src/ui/views/terms_page.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
@@ -166,9 +165,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NotificationScreen());
       case blockDevicePage:
         return MaterialPageRoute(builder: (_) => BlockDevicePage());
-      case resetPasswordVerifyPasscode:
-        return MaterialPageRoute(
-            builder: (_) => ResetPasswordVerifyPasscodeScreen());
 
       default:
         throw RouteException("Route Not found");

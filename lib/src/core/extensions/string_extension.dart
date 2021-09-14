@@ -19,4 +19,11 @@ extension extString on String {
     final phoneRegExp = RegExp(r"^\+?0[0-9]{13}$");
     return phoneRegExp.hasMatch(this);
   }
+
+  bool get isValidPassCode {
+    if (this.length > 4) {
+      return true;
+    }
+    return false;
+  }
 }

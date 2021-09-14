@@ -117,6 +117,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
           'agent': agent ?? '',
         },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
+      state = AuthState.success();
 
       print(response.toJson());
     } catch (e) {
@@ -129,14 +130,12 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
   Future<void> resetPassword(
     String email,
     String passCode,
-    String agent,
   ) async {
     try {
       state = AuthState.loading();
       final response = await RequestREST(
         endpoint: '/auth/reset-password/$passCode',
         data: {
-          'agent': agent,
           'email': email,
           'nonce': passCode,
         },

@@ -17,6 +17,7 @@ class FormProvider extends ChangeNotifier {
   Validation _resetPasswordEmail = Validation(null, null);
   Validation _newPassword = Validation(null, null);
   Validation _newConfirmPassword = Validation(null, null);
+  Validation _passCode = Validation(null, null);
 
   Validation get email => _email;
   Validation get password => _password;
@@ -25,6 +26,7 @@ class FormProvider extends ChangeNotifier {
   Validation get resetPasswordEmail => _resetPasswordEmail;
   Validation get newPassword => _newPassword;
   Validation get newConfirmPassword => _newConfirmPassword;
+  Validation get passCode => _passCode;
 
   void validateEmailOrPhoneNumber(String val) {
     if (val.isValidEmail || val.isValidPhone) {
@@ -74,6 +76,15 @@ class FormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void validatePasscode(String val) {
+    if (val.isValidPassCode) {
+      _passCode = Validation(val, null);
+    } else {
+      _passCode = Validation(null, 'Please enter a valid passcode');
+    }
+    notifyListeners();
+  }
+
   bool get isValidateAuthForm {
     if (_email.value.isNotNull && _password.value.isNotNull) {
       return true;
@@ -93,7 +104,8 @@ class FormProvider extends ChangeNotifier {
   bool get isResetPasswordAuthFormValid {
     if (_newPassword.value.isNotNull &&
         _newConfirmPassword.value.isNotNull &&
-        (_newPassword.value == _newConfirmPassword.value)) {
+        (_newPassword.value == _newConfirmPassword.value) &&
+        _passCode.value.isNotNull) {
       return true;
     } else {
       return false;

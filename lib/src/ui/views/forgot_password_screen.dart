@@ -39,8 +39,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           setState(() {
             _isLoading = false;
           });
-          Navigator.of(context)
-              .pushNamed(RouteGenerator.resetPasswordVerifyPasscode);
+          Navigator.of(context).pushNamed(RouteGenerator.resetPasswordScreen);
         });
       } catch (e) {
         setState(() {
