@@ -10,12 +10,14 @@ import 'package:mobile/src/ui/views/reset_password_screen.dart';
 
 part 'auth_notifier.freezed.dart';
 
+// Auth State
 @freezed
 abstract class AuthState with _$AuthState {
   const AuthState._();
-  const factory AuthState.initial() = Initial;
-  const factory AuthState.loading() = Loading;
+  const factory AuthState.initial() = _Initial;
+  const factory AuthState.loading() = _Loading;
   const factory AuthState.login() = _Login;
+  const factory AuthState.sucess() = _Sucess;
   const factory AuthState.unauthenticated() = _Unauthenticated;
   const factory AuthState.authenticated() = _Authenticated;
   const factory AuthState.logout() = _Logout;
@@ -79,6 +81,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     String agent,
   ) async {
     try {
+      state = AuthState.loading();
       final response = await RequestREST(
         endpoint: '/auth/verify-passcode',
         data: {
@@ -103,10 +106,16 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
   /// otherwise into the store
   @override
   Future<void> forgotPassword(String email) async {
+    final agent = await _prefService.getString('deviceName');
+
     try {
+      state = AuthState.loading();
       final response = await RequestREST(
         endpoint: '/auth/forgot-password',
-        data: {'email': email, 'agent': 'mobile-'},
+        data: {
+          'email': email,
+          'agent': agent ?? '',
+        },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
@@ -119,19 +128,18 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
   @override
   Future<void> resetPassword(
     String email,
-    String password,
+    String passCode,
     String agent,
   ) async {
     final mapData = await _prefService.getObject(_userKey) ?? '';
     final user = User.fromJson(mapData);
     try {
       final response = await RequestREST(
-        endpoint: '/auth/reset-password/${user.session}',
+        endpoint: '/auth/reset-password/$passcode',
         data: {
-          'password': password,
           'agent': agent,
           'email': email,
-          'nonce': user.session ?? '',
+          'nonce': passCode,
         },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 

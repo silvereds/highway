@@ -10,7 +10,7 @@ abstract class AuthRepository {
 
   Future<void> resetPassword(
     String email,
-    String password,
+    String passCode,
     String agent,
   );
 

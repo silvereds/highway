@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
-import 'package:mobile/src/core/providers/branches_notifier.dart';
+import 'package:mobile/src/core/providers/branch_notifier.dart';
 import 'package:mobile/src/core/repository/branch_repository.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/core/services/services.dart';
@@ -11,7 +11,10 @@ final sharedPrefsProvider = Provider((ref) => SharedPrefService());
 
 abstract class AuthProvider {
   static final authProvider = StateNotifierProvider<AuthNotifier>(
-      (ref) => AuthNotifier(ref.watch(sharedPrefsProvider)));
+    (ref) => AuthNotifier(
+      ref.watch(sharedPrefsProvider),
+    ),
+  );
 }
 
 abstract class UserDetailProvider {
@@ -32,18 +35,10 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError();
 });
 
-final brancheRepository = Provider((ref) => brancheRepository());
+final brancheRepository = Provider((ref) => BrancheRepository());
 
-final branchesNotifier = StateNotifierProvider(
+final brancheNotifier = StateNotifierProvider<BrancheNotifier>(
   (ref) => BrancheNotifier(
     ref.watch(brancheRepository),
   ),
 );
-
-// final brancheNotifier = StateNotifierProvider((ref) => BrancheNotifier());
-
-// final branchesFutureProvider = FutureProvider<List<Branche>>((ref) async {
-//   final listOfBranchesProvider = ref.read(brancheNotifier);
-//   final branches = await listOfBranchesProvider.getAllBranch();
-//   return branches;
-// });
