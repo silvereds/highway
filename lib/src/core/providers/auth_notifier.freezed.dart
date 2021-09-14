@@ -29,6 +29,11 @@ class _$AuthStateTearOff {
   }
 
 // ignore: unused_element
+  _Sucess success() {
+    return const _Sucess();
+  }
+
+// ignore: unused_element
   _Unauthenticated unauthenticated() {
     return const _Unauthenticated();
   }
@@ -62,6 +67,7 @@ mixin _$AuthState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -72,6 +78,7 @@ mixin _$AuthState {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -83,6 +90,7 @@ mixin _$AuthState {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -93,6 +101,7 @@ mixin _$AuthState {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),
@@ -155,6 +164,7 @@ class _$_Initial extends _Initial {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -163,6 +173,7 @@ class _$_Initial extends _Initial {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -176,6 +187,7 @@ class _$_Initial extends _Initial {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -195,6 +207,7 @@ class _$_Initial extends _Initial {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -203,6 +216,7 @@ class _$_Initial extends _Initial {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -216,6 +230,7 @@ class _$_Initial extends _Initial {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),
@@ -274,6 +289,7 @@ class _$_Loading extends _Loading {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -282,6 +298,7 @@ class _$_Loading extends _Loading {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -295,6 +312,7 @@ class _$_Loading extends _Loading {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -314,6 +332,7 @@ class _$_Loading extends _Loading {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -322,6 +341,7 @@ class _$_Loading extends _Loading {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -335,6 +355,7 @@ class _$_Loading extends _Loading {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),
@@ -393,6 +414,7 @@ class _$_Login extends _Login {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -401,6 +423,7 @@ class _$_Login extends _Login {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -414,6 +437,7 @@ class _$_Login extends _Login {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -433,6 +457,7 @@ class _$_Login extends _Login {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -441,6 +466,7 @@ class _$_Login extends _Login {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -454,6 +480,7 @@ class _$_Login extends _Login {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),
@@ -471,6 +498,131 @@ class _$_Login extends _Login {
 abstract class _Login extends AuthState {
   const _Login._() : super._();
   const factory _Login() = _$_Login;
+}
+
+/// @nodoc
+abstract class _$SucessCopyWith<$Res> {
+  factory _$SucessCopyWith(_Sucess value, $Res Function(_Sucess) then) =
+      __$SucessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SucessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$SucessCopyWith<$Res> {
+  __$SucessCopyWithImpl(_Sucess _value, $Res Function(_Sucess) _then)
+      : super(_value, (v) => _then(v as _Sucess));
+
+  @override
+  _Sucess get _value => super._value as _Sucess;
+}
+
+/// @nodoc
+class _$_Sucess extends _Sucess {
+  const _$_Sucess() : super._();
+
+  @override
+  String toString() {
+    return 'AuthState.success()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Sucess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult login(),
+    @required TResult success(),
+    @required TResult unauthenticated(),
+    @required TResult authenticated(),
+    @required TResult logout(),
+    @required TResult failure(String error),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(login != null);
+    assert(success != null);
+    assert(unauthenticated != null);
+    assert(authenticated != null);
+    assert(logout != null);
+    assert(failure != null);
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult login(),
+    TResult success(),
+    TResult unauthenticated(),
+    TResult authenticated(),
+    TResult logout(),
+    TResult failure(String error),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult logout(_Logout value),
+    @required TResult failure(_Failure value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(login != null);
+    assert(success != null);
+    assert(unauthenticated != null);
+    assert(authenticated != null);
+    assert(logout != null);
+    assert(failure != null);
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult login(_Login value),
+    TResult success(_Sucess value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult authenticated(_Authenticated value),
+    TResult logout(_Logout value),
+    TResult failure(_Failure value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Sucess extends AuthState {
+  const _Sucess._() : super._();
+  const factory _Sucess() = _$_Sucess;
 }
 
 /// @nodoc
@@ -514,6 +666,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -522,6 +675,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -535,6 +689,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -554,6 +709,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -562,6 +718,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -575,6 +732,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),
@@ -635,6 +793,7 @@ class _$_Authenticated extends _Authenticated {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -643,6 +802,7 @@ class _$_Authenticated extends _Authenticated {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -656,6 +816,7 @@ class _$_Authenticated extends _Authenticated {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -675,6 +836,7 @@ class _$_Authenticated extends _Authenticated {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -683,6 +845,7 @@ class _$_Authenticated extends _Authenticated {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -696,6 +859,7 @@ class _$_Authenticated extends _Authenticated {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),
@@ -754,6 +918,7 @@ class _$_Logout extends _Logout {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -762,6 +927,7 @@ class _$_Logout extends _Logout {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -775,6 +941,7 @@ class _$_Logout extends _Logout {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -794,6 +961,7 @@ class _$_Logout extends _Logout {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -802,6 +970,7 @@ class _$_Logout extends _Logout {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -815,6 +984,7 @@ class _$_Logout extends _Logout {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),
@@ -895,6 +1065,7 @@ class _$_Failure extends _Failure {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult login(),
+    @required TResult success(),
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
@@ -903,6 +1074,7 @@ class _$_Failure extends _Failure {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -916,6 +1088,7 @@ class _$_Failure extends _Failure {
     TResult initial(),
     TResult loading(),
     TResult login(),
+    TResult success(),
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
@@ -935,6 +1108,7 @@ class _$_Failure extends _Failure {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult login(_Login value),
+    @required TResult success(_Sucess value),
     @required TResult unauthenticated(_Unauthenticated value),
     @required TResult authenticated(_Authenticated value),
     @required TResult logout(_Logout value),
@@ -943,6 +1117,7 @@ class _$_Failure extends _Failure {
     assert(initial != null);
     assert(loading != null);
     assert(login != null);
+    assert(success != null);
     assert(unauthenticated != null);
     assert(authenticated != null);
     assert(logout != null);
@@ -956,6 +1131,7 @@ class _$_Failure extends _Failure {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult login(_Login value),
+    TResult success(_Sucess value),
     TResult unauthenticated(_Unauthenticated value),
     TResult authenticated(_Authenticated value),
     TResult logout(_Logout value),

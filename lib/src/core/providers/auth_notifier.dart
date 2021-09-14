@@ -17,7 +17,7 @@ abstract class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
   const factory AuthState.loading() = _Loading;
   const factory AuthState.login() = _Login;
-  const factory AuthState.sucess() = _Sucess;
+  const factory AuthState.success() = _Sucess;
   const factory AuthState.unauthenticated() = _Unauthenticated;
   const factory AuthState.authenticated() = _Authenticated;
   const factory AuthState.logout() = _Logout;
@@ -131,21 +131,21 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
     String passCode,
     String agent,
   ) async {
-    final mapData = await _prefService.getObject(_userKey) ?? '';
-    final user = User.fromJson(mapData);
     try {
+      state = AuthState.loading();
       final response = await RequestREST(
-        endpoint: '/auth/reset-password/$passcode',
+        endpoint: '/auth/reset-password/$passCode',
         data: {
           'agent': agent,
           'email': email,
           'nonce': passCode,
         },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
+      state = AuthState.success();
 
       print(response.toJson());
     } catch (e) {
-      throw e;
+      state = AuthState.failure(e);
     }
   }
 
