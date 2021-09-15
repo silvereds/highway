@@ -67,12 +67,15 @@ class FormProvider extends ChangeNotifier {
   }
 
   void validateConfirmNewPassword(String val) {
+    if (_newPassword.value != _newConfirmPassword.value) {
+      _newConfirmPassword = Validation(null, "Password Does't match");
+    }
+
     if (val.isValidPassword) {
       _newConfirmPassword = Validation(val, null);
-    } else {
-      _newConfirmPassword = Validation(null,
-          'Password must contain an uppercase, lowercase, numeric digit and special character');
     }
+    _newConfirmPassword = Validation(null,
+        'Password must contain an uppercase, lowercase, numeric digit and special character');
     notifyListeners();
   }
 
@@ -104,7 +107,6 @@ class FormProvider extends ChangeNotifier {
   bool get isResetPasswordAuthFormValid {
     if (_newPassword.value.isNotNull &&
         _newConfirmPassword.value.isNotNull &&
-        (_newPassword.value == _newConfirmPassword.value) &&
         _passCode.value.isNotNull) {
       return true;
     } else {

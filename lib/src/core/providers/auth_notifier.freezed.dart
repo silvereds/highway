@@ -49,7 +49,7 @@ class _$AuthStateTearOff {
   }
 
 // ignore: unused_element
-  _Failure failure([String error]) {
+  _Failure failure([dynamic error]) {
     return _Failure(
       error,
     );
@@ -71,7 +71,7 @@ mixin _$AuthState {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -82,7 +82,7 @@ mixin _$AuthState {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -168,7 +168,7 @@ class _$_Initial extends _Initial {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -191,7 +191,7 @@ class _$_Initial extends _Initial {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -293,7 +293,7 @@ class _$_Loading extends _Loading {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -316,7 +316,7 @@ class _$_Loading extends _Loading {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -418,7 +418,7 @@ class _$_Login extends _Login {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -441,7 +441,7 @@ class _$_Login extends _Login {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -543,7 +543,7 @@ class _$_Sucess extends _Sucess {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -566,7 +566,7 @@ class _$_Sucess extends _Sucess {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -670,7 +670,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -693,7 +693,7 @@ class _$_Unauthenticated extends _Unauthenticated {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -797,7 +797,7 @@ class _$_Authenticated extends _Authenticated {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -820,7 +820,7 @@ class _$_Authenticated extends _Authenticated {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -922,7 +922,7 @@ class _$_Logout extends _Logout {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -945,7 +945,7 @@ class _$_Logout extends _Logout {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1008,7 +1008,7 @@ abstract class _Logout extends AuthState {
 abstract class _$FailureCopyWith<$Res> {
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
       __$FailureCopyWithImpl<$Res>;
-  $Res call({String error});
+  $Res call({dynamic error});
 }
 
 /// @nodoc
@@ -1025,7 +1025,7 @@ class __$FailureCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     Object error = freezed,
   }) {
     return _then(_Failure(
-      error == freezed ? _value.error : error as String,
+      error == freezed ? _value.error : error as dynamic,
     ));
   }
 }
@@ -1035,7 +1035,7 @@ class _$_Failure extends _Failure {
   const _$_Failure([this.error]) : super._();
 
   @override
-  final String error;
+  final dynamic error;
 
   @override
   String toString() {
@@ -1069,7 +1069,7 @@ class _$_Failure extends _Failure {
     @required TResult unauthenticated(),
     @required TResult authenticated(),
     @required TResult logout(),
-    @required TResult failure(String error),
+    @required TResult failure(dynamic error),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1092,7 +1092,7 @@ class _$_Failure extends _Failure {
     TResult unauthenticated(),
     TResult authenticated(),
     TResult logout(),
-    TResult failure(String error),
+    TResult failure(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1148,9 +1148,9 @@ class _$_Failure extends _Failure {
 
 abstract class _Failure extends AuthState {
   const _Failure._() : super._();
-  const factory _Failure([String error]) = _$_Failure;
+  const factory _Failure([dynamic error]) = _$_Failure;
 
-  String get error;
+  dynamic get error;
   @JsonKey(ignore: true)
   _$FailureCopyWith<_Failure> get copyWith;
 }

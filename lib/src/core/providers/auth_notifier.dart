@@ -21,7 +21,7 @@ abstract class AuthState with _$AuthState {
   const factory AuthState.unauthenticated() = _Unauthenticated;
   const factory AuthState.authenticated() = _Authenticated;
   const factory AuthState.logout() = _Logout;
-  const factory AuthState.failure([String error]) = _Failure;
+  const factory AuthState.failure([dynamic error]) = _Failure;
 }
 
 class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
@@ -129,15 +129,18 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
   @override
   Future<void> resetPassword(
     String email,
+    String password,
     String passCode,
   ) async {
+    final agent = await _prefService.getString('deviceName');
     try {
       state = AuthState.loading();
       final response = await RequestREST(
         endpoint: '/auth/reset-password/$passCode',
         data: {
           'email': email,
-          'nonce': passCode,
+          'password': password,
+          'agent': agent ?? 'mobile-',
         },
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
       state = AuthState.success();

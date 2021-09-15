@@ -16,7 +16,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   // _site is the variable that recieves registerOption and keeps
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final _emailController = TextEditingController();
   String _email = '';
@@ -39,7 +39,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           setState(() {
             _isLoading = false;
           });
-          Navigator.of(context).pushNamed(RouteGenerator.resetPasswordScreen);
+          Navigator.of(context).pushNamed(RouteGenerator.resetPasswordScreen,
+              arguments: _email.trim());
         });
       } catch (e) {
         setState(() {

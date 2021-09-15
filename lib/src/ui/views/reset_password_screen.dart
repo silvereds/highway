@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
+import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/routes.dart';
@@ -35,60 +36,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   // Reset user password
   void _resetPassword() async {
     FocusScope.of(context).unfocus();
-
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      setState(() {
-        _isLoading = true;
-      });
-
-      print('Email: ' + widget.email);
-      print('Password' + _password);
-
-      try {
-        await context
-            .read(AuthProvider.authProvider)
-            .resetPassword(widget.email, _passCode)
-            .then((_) {
-          setState(() {
-            _isLoading = false;
-          });
-
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: Text('Password reset successfully.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    _passwordController.clear();
-                    _confirmPasswordController.clear();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        RouteGenerator.loginPage, (route) => false);
-                  },
-                  child: Text('OK'),
-                )
-              ],
-            ),
-          );
-        });
-      } catch (e) {
-        setState(() {
-          _isLoading = false;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            parseApiError(e),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          backgroundColor: Colors.red,
-        ));
-      }
+      await context
+          .read(AuthProvider.authProvider)
+          .resetPassword(widget.email, _password, _passCode.toUpperCase());
     }
   }
 
@@ -118,10 +70,58 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         ),
         centerTitle: true,
       ),
-      body: Consumer(builder: (context, watch, __) {
-        final state = watch(AuthProvider.authProvider.state);
-
-        return ModalProgressHUD(
+      body: ProviderListener<AuthState>(
+        provider: AuthProvider.authProvider.state,
+        onChange: (context, state) {
+          state.maybeWhen(
+            orElse: () {},
+            loading: () {
+              setState(() {
+                _isLoading = true;
+              });
+            },
+            success: () {
+              setState(() {
+                _isLoading = false;
+              });
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  content: Text('Password reset successfully.'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        _passwordController.clear();
+                        _confirmPasswordController.clear();
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            RouteGenerator.loginPage, (route) => false);
+                      },
+                      child: Text('OK'),
+                    )
+                  ],
+                ),
+              );
+            },
+            failure: (err) {
+              setState(() {
+                _isLoading = false;
+              });
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(
+                  parseApiError(err),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                backgroundColor: Colors.red,
+              ));
+            },
+          );
+        },
+        child: ModalProgressHUD(
           inAsyncCall: _isLoading,
           child: SingleChildScrollView(
             child: Container(
@@ -147,7 +147,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       clipBehavior: Clip.none,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(20.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.white,
@@ -286,12 +286,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                                                 'Poppins',
                                                           ),
                                                         ),
-                                                        onPressed:
-                                                            _resetPassword,
-                                                        color:
-                                                            Color(0xFF4EB181),
-                                                        textColor:
-                                                            Color(0xFFFFFFFF),
+                                                        onPressed: (validation
+                                                                    .isResetPasswordAuthFormValid &&
+                                                                _password ==
+                                                                    _confirmPassword)
+                                                            ? _resetPassword
+                                                            : null,
+                                                        color: const Color(
+                                                            0xFF4EB181),
+                                                        textColor: const Color(
+                                                            0xFFFFFFFF),
                                                         height: 33,
                                                       ),
                                                     ),
@@ -317,8 +321,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ),
             ),
           ),
-        );
-      }),
+        ),
+      ),
     );
   }
 }
