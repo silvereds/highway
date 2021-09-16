@@ -16,7 +16,6 @@ class FormProvider extends ChangeNotifier {
   Validation _name = Validation(null, null);
   Validation _resetPasswordEmail = Validation(null, null);
   Validation _newPassword = Validation(null, null);
-  Validation _newConfirmPassword = Validation(null, null);
   Validation _passCode = Validation(null, null);
 
   Validation get email => _email;
@@ -25,7 +24,6 @@ class FormProvider extends ChangeNotifier {
   Validation get name => _name;
   Validation get resetPasswordEmail => _resetPasswordEmail;
   Validation get newPassword => _newPassword;
-  Validation get newConfirmPassword => _newConfirmPassword;
   Validation get passCode => _passCode;
 
   void validateEmailOrPhoneNumber(String val) {
@@ -66,19 +64,6 @@ class FormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void validateConfirmNewPassword(String val) {
-    if (_newPassword.value != _newConfirmPassword.value) {
-      _newConfirmPassword = Validation(null, "Password Does't match");
-    }
-
-    if (val.isValidPassword) {
-      _newConfirmPassword = Validation(val, null);
-    }
-    _newConfirmPassword = Validation(null,
-        'Password must contain an uppercase, lowercase, numeric digit and special character');
-    notifyListeners();
-  }
-
   void validatePasscode(String val) {
     if (val.isValidPassCode) {
       _passCode = Validation(val, null);
@@ -105,9 +90,7 @@ class FormProvider extends ChangeNotifier {
   }
 
   bool get isResetPasswordAuthFormValid {
-    if (_newPassword.value.isNotNull &&
-        _newConfirmPassword.value.isNotNull &&
-        _passCode.value.isNotNull) {
+    if (_newPassword.value.isNotNull && _passCode.value.isNotNull) {
       return true;
     } else {
       return false;

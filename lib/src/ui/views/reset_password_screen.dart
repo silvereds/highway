@@ -36,8 +36,27 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   // Reset user password
   void _resetPassword() async {
     FocusScope.of(context).unfocus();
-    if (_formKey.currentState.validate()) {
+
+    if ((_formKey.currentState.validate())) {
       _formKey.currentState.save();
+
+      if (_password != _confirmPassword) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Password doesn't match",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+        return;
+      }
+
       await context
           .read(AuthProvider.authProvider)
           .resetPassword(widget.email, _password, _passCode.toUpperCase());
@@ -107,17 +126,19 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               setState(() {
                 _isLoading = false;
               });
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                  parseApiError(err),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    parseApiError(err),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
+                  backgroundColor: Colors.red,
                 ),
-                backgroundColor: Colors.red,
-              ));
+              );
             },
           );
         },
@@ -184,17 +205,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                                 decoration: InputDecoration(
                                                   errorText: validation
                                                       .newPassword.error,
-                                                  icon: Icon(Icons.lock),
+                                                  prefixIcon: Icon(Icons.lock),
                                                   hintText: 'password',
                                                   hintStyle: TextStyle(
                                                     fontSize: 14,
                                                     color: Color(0xFFAAAAAA),
                                                     fontFamily: 'Roboto',
                                                   ),
-                                                  border: InputBorder.none,
                                                 ),
                                               ),
-                                              Divider(color: Colors.grey),
+                                              const SizedBox(height: 12),
                                               TextFormField(
                                                 controller:
                                                     _confirmPasswordController,
@@ -202,22 +222,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                                     _confirmPassword = val,
                                                 obscureText: true,
                                                 onChanged: (v) => validation
-                                                    .validateConfirmNewPassword(
-                                                        v),
+                                                    .validateNewPassword(v),
                                                 decoration: InputDecoration(
-                                                  errorText: validation
-                                                      .newConfirmPassword.error,
-                                                  icon: Icon(Icons.lock),
+                                                  errorText:
+                                                      validation.password.error,
+                                                  prefixIcon: Icon(Icons.lock),
                                                   hintText: 'Confirm password',
                                                   hintStyle: TextStyle(
                                                     fontSize: 14,
                                                     color: Color(0xFFAAAAAA),
                                                     fontFamily: 'Roboto',
                                                   ),
-                                                  border: InputBorder.none,
                                                 ),
                                               ),
-                                              Divider(color: Colors.grey),
+                                              const SizedBox(height: 12),
                                               TextFormField(
                                                 controller: _passCodeController,
                                                 onSaved: (val) =>
@@ -228,79 +246,22 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                                 decoration: InputDecoration(
                                                   errorText:
                                                       validation.passCode.error,
-                                                  icon: const Icon(
-                                                      Icons.keyboard),
+                                                  prefixIcon:
+                                                      const Icon(Icons.vpn_key),
                                                   hintText: 'Passcode',
                                                   hintStyle: TextStyle(
                                                     fontSize: 14,
                                                     color: Color(0xFFAAAAAA),
                                                     fontFamily: 'Roboto',
                                                   ),
-                                                  border: InputBorder.none,
                                                 ),
                                               ),
-                                              Divider(color: Colors.grey),
                                               SizedBox(height: 30),
-                                              Container(
-                                                alignment:
-                                                    Alignment.bottomRight,
-                                                child: Column(
-                                                  children: [
-                                                    Container(
-                                                      height: 35.02,
-                                                      width: 120,
-                                                      decoration: BoxDecoration(
-                                                        color: Color(
-                                                          0xff4eb181,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          4,
-                                                        ),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: Color(
-                                                              0x3d109cf1,
-                                                            ),
-                                                            blurRadius: 10,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      child: FlatButton(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      5.0),
-                                                          side: BorderSide(
-                                                              color: ThemeColors
-                                                                  .Buttons),
-                                                        ),
-                                                        child: Text(
-                                                          'Submit',
-                                                          style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontFamily:
-                                                                'Poppins',
-                                                          ),
-                                                        ),
-                                                        onPressed: (validation
-                                                                    .isResetPasswordAuthFormValid &&
-                                                                _password ==
-                                                                    _confirmPassword)
-                                                            ? _resetPassword
-                                                            : null,
-                                                        color: const Color(
-                                                            0xFF4EB181),
-                                                        textColor: const Color(
-                                                            0xFFFFFFFF),
-                                                        height: 33,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                              _SubmitButton(
+                                                onPressed: validation
+                                                        .isResetPasswordAuthFormValid
+                                                    ? _resetPassword
+                                                    : null,
                                               ),
                                             ],
                                           ),
@@ -322,6 +283,62 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _SubmitButton extends StatelessWidget {
+  final void Function() onPressed;
+  const _SubmitButton({
+    Key key,
+    @required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomRight,
+      child: Column(
+        children: [
+          Container(
+            height: 35.02,
+            width: 120,
+            decoration: BoxDecoration(
+              color: Color(
+                0xff4eb181,
+              ),
+              borderRadius: BorderRadius.circular(
+                4,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(
+                    0x3d109cf1,
+                  ),
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                side: BorderSide(color: ThemeColors.Buttons),
+              ),
+              child: Text(
+                'Submit',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                ),
+              ),
+              onPressed: onPressed,
+              color: const Color(0xFF4EB181),
+              textColor: const Color(0xFFFFFFFF),
+              height: 33,
+            ),
+          ),
+        ],
       ),
     );
   }
