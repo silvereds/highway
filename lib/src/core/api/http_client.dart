@@ -32,8 +32,8 @@ class RequestREST {
     return Dio(
       BaseOptions(
         baseUrl: "https://dev-api.highweh.com",
-        connectTimeout: 30000, // 30 seconds
-        receiveTimeout: 30000, // 30 seconds
+        connectTimeout: 5000, // 30 seconds
+        receiveTimeout: 5000, // 30 seconds
         headers: {
           'content-Type': 'application/json; charset=UTF-8',
           'Authorization': await SharedPrefService().getString('token') ?? '',

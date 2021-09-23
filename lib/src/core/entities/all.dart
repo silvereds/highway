@@ -333,14 +333,19 @@ class User {
   final String bornOn;
   final String bornAt;
   final String idUrl;
-  final String proofOfAddress;
+  final String proofOfAddressUrl;
   final String license;
   final String status;
   final String role;
   final String session;
   final String date;
   final String authorization;
+  final String organisation;
   final String agent;
+  @JsonKey(name: 'accounts')
+  final List<Accounts> accounts;
+  final List<Receipts> receipts;
+  final List<Tickets> tickets;
 
   User({
     this.branch,
@@ -358,16 +363,19 @@ class User {
     this.idUrl,
     this.bornOn,
     // this.registeredOn,
-    // this.organisation,
+    this.organisation,
     this.phone,
     this.photoUrl,
     this.preferredLanguage,
-    this.proofOfAddress,
+    this.proofOfAddressUrl,
     this.role,
     this.status,
     // this.subdivision,
     this.authorization,
     this.agent,
+    this.accounts,
+    this.receipts,
+    this.tickets,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -560,7 +568,9 @@ class Accounts {
   final int balance;
   final String tag;
   final String status;
+  final String type;
   final List<Devices> devices;
+  @JsonKey(name: 'created_on')
   final AddedOn createdOn;
   Accounts({
     this.id,
@@ -571,6 +581,7 @@ class Accounts {
     this.status,
     this.createdOn,
     this.devices,
+    this.type,
   });
 
   factory Accounts.fromJson(Map<String, dynamic> json) =>
@@ -692,73 +703,32 @@ class Messages {
   Map<String, dynamic> toJson() => _$MessagesToJson(this);
 }
 
-@JsonSerializable()
-class Users {
-  final String id;
-  final String name;
-  final String langauge;
-  final String photoUrl;
-  final String address;
-  final String city;
-  final String gender;
-  final AddedOn bornOn;
-  final String bornAt;
-  final AddedOn registeredOn;
-  final String idUrl;
-  final String proofOfAddress;
-  final List<Accounts> accounts;
-  final List<Receipts> receipts;
-  final List<Tickets> tickets;
+// @JsonSerializable()
+// class Branche {
+//   final String name;
+//   final String city;
+//   final String country;
+//   final String code;
+//   final Location location;
+//   final Accounts account;
+//   final List<Users> users;
+//   final List<Organisation> organisations;
+//   @JsonKey(name: 'uuid')
+//   final String id;
 
-  Users({
-    this.registeredOn,
-    this.name,
-    this.address,
-    this.city,
-    this.gender,
-    this.id,
-    this.bornOn,
-    this.photoUrl,
-    this.langauge,
-    this.proofOfAddress,
-    this.bornAt,
-    this.idUrl,
-    this.accounts,
-    this.tickets,
-    this.receipts,
-  });
+//   Branche({
+//     this.id,
+//     this.name,
+//     this.city,
+//     this.country,
+//     this.code,
+//     this.location,
+//     this.account,
+//     this.users,
+//     this.organisations,
+//   });
 
-  factory Users.fromJson(Map<String, dynamic> json) => _$UsersFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UsersToJson(this);
-}
-
-@JsonSerializable()
-class Branche {
-  final String name;
-  final String city;
-  final String country;
-  final String code;
-  final Location location;
-  final Accounts account;
-  final List<Users> users;
-  final List<Organisation> organisations;
-  @JsonKey(name: 'uuid')
-  final String id;
-
-  Branche({
-    this.id,
-    this.name,
-    this.city,
-    this.country,
-    this.code,
-    this.location,
-    this.account,
-    this.users,
-    this.organisations,
-  });
-
-  factory Branche.fromJson(Map<String, dynamic> json) =>
-      _$BrancheFromJson(json);
-  Map<String, dynamic> toJson() => _$BrancheToJson(this);
-}
+//   factory Branche.fromJson(Map<String, dynamic> json) =>
+//       _$BrancheFromJson(json);
+//   Map<String, dynamic> toJson() => _$BrancheToJson(this);
+// }

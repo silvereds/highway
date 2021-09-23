@@ -31,6 +31,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
 
   static const _userKey = 'userInfo';
   static const _token = 'token';
+  User _user;
 
   /// Check user status
   Future<void> checkAndUpdateStatus() async {
@@ -43,10 +44,10 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
   Future<User> getUserInfo() async {
     try {
       final user = await _prefService.getObject(_userKey);
-      if (user != null) {
-        return User.fromJson(user);
+      if (_user != null) {
+        return _user;
       }
-      return null;
+      return User.fromJson(user);
     } catch (e) {
       return null;
     }
@@ -93,7 +94,8 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
       ).executePost<User>(UserParser());
 
       _prefService.saveString('sessionId', response.session);
-      _prefService.saveObject(_userKey, response.toJson());
+      _user = response;
+      _prefService.saveObject(_userKey, _user.toJson());
       state = AuthState.authenticated();
     } catch (e) {
       throw e;
@@ -160,6 +162,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
       ).executePost<SimpleMessageResponse>(LoginResponseParser());
 
       print(response.toJson());
+      _user = null;
       await _prefService.removeObject(_userKey);
       state = AuthState.unauthenticated();
     } catch (e) {

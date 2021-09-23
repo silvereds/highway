@@ -49,6 +49,19 @@ class RouteGenerator {
 
   static final key = GlobalKey<NavigatorState>();
 
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (_) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Error'),
+        ),
+        body: Center(
+          child: Text('ERROR'),
+        ),
+      );
+    });
+  }
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
@@ -93,9 +106,14 @@ class RouteGenerator {
           builder: (_) => AccountsView(),
         );
       case accoutsDetailsView:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => AccountsDetailsView(),
-        );
+        if (args is Accounts) {
+          return MaterialPageRoute<dynamic>(
+            builder: (_) => AccountsDetailsView(
+              account: args,
+            ),
+          );
+        }
+        return _errorRoute();
       case rechargeAccountpage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => RechargeAccountPage(),

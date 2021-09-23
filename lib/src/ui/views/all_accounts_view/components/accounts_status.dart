@@ -12,7 +12,9 @@ class AccountStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: status == "Active" ? const Color(0xFF4EB181) : Colors.red,
+        color: status == "Active".toUpperCase()
+            ? const Color(0xFF4EB181)
+            : Colors.red,
         borderRadius: BorderRadius.circular(4),
       ),
       height: 15.81,

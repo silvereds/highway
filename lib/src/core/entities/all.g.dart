@@ -307,14 +307,27 @@ User _$UserFromJson(Map<String, dynamic> json) {
     uuid: json['uuid'] as String,
     idUrl: json['idUrl'] as String,
     bornOn: json['bornOn'] as String,
+    organisation: json['organisation'] as String,
     phone: json['phone'] as String,
     photoUrl: json['photoUrl'] as String,
     preferredLanguage: json['preferredLanguage'] as String,
-    proofOfAddress: json['proofOfAddress'] as String,
+    proofOfAddressUrl: json['proofOfAddressUrl'] as String,
     role: json['role'] as String,
     status: json['status'] as String,
     authorization: json['authorization'] as String,
     agent: json['agent'] as String,
+    accounts: (json['accounts'] as List)
+        ?.map((e) =>
+            e == null ? null : Accounts.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    receipts: (json['receipts'] as List)
+        ?.map((e) =>
+            e == null ? null : Receipts.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    tickets: (json['tickets'] as List)
+        ?.map((e) =>
+            e == null ? null : Tickets.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -333,14 +346,18 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'bornOn': instance.bornOn,
       'bornAt': instance.bornAt,
       'idUrl': instance.idUrl,
-      'proofOfAddress': instance.proofOfAddress,
+      'proofOfAddressUrl': instance.proofOfAddressUrl,
       'license': instance.license,
       'status': instance.status,
       'role': instance.role,
       'session': instance.session,
       'date': instance.date,
       'authorization': instance.authorization,
+      'organisation': instance.organisation,
       'agent': instance.agent,
+      'accounts': instance.accounts,
+      'receipts': instance.receipts,
+      'tickets': instance.tickets,
     };
 
 Validation _$ValidationFromJson(Map<String, dynamic> json) {
@@ -512,13 +529,14 @@ Accounts _$AccountsFromJson(Map<String, dynamic> json) {
     key: json['key'] as String,
     tag: json['tag'] as String,
     status: json['status'] as String,
-    createdOn: json['createdOn'] == null
+    createdOn: json['created_on'] == null
         ? null
-        : AddedOn.fromJson(json['createdOn'] as Map<String, dynamic>),
+        : AddedOn.fromJson(json['created_on'] as Map<String, dynamic>),
     devices: (json['devices'] as List)
         ?.map((e) =>
             e == null ? null : Devices.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    type: json['type'] as String,
   );
 }
 
@@ -529,8 +547,9 @@ Map<String, dynamic> _$AccountsToJson(Accounts instance) => <String, dynamic>{
       'balance': instance.balance,
       'tag': instance.tag,
       'status': instance.status,
+      'type': instance.type,
       'devices': instance.devices,
-      'createdOn': instance.createdOn,
+      'created_on': instance.createdOn,
     };
 
 Amount _$AmountFromJson(Map<String, dynamic> json) {
@@ -637,91 +656,4 @@ Map<String, dynamic> _$MessagesToJson(Messages instance) => <String, dynamic>{
       'sentBy': instance.sentBy,
       'sentOn': instance.sentOn,
       'body': instance.body,
-    };
-
-Users _$UsersFromJson(Map<String, dynamic> json) {
-  return Users(
-    registeredOn: json['registeredOn'] == null
-        ? null
-        : AddedOn.fromJson(json['registeredOn'] as Map<String, dynamic>),
-    name: json['name'] as String,
-    address: json['address'] as String,
-    city: json['city'] as String,
-    gender: json['gender'] as String,
-    id: json['id'] as String,
-    bornOn: json['bornOn'] == null
-        ? null
-        : AddedOn.fromJson(json['bornOn'] as Map<String, dynamic>),
-    photoUrl: json['photoUrl'] as String,
-    langauge: json['langauge'] as String,
-    proofOfAddress: json['proofOfAddress'] as String,
-    bornAt: json['bornAt'] as String,
-    idUrl: json['idUrl'] as String,
-    accounts: (json['accounts'] as List)
-        ?.map((e) =>
-            e == null ? null : Accounts.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    tickets: (json['tickets'] as List)
-        ?.map((e) =>
-            e == null ? null : Tickets.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    receipts: (json['receipts'] as List)
-        ?.map((e) =>
-            e == null ? null : Receipts.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-  );
-}
-
-Map<String, dynamic> _$UsersToJson(Users instance) => <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'langauge': instance.langauge,
-      'photoUrl': instance.photoUrl,
-      'address': instance.address,
-      'city': instance.city,
-      'gender': instance.gender,
-      'bornOn': instance.bornOn,
-      'bornAt': instance.bornAt,
-      'registeredOn': instance.registeredOn,
-      'idUrl': instance.idUrl,
-      'proofOfAddress': instance.proofOfAddress,
-      'accounts': instance.accounts,
-      'receipts': instance.receipts,
-      'tickets': instance.tickets,
-    };
-
-Branche _$BrancheFromJson(Map<String, dynamic> json) {
-  return Branche(
-    id: json['uuid'] as String,
-    name: json['name'] as String,
-    city: json['city'] as String,
-    country: json['country'] as String,
-    code: json['code'] as String,
-    location: json['location'] == null
-        ? null
-        : Location.fromJson(json['location'] as Map<String, dynamic>),
-    account: json['account'] == null
-        ? null
-        : Accounts.fromJson(json['account'] as Map<String, dynamic>),
-    users: (json['users'] as List)
-        ?.map(
-            (e) => e == null ? null : Users.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    organisations: (json['organisations'] as List)
-        ?.map((e) =>
-            e == null ? null : Organisation.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-  );
-}
-
-Map<String, dynamic> _$BrancheToJson(Branche instance) => <String, dynamic>{
-      'name': instance.name,
-      'city': instance.city,
-      'country': instance.country,
-      'code': instance.code,
-      'location': instance.location,
-      'account': instance.account,
-      'users': instance.users,
-      'organisations': instance.organisations,
-      'uuid': instance.id,
     };

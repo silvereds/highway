@@ -31,7 +31,7 @@ class _AccountsViewState extends State<AccountsView> {
     return SingleChildScrollView(
       child: Container(
         width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 55),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 55),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6),
@@ -46,7 +46,6 @@ class _AccountsViewState extends State<AccountsView> {
           ],
         ),
         child: Stack(
-          alignment: AlignmentDirectional.centerEnd,
           clipBehavior: Clip.none,
           children: [
             Column(
@@ -76,22 +75,13 @@ class _AccountsViewState extends State<AccountsView> {
                 const SizedBox(height: 15),
                 Consumer(
                   builder: (context, watch, __) {
-                    final state = watch(brancheNotifier.state);
+                    final userDetail =
+                        watch(UserDetailProvider.userDetailProvider);
 
-                    return state.when(
-                      initial: () => Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: const Text('Loading Account..'),
-                        ),
-                      ),
-                      loading: () => Center(
-                          child: Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: CircularProgressIndicator(),
-                      )),
-                      loaded: (data) {
-                        if (data.isEmpty) {
+                    return userDetail.when(
+                      data: (user) {
+                        print(user.toJson());
+                        if (user.accounts.isEmpty) {
                           return Center(
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 16),
@@ -99,172 +89,37 @@ class _AccountsViewState extends State<AccountsView> {
                             ),
                           );
                         }
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const SizedBox(height: 20),
-                            AccountsCard(
-                              press: () {
-                                Navigator.pushNamed(
-                                    context, AppRoutes.accoutsDetailsView);
-                              },
-                              text: "DEFAULT",
-                              amount: 'FCFA 24,00',
-                              accountNumber: 'CMR12344459876-0',
-                              alias: 'Jane Doe',
-                              type: ' - personal',
-                            ),
-                            const SizedBox(height: 15),
-                            const Divider(thickness: 1),
-                            const SizedBox(height: 8),
-                            Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AccountStatus(
-                                    status: "Blocked",
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "CMR12344459876-02",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Poppins",
-                                            ),
-                                          ),
-                                          const SizedBox(height: 5),
-                                          RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                  text: 'Jane Doe ',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 14,
-                                                    color:
-                                                        const Color(0xFF000000),
-                                                    fontFamily: 'Poppins',
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: '-  Business',
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontFamily: 'Poppins',
-                                                    color: Color(0xFF333333),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 15),
-                                      Text(
-                                        "FCFA  -900",
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xFFF44336,
-                                          ),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Roboto",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 15),
-                            const Divider(),
-                            const SizedBox(height: 8),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AccountStatus(
-                                    status: "Active",
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "CMR12344459876-03",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Poppins",
-                                            ),
-                                          ),
-                                          const SizedBox(height: 5),
-                                          RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                  text: 'Jane Doe ',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 14,
-                                                      color: Color(0xFF000000),
-                                                      fontFamily: 'Poppins'),
-                                                ),
-                                                TextSpan(
-                                                  text: '-  Others',
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontFamily: 'Poppins',
-                                                    color: Color(0xFF333333),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 15),
-                                      Text(
-                                        "FCFA  3,700",
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xFF27AE60,
-                                          ),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Roboto",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Divider(),
-                          ],
+                        return ListView.separated(
+                          physics: NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(bottom: 16),
+                          itemCount: user.accounts.length,
+                          shrinkWrap: true,
+                          separatorBuilder: (context, i) => Container(
+                            height: .75,
+                            width: double.infinity,
+                            color: Colors.grey,
+                          ),
+                          itemBuilder: (context, i) => AccountsCard(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.accoutsDetailsView,
+                                arguments: user.accounts[i],
+                              );
+                            },
+                            status: user.accounts[i].status,
+                            text: "",
+                            balance: user.accounts[i].balance.toString(),
+                            accountNumber: user.accounts[i].number,
+                            alias: user.accounts[i].tag,
+                            type: ' - ${user.accounts[i].type}',
+                          ),
                         );
                       },
-                      error: (err) => Center(
+                      loading: () => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      error: (err, stack) => Center(
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 16),
                           child: Column(
@@ -274,8 +129,8 @@ class _AccountsViewState extends State<AccountsView> {
                               const SizedBox(height: 4),
                               ElevatedButton(
                                 onPressed: () async => await context
-                                    .read(brancheNotifier)
-                                    .getBranches(),
+                                    .read(AuthProvider.authProvider)
+                                    .getUserInfo(),
                                 child: Text('Try Again'),
                               ),
                             ],

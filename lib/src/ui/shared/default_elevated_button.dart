@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class DefaultElevatedButton extends StatelessWidget {
   final String text;
   final Function onPressed;
+  final Color backgroundColor;
+  final TextStyle textStyle;
   const DefaultElevatedButton({
     Key key,
-    this.text,
-    this.onPressed,
+    @required this.text,
+    @required this.onPressed,
+    this.backgroundColor,
+    this.textStyle,
   }) : super(key: key);
 
   @override
@@ -15,10 +19,13 @@ class DefaultElevatedButton extends StatelessWidget {
       height: 42,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(text),
+        child: Text(
+          text,
+          style: textStyle,
+        ),
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          primary: const Color(0xff00cdac),
+          primary: backgroundColor,
         ),
       ),
     );

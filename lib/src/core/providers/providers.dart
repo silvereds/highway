@@ -35,10 +35,10 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError();
 });
 
-final brancheRepository = Provider((ref) => BrancheRepository());
+// final brancheRepository = Provider((ref) => BrancheRepository());
 
-final brancheNotifier = StateNotifierProvider<BrancheNotifier>(
-  (ref) => BrancheNotifier(
-    ref.watch(brancheRepository),
-  ),
-);
+// final brancheNotifier = StateNotifierProvider<BrancheNotifier>(
+//   (ref) => BrancheNotifier(
+//     ref.watch(brancheRepository),
+//   ),
+// );

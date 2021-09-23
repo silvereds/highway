@@ -56,7 +56,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         );
         return;
       }
-
       await context
           .read(AuthProvider.authProvider)
           .resetPassword(widget.email, _password, _passCode.toUpperCase());

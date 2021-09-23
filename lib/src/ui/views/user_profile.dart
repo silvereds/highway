@@ -27,9 +27,9 @@ class _UserProfileState extends State<UserProfile> {
           return userDetail.when(
             data: (user) {
               // Get date in a correct format
-              String date = user.bornOn;
-              String dateWithT = date.substring(0, 10);
-              DateTime dateTime = DateTime.parse(dateWithT);
+              // String date = user.bornOn;
+              // String dateWithT = date.substring(0, 10);
+              // DateTime dateTime = DateTime.parse(dateWithT);
               return SafeArea(
                 child: SingleChildScrollView(
                   child: Container(
@@ -84,7 +84,7 @@ class _UserProfileState extends State<UserProfile> {
                             children: [
                               Text(
                                 user.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0xFF000000),
                                   fontSize: 30,
                                   fontFamily: 'Poppins',
@@ -93,7 +93,7 @@ class _UserProfileState extends State<UserProfile> {
                               const SizedBox(height: 10),
                               Text(
                                 user.email,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color(0xFF192A3E),
                                     fontSize: 18,
                                     fontFamily: 'Poppins',
@@ -102,7 +102,7 @@ class _UserProfileState extends State<UserProfile> {
                               const SizedBox(height: 10),
                               Text(
                                 user.phone,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color(0xFF192A3E),
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400),
@@ -168,7 +168,7 @@ class _UserProfileState extends State<UserProfile> {
                                 ),
                               ),
                               Text(
-                                DateFormat('MMMM dd, ' 'yyyy').format(dateTime),
+                                user.bornOn,
                                 style: TextStyle(
                                   color: Color(0xFF192A3E),
                                   fontSize: 14,

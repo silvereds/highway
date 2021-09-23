@@ -5,28 +5,29 @@ import 'accounts_status.dart';
 class AccountsCard extends StatelessWidget {
   const AccountsCard({
     Key key,
-    @required this.press,
+    @required this.onPressed,
     this.text,
     @required this.alias,
     @required this.accountNumber,
     @required this.type,
-    @required this.amount,
+    @required this.balance,
+    this.status = '',
   }) : super(key: key);
 
-  final VoidCallback press;
+  final void Function() onPressed;
   final String text;
-
+  final String status;
   final String alias;
   final String accountNumber;
   final String type;
-  final String amount;
+  final String balance;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: GestureDetector(
-        onTap: press,
+        onTap: onPressed,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,7 +35,7 @@ class AccountsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AccountStatus(
-                  status: 'Active',
+                  status: status,
                 ),
                 SizedBox(
                   child: Text(
@@ -54,7 +55,8 @@ class AccountsCard extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,9 +96,9 @@ class AccountsCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(width: 15),
+                Spacer(),
                 Text(
-                  amount,
+                  balance,
                   style: TextStyle(
                     color: Color(
                       0xff27ae60,
