@@ -24,93 +24,96 @@ class AccountsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: GestureDetector(
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         onTap: onPressed,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AccountStatus(
-                  status: status,
-                ),
-                SizedBox(
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                      color: Color(
-                        0xff14a09f,
-                      ),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Poppins",
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AccountStatus(
+                    status: status,
                   ),
-                  width: 65.9879150390625,
-                )
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      accountNumber,
+                  SizedBox(
+                    child: Text(
+                      text,
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                        color: Color(
+                          0xff14a09f,
+                        ),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
                         fontFamily: "Poppins",
                       ),
                     ),
-                    const SizedBox(height: 5),
-                    RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: alias,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14,
-                                color: Color(0xFF000000),
-                                fontFamily: 'Poppins'),
-                          ),
-                          TextSpan(
-                            text: type,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Poppins',
-                              color: Color(0xFF333333),
-                            ),
-                          ),
-                        ],
+                    width: 65.9879150390625,
+                  )
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        accountNumber,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Poppins",
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Text(
-                  balance,
-                  style: TextStyle(
-                    color: Color(
-                      0xff27ae60,
-                    ),
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: "Roboto",
+                      const SizedBox(height: 5),
+                      RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: alias,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
+                                  color: Color(0xFF000000),
+                                  fontFamily: 'Poppins'),
+                            ),
+                            TextSpan(
+                              text: type,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Poppins',
+                                color: Color(0xFF333333),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Spacer(),
+                  Text(
+                    balance,
+                    style: TextStyle(
+                      color: Color(
+                        0xff27ae60,
+                      ),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "Roboto",
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -53,12 +53,10 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.keyboard_arrow_left_outlined),
-                              color: Color(0xFFFFFFFF),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, AppRoutes.homeScreen);
-                              },
+                              icon: const Icon(
+                                  Icons.keyboard_arrow_left_outlined),
+                              color: const Color(0xFFFFFFFF),
+                              onPressed: () => Navigator.of(context).pop(),
                             ),
                             Text(
                               "Back",
