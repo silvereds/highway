@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/core/common/screens_arguments.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/views/Create_password.dart';
 import 'package:mobile/src/ui/views/change_password_screen.dart';
@@ -106,10 +107,11 @@ class RouteGenerator {
           builder: (_) => AccountsView(),
         );
       case accoutsDetailsView:
-        if (args is Accounts) {
+        if (args is AccountViewDetailArguments) {
           return MaterialPageRoute<dynamic>(
             builder: (_) => AccountsDetailsView(
-              account: args,
+              account: args.accounts,
+              accountName: args.accountName,
             ),
           );
         }
@@ -185,7 +187,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => BlockDevicePage());
 
       default:
-        throw RouteException("Route Not found");
+        return _errorRoute();
     }
   }
 }

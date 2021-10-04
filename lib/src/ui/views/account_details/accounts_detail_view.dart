@@ -4,12 +4,15 @@ import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/shared/default_elevated_button.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 
+import '../../../routes.dart';
 import 'components/linked_devices.dart';
 
 class AccountsDetailsView extends StatefulWidget {
   final Accounts account;
+  final String accountName;
 
-  const AccountsDetailsView({Key key, this.account}) : super(key: key);
+  const AccountsDetailsView({Key key, this.account, this.accountName})
+      : super(key: key);
   @override
   _AccountsDetailsViewState createState() => _AccountsDetailsViewState();
 }
@@ -176,7 +179,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: widget.account.tag,
+                                  text: widget.accountName,
                                   style: TextStyle(
                                     color: const Color(0xff192a3e),
                                     fontSize: 16,
@@ -245,9 +248,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                 TextSpan(
                                   text: 'Date Opened:    ',
                                   style: TextStyle(
-                                    color: Color(
-                                      0xff818e9b,
-                                    ),
+                                    color: Color(0xff818e9b),
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700,
                                     fontFamily: "Poppins",
@@ -256,9 +257,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                 TextSpan(
                                   text: 'createOn',
                                   style: TextStyle(
-                                    color: Color(
-                                      0xff323c47,
-                                    ),
+                                    color: Color(0xff323c47),
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "Poppins",
@@ -315,11 +314,10 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                   child: LinkedDevicesSubTiltles(
                     alias: 'Alias',
                     id: 'ID',
-                    type: 'Type',
                   ),
                 ),
                 if (widget.account == null)
-                  Center(
+                  const Center(
                     child: Text('You have no devices'),
                   ),
                 if (widget.account != null)
@@ -330,8 +328,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                     shrinkWrap: true,
                     itemBuilder: (context, i) => LinkedDevices(
                       alias: widget.account.tag,
-                      id: widget.account.devices[i].pin,
-                      type: 'RFID CARD',
+                      id: widget.account.devices[i]?.pin ?? '',
                     ),
                   ),
                 const SizedBox(height: 20),
@@ -350,24 +347,25 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                     DefaultElevatedButton(
                       text: 'Change Alias',
                       backgroundColor: const Color(0xFF4EB181),
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.changeAlias);
-                      },
-                    ),
-                    DefaultElevatedButton(
-                      text: 'Recharge Account',
-                      backgroundColor: const Color(0xFF4EB181),
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         color: Colors.white,
                         fontSize: 10,
                       ),
                       onPressed: () {
                         Navigator.pushNamed(
-                            context, AppRoutes.rechargeAccountpage);
+                            context, RouteGenerator.changeAlias);
+                      },
+                    ),
+                    DefaultElevatedButton(
+                      text: 'Recharge Account',
+                      backgroundColor: const Color(0xFF4EB181),
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RouteGenerator.rechargeAccountpage);
                       },
                     ),
                   ],
@@ -384,11 +382,10 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
 class LinkedDevicesSubTiltles extends StatelessWidget {
   const LinkedDevicesSubTiltles({
     Key key,
-    @required this.id,
-    @required this.type,
-    @required this.alias,
+    this.id,
+    this.alias,
   }) : super(key: key);
-  final String id, type, alias;
+  final String id, alias;
 
   @override
   Widget build(BuildContext context) {
@@ -399,18 +396,7 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
         children: [
           Text(
             id,
-            style: TextStyle(
-              color: Color(
-                0xff323c47,
-              ),
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              fontFamily: "Poppins",
-            ),
-          ),
-          Text(
-            type,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(
                 0xff323c47,
               ),
@@ -421,7 +407,7 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
           ),
           Text(
             alias,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(
                 0xff323c47,
               ),
@@ -436,7 +422,7 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Color(
+            color: const Color(
               0x3f000000,
             ),
             offset: Offset(

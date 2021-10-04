@@ -120,7 +120,7 @@ class _UserProfileState extends State<UserProfile> {
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400),
                                     children: [
-                                      TextSpan(text: "Touristic Voyage"),
+                                      TextSpan(text: user.organisation ?? ''),
                                     ],
                                   ),
                                 ),

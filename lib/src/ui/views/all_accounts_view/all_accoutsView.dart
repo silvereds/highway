@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/screens_arguments.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 
 import 'components/accounts_card_with_text.dart';
-import 'components/accounts_status.dart';
 
 class AccountsView extends StatefulWidget {
   @override
@@ -85,13 +85,13 @@ class _AccountsViewState extends State<AccountsView> {
                           return Center(
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 16),
-                              child: Text('You have no account.'),
+                              child: const Text('You have no account.'),
                             ),
                           );
                         }
                         return ListView.separated(
                           physics: NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.only(bottom: 16),
+                          padding: const EdgeInsets.only(bottom: 16),
                           itemCount: user.accounts.length,
                           shrinkWrap: true,
                           separatorBuilder: (context, i) => Container(
@@ -104,7 +104,10 @@ class _AccountsViewState extends State<AccountsView> {
                               Navigator.pushNamed(
                                 context,
                                 AppRoutes.accoutsDetailsView,
-                                arguments: user.accounts[i],
+                                arguments: AccountViewDetailArguments(
+                                  accounts: user.accounts[i],
+                                  accountName: user.name,
+                                ),
                               );
                             },
                             status: user.accounts[i].status,
