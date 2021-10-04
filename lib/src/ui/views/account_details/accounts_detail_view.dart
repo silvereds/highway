@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/shared/default_elevated_button.dart';
-import 'package:mobile/src/ui/shared/routes.dart';
 
 import '../../../routes.dart';
 import 'components/linked_devices.dart';
@@ -52,54 +50,33 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                       Container(
                         height: 42,
                         width: 99,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              icon: const Icon(
-                                  Icons.keyboard_arrow_left_outlined),
-                              color: const Color(0xFFFFFFFF),
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),
-                            Text(
-                              "Back",
-                              style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 14,
-                                fontFamily: 'Poppins',
-                              ),
-                            )
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            3,
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(Icons.keyboard_arrow_left_outlined),
+                          label: Text('Back'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff4eb181),
+                            onPrimary: Colors.white,
+                            elevation: 0,
                           ),
                         ),
                       ),
                       Container(
                         height: 42,
-                        width: 127,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.print),
-                              color: Color(0xFFFFFFFF),
-                              onPressed: () {},
-                            ),
-                            Text(
-                              "Print",
-                              style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 14,
-                                fontFamily: 'Poppins',
-                              ),
-                            )
-                          ],
+                        width: 99,
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(Icons.print),
+                          label: Text('Print'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff4eb181),
+                            onPrimary: Colors.white,
+                            elevation: 0,
+                          ),
                         ),
                         decoration: BoxDecoration(
                           color: Color(
@@ -255,7 +232,10 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: 'createOn',
+                                  text: widget.account.createdOn?.$date
+                                          .toString()
+                                          .substring(0, 10) ??
+                                      '',
                                   style: TextStyle(
                                     color: Color(0xff323c47),
                                     fontSize: 13,
@@ -408,9 +388,7 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
           Text(
             alias,
             style: const TextStyle(
-              color: Color(
-                0xff323c47,
-              ),
+              color: Color(0xff323c47),
               fontSize: 15,
               fontWeight: FontWeight.bold,
               fontFamily: "Poppins",
@@ -425,7 +403,7 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
             color: const Color(
               0x3f000000,
             ),
-            offset: Offset(
+            offset: const Offset(
               0,
               4,
             ),

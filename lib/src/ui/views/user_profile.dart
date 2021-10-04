@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
@@ -33,9 +32,9 @@ class _UserProfileState extends State<UserProfile> {
               return SafeArea(
                 child: SingleChildScrollView(
                   child: Container(
-                    margin: EdgeInsets.fromLTRB(20, 40, 20, 20),
+                    margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
@@ -94,10 +93,11 @@ class _UserProfileState extends State<UserProfile> {
                               Text(
                                 user.email,
                                 style: const TextStyle(
-                                    color: Color(0xFF192A3E),
-                                    fontSize: 18,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w200),
+                                  color: Color(0xFF192A3E),
+                                  fontSize: 18,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w200,
+                                ),
                               ),
                               const SizedBox(height: 10),
                               Text(
@@ -120,7 +120,7 @@ class _UserProfileState extends State<UserProfile> {
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400),
                                     children: [
-                                      TextSpan(text: user.organisation ?? ''),
+                                      TextSpan(text: user?.organisation ?? ''),
                                     ],
                                   ),
                                 ),
@@ -154,45 +154,51 @@ class _UserProfileState extends State<UserProfile> {
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              Text(user.address,
-                                  style: TextStyle(
-                                    color: Color(0xFF192A3E),
-                                    fontSize: 14,
-                                  )),
+                              Text(
+                                user.address,
+                                style: TextStyle(
+                                  color: Color(0xFF192A3E),
+                                  fontSize: 14,
+                                ),
+                              ),
                               const SizedBox(height: 10),
                               const Text(
                                 'Date of Birth:',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0xFF818E9B),
                                   fontSize: 14,
                                 ),
                               ),
                               Text(
                                 user.bornOn,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0xFF192A3E),
                                   fontSize: 14,
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              const Text('Place Of Birth:',
-                                  style: TextStyle(
-                                    color: Color(0xFF818E9B),
-                                    fontSize: 14,
-                                  )),
+                              const Text(
+                                'Place Of Birth:',
+                                style: const TextStyle(
+                                  color: Color(0xFF818E9B),
+                                  fontSize: 14,
+                                ),
+                              ),
                               Text(
                                 user.bornAt,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0xFF192A3E),
                                   fontSize: 14,
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              const Text('Profession:',
-                                  style: TextStyle(
-                                    color: Color(0xFF818E9B),
-                                    fontSize: 14,
-                                  )),
+                              const Text(
+                                'Profession:',
+                                style: TextStyle(
+                                  color: Color(0xFF818E9B),
+                                  fontSize: 14,
+                                ),
+                              ),
                               Text(
                                 'Driver',
                                 style: TextStyle(
@@ -206,11 +212,13 @@ class _UserProfileState extends State<UserProfile> {
                                     color: Color(0xFF818E9B),
                                     fontSize: 14,
                                   )),
-                              Text(user.gender,
-                                  style: TextStyle(
-                                    color: Color(0xFF192A3E),
-                                    fontSize: 14,
-                                  )),
+                              Text(
+                                user.gender,
+                                style: const TextStyle(
+                                  color: Color(0xFF192A3E),
+                                  fontSize: 14,
+                                ),
+                              ),
                               const SizedBox(height: 20),
                             ],
                           ),
@@ -276,8 +284,10 @@ class _UserProfileState extends State<UserProfile> {
                                   ),
                                   const Text(
                                     'Submited',
-                                    style: TextStyle(
-                                        color: Color(0xFF818E9B), fontSize: 14),
+                                    style: const TextStyle(
+                                      color: Color(0xFF818E9B),
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ],
                               )
@@ -289,7 +299,11 @@ class _UserProfileState extends State<UserProfile> {
                               child: Container(
                                 child: Card(
                                   margin: const EdgeInsets.only(
-                                      left: 30, right: 30, bottom: 30, top: 20),
+                                    left: 30,
+                                    right: 30,
+                                    bottom: 30,
+                                    top: 20,
+                                  ),
                                   clipBehavior: Clip.none,
                                   elevation: 5,
                                   child: Padding(
@@ -298,8 +312,9 @@ class _UserProfileState extends State<UserProfile> {
                                       'Please contact support if any of these details are not correct or need to be updated',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
-                                          color: Color(0xFF818E9B),
-                                          fontSize: 14),
+                                        color: Color(0xFF818E9B),
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -317,14 +332,14 @@ class _UserProfileState extends State<UserProfile> {
                                   ),
                                   child: Text(
                                     'Change Password',
-                                    style: TextStyle(fontSize: 13),
+                                    style: const TextStyle(fontSize: 13),
                                   ),
                                   onPressed: () {
                                     Navigator.of(context).pushNamed(
                                         RouteGenerator.changePasswordScreen);
                                   },
-                                  color: Color(0xFF4EB181),
-                                  textColor: Color(0xFFFFFFFF),
+                                  color: const Color(0xFF4EB181),
+                                  textColor: const Color(0xFFFFFFFF),
                                   height: 33,
                                 ),
                                 const SizedBox(width: 30),
@@ -334,7 +349,7 @@ class _UserProfileState extends State<UserProfile> {
                                     side:
                                         BorderSide(color: ThemeColors.Buttons),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     'Close',
                                     style: TextStyle(fontSize: 13),
                                   ),
@@ -345,8 +360,8 @@ class _UserProfileState extends State<UserProfile> {
                                             RouteGenerator.homeScreen,
                                             (route) => false);
                                   },
-                                  color: Color(0xFF4EB181),
-                                  textColor: Color(0xFFFFFFFF),
+                                  color: const Color(0xFF4EB181),
+                                  textColor: const Color(0xFFFFFFFF),
                                   height: 33,
                                 ),
                               ],
@@ -359,10 +374,10 @@ class _UserProfileState extends State<UserProfile> {
                 ),
               );
             },
-            loading: () => Center(
+            loading: () => const Center(
               child: CircularProgressIndicator(),
             ),
-            error: (err, _) => Center(
+            error: (err, _) => const Center(
               child: Text('Failed to load user data'),
             ),
           );
