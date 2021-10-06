@@ -1,7 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:mobile/src/core/entities/all.dart';
 
-/// parse exception occured during api call and output a potable text
+/// parse exception occurred during api call and output a potable text
 String parseApiError(Exception exception) {
   if (exception == null)
     return "";
@@ -19,21 +22,25 @@ String parseApiError(Exception exception) {
       case DioErrorType.sendTimeout:
         return "Send timeout in connection with API server";
         break;
+
       case DioErrorType.other:
-        return exception.error?.toString() ?? exception.message;
+        return exception.error is SocketException
+            ? 'You are not connected.'
+            : 'Somehting when wrong.';
         break;
-      // case DioErrorType.response:
-      //   return _handleError(exception.response.statusCode);
-      //   break;
+      case DioErrorType.other:
+        return 'Oops something when wrong.';
+        break;
 
       default:
         break;
     }
     if (exception.response.statusCode != 422) {
       try {
-        final error = ApiException.fromJson(exception.response.data);
-        return error.error;
-      } catch (Exception) {
+        final ApiException apiException =
+            ApiException.fromJson(json.decode(exception.response.data));
+        return apiException.error;
+      } catch (e) {
         return exception.response.statusMessage;
       }
     }

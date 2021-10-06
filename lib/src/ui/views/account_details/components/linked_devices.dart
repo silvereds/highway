@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class LinkedDevices extends StatelessWidget {
   const LinkedDevices({
     Key key,
-    @required this.id,
-    @required this.type,
-    @required this.alias,
+    this.id,
+    this.type,
+    this.alias,
   }) : super(key: key);
 
   final String id, type, alias;
@@ -16,7 +16,6 @@ class LinkedDevices extends StatelessWidget {
       opacity: 0.5,
       child: Container(
         height: 56,
-        width: 306,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -31,17 +30,17 @@ class LinkedDevices extends StatelessWidget {
                 fontFamily: "Poppins",
               ),
             ),
-            Text(
-              type,
-              style: TextStyle(
-                color: Color(
-                  0xff333333,
-                ),
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                fontFamily: "Poppins",
-              ),
-            ),
+            // Text(
+            //   type,
+            //   style: TextStyle(
+            //     color: Color(
+            //       0xff333333,
+            //     ),
+            //     fontSize: 13,
+            //     fontWeight: FontWeight.w700,
+            //     fontFamily: "Poppins",
+            //   ),
+            // ),
             Text(
               alias,
               style: TextStyle(

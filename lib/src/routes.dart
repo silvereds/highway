@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/core/common/screens_arguments.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/views/Create_password.dart';
 import 'package:mobile/src/ui/views/change_password_screen.dart';
@@ -43,10 +44,25 @@ class RouteGenerator {
   static const conversationDetails = '/conversationDetailsPage';
   static const changePasswordScreen = '/changePasswordScreen';
   static const notificationScreen = '/notificationScreen';
+  static const resetPasswordVerifyPasscode = '/resetPasswordVerifyPasscode';
+  static const companyProfile = '/companyProfile';
 
   RouteGenerator._();
 
   static final key = GlobalKey<NavigatorState>();
+
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (_) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Error'),
+        ),
+        body: Center(
+          child: const Text('ERROR'),
+        ),
+      );
+    });
+  }
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -58,6 +74,12 @@ class RouteGenerator {
       case registerPage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => RegisterPage(),
+        );
+      case companyProfile:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => CompanyProfileView(
+            organisation: args as Organisation,
+          ),
         );
       case loginPage:
         return MaterialPageRoute<dynamic>(
@@ -92,9 +114,15 @@ class RouteGenerator {
           builder: (_) => AccountsView(),
         );
       case accoutsDetailsView:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => AccountsDetailsView(),
-        );
+        if (args is AccountViewDetailArguments) {
+          return MaterialPageRoute<dynamic>(
+            builder: (_) => AccountsDetailsView(
+              account: args.accounts,
+              accountName: args.accountName,
+            ),
+          );
+        }
+        return _errorRoute();
       case rechargeAccountpage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => RechargeAccountPage(),
@@ -166,7 +194,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => BlockDevicePage());
 
       default:
-        throw RouteException("Route Not found");
+        return _errorRoute();
     }
   }
 }

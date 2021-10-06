@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:mobile/src/core/common/shared_prefs_constants.dart';
+import 'package:mobile/src/core/providers/providers.dart';
+import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/views/all_accounts_view/all_accoutsView.dart';
@@ -24,18 +28,25 @@ class _HomeScreenState extends State<HomeScreen> {
     AllMaps(),
   ];
 
+  void _getJwtToken() async {
+    if ((await SharedPrefService().getString(PreferencesConstants.API_TOKEN)) ==
+        null) {
+      await context.read(AuthProvider.authProvider).getAuthToken();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     FlutterStatusbarcolor.setStatusBarColor(Colors.black);
-
     _currentIndex = 0;
+    _getJwtToken();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F6F8),
+      backgroundColor: const Color(0xFFF5F6F8),
       appBar: AppBarView(),
       drawer: NavDrawer(),
       body: _children[_currentIndex],
@@ -45,34 +56,34 @@ class _HomeScreenState extends State<HomeScreen> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Color(0xFF53B27F),
         unselectedItemColor: Color(0xFF334D6E),
-        onTap: onTapTapped,
+        onTap: _onTapTapped,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.dashboard_outlined,
             ),
             label: 'Dashboad',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.credit_card,
             ),
             label: 'Accounts',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.local_atm_outlined,
             ),
             label: 'Transactions',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.credit_card,
             ),
             label: 'Devices',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.place_outlined,
             ),
             label: 'Map',
@@ -82,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void onTapTapped(int index) {
+  void _onTapTapped(int index) {
     setState(() {
       _currentIndex = index;
     });

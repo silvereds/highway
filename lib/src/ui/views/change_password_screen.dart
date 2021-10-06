@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/ui/shared/default_elevated_button.dart';
+import 'package:mobile/src/ui/shared/default_textfield.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/views/user_profile.dart';
@@ -77,34 +79,27 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Old Password',
-                          hintStyle: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF14A09F),
-                            fontFamily: 'Poppins',
-                          ),
+                      DefaultTextFormField(
+                        hinText: 'Old Password',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF14A09F),
                         ),
                       ),
                       const SizedBox(height: 20),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'New password',
-                          hintStyle: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF14A09F),
-                          ),
+                      DefaultTextFormField(
+                        hinText: 'New Password',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF14A09F),
                         ),
                       ),
                       const SizedBox(height: 20),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Confirm password',
-                          hintStyle: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF14A09F),
-                          ),
+                      DefaultTextFormField(
+                        hinText: 'Confirm Password',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF14A09F),
                         ),
                       ),
                     ],
@@ -115,27 +110,18 @@ class _ChangePasswordState extends State<ChangePassword> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        FlatButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                            side: BorderSide(color: ThemeColors.Buttons),
-                          ),
+                        DefaultElevatedButton(
+                          text: 'Cancel',
                           onPressed: () {},
-                          color: Color(0xFFF44336),
-                          textColor: Colors.white,
-                          child: Text("Cancel"),
+                          backgroundColor: Color(0xFFF44336),
                         ),
                         const SizedBox(width: 20),
-                        FlatButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                            side: BorderSide(color: ThemeColors.Buttons),
-                          ),
+                        DefaultElevatedButton(
+                          text: 'Save',
                           onPressed: () {},
-                          color: ThemeColors.Buttons,
-                          textColor: Colors.white,
-                          child: Text("Save"),
+                          backgroundColor: ThemeColors.Buttons,
                         ),
+                        const SizedBox(width: 20),
                       ],
                     ),
                   ),

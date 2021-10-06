@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:mobile/src/core/entities/all.dart';
+import 'package:mobile/src/ui/shared/default_elevated_button.dart';
 
+import '../../../routes.dart';
 import 'components/linked_devices.dart';
 
 class AccountsDetailsView extends StatefulWidget {
+  final Accounts account;
+  final String accountName;
+
+  const AccountsDetailsView({Key key, this.account, this.accountName})
+      : super(key: key);
   @override
   _AccountsDetailsViewState createState() => _AccountsDetailsViewState();
 }
@@ -12,456 +18,365 @@ class AccountsDetailsView extends StatefulWidget {
 class _AccountsDetailsViewState extends State<AccountsDetailsView> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
-        stream: null,
-        builder: (context, snapshot) {
-          return Scaffold(
-              body: Center(
-            child: Container(
-              margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-              // width: MediaQuery.of(context).size.width,
-              height: 620,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(
-                  6,
+    // final dates = widget.account.createdOn.$date;
+    // final createOn = DateTime.parse(dates).toString();
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0x23000000),
+                blurRadius: 4,
+                offset: Offset(
+                  0,
+                  1,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(
-                      0x23000000,
-                    ),
-                    blurRadius: 4,
-                    offset: Offset(
-                      0,
-                      1,
-                    ),
-                  ),
-                ],
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
+            ],
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 42,
+                        width: 99,
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(Icons.keyboard_arrow_left_outlined),
+                          label: Text('Back'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff4eb181),
+                            onPrimary: Colors.white,
+                            elevation: 0,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 42,
+                        width: 99,
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(Icons.print),
+                          label: Text('Print'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff4eb181),
+                            onPrimary: Colors.white,
+                            elevation: 0,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Color(
+                            0xff4eb181,
+                          ),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(6),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x23000000),
+                          offset: Offset(
+                            0,
+                            1,
+                          ),
+                          blurRadius: 4,
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 42,
-                            width: 99,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                IconButton(
-                                  icon:
-                                      Icon(Icons.keyboard_arrow_left_outlined),
-                                  color: Color(0xFFFFFFFF),
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoutes.homeScreen);
-                                  },
-                                ),
-                                Text(
-                                  "Back",
-                                  style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins',
+                          SizedBox(
+                            width: 200,
+                            child: RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: 'Account Number: ',
+                                    style: TextStyle(
+                                      color: Color(
+                                        0xff818e9b,
+                                      ),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: "Poppins",
+                                    ),
                                   ),
-                                )
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(
-                                0xff4eb181,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                3,
+                                  TextSpan(
+                                    text: widget.account.number,
+                                    style: TextStyle(
+                                      color: Color(
+                                        0xff192a3e,
+                                      ),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                          Container(
-                            height: 42,
-                            width: 127,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  icon: Icon(Icons.print),
-                                  color: Color(0xFFFFFFFF),
-                                  onPressed: () {},
+                          RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Account Name: \n',
+                                  style: TextStyle(
+                                    color: Color(
+                                      0xff818e9b,
+                                    ),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Poppins",
+                                  ),
                                 ),
-                                Text("Print",
-                                    style: TextStyle(
-                                        color: Color(0xFFFFFFFF),
-                                        fontSize: 14,
-                                        fontFamily: 'Poppins'))
+                                TextSpan(
+                                  text: widget.accountName,
+                                  style: TextStyle(
+                                    color: const Color(0xff192a3e),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
                               ],
                             ),
-                            decoration: BoxDecoration(
-                              color: Color(
-                                0xff4eb181,
-                              ),
-                              borderRadius: BorderRadius.circular(3),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Alias/Tag:  \n',
+                                  style: const TextStyle(
+                                    color: Color(0xff818e9b),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: widget.account.tag,
+                                  style: const TextStyle(
+                                    color: Color(0xff2f80ed),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Account Balance \n',
+                                  style: const TextStyle(
+                                    color: Color(
+                                      0xff818e9b,
+                                    ),
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: 'FCFA ${widget.account.balance}',
+                                  style: const TextStyle(
+                                    color: Color(0xff192a3e),
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Date Opened:    ',
+                                  style: TextStyle(
+                                    color: Color(0xff818e9b),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: widget.account.createdOn?.$date
+                                          .toString()
+                                          .substring(0, 10) ??
+                                      '',
+                                  style: TextStyle(
+                                    color: Color(0xff323c47),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Status: ',
+                                  style: TextStyle(
+                                    color: Color(
+                                      0xff818e9b,
+                                    ),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '    ${widget.account.status}',
+                                  style: TextStyle(
+                                    color: Color(
+                                      0xff2ed47a,
+                                    ),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(6),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color(0x23000000),
-                              offset: Offset(
-                                0,
-                                1,
-                              ),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 200,
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Account Number: ',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff818e9b,
-                                          ),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'CMR1235723609-01',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff192a3e,
-                                          ),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 150,
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Account Name: ',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff818e9b,
-                                          ),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'Jane Doe',
-                                        style: TextStyle(
-                                          color: const Color(0xff192a3e),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 200,
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Alias/Tag:  ',
-                                        style: const TextStyle(
-                                          color: Color(0xff818e9b),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'Personal',
-                                        style: const TextStyle(
-                                          color: Color(0xff2f80ed),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              SizedBox(
-                                width: 200,
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Account Balance ',
-                                        style: const TextStyle(
-                                          color: Color(
-                                            0xff818e9b,
-                                          ),
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'FCFA 32,850',
-                                        style: const TextStyle(
-                                          color: Color(0xff192a3e),
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              SizedBox(
-                                width: 200,
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Date Opened: ',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff818e9b,
-                                          ),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: '    12/12/2020',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff323c47,
-                                          ),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              SizedBox(
-                                width: 200,
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Status: ',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff818e9b,
-                                          ),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: '    ACTIVE',
-                                        style: TextStyle(
-                                          color: Color(
-                                            0xff2ed47a,
-                                          ),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Linked Devices",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Opacity(
-                      opacity: 0.5,
-                      child: LinkedDevicesSubTiltles(
-                        alias: 'Alias',
-                        id: 'ID',
-                        type: 'Type',
-                      ),
-                    ),
-                    Column(
-                      children: List.generate(5, (index) {
-                        return LinkedDevices(
-                          alias: 'Joe Kamga',
-                          id: '0098',
-                          type: 'RFID CARD',
-                        );
-                      }),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        FlatButton(
-                            minWidth: 93,
-                            height: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            onPressed: () {
-                              print(' Account Blocked');
-                            },
-                            color: Color(0xfff44336),
-                            textColor: Colors.white,
-                            child: Text(
-                              "Block Account",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 9,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Roboto",
-                              ),
-                            )),
-                        FlatButton(
-                            minWidth: 93,
-                            height: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.changeAlias);
-                            },
-                            color: Color(0xFF4EB181),
-                            textColor: Colors.white,
-                            child: Text(
-                              "Change Alias",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 9,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Roboto",
-                              ),
-                            )),
-                        FlatButton(
-                            minWidth: 93,
-                            height: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.rechargeAccountpage);
-                            },
-                            color: Color(0xFF4EB181),
-                            textColor: Colors.white,
-                            child: Text(
-                              "Recharge Account",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 9,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Roboto",
-                              ),
-                            ))
-                      ],
-                    )
-                  ],
+                    )),
+                const SizedBox(height: 20),
+                const Text(
+                  "Linked Devices",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Poppins",
+                  ),
                 ),
-              ),
+                const SizedBox(height: 10),
+                Opacity(
+                  opacity: 0.5,
+                  child: LinkedDevicesSubTiltles(
+                    alias: 'Alias',
+                    id: 'ID',
+                  ),
+                ),
+                if (widget.account == null)
+                  const Center(
+                    child: Text('You have no devices'),
+                  ),
+                if (widget.account != null)
+                  ListView.builder(
+                    itemCount: widget.account.devices.length,
+                    padding: EdgeInsets.zero,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, i) => LinkedDevices(
+                      alias: widget.account.tag,
+                      id: widget.account.devices[i]?.pin ?? '',
+                    ),
+                  ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    DefaultElevatedButton(
+                      text: 'Block Account',
+                      backgroundColor: const Color(0xfff44336),
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                      onPressed: () {},
+                    ),
+                    DefaultElevatedButton(
+                      text: 'Change Alias',
+                      backgroundColor: const Color(0xFF4EB181),
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RouteGenerator.changeAlias);
+                      },
+                    ),
+                    DefaultElevatedButton(
+                      text: 'Recharge Account',
+                      backgroundColor: const Color(0xFF4EB181),
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RouteGenerator.rechargeAccountpage);
+                      },
+                    ),
+                  ],
+                )
+              ],
             ),
-          ));
-        });
+          ),
+        ),
+      ),
+    );
   }
 }
 
 class LinkedDevicesSubTiltles extends StatelessWidget {
   const LinkedDevicesSubTiltles({
     Key key,
-    @required this.id,
-    @required this.type,
-    @required this.alias,
+    this.id,
+    this.alias,
   }) : super(key: key);
-  final String id, type, alias;
+  final String id, alias;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 36,
-      width: 306,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
             id,
-            style: TextStyle(
-              color: Color(
-                0xff323c47,
-              ),
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              fontFamily: "Poppins",
-            ),
-          ),
-          Text(
-            type,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(
                 0xff323c47,
               ),
@@ -472,10 +387,8 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
           ),
           Text(
             alias,
-            style: TextStyle(
-              color: Color(
-                0xff323c47,
-              ),
+            style: const TextStyle(
+              color: Color(0xff323c47),
               fontSize: 15,
               fontWeight: FontWeight.bold,
               fontFamily: "Poppins",
@@ -487,10 +400,10 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Color(
+            color: const Color(
               0x3f000000,
             ),
-            offset: Offset(
+            offset: const Offset(
               0,
               4,
             ),

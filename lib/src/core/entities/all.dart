@@ -35,14 +35,14 @@ class Account {
 @JsonSerializable()
 class AuthCredentials {
   final String email;
-  final String phoneNumber;
+  final String phone;
   String password;
   final String passcode;
   String agent = "mobile";
 
   AuthCredentials({
     this.email,
-    this.phoneNumber,
+    this.phone,
     this.password,
     this.passcode,
     this.agent,
@@ -170,32 +170,37 @@ class Notification {
 
 @JsonSerializable()
 class Organisation {
-  final int id;
-  final String uuid;
-  final String contactPersonId;
+  final String contactPersonName;
+  final String city;
   final String name;
   final String industry;
   final String size;
-  final String status;
   final String photoUrl;
   final String address;
   final String foundedOn;
-  final String contactPersonRole;
   final String businessLicenceUrl;
   final String proofOfAddressUrl;
-
+  final String phone;
+  final String email;
+  final String country;
+  final String status;
+  final String branch;
+  final String id;
   Organisation({
     this.id,
-    this.uuid,
-    this.contactPersonId,
     this.name,
+    this.photoUrl,
+    this.phone,
+    this.branch,
+    this.city,
+    this.email,
+    this.contactPersonName,
+    this.status,
+    this.country,
     this.industry,
     this.size,
-    this.status,
-    this.photoUrl,
     this.address,
     this.foundedOn,
-    this.contactPersonRole,
     this.businessLicenceUrl,
     this.proofOfAddressUrl,
   });
@@ -249,8 +254,7 @@ class Session {
 
 @JsonSerializable()
 class Setting {
-  int id;
-
+  final int id;
   final String name;
   final String value;
   final String defaultValue;
@@ -266,7 +270,6 @@ class Setting {
 @JsonSerializable()
 class Ticket {
   final int id;
-
   final String openedOn;
   final String topic;
   final String openedBy;
@@ -289,16 +292,17 @@ class Ticket {
 
 @JsonSerializable()
 class Transaction {
-  final int id;
+  final String id;
   final String status;
   final String category;
-  final String amount;
+  final int amount;
   final String accountFrom;
   final String accountTo;
   final String reference;
-  final String initiatedOn;
+  final String initiatedON;
   final String deviceFrom;
   final String deviceTo;
+  final int charges;
 
   Transaction({
     this.id,
@@ -308,9 +312,10 @@ class Transaction {
     this.accountFrom,
     this.accountTo,
     this.reference,
-    this.initiatedOn,
+    this.initiatedON,
     this.deviceFrom,
     this.deviceTo,
+    this.charges,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
@@ -325,7 +330,7 @@ class User {
   final String name;
   final String email;
   final String password;
-  final String phoneNumber;
+  final String phone;
   final String preferredLanguage;
   final String photoUrl;
   final String branch;
@@ -335,40 +340,50 @@ class User {
   final String bornOn;
   final String bornAt;
   final String idUrl;
-  final String proofOfAddress;
+  final String proofOfAddressUrl;
   final String license;
   final String status;
   final String role;
   final String session;
   final String date;
+  final String authorization;
+  final String organisation;
   final String agent;
+  @JsonKey(name: 'accounts')
+  final List<Accounts> accounts;
+  final List<Receipts> receipts;
+  final List<Tickets> tickets;
 
-  User(
-      {this.branch,
-      this.bornAt,
-      this.license,
-      this.session,
-      this.date,
-      this.name,
-      this.address,
-      this.password,
-      this.city,
-      this.email,
-      this.gender,
-      this.uuid,
-      this.idUrl,
-      this.bornOn,
-      // this.registeredOn,
-      // this.organisation,
-      this.phoneNumber,
-      this.photoUrl,
-      this.preferredLanguage,
-      this.proofOfAddress,
-      this.role,
-      this.status,
-      // this.subdivision,
-      // this.authorization,
-      this.agent});
+  User({
+    this.branch,
+    this.bornAt,
+    this.license,
+    this.session,
+    this.date,
+    this.name,
+    this.address,
+    this.password,
+    this.city,
+    this.email,
+    this.gender,
+    this.uuid,
+    this.idUrl,
+    this.bornOn,
+    // this.registeredOn,
+    this.organisation,
+    this.phone,
+    this.photoUrl,
+    this.preferredLanguage,
+    this.proofOfAddressUrl,
+    this.role,
+    this.status,
+    // this.subdivision,
+    this.authorization,
+    this.agent,
+    this.accounts,
+    this.receipts,
+    this.tickets,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
@@ -389,45 +404,24 @@ class Validation {
 }
 
 @JsonSerializable()
-class LoginResponse {
+class SimpleMessageResponse {
   final String message;
-  final String error;
-  final String accessToken;
-  final int expiresIn;
-  final String refreshToken;
-  final int refreshExpiresIn;
-  final String tokenType;
-  final int notBeforePolicy;
-  final String sessionState;
-  final String scope;
 
-  LoginResponse({
-    this.error,
+  SimpleMessageResponse({
     this.message,
-    this.accessToken,
-    this.expiresIn,
-    this.refreshToken,
-    this.refreshExpiresIn,
-    this.tokenType,
-    this.notBeforePolicy,
-    this.sessionState,
-    this.scope,
   });
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponseFromJson(json);
+  factory SimpleMessageResponse.fromJson(Map<String, dynamic> json) =>
+      _$SimpleMessageResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
+  Map<String, dynamic> toJson() => _$SimpleMessageResponseToJson(this);
 }
 
 @JsonSerializable()
 class ApiException {
-  final String name;
   final String error;
-  final int code;
-  final int status;
 
-  ApiException({this.code, this.error, this.name, this.status});
+  ApiException({this.error});
 
   factory ApiException.fromJson(Map<String, dynamic> json) =>
       _$ApiExceptionFromJson(json);
@@ -436,13 +430,9 @@ class ApiException {
 
 @JsonSerializable()
 class ApiDataValidationException {
-  final int statusCode;
-  final String message;
   final String error;
 
   ApiDataValidationException({
-    this.statusCode,
-    this.message,
     this.error,
   });
 
@@ -454,3 +444,298 @@ class ApiDataValidationException {
     return error;
   }
 }
+
+// ------------------------------------------------------------------------------.------------------------ //
+@JsonSerializable()
+class UserId {
+  final int id;
+
+  UserId({this.id});
+
+  factory UserId.fromJson(Map<String, dynamic> json) => _$UserIdFromJson(json);
+
+  Map<String, dynamic> json() => _$UserIdToJson(this);
+}
+
+@JsonSerializable()
+class Location {
+  final String lat;
+  final String lon;
+
+  Location({
+    this.lat,
+    this.lon,
+  });
+
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
+
+  Map<String, dynamic> json() => _$LocationToJson(this);
+}
+
+@JsonSerializable()
+class Balance {
+  final String numberLong;
+
+  Balance({this.numberLong});
+
+  factory Balance.fromJson(dynamic json) => _$BalanceFromJson(json);
+
+  Map<String, dynamic> json() => _$BalanceToJson(this);
+}
+
+@JsonSerializable()
+class AddedOn {
+  final String $date;
+  AddedOn({
+    this.$date,
+  });
+  factory AddedOn.fromJson(Map<String, dynamic> json) =>
+      _$AddedOnFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AddedOnToJson(this);
+}
+
+@JsonSerializable()
+class CreatedOn {
+  final String date;
+
+  CreatedOn({this.date});
+
+  factory CreatedOn.fromJson(Map<String, dynamic> json) =>
+      _$CreatedOnFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CreatedOnToJson(this);
+}
+
+@JsonSerializable()
+class AssignedTo {
+  final String date;
+
+  AssignedTo({this.date});
+
+  factory AssignedTo.fromJson(Map<String, dynamic> json) =>
+      _$AssignedToFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AssignedToToJson(this);
+}
+
+@JsonSerializable()
+class Alias {
+  String name;
+  String phone;
+  String email;
+  String language;
+
+  Alias({
+    this.name,
+    this.phone,
+    this.email,
+    this.language,
+  });
+
+  factory Alias.fromJson(Map<String, dynamic> json) => _$AliasFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AliasToJson(this);
+}
+
+@JsonSerializable()
+class Devices {
+  final String id;
+  final String type;
+  final String pin;
+  final AddedOn addedOn;
+  final AddedOn assignedOn;
+  final String status;
+  final Location location;
+  final Alias alias;
+
+  Devices({
+    this.id,
+    this.type,
+    this.pin,
+    this.addedOn,
+    this.assignedOn,
+    this.status,
+    this.location,
+    this.alias,
+  });
+
+  factory Devices.fromJson(Map<String, dynamic> json) =>
+      _$DevicesFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DevicesToJson(this);
+}
+
+@JsonSerializable()
+class Accounts {
+  final String id;
+  final String number;
+  final String key;
+  final int balance;
+  final String tag;
+  final String status;
+  final String type;
+  final List<Devices> devices;
+  @JsonKey(name: 'created_on')
+  final AddedOn createdOn;
+  Accounts({
+    this.id,
+    this.balance,
+    this.number,
+    this.key,
+    this.tag,
+    this.status,
+    this.createdOn,
+    this.devices,
+    this.type,
+  });
+
+  factory Accounts.fromJson(Map<String, dynamic> json) =>
+      _$AccountsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AccountsToJson(this);
+}
+
+@JsonSerializable()
+class Amount {
+  final String numberLong;
+  Amount({
+    this.numberLong,
+  });
+
+  factory Amount.fromjson(Map<String, dynamic> json) => _$AmountFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AmountToJson(this);
+}
+
+@JsonSerializable()
+class Charges {
+  final String numberLong;
+  Charges({
+    this.numberLong,
+  });
+
+  factory Charges.fromjson(Map<String, dynamic> json) =>
+      _$ChargesFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ChargesToJson(this);
+}
+
+@JsonSerializable()
+class Receipts {
+  final String id;
+  final String title;
+  final int amount;
+  final int charges;
+
+  Receipts({
+    this.id,
+    this.title,
+    this.amount,
+    this.charges,
+  });
+
+  factory Receipts.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiptsToJson(this);
+}
+
+@JsonSerializable()
+class OpenedOn {
+  final String date;
+
+  OpenedOn({this.date});
+
+  factory OpenedOn.fromJson(Map<String, dynamic> json) =>
+      _$OpenedOnFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OpenedOnToJson(this);
+}
+
+@JsonSerializable()
+class HandledBy {
+  final String operator;
+  final AddedOn date;
+
+  HandledBy({this.operator, this.date});
+
+  factory HandledBy.fromJson(Map<String, dynamic> json) =>
+      _$HandledByFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HandledByToJson(this);
+}
+
+@JsonSerializable()
+class Tickets {
+  final String id;
+  final String status;
+  final AddedOn openedOn;
+  final String topic;
+  final List<HandledBy> handledBy;
+  final List<Messages> messages;
+
+  Tickets({
+    this.id,
+    this.status,
+    this.openedOn,
+    this.topic,
+    this.handledBy,
+    this.messages,
+  });
+
+  factory Tickets.fromJson(Map<String, dynamic> json) =>
+      _$TicketsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TicketsToJson(this);
+}
+
+@JsonSerializable()
+class Messages {
+  final String id;
+  final String sentBy;
+  final AddedOn sentOn;
+  final String body;
+
+  Messages({
+    this.id,
+    this.sentBy,
+    this.sentOn,
+    this.body,
+  });
+
+  factory Messages.fromJson(Map<String, dynamic> json) =>
+      _$MessagesFromJson(json);
+  Map<String, dynamic> toJson() => _$MessagesToJson(this);
+}
+
+// @JsonSerializable()
+// class Branche {
+//   final String name;
+//   final String city;
+//   final String country;
+//   final String code;
+//   final Location location;
+//   final Accounts account;
+//   final List<Users> users;
+//   final List<Organisation> organisations;
+//   @JsonKey(name: 'uuid')
+//   final String id;
+
+//   Branche({
+//     this.id,
+//     this.name,
+//     this.city,
+//     this.country,
+//     this.code,
+//     this.location,
+//     this.account,
+//     this.users,
+//     this.organisations,
+//   });
+
+//   factory Branche.fromJson(Map<String, dynamic> json) =>
+//       _$BrancheFromJson(json);
+//   Map<String, dynamic> toJson() => _$BrancheToJson(this);
+// }

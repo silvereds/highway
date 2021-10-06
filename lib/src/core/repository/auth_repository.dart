@@ -9,9 +9,14 @@ abstract class AuthRepository {
   Future<void> forgotPassword(String email);
 
   Future<void> resetPassword(
-      String email, String password, String agent, String nonce);
+    String email,
+    String password,
+    String passCode,
+  );
 
   Future<void> logout();
 
-  Future<void> getAuthToken(String sessionId, String agent, String nonce);
+  Future<void> getAuthToken();
+
+  Future<Organisation> getUserOrganisation();
 }

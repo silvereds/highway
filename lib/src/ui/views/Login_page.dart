@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
@@ -12,6 +13,7 @@ import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/widgets/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+// https://79029730-aa0b-4bdb-b648-fbea0fccbff5.mock.pstmn.io/branches
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -33,28 +35,17 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
 
-  var _isPasscodeVerify;
+  // var _isPasscodeVerify;
 
   void _getUserAgent() async {
     _userAgent = await SharedPrefService().getString('deviceName');
-    print(_userAgent);
-  }
-
-  // check if the passcode has been verify
-  // if [yes] then we move to the home screen
-  // else we do nothing
-  void _isPassCodeVerify() async {
-    _isPasscodeVerify = await SharedPrefService().getBool('isPasscodeVerify');
-    if (_isPasscodeVerify == true) {
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(RouteGenerator.homeScreen, (route) => false);
-    }
   }
 
   @override
   void initState() {
     super.initState();
     // _isPassCodeVerify();
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     _getUserAgent();
   }
 
@@ -82,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
               User(
                 email: _email.trim(),
                 password: _password.trim(),
-                phoneNumber: _phoneNumber.trim(),
+                phone: _phoneNumber.trim(),
                 agent: _userAgent,
               ),
             )
@@ -90,6 +81,7 @@ class _LoginPageState extends State<LoginPage> {
           setState(() {
             _isLoading = false;
           });
+
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
@@ -106,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                       arguments: User(
                         email: _email.trim(),
                         password: _password.trim(),
-                        phoneNumber: _phoneNumber.trim(),
+                        phone: _phoneNumber.trim(),
                         agent: _userAgent,
                       ),
                     );
@@ -166,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/widgets/widgets.dart';
@@ -14,7 +16,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   // _site is the variable that recieves registerOption and keeps
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final _emailController = TextEditingController();
   String _email = '';
@@ -37,23 +39,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           setState(() {
             _isLoading = false;
           });
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: Text(
-                  'A reset password link has been send to your email or phone number.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    _emailController.clear();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pushNamed(RouteGenerator.loginPage);
-                  },
-                  child: Text('OK'),
-                )
-              ],
-            ),
-          );
+          Navigator.of(context).pushNamed(RouteGenerator.resetPasswordScreen,
+              arguments: _email.trim());
         });
       } catch (e) {
         setState(() {
@@ -61,7 +48,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         });
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-            e.toString(),
+            parseApiError(e),
             style: TextStyle(
               color: Colors.white,
               fontSize: 14,
@@ -77,6 +64,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   void dispose() {
     _emailController.dispose();
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     super.dispose();
   }
 

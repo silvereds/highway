@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/core/common/screens_arguments.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 
 import 'components/accounts_card_with_text.dart';
-import 'components/accounts_status.dart';
 
 class AccountsView extends StatefulWidget {
   @override
@@ -20,35 +22,39 @@ class _AccountsViewState extends State<AccountsView> {
   };
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF5F6F8),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 55),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(6),
-            boxShadow: [
-              BoxShadow(
-                color: Color(
-                  0x23000000,
-                ),
-                offset: Offset(0, 1),
-                blurRadius: 4,
+    return SingleChildScrollView(
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 55),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: [
+            BoxShadow(
+              color: Color(
+                0x23000000,
               ),
-            ],
-          ),
-          child: Stack(
-            alignment: AlignmentDirectional.centerEnd,
-            clipBehavior: Clip.none,
-            children: [
-              Column(
-                children: [
-                  const SizedBox(height: 20),
-                  const Text(
-                    "All Accounts",
+              offset: const Offset(0, 1),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    'All accounts',
                     style: TextStyle(
                       color: Color(
                         0xFF3C4858,
@@ -58,176 +64,89 @@ class _AccountsViewState extends State<AccountsView> {
                       fontFamily: "Poppins",
                     ),
                   ),
-
-                  const Divider(
-                    color: Color(
-                      0xFFD2D2D2,
-                    ),
-                    indent: 5,
-                    endIndent: 5,
+                ),
+                const Divider(
+                  color: Color(
+                    0xFFD2D2D2,
                   ),
+                  indent: 5,
+                  endIndent: 5,
+                ),
+                const SizedBox(height: 15),
+                Consumer(
+                  builder: (context, watch, __) {
+                    final userDetail =
+                        watch(UserDetailProvider.userDetailProvider);
 
-                  const SizedBox(height: 15),
-
-                  AccountsCard(
-                    press: () {
-                      Navigator.pushNamed(
-                          context, AppRoutes.accoutsDetailsView);
-                    },
-                    text: "DEFAULT",
-                    amount: 'FCFA 24,00',
-                    accountNumber: 'CMR12344459876-0',
-                    alias: 'Jane Doe',
-                    type: ' - personal',
-                  ),
-                  const SizedBox(height: 15),
-                  const Divider(thickness: 1),
-                  const SizedBox(height: 8),
-                  // We will need way to extract accouts card for this widget but
-                  // considering the amounts collor and status because they have different collors
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AccountStatus(
-                          status: "Blocked",
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "CMR12344459876-02",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Jane Doe ',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 14,
-                                          color: const Color(0xFF000000),
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: '-  Business',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF333333),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                    return userDetail.when(
+                      data: (user) {
+                        print(user.toJson());
+                        if (user.accounts.isEmpty) {
+                          return Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: const Text('You have no account.'),
                             ),
-                            const SizedBox(width: 15),
-                            Text(
-                              "FCFA  -900",
-                              style: TextStyle(
-                                color: Color(
-                                  0xFFF44336,
+                          );
+                        }
+                        return ListView.separated(
+                          physics: NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.only(bottom: 16),
+                          itemCount: user.accounts.length,
+                          shrinkWrap: true,
+                          separatorBuilder: (context, i) => Container(
+                            height: .75,
+                            width: double.infinity,
+                            color: Colors.grey,
+                          ),
+                          itemBuilder: (context, i) => AccountsCard(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.accoutsDetailsView,
+                                arguments: AccountViewDetailArguments(
+                                  accounts: user.accounts[i],
+                                  accountName: user.name,
                                 ),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "Roboto",
+                              );
+                            },
+                            status: user.accounts[i].status,
+                            text: "",
+                            balance: user.accounts[i].balance.toString(),
+                            accountNumber: user.accounts[i].number,
+                            alias: user.accounts[i].tag,
+                            type: ' - ${user.accounts[i].type}',
+                          ),
+                        );
+                      },
+                      loading: () => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      error: (err, stack) => Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(err),
+                              const SizedBox(height: 4),
+                              ElevatedButton(
+                                onPressed: () async => await context
+                                    .read(AuthProvider.authProvider)
+                                    .getUserInfo(),
+                                child: Text('Try Again'),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  const Divider(),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AccountStatus(
-                          status: "Active",
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "CMR12344459876-03",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Jane Doe ',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14,
-                                            color: Color(0xFF000000),
-                                            fontFamily: 'Poppins'),
-                                      ),
-                                      TextSpan(
-                                        text: '-  Others',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF333333),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 15),
-                            Text(
-                              "FCFA  3,700",
-                              style: TextStyle(
-                                color: Color(
-                                  0xFF27AE60,
-                                ),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "Roboto",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const Divider(),
-                ],
-              ),
-              _AccountBoxIcon(),
-            ],
-          ),
+                      ),
+                    );
+                  },
+                )
+              ],
+            ),
+            _AccountBoxIcon(),
+          ],
         ),
       ),
     );
@@ -265,7 +184,7 @@ class _AccountBoxIcon extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Icon(
+          child: const Icon(
             Icons.person_outline_outlined,
             color: Colors.white,
           ),

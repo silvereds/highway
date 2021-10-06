@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
-import 'package:mobile/src/core/providers/auth_provider.dart';
-import 'package:mobile/src/core/services/services.dart';
-import 'package:mobile/src/routes.dart';
-import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 
 class NavDrawer extends StatefulWidget {
   @override
@@ -18,10 +15,7 @@ class _NavDrawerState extends State<NavDrawer> {
     try {
       await context.read(AuthProvider.authProvider).logout().then(
         (_) {
-          SharedPrefService().saveBool('isPasscodeVerify', false);
           Navigator.of(context).pop();
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              RouteGenerator.loginPage, (route) => false);
         },
       );
     } catch (e) {
