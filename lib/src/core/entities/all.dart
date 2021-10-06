@@ -170,25 +170,32 @@ class Notification {
 
 @JsonSerializable()
 class Organisation {
-  final String id;
-  final String contact;
+  final String contactPersonName;
+  final String city;
   final String name;
   final String industry;
   final String size;
-  final String logoUrl;
+  final String photoUrl;
   final String address;
-  final String city;
-  final AddedOn foundedOn;
+  final String foundedOn;
   final String businessLicenceUrl;
   final String proofOfAddressUrl;
+  final String phone;
+  final String email;
   final String country;
-
+  final String status;
+  final String branch;
+  final String id;
   Organisation({
     this.id,
     this.name,
-    this.contact,
-    this.logoUrl,
+    this.photoUrl,
+    this.phone,
+    this.branch,
     this.city,
+    this.email,
+    this.contactPersonName,
+    this.status,
     this.country,
     this.industry,
     this.size,

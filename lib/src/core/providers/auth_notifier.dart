@@ -2,7 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile/src/core/api/http_client.dart';
 import 'package:mobile/src/core/api/json_parsers/json_parser.dart';
+import 'package:mobile/src/core/api/json_parsers/organisation/organisation_parser.dart';
 import 'package:mobile/src/core/api/json_parsers/reponse_parser.dart';
+import 'package:mobile/src/core/common/shared_prefs_constants.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/auth_repository.dart';
 import 'package:mobile/src/core/services/services.dart';
@@ -30,8 +32,8 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
   AuthNotifier(this._prefService) : super(const AuthState.initial());
 
   static const _userKey = 'userInfo';
-  static const _token = 'token';
   User _user;
+  Organisation _organisation;
 
   /// Check user status
   Future<void> checkAndUpdateStatus() async {
@@ -63,13 +65,34 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
       final response = await RequestREST(
         endpoint: '/auth/login',
         data: user.toJson(),
-      ).executePost<SimpleMessageResponse>(LoginResponseParser());
+      ).executePost<SimpleMessageResponse>(const LoginResponseParser());
 
       print(response.toJson());
 
       state = AuthState.login();
     } catch (e) {
       throw e;
+    }
+  }
+
+// Get user organisation
+  @override
+  Future<Organisation> getUserOrganisation() async {
+    try {
+      final mapData = await _prefService?.getObject(_userKey) ?? '';
+      final user = User.fromJson(mapData);
+      if (user != null) {
+        final response = await RequestREST(
+          endpoint:
+              '/branches/${user.branch}/organisations/${user.organisation}',
+        ).executeGet<Organisation>(const OrganisationParser());
+        _organisation = response;
+        print(response);
+      }
+
+      return _organisation;
+    } catch (e) {
+      throw (e);
     }
   }
 
@@ -95,7 +118,7 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
 
       _prefService.saveString('sessionId', response.session);
       _user = response;
-      _prefService.saveObject(_userKey, _user.toJson());
+      _prefService.saveObject(_userKey, response.toJson());
       state = AuthState.authenticated();
     } catch (e) {
       throw e;
@@ -180,12 +203,13 @@ class AuthNotifier extends StateNotifier<AuthState> implements AuthRepository {
       final response = await RequestREST(
         endpoint: '/auth/session/${user.session}',
         data: {
-          'session': user.session ?? '',
+          'session': user?.session ?? '',
           'agent':
-              await SharedPrefService().getString('deviceName') ?? 'mobile',
+              await SharedPrefService()?.getString('deviceName') ?? 'mobile',
         },
       ).executePost<User>(UserParser());
-      _prefService.saveString(_token, response.authorization);
+      _prefService.saveString(
+          PreferencesConstants.API_TOKEN, response.authorization);
       print('Token: ' + response.authorization);
     } catch (e) {
       throw e;

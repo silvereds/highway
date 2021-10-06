@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:mobile/src/core/common/logging.dart';
+import 'package:mobile/src/core/common/shared_prefs_constants.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 
 import 'json_parsers/json_parser.dart';
@@ -36,7 +37,9 @@ class RequestREST {
         receiveTimeout: 5000, // 30 seconds
         headers: {
           'content-Type': 'application/json; charset=UTF-8',
-          'Authorization': await SharedPrefService().getString('token') ?? '',
+          'Authorization': await SharedPrefService()
+                  ?.getString(PreferencesConstants.API_TOKEN) ??
+              '',
           // 'User-Agent': SharedPrefService().getString('deviceName') ?? '',
         },
       ),

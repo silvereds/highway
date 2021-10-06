@@ -45,6 +45,7 @@ class RouteGenerator {
   static const changePasswordScreen = '/changePasswordScreen';
   static const notificationScreen = '/notificationScreen';
   static const resetPasswordVerifyPasscode = '/resetPasswordVerifyPasscode';
+  static const companyProfile = '/companyProfile';
 
   RouteGenerator._();
 
@@ -54,10 +55,10 @@ class RouteGenerator {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Error'),
+          title: const Text('Error'),
         ),
         body: Center(
-          child: Text('ERROR'),
+          child: const Text('ERROR'),
         ),
       );
     });
@@ -73,6 +74,12 @@ class RouteGenerator {
       case registerPage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => RegisterPage(),
+        );
+      case companyProfile:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => CompanyProfileView(
+            organisation: args as Organisation,
+          ),
         );
       case loginPage:
         return MaterialPageRoute<dynamic>(

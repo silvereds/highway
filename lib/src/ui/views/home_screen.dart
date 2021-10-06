@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:mobile/src/core/common/shared_prefs_constants.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
@@ -28,7 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   void _getJwtToken() async {
-    if ((await SharedPrefService().getString('deviceName')) == null) {
+    if ((await SharedPrefService().getString(PreferencesConstants.API_TOKEN)) ==
+        null) {
       await context.read(AuthProvider.authProvider).getAuthToken();
     }
   }

@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
-import 'package:mobile/src/core/providers/branch_notifier.dart';
-import 'package:mobile/src/core/repository/branch_repository.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +24,12 @@ abstract class UserDetailProvider {
     },
   );
 } // User detail information provider
+
+final organisationProvider = FutureProvider<Organisation>((ref) async {
+  final authProvider = ref.watch(AuthProvider.authProvider);
+  final organisation = await authProvider.getUserOrganisation();
+  return organisation;
+});
 
 final userAgentServiceProvider = Provider<UserAgentService>((ref) {
   return UserAgentService();

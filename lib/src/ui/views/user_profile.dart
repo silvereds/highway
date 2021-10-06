@@ -14,6 +14,11 @@ class UserProfile extends StatefulWidget {
 
 class _UserProfileState extends State<UserProfile> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),
@@ -42,11 +47,9 @@ class _UserProfileState extends State<UserProfile> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              setState(() {});
-                            },
+                            onTap: () async {},
                             child: Container(
-                              margin: EdgeInsets.all(20),
+                              margin: const EdgeInsets.all(20),
                               width: 120.0,
                               height: 121.0,
                               decoration: BoxDecoration(
@@ -103,27 +106,52 @@ class _UserProfileState extends State<UserProfile> {
                               Text(
                                 user.phone,
                                 style: const TextStyle(
-                                    color: Color(0xFF192A3E),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              GestureDetector(
-                                onTap: () => Navigator.pushNamed(
-                                    context, '/companyProfile'),
-                                child: RichText(
-                                  text: TextSpan(
-                                    style: TextStyle(
-                                        color: Color(0xFF109CF1),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400),
-                                    children: [
-                                      TextSpan(text: user?.organisation ?? ''),
-                                    ],
-                                  ),
+                                  color: Color(0xFF192A3E),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
                                 ),
+                              ),
+                              const SizedBox(height: 10),
+                              Consumer(
+                                builder: (context, watch, _) {
+                                  final userOrganisation =
+                                      watch(organisationProvider);
+
+                                  return userOrganisation.when(
+                                    data: (organisation) => GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).pushNamed(
+                                          RouteGenerator.companyProfile,
+                                          arguments: organisation,
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Text(
+                                          organisation?.industry ?? '--',
+                                          style: const TextStyle(
+                                            color: Color(0xFF109CF1),
+                                            fontSize: 14,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    loading: () => Center(
+                                      child: const SizedBox(
+                                        child: CircularProgressIndicator(),
+                                        width: 25,
+                                        height: 25,
+                                      ),
+                                    ),
+                                    error: (err, stackTrace) => Center(
+                                      child: Text(
+                                        err.toString(),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),

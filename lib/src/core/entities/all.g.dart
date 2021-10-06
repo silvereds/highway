@@ -155,16 +155,18 @@ Organisation _$OrganisationFromJson(Map<String, dynamic> json) {
   return Organisation(
     id: json['id'] as String,
     name: json['name'] as String,
-    contact: json['contact'] as String,
-    logoUrl: json['logoUrl'] as String,
+    photoUrl: json['photoUrl'] as String,
+    phone: json['phone'] as String,
+    branch: json['branch'] as String,
     city: json['city'] as String,
+    email: json['email'] as String,
+    contactPersonName: json['contactPersonName'] as String,
+    status: json['status'] as String,
     country: json['country'] as String,
     industry: json['industry'] as String,
     size: json['size'] as String,
     address: json['address'] as String,
-    foundedOn: json['foundedOn'] == null
-        ? null
-        : AddedOn.fromJson(json['foundedOn'] as Map<String, dynamic>),
+    foundedOn: json['foundedOn'] as String,
     businessLicenceUrl: json['businessLicenceUrl'] as String,
     proofOfAddressUrl: json['proofOfAddressUrl'] as String,
   );
@@ -172,18 +174,22 @@ Organisation _$OrganisationFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$OrganisationToJson(Organisation instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'contact': instance.contact,
+      'contactPersonName': instance.contactPersonName,
+      'city': instance.city,
       'name': instance.name,
       'industry': instance.industry,
       'size': instance.size,
-      'logoUrl': instance.logoUrl,
+      'photoUrl': instance.photoUrl,
       'address': instance.address,
-      'city': instance.city,
       'foundedOn': instance.foundedOn,
       'businessLicenceUrl': instance.businessLicenceUrl,
       'proofOfAddressUrl': instance.proofOfAddressUrl,
+      'phone': instance.phone,
+      'email': instance.email,
       'country': instance.country,
+      'status': instance.status,
+      'branch': instance.branch,
+      'id': instance.id,
     };
 
 Payment _$PaymentFromJson(Map<String, dynamic> json) {
