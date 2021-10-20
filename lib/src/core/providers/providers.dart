@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
+import 'package:mobile/src/core/providers/devices_notifier.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,3 +47,13 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
 //     ref.watch(brancheRepository),
 //   ),
 // );
+
+/// *********************** Devices Providers ********************** */
+
+final devicesServiceProvider = Provider<DevicesServices>((ref) {
+  return DevicesServices();
+});
+
+final devicesNotifierProvider = StateNotifierProvider<DevicesNotifier>((ref) {
+  return DevicesNotifier(ref.watch(devicesServiceProvider));
+});
