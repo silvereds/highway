@@ -349,7 +349,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                       },
                     ),
                   ],
-                )
+                ),
+                const SizedBox(height: 16),
               ],
             ),
           ),

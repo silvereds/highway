@@ -3,8 +3,6 @@ import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
-import 'dashboard/dashboard.dart';
-
 class CompanyProfileView extends StatefulWidget {
   final Organisation organisation;
   const CompanyProfileView({this.organisation});
@@ -129,19 +127,17 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                           fontSize: 14,
                         )),
                     const SizedBox(height: 10),
-                    Text('Founded on',
+                    const Text('Founded on',
                         style: TextStyle(
                           color: Color(0xFF818E9B),
                           fontSize: 14,
                         )),
                     Text(widget.organisation?.foundedOn ?? '--',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFF192A3E),
                           fontSize: 14,
                         )),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text('Contact person',
                         style: TextStyle(
                           color: Color(0xFF818E9B),
@@ -159,9 +155,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                                 decoration: TextDecoration.underline,
                               )),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text('Contact Role',
                         style: TextStyle(
                           color: Color(0xFF818E9B),
@@ -174,9 +168,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                         fontSize: 14,
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
                 const Divider(
@@ -185,9 +177,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                   endIndent: 50,
                   thickness: 1,
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
+                const SizedBox(height: 40),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -195,7 +185,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       padding: const EdgeInsets.only(left: 16),
                       child: const Text(
                         'Documents',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFF4CAF50),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -207,18 +197,18 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
+                        const Text(
                           'National Identity card',
                           style: TextStyle(
                             color: Color(0xFF2ED47A),
                             fontSize: 14,
                           ),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.done_outline_rounded,
                           color: Color(0xFF2ED47A),
                         ),
-                        Text(
+                        const Text(
                           'Submited',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
@@ -230,7 +220,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
+                        const Text(
                           'Proof of address',
                           style: TextStyle(
                             color: Color(0xFFF7685B),
@@ -241,7 +231,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                           Icons.clear,
                           color: Color(0xFFF7685B),
                         ),
-                        Text(
+                        const Text(
                           'Submited',
                           style: TextStyle(
                             color: Color(0xFF818E9B),
@@ -252,9 +242,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
@@ -264,7 +252,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       elevation: 5,
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Text(
+                        child: const Text(
                           'Please contact support if any of these details are not correct or need to be updated',
                           textAlign: TextAlign.start,
                           style:
@@ -288,14 +276,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                           'Close',
                           style: TextStyle(fontSize: 13),
                         ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DashBoard()),
-                          );
-                        },
+                        onPressed: () => Navigator.of(context).pop(),
                         color: const Color(0xFF4EB181),
                         textColor: const Color(0xFFFFFFFF),
                         height: 33,
