@@ -40,6 +40,9 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError();
 });
 
+final sharedPreferencesServicesProvider =
+    Provider<SharedPrefService>((ref) => SharedPrefService());
+
 // final brancheRepository = Provider((ref) => BrancheRepository());
 
 // final brancheNotifier = StateNotifierProvider<BrancheNotifier>(
@@ -51,7 +54,7 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
 /// *********************** Devices Providers ********************** */
 
 final devicesServiceProvider = Provider<DevicesServices>((ref) {
-  return DevicesServices();
+  return DevicesServices(ref.watch(sharedPreferencesServicesProvider));
 });
 
 final devicesNotifierProvider = StateNotifierProvider<DevicesNotifier>((ref) {

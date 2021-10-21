@@ -31,9 +31,7 @@ class DeviceCard extends StatelessWidget {
                           TextSpan(
                             text: accountId,
                             style: TextStyle(
-                              color: Color(
-                                0xff99a6b7,
-                              ),
+                              color: Color(0xff99a6b7),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               fontFamily: "Poppins",
@@ -42,9 +40,7 @@ class DeviceCard extends StatelessWidget {
                           TextSpan(
                             text: assignedTo,
                             style: TextStyle(
-                              color: Color(
-                                0xff99a6b7,
-                              ),
+                              color: Color(0xff99a6b7),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               fontFamily: "Poppins",
@@ -61,14 +57,11 @@ class DeviceCard extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        color: status == 'active'
-                            ? Color(
-                                0xff4eb181,
-                              )
-                            : Color(
-                                0xffE53935,
-                              ),
-                        borderRadius: BorderRadius.circular(4)),
+                      color: status == 'active'
+                          ? Color(0xff4eb181)
+                          : Color(0xffE53935),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                     height: 12,
                     width: 73,
                     child: Center(
@@ -89,9 +82,7 @@ class DeviceCard extends StatelessWidget {
                       child: Text(
                         deviceType,
                         style: TextStyle(
-                          color: Color(
-                            0xff334d6e,
-                          ),
+                          color: Color(0xff334d6e),
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           fontFamily: "Poppins",
