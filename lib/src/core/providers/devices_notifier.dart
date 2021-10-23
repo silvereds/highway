@@ -14,19 +14,24 @@ class DevicesServices implements DevicesRepository {
   SharedPrefService _prefService;
   static const _userKey = 'userInfo';
 
-  List<Devices> _devices = [];
   DevicesServices(this._prefService);
   @override
   Future<List<Devices>> getAllDevices() async {
+  List<Devices> _devices = [];
+
     try {
       final mapData = await _prefService.getObject(_userKey) ?? '';
       final user = User.fromJson(mapData);
       if (user != null) {
         final List<Accounts> accounts = user.accounts;
 
-        for (int i = 0; i < accounts.length; i++) {
-          _devices = [...accounts[i].devices];
+        for (Accounts account in accounts) {
+          _devices = List.from(_devices)..addAll(account.devices);
         }
+
+        // for (int i = 0; i < accounts.length; i++) {
+        //   _devices = [...accounts[i].devices];
+        // }
       }
       return _devices;
     } catch (e) {

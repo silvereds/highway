@@ -29,7 +29,7 @@ class AccountsCard extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

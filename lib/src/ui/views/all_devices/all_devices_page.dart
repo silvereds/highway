@@ -139,13 +139,22 @@ class _BodyState extends State<Body> {
                               );
                             }
                             return Expanded(
-                              child: ListView.builder(
-                                itemCount: devices.length,
-                                itemBuilder: (context, i) => DeviceCard(
-                                  assignedTo: 'John Doe',
-                                  status: devices[i]?.status ?? '--',
-                                  deviceType: devices[i]?.type ?? '--',
-                                  accountId: devices[i]?.id ?? '--',
+                              child: RefreshIndicator(
+                                onRefresh: () async {
+                                  await context
+                                      .read(devicesNotifierProvider)
+                                      .getListOfDevices();
+                                },
+                                child: Scrollbar(
+                                  child: ListView.builder(
+                                    itemCount: devices.length,
+                                    itemBuilder: (context, i) => DeviceCard(
+                                      assignedTo: 'John Doe',
+                                      status: devices[i]?.status ?? '--',
+                                      deviceType: devices[i]?.alias ?? '--',
+                                      accountId: devices[i]?.id ?? '--',
+                                    ),
+                                  ),
                                 ),
                               ),
                             );
