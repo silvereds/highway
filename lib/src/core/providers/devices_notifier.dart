@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/devices_repository.dart';
 import 'package:mobile/src/core/services/services.dart';
@@ -17,7 +16,7 @@ class DevicesServices implements DevicesRepository {
   DevicesServices(this._prefService);
   @override
   Future<List<Devices>> getAllDevices() async {
-  List<Devices> _devices = [];
+    List<Devices> _devices = [];
 
     try {
       final mapData = await _prefService.getObject(_userKey) ?? '';
@@ -60,7 +59,7 @@ class DevicesNotifier extends StateNotifier<DevicesState> {
 
   Future<void> getListOfDevices() async {
     try {
-      state = DevicesState.intial();
+      state = DevicesState.loadInProgress();
       final _listOfDevices = await _devicesServices.getAllDevices();
       state = DevicesState.loadInSuccess(_listOfDevices);
     } catch (e) {

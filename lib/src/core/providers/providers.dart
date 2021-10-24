@@ -6,6 +6,8 @@ import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'linked_accounts_to_device_notifier.dart';
+
 final sharedPrefsProvider = Provider((ref) => SharedPrefService());
 
 abstract class AuthProvider {
@@ -59,4 +61,14 @@ final devicesServiceProvider = Provider<DevicesServices>((ref) {
 
 final devicesNotifierProvider = StateNotifierProvider<DevicesNotifier>((ref) {
   return DevicesNotifier(ref.watch(devicesServiceProvider));
+});
+
+
+final linkedAccountToDeviceProvider = Provider<LinkedAccountToDevicesInfrastructure>((ref) {
+  return LinkedAccountToDevicesInfrastructure(ref.watch(sharedPreferencesServicesProvider));
+});
+
+final linkedAccountToDevicesNotifer =
+    StateNotifierProvider<LinkedAccountsToDeviceNotifier>((ref) {
+  return LinkedAccountsToDeviceNotifier(ref.watch(linkedAccountToDeviceProvider));
 });

@@ -25,7 +25,7 @@ class RouteGenerator {
   static const rechargeAccountpage = '/rechargeAccountPage';
   static const changeAlias = '/changeAliasPage';
   static const alldevicesPage = '/alldevicesPage';
-  static const deviceDetailsPage = '/deviceDetailsPage';
+
   static const changeDevicePage = '/changeDevicePage';
   static const blockDevicePage = '/blockDevicePage';
   static const changePinPage = '/changePinPage';
@@ -46,6 +46,7 @@ class RouteGenerator {
   static const notificationScreen = '/notificationScreen';
   static const resetPasswordVerifyPasscode = '/resetPasswordVerifyPasscode';
   static const companyProfile = '/companyProfile';
+  static const devicesDetailScreen = '/devicesDetailScreen';
 
   RouteGenerator._();
 
@@ -84,6 +85,10 @@ class RouteGenerator {
       case loginPage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => LoginPage(),
+        );
+      case devicesDetailScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => DeviceDetailsPage(devices: args as Devices,),
         );
       case forgotPasswordScreen:
         return MaterialPageRoute<dynamic>(
@@ -131,8 +136,6 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => ChangeAliasView(),
         );
-      case deviceDetailsPage:
-        return MaterialPageRoute(builder: (_) => DeviceDetailsPage());
 
       case changeDevicePage:
         return MaterialPageRoute<dynamic>(

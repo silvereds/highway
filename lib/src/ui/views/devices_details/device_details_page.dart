@@ -1,54 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/core/entities/all.dart';
+import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
-
-import 'components/LinkedDevices.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/ui/views/all_accounts_view/components/accounts_card_with_text.dart';
 import 'components/button_alias_history.dart';
-import 'components/linked_devices_lable.dart';
 
 class DeviceDetailsPage extends StatefulWidget {
+  final Devices devices;
+
+  const DeviceDetailsPage({Key key, this.devices}) : super(key: key);
   @override
   _DeviceDetailsPageState createState() => _DeviceDetailsPageState();
 }
 
 class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
   @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() => context
+        .read(linkedAccountToDevicesNotifer)
+        .getAccountLinkedToDevices(widget.devices));
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // final dates = widget.devices.returnedOn.$date;
+    // final createOn = DateTime.parse(dates).toString();
     return Scaffold(
       drawer: NavDrawer(),
-      backgroundColor: Color(0xFFF5F6F8),
+      backgroundColor: const Color(0xFFF5F6F8),
       appBar: AppBarView(),
-      //bottomNavigationBar: BottomNavigationBarView(),
       body: SingleChildScrollView(
         child: Container(
-            margin: EdgeInsets.fromLTRB(10, 35, 10, 15),
+            margin: const EdgeInsets.fromLTRB(10, 35, 10, 15),
             width: double.infinity,
             height: 800,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(
-                6,
-              ),
+              borderRadius: BorderRadius.circular(6),
               boxShadow: [
                 BoxShadow(
                   color: Color(
                     0x23000000,
                   ),
                   blurRadius: 4,
-                  offset: Offset(
-                    0,
-                    1,
-                  ),
+                  offset: Offset(0, 1),
                 ),
               ],
             ),
             child: Column(
               children: [
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
@@ -61,26 +67,24 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.keyboard_arrow_left_outlined),
-                              color: Color(0xFFFFFFFF),
+                              icon: const Icon(
+                                  Icons.keyboard_arrow_left_outlined),
+                              color: const Color(0xFFFFFFFF),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
                             ),
-                            Text("Back",
-                                style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
-                                    // fontSize: 14,
-                                    fontFamily: 'Poppins'))
+                            Text(
+                              "Back",
+                              style: const TextStyle(
+                                  color: Color(0xFFFFFFFF),
+                                  fontFamily: 'Poppins'),
+                            )
                           ],
                         ),
                         decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            3,
-                          ),
+                          color: const Color(0xff4eb181),
+                          borderRadius: BorderRadius.circular(3),
                         ),
                       ),
                       Container(
@@ -90,24 +94,22 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.print),
+                              icon: const Icon(Icons.print),
                               color: Color(0xFFFFFFFF),
                               onPressed: () {},
                             ),
-                            Text("Print",
-                                style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
-                                    // fontSize: 14,
-                                    fontFamily: 'Poppins'))
+                            Text(
+                              "Print",
+                              style: TextStyle(
+                                color: const Color(0xFFFFFFFF),
+                                fontFamily: 'Poppins',
+                              ),
+                            )
                           ],
                         ),
                         decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            3,
-                          ),
+                          color: const Color(0xff4eb181),
+                          borderRadius: BorderRadius.circular(3),
                         ),
                       ),
                     ],
@@ -123,13 +125,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Color(
-                            0x23000000,
-                          ),
-                          offset: Offset(
-                            0,
-                            1,
-                          ),
+                          color: Color(0x23000000),
+                          offset: Offset(0, 1),
                           blurRadius: 4,
                         ),
                       ],
@@ -158,7 +155,9 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: 'RF00987',
+                                        text: widget.devices.id
+                                                ?.substring(0, 9) ??
+                                            '--',
                                         style: TextStyle(
                                           color: Color(
                                             0xff192a3e,
@@ -220,11 +219,9 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: ' 0890',
+                                        text: ' ${widget.devices.pin}' ?? '--',
                                         style: TextStyle(
-                                          color: Color(
-                                            0xff192a3e,
-                                          ),
+                                          color: Color(0xff192a3e),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,
                                           fontFamily: "Poppins",
@@ -237,9 +234,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -347,9 +342,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(
-                                      0x234caf50,
-                                    ),
+                                    color: Color(0x234caf50),
                                     offset: Offset(
                                       0,
                                       2,
@@ -357,24 +350,14 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                     blurRadius: 4,
                                   ),
                                   BoxShadow(
-                                    color: Color(
-                                      0x334caf50,
-                                    ),
-                                    offset: Offset(
-                                      0,
-                                      3,
-                                    ),
+                                    color: Color(0x334caf50),
+                                    offset: Offset(0, 3),
                                     blurRadius: 1,
                                     spreadRadius: -2,
                                   ),
                                   BoxShadow(
-                                    color: Color(
-                                      0x1e4caf50,
-                                    ),
-                                    offset: Offset(
-                                      0,
-                                      1,
-                                    ),
+                                    color: Color(0x1e4caf50),
+                                    offset: Offset(0, 1),
                                     blurRadius: 5,
                                   ),
                                 ],
@@ -449,9 +432,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                         ),
                       ],
                     )),
-                SizedBox(
-                  height: 8,
-                ),
+                SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
@@ -479,12 +460,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             begin: Alignment.topRight,
                             end: Alignment.bottomLeft,
                             colors: [
-                              Color(
-                                0xff00cdac,
-                              ),
-                              Color(
-                                0xff4eb181,
-                              ),
+                              Color(0xff00cdac),
+                              Color(0xff4eb181),
                             ],
                             stops: [
                               0,
@@ -511,9 +488,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             Text(
                               "Linked Account",
                               style: TextStyle(
-                                color: Color(
-                                  0xff3c4858,
-                                ),
+                                color: Color(0xff3c4858),
                                 fontSize: 18,
                                 fontWeight: FontWeight.w300,
                                 fontFamily: "Roboto",
@@ -526,22 +501,67 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                   ),
                 ),
                 SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: LinkedDevicesLable(
-                      accountNumber: 'Account Number', name: 'Account'),
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                Column(
-                  children: List.generate(5, (index) {
-                    return LinkedDevices(
-                      accountName: 'Jane Doe',
-                      accountNumber: 'CMR123456784-01',
-                    );
-                  }),
-                ),
+                Consumer(builder: (context, watch, __) {
+                  final deviceState =
+                      watch(linkedAccountToDevicesNotifer.state);
+
+                  return deviceState.when(
+                    intial: () => Container(),
+                    loadInProgress: () => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    loadInSuccess: (data) {
+                      if (data.isEmpty) {
+                        return Center(child: Text('No Linked Account'));
+                      }
+                      return Expanded(
+                        child: ListView.builder(
+                          itemCount: 4,
+                          itemBuilder: (context, i) => ListView.separated(
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.only(bottom: 16),
+                            itemCount: data.length,
+                            shrinkWrap: true,
+                            separatorBuilder: (context, i) => Container(
+                              height: .75,
+                              width: double.infinity,
+                              color: Colors.grey,
+                            ),
+                            itemBuilder: (context, i) => AccountsCard(
+                              onPressed: () {},
+                              status: data[i].status,
+                              text: "",
+                              balance: data[i].balance.toString(),
+                              accountNumber: data[i].number,
+                              alias: data[i].tag,
+                              type: ' - ${data[i].type}',
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    loadFailure: (message) => Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(message),
+                            TextButton(
+                              onPressed: () async {
+                                await context
+                                    .read(linkedAccountToDevicesNotifer)
+                                    .getAccountLinkedToDevices(widget.devices);
+                              },
+                              child: const Text('Try again'),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
                 SizedBox(
                   height: 10,
                 ),

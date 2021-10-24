@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/providers.dart';
-
-import 'components/device_card.dart';
+import 'package:mobile/src/routes.dart';
+import 'package:mobile/src/ui/views/all_accounts_view/components/accounts_status.dart';
 
 class AllDevicesPage extends StatefulWidget {
   @override
@@ -127,8 +127,10 @@ class _BodyState extends State<Body> {
                         final devicesState =
                             watch(devicesNotifierProvider.state);
 
-                        return devicesState.when(
-                          intial: () => Container(),
+                        return devicesState.maybeWhen(
+                          orElse: () => Center(
+                            child: CircularProgressIndicator(),
+                          ),
                           loadInProgress: () => Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -148,11 +150,18 @@ class _BodyState extends State<Body> {
                                 child: Scrollbar(
                                   child: ListView.builder(
                                     itemCount: devices.length,
-                                    itemBuilder: (context, i) => DeviceCard(
-                                      assignedTo: 'John Doe',
-                                      status: devices[i]?.status ?? '--',
-                                      deviceType: devices[i]?.alias ?? '--',
-                                      accountId: devices[i]?.id ?? '--',
+                                    itemBuilder: (context, i) => ListTile(
+                                      onTap: () {
+                                        Navigator.of(context).pushNamed(
+                                          RouteGenerator.devicesDetailScreen,
+                                          arguments: devices[i],
+                                        );
+                                      },
+                                      title: Text('John Doe'),
+                                      subtitle: Text('${devices[i]?.pin}'),
+                                      trailing: AccountStatus(
+                                        status: '${devices[i]?.status ?? '--'}',
+                                      ),
                                     ),
                                   ),
                                 ),
