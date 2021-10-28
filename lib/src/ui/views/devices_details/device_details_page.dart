@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/views/all_accounts_view/components/accounts_card_with_text.dart';
 import 'components/button_alias_history.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DeviceDetailsPage extends StatefulWidget {
   final Devices devices;
@@ -60,57 +63,19 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 42,
-                        width: 99,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              icon: const Icon(
-                                  Icons.keyboard_arrow_left_outlined),
-                              color: const Color(0xFFFFFFFF),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            Text(
-                              "Back",
-                              style: const TextStyle(
-                                  color: Color(0xFFFFFFFF),
-                                  fontFamily: 'Poppins'),
-                            )
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xff4eb181),
-                          borderRadius: BorderRadius.circular(3),
-                        ),
+                      ButtonPrint(
+                        text: AppLocalizations.of(context).bntBackText,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        color: ThemeColors.RegisterC,
+                        icon: Icons.arrow_back_ios,
                       ),
-                      Container(
-                        height: 42,
-                        width: 127,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.print),
-                              color: Color(0xFFFFFFFF),
-                              onPressed: () {},
-                            ),
-                            Text(
-                              "Print",
-                              style: TextStyle(
-                                color: const Color(0xFFFFFFFF),
-                                fontFamily: 'Poppins',
-                              ),
-                            )
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xff4eb181),
-                          borderRadius: BorderRadius.circular(3),
-                        ),
+                      ButtonPrint(
+                        text: AppLocalizations.of(context).printBntTxt,
+                        onPressed: () {},
+                        color: ThemeColors.RegisterC,
+                        icon: Icons.print,
                       ),
                     ],
                   ),
@@ -144,7 +109,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                   text: TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: 'Device ID ',
+                                        text: AppLocalizations.of(context)
+                                            .deviceId,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -177,7 +143,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                   text: TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: 'Alias Name ',
+                                        text: AppLocalizations.of(context)
+                                            .aliasName,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -188,7 +155,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: 'Peter Ndi',
+                                        text: ' Peter Ndi',
                                         style: TextStyle(
                                           color: Color(
                                             0xff192a3e,
@@ -208,7 +175,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                   text: TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: 'Device PIN',
+                                        text: AppLocalizations.of(context)
+                                            .devicePin,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -246,7 +214,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                   text: TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: 'Alias Number',
+                                        text: AppLocalizations.of(context)
+                                            .aliasNumber,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -257,7 +226,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: ' +237 85940321',
+                                        text: '\n+237 85940321',
                                         style: TextStyle(
                                           color: Color(
                                             0xff192a3e,
@@ -277,7 +246,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                   text: TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: 'Device Type',
+                                        text: AppLocalizations.of(context)
+                                            .deviceType,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -311,58 +281,15 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                              child: Center(
-                                  child: FlatButton(
-                                child: Text(
-                                  "Chage PIN",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "Roboto",
-                                  ),
-                                ),
-                                onPressed: () {
+                            HighwehButton(
+                                onPress: () {
                                   Navigator.pushNamed(
                                       context, AppRoutes.changePinPage);
                                 },
-                              )),
-                              width: 144,
-                              height: 41,
-                              decoration: BoxDecoration(
-                                color: Color(
-                                  0xff4eb181,
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  3,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x234caf50),
-                                    offset: Offset(
-                                      0,
-                                      2,
-                                    ),
-                                    blurRadius: 4,
-                                  ),
-                                  BoxShadow(
-                                    color: Color(0x334caf50),
-                                    offset: Offset(0, 3),
-                                    blurRadius: 1,
-                                    spreadRadius: -2,
-                                  ),
-                                  BoxShadow(
-                                    color: Color(0x1e4caf50),
-                                    offset: Offset(0, 1),
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                              ),
-                            ),
+                                text: AppLocalizations.of(context).changePin,
+                                height: 41,
+                                color: ThemeColors.RegisterCl,
+                                width: 144)
                           ],
                         ),
                         Divider(),
@@ -375,7 +302,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: 'Date Issued: ',
+                                      text: AppLocalizations.of(context)
+                                          .dateIssued,
                                       style: TextStyle(
                                         color: Color(
                                           0xff818e9b,
@@ -403,7 +331,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: 'Status: ',
+                                      text: AppLocalizations.of(context).status,
                                       style: TextStyle(
                                         color: Color(
                                           0xff818e9b,
@@ -414,7 +342,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                       ),
                                     ),
                                     TextSpan(
-                                      text: ' ACTIVE',
+                                      text: AppLocalizations.of(context).active,
                                       style: TextStyle(
                                         color: Color(
                                           0xff2ed47a,
@@ -486,7 +414,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                               height: 15,
                             ),
                             Text(
-                              "Linked Account",
+                              AppLocalizations.of(context).linkedDevices,
                               style: TextStyle(
                                 color: Color(0xff3c4858),
                                 fontSize: 18,
@@ -512,7 +440,9 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                     ),
                     loadInSuccess: (data) {
                       if (data.isEmpty) {
-                        return Center(child: Text('No Linked Account'));
+                        return Center(
+                            child: Text(
+                                AppLocalizations.of(context).noLinkedAcct));
                       }
                       return Expanded(
                         child: ListView.builder(
@@ -549,13 +479,15 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                           children: [
                             Text(message),
                             TextButton(
-                              onPressed: () async {
-                                await context
-                                    .read(linkedAccountToDevicesNotifer)
-                                    .getAccountLinkedToDevices(widget.devices);
-                              },
-                              child: const Text('Try again'),
-                            )
+                                onPressed: () async {
+                                  await context
+                                      .read(linkedAccountToDevicesNotifer)
+                                      .getAccountLinkedToDevices(
+                                          widget.devices);
+                                },
+                                child: Text(
+                                  AppLocalizations.of(context).tryAgain,
+                                ))
                           ],
                         ),
                       ),
@@ -565,7 +497,22 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                 SizedBox(
                   height: 10,
                 ),
-                ButtonAliasHistory(),
+                Row(
+                  children: [
+                    HighwehButton(
+                        onPress: () {
+                          //  print('Alias History');
+                        },
+                        text: AppLocalizations.of(context).aliasHIstorybtn,
+                        height: 45,
+                        color: ThemeColors.RegisterCl,
+                        width: 144),
+                    const SizedBox(
+                      width: 20,
+                    )
+                  ],
+                ),
+                // ButtonAliasHistory(),
                 SizedBox(
                   height: 20,
                 ),
@@ -577,50 +524,25 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                       SizedBox(
                         width: 8,
                       ),
-                      FlatButton(
-                          minWidth: 128,
-                          height: 45,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.blockDevicePage);
+                      HighwehButton(
+                          onPress: () {
+                            Navigator.pushNamed(context, AppRoutes.changeAlias);
                           },
-                          color: Color(0xFFF44336),
-                          textColor: Colors.white,
-                          child: Text(
-                            "Block Device",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "Poppins",
-                            ),
-                          )),
+                          text: AppLocalizations.of(context).blockDevicebtn,
+                          height: 45,
+                          color: ThemeColors.deficiteColor,
+                          width: 128),
                       SizedBox(
                         width: 20,
                       ),
-                      FlatButton(
-                          minWidth: 128,
-                          height: 45,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          onPressed: () {
+                      HighwehButton(
+                          onPress: () {
                             Navigator.pushNamed(context, AppRoutes.changeAlias);
                           },
-                          color: Color(0xFF4EB181),
-                          textColor: Colors.white,
-                          child: Text(
-                            "Change Alias",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
-                            ),
-                          ))
+                          text: AppLocalizations.of(context).changeAlias,
+                          height: 45,
+                          color: ThemeColors.RegisterCl,
+                          width: 128)
                     ],
                   ),
                 ),

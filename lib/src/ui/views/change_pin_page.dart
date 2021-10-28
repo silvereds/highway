@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+
 import 'package:mobile/src/ui/shared/navDrawer.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangePinPage extends StatefulWidget {
   @override
@@ -16,7 +19,6 @@ class _ChangePinPageState extends State<ChangePinPage> {
       backgroundColor: Color(0xFFF5F6F8),
       drawer: NavDrawer(),
       appBar: AppBarView(),
-      // bottomNavigationBar: BottomNavigationBarView(),
       body: Center(
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 35, 10, 15),
@@ -50,7 +52,7 @@ class _ChangePinPageState extends State<ChangePinPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Change PIN Code",
+                      AppLocalizations.of(context).changePinCode,
                       style: TextStyle(
                         color: Color(
                           0xff14a09f,
@@ -65,7 +67,7 @@ class _ChangePinPageState extends State<ChangePinPage> {
                     ),
                     SizedBox(
                       child: Text(
-                        "New PIN Code:",
+                        AppLocalizations.of(context).newPinCode,
                         style: TextStyle(
                           color: Color(
                             0xff14a09f,
@@ -115,20 +117,12 @@ class _ChangePinPageState extends State<ChangePinPage> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Container(
-                    decoration: BoxDecoration(
-                        // border: Border.all(
-                        //   color: Color(
-                        //     0xffd2d2d2,
-                        //   ),
-                        //   width: 1,
-                        // ),
-
-                        ),
+                    decoration: BoxDecoration(),
                     child: Column(
                       children: [
                         TextFormField(
                           decoration: InputDecoration(
-                            hintText: 'Password',
+                            hintText: AppLocalizations.of(context).hintPasword,
                             hintStyle: TextStyle(
                                 fontSize: 14,
                                 color: Color(0xff14a09f),
@@ -146,49 +140,21 @@ class _ChangePinPageState extends State<ChangePinPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FlatButton(
-                          minWidth: 100,
+                      HighwehButton(
+                          onPress: () {},
+                          text: AppLocalizations.of(context).cancel,
                           height: 47,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          onPressed: () {
-                            print('Cancel');
-                          },
-                          color: Color(0xFFF44336),
-                          textColor: Colors.white,
-                          child: Text(
-                            "Cancel",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "Poppins",
-                            ),
-                          )),
+                          color: ThemeColors.deficiteColor,
+                          width: 100),
                       SizedBox(
                         width: 20,
                       ),
-                      FlatButton(
-                          minWidth: 100,
+                      HighwehButton(
+                          onPress: () {},
+                          text: AppLocalizations.of(context).save,
                           height: 47,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          onPressed: () {
-                            print(' Change Device');
-                          },
                           color: Color(0xFF4EB181),
-                          textColor: Colors.white,
-                          child: Text(
-                            "Save",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
-                            ),
-                          ))
+                          width: 100)
                     ],
                   ),
                 ),

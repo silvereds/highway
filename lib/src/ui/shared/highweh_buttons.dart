@@ -26,6 +26,7 @@ class HighwehButton extends StatelessWidget {
         onPressed: onPress,
         child: Text(
           text,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
               fontSize: 16, fontFamily: 'Poppins', color: Color(0xFFFFFFFF)),
         ),
@@ -44,19 +45,26 @@ class ButtonPrint extends StatelessWidget {
     Key key,
     @required this.text,
     @required this.onPressed,
+    @required this.icon,
+    @required this.color,
   }) : super(key: key);
   final String text;
   final Function onPressed;
+  final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return SizedBox(
+      height: 41,
+      width: 114,
+      child: TextButton(
         onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Icon(
-              Icons.print,
+              icon,
               color: Color(0xFFFFFFFF),
             ),
             Text(text,
@@ -67,6 +75,13 @@ class ButtonPrint extends StatelessWidget {
                   fontFamily: "Poppins",
                 )),
           ],
-        ));
+        ),
+        style: TextButton.styleFrom(
+          primary: ThemeColors.Buttons,
+          backgroundColor: color,
+          onSurface: Colors.grey,
+        ),
+      ),
+    );
   }
 }

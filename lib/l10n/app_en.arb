@@ -119,7 +119,28 @@
      "platformcharges": "“Platform charges...”",
      "rent" : "“Rent for Office ....”",
      "cancel": "Cancel",
-     "send":"Send"
+     "send":"Send", 
+
+     "blockDevicebtn" : "Block",
+     "tryAgain" : "Try again",
+     "noLinkedAcct": "No Linked Account",
+     "linkedAcct": "Linked Account",
+     "dateIssued" : "Date Issued: ",
+     "changePin": "Change PIN",
+     "deviceType": "Device Type",
+     "aliasNumber": "Alias Number",
+     "devicePin": "Device PIN",
+     "aliasName": "Alias Name",
+     "deviceId": "Device ID",
+     "aliasHIstorybtn" : "Alias History",
+     "noDevices": "No Devices",
+     "changePinCode" : "Change PIN code",
+     "newPinCode": "New PIN code",
+     "completed": "Completed",
+
+     "enterNewAlias": "Enter new Account Alias below."
+
+     
      
 
 

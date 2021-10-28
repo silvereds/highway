@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/views/all_accounts_view/components/accounts_status.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AllDevicesPage extends StatefulWidget {
   @override
@@ -40,50 +43,55 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Stack(children: [
       Positioned(
-        top: 15,
-        right: 30,
-        child: Container(
-          width: 127,
-          height: 42,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              3,
-            ),
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color(0xff00cdac),
-                Color(0xff4eb181),
-              ],
-              stops: [
-                0,
-                0.98,
-              ],
-            ),
+          top: 15,
+          right: 30,
+          child: ButtonPrint(
+            color: ThemeColors.RegisterC,
+            icon: Icons.print,
+            onPressed: () {},
+            text: AppLocalizations.of(context).printBntTxt,
+          )
+          // Container(
+          //   width: 127,
+          //   height: 42,
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(
+          //       3,
+          //     ),
+          //     gradient: LinearGradient(
+          //       begin: Alignment.topRight,
+          //       end: Alignment.bottomLeft,
+          //       colors: [
+          //         Color(0xff00cdac),
+          //         Color(0xff4eb181),
+          //       ],
+          //       stops: [
+          //         0,
+          //         0.98,
+          //       ],
+          //     ),
+          //   ),
+          //   child: Center(
+          //     child: Row(
+          //       children: [
+          //         SizedBox(width: 8),
+          //         IconButton(
+          //           icon: Icon(Icons.print),
+          //           color: Color(0xFFFFFFFF),
+          //           onPressed: () {},
+          //         ),
+          //         Text(
+          //           "Print",
+          //           style: TextStyle(
+          //             color: Color(0xFFFFFFFF),
+          //             fontSize: 14,
+          //             fontFamily: 'Poppins',
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   ),
           ),
-          child: Center(
-            child: Row(
-              children: [
-                SizedBox(width: 8),
-                IconButton(
-                  icon: Icon(Icons.print),
-                  color: Color(0xFFFFFFFF),
-                  onPressed: () {},
-                ),
-                Text(
-                  "Print",
-                  style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 14,
-                    fontFamily: 'Poppins',
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
       Center(
         child: Container(
             height: 450,
@@ -110,8 +118,8 @@ class _BodyState extends State<Body> {
                 Column(
                   children: [
                     const SizedBox(height: 20),
-                    const Text(
-                      "Devices",
+                    Text(
+                      AppLocalizations.of(context).devices,
                       style: TextStyle(
                         color: Color(0xFF3C4858),
                         fontSize: 18,
@@ -182,7 +190,8 @@ class _BodyState extends State<Body> {
                                           .read(devicesNotifierProvider)
                                           .getListOfDevices();
                                     },
-                                    child: const Text('Try again'),
+                                    child: Text(
+                                        AppLocalizations.of(context).tryAgain),
                                   )
                                 ],
                               ),

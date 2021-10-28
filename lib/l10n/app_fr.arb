@@ -111,5 +111,25 @@
     "platformcharges": "Frais de plate-forme...",
     "rent":"Loyer pour bureau....",
     "cancel": "Annuler",
-    "send": "Envoyer"
+    "send": "Envoyer",
+
+    "blockDevicebtn" : "Bloquer",
+    "tryAgain" : "Essayez à nouveau",
+    "noLinkedAcct": "Aucun compte lié",
+    "linkedAcct": "Compte lié",
+    "dateIssued": "Date de publication : ",
+    "changePin": "Modifier le code PIN",
+    "deviceType": "Type de périphérique",
+    "aliasNumber": "Numéro d'alias",
+    "devicePin": "NIP de l'appareil",
+    "aliasName": "Nom d'alias",
+    "deviceId": "Identifiant de l'appareil",
+    "aliasHIstorybtn": "Historique des alias",
+    "noDevices": "Aucun périphérique",
+
+    "changePinCode" : "Changer le code PIN",
+      "newPinCode": "Nouveau code PIN",
+      "completed": "Terminé",
+      "enterNewAlias": "Enter new Account Alias below."
+
 }
