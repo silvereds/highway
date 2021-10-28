@@ -21,6 +21,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
   void initState() {
     super.initState();
 
+    print('id: ${widget.devices.toJson()}');
+
     Future.microtask(() => context
         .read(linkedAccountToDevicesNotifer)
         .getAccountLinkedToDevices(widget.devices));
@@ -44,9 +46,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
               borderRadius: BorderRadius.circular(6),
               boxShadow: [
                 BoxShadow(
-                  color: Color(
-                    0x23000000,
-                  ),
+                  color: Color(0x23000000),
                   blurRadius: 4,
                   offset: Offset(0, 1),
                 ),
@@ -116,7 +116,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                     height: 250,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -234,7 +234,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -305,19 +305,17 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Container(
                               child: Center(
                                   child: FlatButton(
-                                child: Text(
+                                child: const Text(
                                   "Chage PIN",
                                   style: TextStyle(
                                     color: Colors.white,
@@ -334,15 +332,11 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                               width: 144,
                               height: 41,
                               decoration: BoxDecoration(
-                                color: Color(
-                                  0xff4eb181,
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  3,
-                                ),
+                                color: Color(0xff4eb181),
+                                borderRadius: BorderRadius.circular(3),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x234caf50),
+                                    color: const Color(0x234caf50),
                                     offset: Offset(
                                       0,
                                       2,
@@ -501,82 +495,89 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                   ),
                 ),
                 SizedBox(height: 20),
-                Consumer(builder: (context, watch, __) {
-                  final deviceState =
-                      watch(linkedAccountToDevicesNotifer.state);
+                Consumer(
+                  builder: (context, watch, __) {
+                    final deviceState =
+                        watch(linkedAccountToDevicesNotifer.state);
 
-                  return deviceState.when(
-                    intial: () => Container(),
-                    loadInProgress: () => Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    loadInSuccess: (data) {
-                      if (data.isEmpty) {
-                        return Center(child: Text('No Linked Account'));
-                      }
-                      return Expanded(
-                        child: ListView.builder(
-                          itemCount: 4,
-                          itemBuilder: (context, i) => ListView.separated(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.only(bottom: 16),
-                            itemCount: data.length,
-                            shrinkWrap: true,
-                            separatorBuilder: (context, i) => Container(
-                              height: .75,
-                              width: double.infinity,
-                              color: Colors.grey,
-                            ),
-                            itemBuilder: (context, i) => AccountsCard(
-                              onPressed: () {},
-                              status: data[i].status,
-                              text: "",
-                              balance: data[i].balance.toString(),
-                              accountNumber: data[i].number,
-                              alias: data[i].tag,
-                              type: ' - ${data[i].type}',
-                            ),
+                    return deviceState.when(
+                      intial: () => Container(),
+                      loadInProgress: () => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      loadInSuccess: (data) {
+                        if (data == null) {
+                          return Center(child: Text('No Linked Account'));
+                        }
+                        return AccountsCard(
+                          onPressed: () {},
+                          status: data.status,
+                          text: "",
+                          balance: data.balance.toString(),
+                          accountNumber: data.number,
+                          alias: data.tag,
+                          type: ' - ${data.type}',
+                        );
+
+                        // return Expanded(
+                        //   child: ListView.builder(
+                        //     itemCount: 4,
+                        //     itemBuilder: (context, i) => ListView.separated(
+                        //       physics: NeverScrollableScrollPhysics(),
+                        //       padding: const EdgeInsets.only(bottom: 16),
+                        //       itemCount: data.length,
+                        //       shrinkWrap: true,
+                        //       separatorBuilder: (context, i) => Container(
+                        //         height: .75,
+                        //         width: double.infinity,
+                        //         color: Colors.grey,
+                        //       ),
+                        //       itemBuilder: (context, i) => AccountsCard(
+                        //         onPressed: () {},
+                        //         status: data[i].status,
+                        //         text: "",
+                        //         balance: data[i].balance.toString(),
+                        //         accountNumber: data[i].number,
+                        //         alias: data[i].tag,
+                        //         type: ' - ${data[i].type}',
+                        //       ),
+                        //     ),
+                        //   ),
+                        // );
+                      },
+                      loadFailure: (message) => Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(message),
+                              TextButton(
+                                onPressed: () async {
+                                  await context
+                                      .read(linkedAccountToDevicesNotifer)
+                                      .getAccountLinkedToDevices(
+                                          widget.devices);
+                                },
+                                child: const Text('Try again'),
+                              )
+                            ],
                           ),
                         ),
-                      );
-                    },
-                    loadFailure: (message) => Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(message),
-                            TextButton(
-                              onPressed: () async {
-                                await context
-                                    .read(linkedAccountToDevicesNotifer)
-                                    .getAccountLinkedToDevices(widget.devices);
-                              },
-                              child: const Text('Try again'),
-                            )
-                          ],
-                        ),
                       ),
-                    ),
-                  );
-                }),
-                SizedBox(
-                  height: 10,
+                    );
+                  },
                 ),
+                const SizedBox(height: 10),
                 ButtonAliasHistory(),
-                SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 8,
-                      ),
+                      const SizedBox(width: 8),
                       FlatButton(
                           minWidth: 128,
                           height: 45,
