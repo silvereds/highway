@@ -10,6 +10,7 @@ import 'package:mobile/src/ui/views/all_accounts_view/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/all_maps.dart';
 import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
 import 'package:mobile/src/ui/views/views.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -62,31 +63,31 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(
               Icons.dashboard_outlined,
             ),
-            label: 'Dashboad',
+            label: AppLocalizations.of(context).dashboard,
           ),
           BottomNavigationBarItem(
             icon: const Icon(
               Icons.credit_card,
             ),
-            label: 'Accounts',
+            label: AppLocalizations.of(context).accounts,
           ),
           BottomNavigationBarItem(
             icon: const Icon(
               Icons.local_atm_outlined,
             ),
-            label: 'Transactions',
+            label: AppLocalizations.of(context).transactions,
           ),
           BottomNavigationBarItem(
             icon: const Icon(
               Icons.credit_card,
             ),
-            label: 'Devices',
+            label: AppLocalizations.of(context).devices,
           ),
           BottomNavigationBarItem(
             icon: const Icon(
               Icons.place_outlined,
             ),
-            label: 'Map',
+            label: AppLocalizations.of(context).map,
           ),
         ],
       ),
