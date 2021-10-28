@@ -8,10 +8,12 @@ import 'package:mobile/src/core/providers/form_provider.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/widgets/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // https://79029730-aa0b-4bdb-b648-fbea0fccbff5.mock.pstmn.io/branches
 class LoginPage extends StatefulWidget {
@@ -85,8 +87,7 @@ class _LoginPageState extends State<LoginPage> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              content: Text(
-                  'A short code has been send  to your phone number or your email. Please fill the next page with that code.'),
+              content: Text(AppLocalizations.of(context).shortCodeText),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -179,8 +180,8 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const SizedBox(height: 55),
-                          const Text(
-                            'Login with:',
+                          Text(
+                            AppLocalizations.of(context).loginWith,
                             style: TextStyle(
                               color: Color(0xFF4EB181),
                               fontSize: 18,
@@ -219,7 +220,9 @@ class _LoginPageState extends State<LoginPage> {
                                             decoration: InputDecoration(
                                               errorText: validation.email.error,
                                               prefixIcon: Icon(Icons.person),
-                                              hintText: 'Email or Phone number',
+                                              hintText:
+                                                  AppLocalizations.of(context)
+                                                      .hintEmailPhone,
                                               hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xFFAAAAAA),
@@ -238,7 +241,9 @@ class _LoginPageState extends State<LoginPage> {
                                               errorText:
                                                   validation.password.error,
                                               prefixIcon: Icon(Icons.lock),
-                                              hintText: 'Password',
+                                              hintText:
+                                                  AppLocalizations.of(context)
+                                                      .hintPasword,
                                               hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xFFAAAAAA),
@@ -247,56 +252,21 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                           ),
                                           SizedBox(height: 30),
-                                          Container(
+                                          Align(
                                             alignment: Alignment.bottomRight,
                                             child: Column(
                                               children: [
-                                                Container(
-                                                  height: 35.02,
+                                                HighwehButton(
+                                                  color: ThemeColors.Buttons,
+                                                  height: 40.02,
+                                                  text: AppLocalizations.of(
+                                                          context)
+                                                      .loginText,
                                                   width: 120,
-                                                  decoration: BoxDecoration(
-                                                    color: Color(
-                                                      0xff4eb181,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      4,
-                                                    ),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Color(
-                                                          0x3d109cf1,
-                                                        ),
-                                                        blurRadius: 10,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  child: FlatButton(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.0),
-                                                      side: BorderSide(
-                                                          color: ThemeColors
-                                                              .Buttons),
-                                                    ),
-                                                    child: Text(
-                                                      'Login',
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontFamily: 'Poppins',
-                                                      ),
-                                                    ),
-                                                    onPressed: validation
-                                                            .isValidateAuthForm
-                                                        ? _loginWithEmailAndPassword
-                                                        : null,
-                                                    color: Color(0xFF4EB181),
-                                                    textColor:
-                                                        Color(0xFFFFFFFF),
-                                                    height: 33,
-                                                  ),
+                                                  onPress: validation
+                                                          .isValidateAuthForm
+                                                      ? _loginWithEmailAndPassword
+                                                      : null,
                                                 ),
                                                 TextButton(
                                                   onPressed: () async {
@@ -305,7 +275,8 @@ class _LoginPageState extends State<LoginPage> {
                                                             .forgotPasswordScreen);
                                                   },
                                                   child: Text(
-                                                    'Forgot password?',
+                                                    AppLocalizations.of(context)
+                                                        .forgotPassword,
                                                     style: TextStyle(
                                                       fontSize: 16,
                                                       color: Colors.blue,
@@ -326,7 +297,7 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    BoxTitle(title: "Login"),
+                    BoxTitle(title: AppLocalizations.of(context).loginText),
                   ],
                 ),
               ),
@@ -337,3 +308,117 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+     // Container(
+                                          //   alignment: Alignment.bottomRight,
+                                          //   child: Column(
+                                          //     children: [
+                                          //       TextButton(
+                                          //         onPressed: () {},
+                                          //         child: Text(
+                                          //           AppLocalizations.of(context)
+                                          //               .loginText,
+                                          //           style: TextStyle(
+                                          //               fontSize: 16,
+                                          //               fontFamily: 'Poppins',
+                                          //               color:
+                                          //                   Color(0xFFFFFFFF)),
+                                          //         ),
+                                          //       ),
+                                          //       TextButton(
+                                          //         onPressed: () async {
+                                          //           Navigator.of(context)
+                                          //               .pushNamed(AppRoutes
+                                          //                   .forgotPasswordScreen);
+                                          //         },
+                                          //         child: Text(
+                                          //           AppLocalizations.of(context)
+                                          //               .forgotPassword,
+                                          //           style: TextStyle(
+                                          //             fontSize: 16,
+                                          //             color: Colors.blue,
+                                          //           ),
+                                          //         ),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  Container(
+//                                                     height: 35.02,
+//                                                     width: 120,
+//                                                     decoration: BoxDecoration(
+//                                                       color: Color(
+//                                                         0xff4eb181,
+//                                                       ),
+//                                                       borderRadius:
+//                                                           BorderRadius.circular(
+//                                                         4,
+//                                                       ),
+//                                                       boxShadow: [
+//                                                         BoxShadow(
+//                                                           color: Color(
+//                                                             0x3d109cf1,
+//                                                           ),
+//                                                           blurRadius: 10,
+//                                                         ),
+//                                                       ],
+//                                                     ),
+//                                                     child: TextButton(
+//                                                       onPressed: () {},
+//                                                       child: Text(
+//                                                         AppLocalizations.of(
+//                                                                 context)
+//                                                             .loginText,
+//                                                         style: TextStyle(
+//                                                             fontSize: 16,
+//                                                             fontFamily:
+//                                                                 'Poppins',
+//                                                             color: Color(
+//                                                                 0xFFFFFFFF)),
+//                                                       ),
+//                                                     )
+                                                    // FlatButton(
+                                                    //   shape:
+                                                    //       RoundedRectangleBorder(
+                                                    //     borderRadius:
+                                                    //         BorderRadius.circular(
+                                                    //             5.0),
+                                                    //     side: BorderSide(
+                                                    //         color: ThemeColors
+                                                    //             .Buttons),
+                                                    //   ),
+                                                    //   child: Text(
+                                                    //     AppLocalizations.of(
+                                                    //             context)
+                                                    //         .loginText,
+                                                    //     style: TextStyle(
+                                                    //       fontSize: 16,
+                                                    //       fontFamily: 'Poppins',
+                                                    //     ),
+                                                    //   ),
+                                                    //   onPressed: validation
+                                                    //           .isValidateAuthForm
+                                                    //       ? _loginWithEmailAndPassword
+                                                    //       : null,
+                                                    //   color: Color(0xFF4EB181),
+                                                    //   textColor:
+                                                    //       Color(0xFFFFFFFF),
+                                                    //   height: 33,
+                                                    // ),
+                                   //                 ),

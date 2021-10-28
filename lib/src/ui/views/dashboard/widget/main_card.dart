@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
 import 'package:mobile/src/ui/views/dashboard/widget/possitioned_box.dart';
-import 'package:mobile/src/ui/views/recharge_account.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainCard extends StatelessWidget {
   const MainCard({
@@ -148,7 +148,7 @@ class NewTransferButton extends StatelessWidget {
             Navigator.pushNamed(context, '/rechargeAccountPage');
           },
           child: Text(
-            'Recharge',
+            AppLocalizations.of(context).recharge,
             style: TextStyle(
               color: Colors.black,
               fontSize: 13,

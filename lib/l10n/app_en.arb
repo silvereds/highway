@@ -1,0 +1,130 @@
+{ 
+    "language" : "English",
+    "@language": { 
+        "description" : "The current language"
+
+    }, 
+    "helloWorld" : "Hello World",
+    "@helloWorld" : { 
+        "description" : "A programmer greeting"
+    },
+
+
+
+     
+    "welcomeText" : "WELCOME TO HIGHWEH",
+    "transferMoney" : "Transfer Money",
+    "subText" : "Send free up to 100,000 FCFA to your loved ones free of charge",
+    "manageDevices" : "Manage Your devices",
+    "subText2": "Manage your payment card for your expenses and / or your payment reader for your receipts.", 
+    "manageYourEwalletAccount": "Manage your E-wallet Account",
+    "subText3": "Carry out your transactions, consult your balance and follow your spending history.",
+    "btnNextText" : "Next",
+    "btnSubmit" : "Submit",
+
+    "loginWith" : "Login with",
+    "hintEmailPhone" : "Email or Telephone",
+     "hintPasword" : "Password", 
+     "loginText" : "Login",
+     "forgotPassword": "forgot Password?",
+     "shortCodeText" : "A short code has been send  to your phone number or your email. Please fill the next page with that code",
+     "resetPassWord" : "Reset Password",
+     "enterMail" : "Enter your Email",
+
+     "verifyIdentity" : "Verify your Identity",
+     "codeHasBeenSent" : "A short code has been send  to your phone number or your email. Please fill the next page with that code",
+     "resendCode": "Resend code",
+     "verify": "Verify",
+     "verificationCode" : "We send you a verification passe code via email or sms.",
+     "errorText" : "Please provide a valid passe code.",
+
+
+
+     "newTransfer": "New Transfer",
+     "recharge" : "Recharge",
+     "payNow": "Pay Now",
+     "print": "Print",
+     "filterBy": "Filter By",
+
+     "buisness": "- Buisness",
+     "personal": "- Personal",
+     "others": "- Others", 
+
+     "dashboard": "Dashboard",
+     "accounts": "Accounts",
+     "transactions":"Transactions",
+     "devices":"Devices",
+     "map": "Map",
+     "transAndAccount" : "% Transactions / Accounts :",
+     "legend" :"LEGEND",
+     "moneyFor": "Money For the School Fees...",
+
+     "dateFrom": "Date From",
+     "dateTo" : "Date To", 
+     "allTransactions":   "All Transactions",
+
+
+
+
+     "notification": "Notifications",
+     "support": "Support" ,
+     "settings": "Settings",
+     "logout": "Log out",
+     "preferences": "preferences",
+     "generalInformation": "General Information",
+     "policy": "Policy",
+     "termsAndCondition": "Terms and Condition",
+     "licenseText": "License Agreement",
+     "productServices": "Product and Services Info",
+     "about": "About",
+     "aboutUs": "About Us",
+     "followUs": "Follow Us",
+
+     "usersPresferenceText" : "User Preferences",
+     "appearOnMap" : "    Appear on map:",
+     "yes" : "Yes",
+     "no": "No",
+     
+     "english" : "English",
+     "french" : "French",
+     "save": "Save",
+
+     "bntBackText": "Back",
+     "printBntTxt": "Print",
+     "accountNumber": "Account Number: ",
+     "accountName": "Account Name: ",
+     "tag": "Alias/Tag:  ",
+     "accountBalance": "Account Balance",
+     "dateOpened": "Date Opened: ",
+     "status": "Status: ",
+     "active": "    ACTIVE",
+     "linkedDevices": "Linked Devices",
+     "alias": "Alias",
+     "type": "Type",
+     "accountBlock": "Block Account",
+     "changeAlias": "Change Alias",
+     "rechargeAccount": "Recharge Account",
+
+
+     "sendMoney": "Send Money",
+     "sendingAccount" : "Sending Account",
+     "balanceTxt": "Balance: ",
+     "reciverAcct": "Reciever Account",
+     "amountTxt": "Amount",
+     "charges" : "Charges",
+     "comment": "Comment",
+     "commentTxt": "School fees for the kids",
+     "commentTxt2": "“Taxi Fare ....”",
+     "totalAmount": "Total Amount: ",
+     "platformcharges": "“Platform charges...”",
+     "rent" : "“Rent for Office ....”",
+     "cancel": "Cancel",
+     "send":"Send"
+     
+
+
+
+
+
+
+}

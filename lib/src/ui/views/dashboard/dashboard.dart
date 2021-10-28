@@ -4,6 +4,7 @@ import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 import 'widget/main_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -31,21 +32,21 @@ class _DashBoardState extends State<DashBoard> {
             MainCard(
               name: 'Jane Doe ',
               amount: 'FCFA 34,700',
-              type: '- Buisness',
+              type: AppLocalizations.of(context).buisness,
               amountTextColor: ThemeColors.TransferCurrency,
               color1: Color(0xFF00CDAC),
               color2: Color(0xFF4EB181),
               text: "\$",
-              newTransferText: 'New Transfer',
+              newTransferText: AppLocalizations.of(context).newTransfer,
               press: () {
                 Navigator.pushNamed(context, '/tansferMoneyPage');
               },
             ),
             MainCard(
-              newTransferText: 'Pay now',
+              newTransferText: AppLocalizations.of(context).payNow,
               name: 'Jane Doe ',
               amount: 'FCFA -800',
-              type: '- Personal',
+              type: AppLocalizations.of(context).personal,
               amountTextColor: ThemeColors.deficiteColor,
               color1: ThemeColors.deficiteColor,
               color2: ThemeColors.deficiteColor,
@@ -55,10 +56,10 @@ class _DashBoardState extends State<DashBoard> {
               },
             ),
             MainCard(
-              newTransferText: 'New Transfer',
+              newTransferText: AppLocalizations.of(context).newTransfer,
               name: 'Jane Doe , ',
               amount: "FCFA 2,700",
-              type: '- Others',
+              type: AppLocalizations.of(context).others,
               amountTextColor: ThemeColors.TransferCurrency,
               color1: Color(0xFF00CDAC),
               color2: Color(0xFF4EB181),
@@ -68,8 +69,8 @@ class _DashBoardState extends State<DashBoard> {
               },
             ),
             MainCard(
-              newTransferText: 'New Transfer',
-              name: 'Devices',
+              newTransferText: AppLocalizations.of(context).newTransfer,
+              name: AppLocalizations.of(context).devices,
               amount: '4',
               type: '',
               color1: Color(
@@ -106,7 +107,7 @@ class _DashBoardState extends State<DashBoard> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "Transactions",
+                            AppLocalizations.of(context).transactions,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -136,7 +137,7 @@ class _DashBoardState extends State<DashBoard> {
                                         fontSize: 16),
                                   ),
                                   Text(
-                                    '"Money For the School Fees..."',
+                                    AppLocalizations.of(context).moneyFor,
                                     style: TextStyle(
                                       color: Color(0xFF323C47),
                                       fontWeight: FontWeight.w400,
@@ -250,7 +251,7 @@ class _DashBoardState extends State<DashBoard> {
                                         fontSize: 16),
                                   ),
                                   Text(
-                                    '"Money For the School Fees..."',
+                                    AppLocalizations.of(context).moneyFor,
                                     style: TextStyle(
                                       color: Color(0xFF323C47),
                                       fontSize: 12,
@@ -311,7 +312,7 @@ class _DashBoardState extends State<DashBoard> {
                                         fontSize: 16),
                                   ),
                                   Text(
-                                    '"Money For the School Fees..."',
+                                    AppLocalizations.of(context).moneyFor,
                                     style: TextStyle(
                                       color: Color(0xFF323C47),
                                       fontSize: 12,
@@ -371,7 +372,8 @@ class _DashBoardState extends State<DashBoard> {
                               text: TextSpan(
                                 children: <TextSpan>[
                                   TextSpan(
-                                    text: ' % Transactions / Accounts :',
+                                    text: AppLocalizations.of(context)
+                                        .transAndAccount,
                                     style: TextStyle(
                                       color: Color(0xFF192A3E),
                                       fontSize: 18,
@@ -418,7 +420,7 @@ class _DashBoardState extends State<DashBoard> {
                               thickness: 1,
                             ),
                             Text(
-                              'LEGEND',
+                              AppLocalizations.of(context).legend,
                               style: TextStyle(
                                 color: Color(0xFF999999),
                                 fontSize: 12,
@@ -431,7 +433,7 @@ class _DashBoardState extends State<DashBoard> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 LegendLable(
-                                  text: 'buisness',
+                                  text: AppLocalizations.of(context).buisness,
                                   color: Color(
                                     0xFFFfB946,
                                   ),
@@ -440,7 +442,7 @@ class _DashBoardState extends State<DashBoard> {
                                   width: 12,
                                 ),
                                 LegendLable(
-                                  text: 'Personal',
+                                  text: AppLocalizations.of(context).personal,
                                   color: Color(
                                     0xFF2ED47A,
                                   ),
@@ -449,7 +451,7 @@ class _DashBoardState extends State<DashBoard> {
                                   width: 12,
                                 ),
                                 LegendLable(
-                                  text: 'Others',
+                                  text: AppLocalizations.of(context).others,
                                   color: Color(
                                     0xFFF7685B,
                                   ),

@@ -1,0 +1,115 @@
+{ 
+    "language" : "French",
+    "helloWorld" : "Bonjour le monde",
+
+
+
+    "welcomeText": "BIENVENUE À HIGHWEH",
+    "transferMoney" : "Transférer de l'argent",
+    "subText" : "Envoyez gratuitement jusqu'à 100 000 FCFA à vos proches gratuitement",
+    "manageDevices" : "Gérer vos appareils",
+    "subText2": "Gérez votre carte de paiement pour vos dépenses et/ou votre lecteur de paiement pour vos reçus.", 
+    "manageYourEwalletAccount": "Gérer votre compte e-wallet",
+    "subText3": "Effectuez vos opérations, consultez votre solde et suivez l'historique de vos dépenses",
+    "btnNextText" : "Prochain",
+    "btnSubmit" : "Soumettre",
+
+    "loginWith" : "Connectez-vous avec",
+    "hintEmailPhone" : "Email ou Telephone",
+    "hintPasword" : "mot de passe",
+    "loginText" : "connecte",
+    "forgotPassword": "mot de passe oublié?",
+    "shortCodeText" : "Un code court a été envoyé à votre numéro de téléphone ou à votre e-mail. Veuillez remplir la page suivante avec ce code",
+    "resetPassWord" : "Réinitialiser le mot de passe",
+   
+    "enterMail" : "Entrez votre Email",
+
+    "verifyIdentity" : "Vérifiez Votre Identité",
+    "codeHasBeenSent" : "Un code court a été envoyé à votre numéro de téléphone ou à votre e-mail. Veuillez remplir la page suivante avec ce code",
+    "resendCode": "Renvoyer le code",
+    "verify": "Vérifier",
+    "verificationCode" : "Nous vous envoyons un code de validation par e-mail ou sms.",
+    "errorText": "Veuillez fournir un code d'accès valide.",
+
+    "newTransfer": "Nouveau transfert",
+    "recharge" : "Recharger",
+    "payNow": "Payez maintenant",
+    "print": "Imprimer",
+    "filterBy": "Filtrer par",
+
+      "buisness": "- Affaires",
+      "personal": "- Personnel",
+      "others": "- Autres",
+      "moneyFor": "Argent pour les frais de scolarité...",
+
+
+      "dashboard": "Tableau de bord",
+      "accounts": "Comptes",
+      "transactions": "Transactions",
+      "devices": "Appareils",
+      "map": "Carte",
+      "transAndAccount" : "% Transactions / Comptes :",
+      "legend" : "LÉGENDE",
+
+      "dateFrom": "Date de",
+    "dateTo" : "Date à",
+    "allTransactions": "Toutes les transactions",
+
+
+
+
+    "notification": "Notifications",
+     "support": "Soutien" ,
+     "settings": "Paramètres",
+     "logout": "Se déconnecter",
+     "preferences": "préférences",
+     "generalInformation": "Informations Générales",
+     "policy": "Policie",
+     "termsAndCondition": "Termes et conditions",
+     "licenseText": "Contrat de licence",
+     "productServices": "Informations sur les produits et services",
+     "about": "A propos",
+     "aboutUs": "A propos de nous",
+     "followUs": "Suivez-nous",
+
+
+     "usersPresferenceText" : "Préférences utilisateur",
+     "appearOnMap" : " Apparaître sur la carte :",
+     "yes": "oui",
+     "no": "non",
+     "english" : "Englais",
+     "french" : "français",
+     "save": "Enregistrer",
+
+
+     "bntBackText": "Retour",
+    "printBntTxt": "Imprimer",
+    "accountNumber": "Numéro de compte : ",
+    "accountName": "Nom du compte : ",
+    "tag": "Alias/Tag : ",
+    "accountBalance": "Solde du compte",
+    "dateOpened" : "Date d'ouverture : ",
+    "statut": "Statut : ",
+    "active": " ACTIF",
+    "linkedDevices": "Appareils liés",
+    "alias": "Alias",
+    "type": "Type",
+    "accountBlock": "Bloquer",
+    "changeAlias": "Modifier",
+    "rechargeAccount": "Recharger",
+
+    "sendMoney": "Envoyer de l'argent",
+    "sendingAccount": "Envoyer le compte",
+    "balanceTxt": "Solde : ",
+    "reciverAcct": "Compte destinataire",
+    "amountTxt": "Montant",
+    "charges": "Frais",
+    "comment": "Commentaire",
+    "commentTxt": "Frais de scolarité pour les enfants",
+    "commentTxt2": "Tarif de taxi ....",
+    "totalAmount": "Montant total : ",
+    "platformcharges": "Frais de plate-forme...",
+    "rent":"Loyer pour bureau....",
+    "cancel": "Annuler",
+    "send": "Envoyer"
+}

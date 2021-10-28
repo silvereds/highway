@@ -5,9 +5,11 @@ import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/providers/form_provider.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/widgets/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override
@@ -16,7 +18,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   // _site is the variable that recieves registerOption and keeps
-  final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final _emailController = TextEditingController();
   String _email = '';
@@ -39,8 +41,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           setState(() {
             _isLoading = false;
           });
-          Navigator.of(context).pushNamed(RouteGenerator.resetPasswordScreen,
-              arguments: _email.trim());
+          Navigator.of(context)
+              .pushNamed(RouteGenerator.resetPasswordVerifyPasscode);
         });
       } catch (e) {
         setState(() {
@@ -116,8 +118,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const SizedBox(height: 55),
-                          const Text(
-                            'Enter your email: ',
+                          Text(
+                            AppLocalizations.of(context).enterMail,
                             style: TextStyle(
                               color: Color(0xFF4EB181),
                               fontSize: 18,
@@ -150,7 +152,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                               errorText: validation.email.error,
                                               prefixIcon:
                                                   const Icon(Icons.person),
-                                              hintText: 'Email or Phone number',
+                                              hintText:
+                                                  AppLocalizations.of(context)
+                                                      .hintEmailPhone,
                                               hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xFFAAAAAA),
@@ -164,52 +168,38 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                             child: Column(
                                               children: [
                                                 Container(
-                                                  height: 35.02,
-                                                  width: 120,
-                                                  decoration: BoxDecoration(
-                                                    color: Color(
-                                                      0xff4eb181,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      4,
-                                                    ),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Color(
-                                                          0x3d109cf1,
-                                                        ),
-                                                        blurRadius: 10,
+                                                    height: 35.02,
+                                                    width: 120,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(
+                                                        0xff4eb181,
                                                       ),
-                                                    ],
-                                                  ),
-                                                  child: FlatButton(
-                                                    shape:
-                                                        RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              5.0),
-                                                      side: BorderSide(
-                                                          color: ThemeColors
-                                                              .Buttons),
-                                                    ),
-                                                    child: Text(
-                                                      'Submit',
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontFamily: 'Poppins',
+                                                        4,
                                                       ),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Color(
+                                                            0x3d109cf1,
+                                                          ),
+                                                          blurRadius: 10,
+                                                        ),
+                                                      ],
                                                     ),
-                                                    onPressed: validation
-                                                            .isResetPasswordFormValid
-                                                        ? _resetPassword
-                                                        : null,
-                                                    color: Color(0xFF4EB181),
-                                                    textColor:
-                                                        Color(0xFFFFFFFF),
-                                                    height: 33,
-                                                  ),
-                                                ),
+                                                    child: HighwehButton(
+                                                      color:
+                                                          ThemeColors.Buttons,
+                                                      height: 80.32,
+                                                      width: 120.0,
+                                                      onPress: validation
+                                                              .isResetPasswordFormValid
+                                                          ? _resetPassword
+                                                          : null,
+                                                      text: AppLocalizations.of(
+                                                              context)
+                                                          .btnSubmit,
+                                                    )),
                                               ],
                                             ),
                                           ),
@@ -224,7 +214,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ],
                       ),
                     ),
-                    BoxTitle(title: 'Reset Password'),
+                    BoxTitle(title: AppLocalizations.of(context).resetPassWord),
                   ],
                 ),
               ),

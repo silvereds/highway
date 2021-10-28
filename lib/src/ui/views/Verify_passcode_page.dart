@@ -4,9 +4,11 @@ import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../routes.dart';
 
@@ -53,8 +55,9 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content:
-                Text('We send you a verification passe code via email or sms.'),
+            content: Text(
+              AppLocalizations.of(context).verificationCode,
+            ),
             actions: [
               TextButton(
                 onPressed: () {
@@ -110,7 +113,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
               RouteGenerator.homeScreen, (route) => false);
         });
       } catch (e) {
-        final String message = 'Please provide a valid passe code.';
+        final String message = AppLocalizations.of(context).errorText;
         setState(() {
           _isLoading = false;
         });
@@ -189,8 +192,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text(
-                        'Verify your Identity',
+                      Text(
+                        AppLocalizations.of(context).verifyIdentity,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 24,
@@ -198,8 +201,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      const Text(
-                        "A short code has been send to your email or sms, please enter the code to verify your identity",
+                      Text(
+                        AppLocalizations.of(context).codeHasBeenSent,
                         style: TextStyle(
                           color: ThemeColors.VerifyIdentityText,
                           fontSize: 18,
@@ -207,8 +210,8 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       ),
                       TextButton(
                         onPressed: _resendPasscode,
-                        child: const Text(
-                          'Resend',
+                        child: Text(
+                          AppLocalizations.of(context).resendCode,
                           style: TextStyle(
                             decoration: TextDecoration.underline,
                           ),
@@ -221,7 +224,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                             autoFocus: true,
                             validator: (v) {
                               if (v.isEmpty || v.length < 5) {
-                                return 'Please provide a valid code';
+                                return AppLocalizations.of(context).errorText;
                               } else {
                                 return null;
                               }
@@ -246,16 +249,16 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
                       ),
                       const SizedBox(height: 6),
                       Center(
-                        child: ElevatedButton(
-                          onPressed: () => _verifyPasscode(
+                        child: HighwehButton(
+                          color: ThemeColors.Buttons,
+                          height: 40.32,
+                          width: 120.0,
+                          onPress: () => _verifyPasscode(
                               widget.user.email,
                               widget.user.password,
                               _passcode,
                               widget.user.agent),
-                          child: const Text('Verify'),
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                          ),
+                          text: AppLocalizations.of(context).verify,
                         ),
                       )
                     ],
