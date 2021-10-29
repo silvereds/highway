@@ -96,7 +96,7 @@
      "tag": "Alias/Tag:  ",
      "accountBalance": "Account Balance",
      "dateOpened": "Date Opened: ",
-     "status": "Status: ",
+     "status": " Status: ",
      "active": "    ACTIVE",
      "linkedDevices": "Linked Devices",
      "alias": "Alias",
@@ -106,7 +106,7 @@
      "rechargeAccount": "Recharge Account",
 
 
-     "sendMoney": "Send Money",
+     "sendMoney": "  Send Money",
      "sendingAccount" : "Sending Account",
      "balanceTxt": "Balance: ",
      "reciverAcct": "Reciever Account",
@@ -138,7 +138,39 @@
      "newPinCode": "New PIN code",
      "completed": "Completed",
 
-     "enterNewAlias": "Enter new Account Alias below."
+     "enterNewAlias": "Enter new Account Alias below.",
+     "blockDevice" : "Block Device",
+     "blockDeviceTxt": "You are about to block this Device.",
+     "enterPasswordConfirmTxt":  "Enter your password to confrim",
+     "blockBtnTxt": "Block", 
+
+     "transferCompleted" : "Confirm Transfer",
+     "aboutToSendText": "You are about to send",
+     "toText": "to",
+     "withComment": "With Comment",
+     "withcharges": "With charges",
+     
+     "transferCompletedTxt":  "Transfer Completed",
+     "youTxt": "You",
+     "haveSuccesText": "have succesfully sent",
+     "closeTxt": "close",
+
+     "referenceNumber":  "Reference Number",
+     "debitTxt": "DEBIT",
+     "totaltxt" : "       Total:",
+     "dateTxt":"date",
+     "senderAcct": "Sender Account",
+     "senderName": "Sender Name",
+     "senderDevice": "Sender Device",
+     "rfidCard": "RFID CARD",
+     "recieverAcct": "receiver Account",
+     "reciverName": "receiver Name",
+     "receiveDevice": "Receiver device",
+     "cardReader": "Card Reader",
+     "commentTxt4": "“Payment for school bus subscription service for the kids”",
+     "archieveTxt": "Archive"
+    
+
 
      
      

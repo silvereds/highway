@@ -1,6 +1,9 @@
 // Confirm Tranfer Step Widget
 import 'package:flutter/material.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 
 class ConfirmTransferStepWidget extends StatefulWidget {
   final PageController pageController;
@@ -55,60 +58,14 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 80,
-                  height: 37,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      3,
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        const Color(0xff00cdac),
-                        const Color(0xff4eb181),
-                      ],
-                      stops: [
-                        0,
-                        0.98,
-                      ],
-                    ),
-                  ),
-                  child: FlatButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(
-                          Icons.keyboard_arrow_left_outlined,
-                          size: 15,
-                          color: Color(0xFFFFFFFF),
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "Back",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto",
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              ButtonPrint(
+                  text: AppLocalizations.of(context).bntBackText,
+                  onPressed: () {},
+                  icon: Icons.arrow_back_ios,
+                  color: ThemeColors.RegisterCl),
               Center(
                 child: Text(
-                  "Confirm Transfer",
+                  AppLocalizations.of(context).transferCompleted,
                   style: TextStyle(
                     color: Color(
                       0xff14a09f,
@@ -121,12 +78,11 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
               ),
               Center(
                 child: SizedBox(
-                  width: 170,
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'You are about to send',
+                          text: AppLocalizations.of(context).aboutToSendText,
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
                               fontSize: 14,
@@ -159,7 +115,7 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'to',
+                        text: AppLocalizations.of(context).toText,
                         style: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Poppins',
@@ -207,7 +163,7 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'With Comment:',
+                        text: AppLocalizations.of(context).withComment,
                         style: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Poppins',
@@ -223,7 +179,7 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: '"School fees for the kids"',
+                        text: AppLocalizations.of(context).commentTxt,
                         style: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Poppins',
@@ -239,7 +195,7 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'With charges',
+                        text: AppLocalizations.of(context).withcharges,
                         style: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Poppins',
@@ -271,7 +227,7 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Total Amount: ',
+                        text: AppLocalizations.of(context).totalAmount,
                         style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 16,
@@ -306,7 +262,8 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
                       child: TextFormField(
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                              hintText: "Enter your password to confrim",
+                              hintText: AppLocalizations.of(context)
+                                  .enterPasswordConfirmTxt,
                               hintStyle: TextStyle(
                                 color: Color(
                                   0xff14a09f,
@@ -324,45 +281,18 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
                   SizedBox(
                     width: 20,
                   ),
-                  FlatButton(
-                      minWidth: 97,
-                      height: 37,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      onPressed: _moveBack,
-                      color: Color(0xFFF44336),
-                      textColor: Colors.white,
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: "Poppins",
-                        ),
-                      )),
-                  // SizedBox(
-                  //   width: 10,
-                  // ),
-                  FlatButton(
-                      minWidth: 100,
-                      height: 40,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      onPressed: _moveNext,
-                      color: Color(0xFF4EB181),
-                      textColor: Colors.white,
-                      child: Text(
-                        "Confirm",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                        ),
-                      ))
+                  HighwehButton(
+                      onPress: _moveBack,
+                      text: AppLocalizations.of(context).cancel,
+                      height: 40.14,
+                      color: ThemeColors.deficiteColor,
+                      width: 114.85),
+                  HighwehButton(
+                      onPress: _moveNext,
+                      text: AppLocalizations.of(context).send,
+                      height: 40.14,
+                      color: ThemeColors.RegisterCl,
+                      width: 114.85)
                 ],
               ),
             ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/ui/shared/routes.dart';
-import 'transactions/transaction_confirm_transaction.dart';
+import 'package:mobile/src/ui/views/transaction_details_page.dart';
+import 'transactions/transaction_completed.dart';
 import 'transactions/transaction_confirm_transfer.dart';
 import 'transactions/transaction_first_step.dart';
 import 'transactions/transaction_new_transfer.dart';
@@ -33,6 +33,9 @@ class _AllTransactionsPageState extends State<AllTransactionsPage> {
           pageController: _pageController,
         ),
         TransactionConfirmTransaction(
+          pageController: _pageController,
+        ),
+        TransactionDetailsPage(
           pageController: _pageController,
         )
       ],

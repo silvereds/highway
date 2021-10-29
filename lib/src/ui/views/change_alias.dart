@@ -52,8 +52,7 @@ class _ChangeAliasViewState extends State<ChangeAliasView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Enter new Account Alias below',
-                      //  AppLocalizations.of(context).changeAlias,
+                      AppLocalizations.of(context).enterNewAlias,
                       style: TextStyle(
                         color: Color(
                           0xff999999,

@@ -1,6 +1,9 @@
 // First Widget Step to initiate transfer
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/default_elevated_button.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransactionWidgetFirstStep extends StatefulWidget {
   final PageController pageController;
@@ -33,53 +36,15 @@ class _TransactionWidgetFirstStepState
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DefaultElevatedButton(
-                    text: 'New Transfer',
+                    text: AppLocalizations.of(context).newTransfer,
                     onPressed: _moveToNextStep,
+                    backgroundColor: ThemeColors.RegisterCl,
                   ),
-                  Container(
-                    width: 127,
-                    height: 42,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        3,
-                      ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          const Color(0xff00cdac),
-                          const Color(0xff4eb181),
-                        ],
-                        stops: [
-                          0,
-                          0.98,
-                        ],
-                      ),
-                    ),
-                    child: FlatButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(
-                            Icons.print,
-                            color: Color(0xFFFFFFFF),
-                          ),
-                          // SizedBox(width: 8,),
-                          Text(
-                            "Print",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Poppins",
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
+                  ButtonPrint(
+                      text: AppLocalizations.of(context).print,
                       onPressed: () {},
-                    ),
-                  ),
+                      icon: Icons.print,
+                      color: ThemeColors.RegisterCl)
                 ],
               ),
             ),
@@ -99,7 +64,7 @@ class _TransactionWidgetFirstStepState
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Filter By: ',
+                            text: AppLocalizations.of(context).filterBy,
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 14,
@@ -107,7 +72,7 @@ class _TransactionWidgetFirstStepState
                                 fontFamily: 'Poppins'),
                           ),
                           TextSpan(
-                            text: ' Status',
+                            text: AppLocalizations.of(context).status,
                             style: TextStyle(
                               fontSize: 12,
                               fontFamily: 'Poppins',
@@ -157,7 +122,7 @@ class _TransactionWidgetFirstStepState
                         children: [
                           const SizedBox(width: 50),
                           Text(
-                            "All Transactions",
+                            AppLocalizations.of(context).allTransactions,
                             style: TextStyle(
                               color: Color(
                                 0xff3c4858,
@@ -199,7 +164,9 @@ class _TransactionWidgetFirstStepState
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "STATUS",
+                                    AppLocalizations.of(context)
+                                        .status
+                                        .toUpperCase(),
                                     style: TextStyle(
                                       color: Color(
                                         0xff333333,
@@ -267,7 +234,7 @@ class _TransactionWidgetFirstStepState
                                         ),
                                       ),
                                       Text(
-                                        "“Money for the kids schools fees ....”",
+                                        AppLocalizations.of(context).commentTxt,
                                         style: TextStyle(
                                           color: Color(
                                             0xff334d6e,
@@ -367,7 +334,8 @@ class _TransactionWidgetFirstStepState
                                         ),
                                       ),
                                       Text(
-                                        "“Taxi Fare ....”",
+                                        AppLocalizations.of(context)
+                                            .commentTxt2,
                                         style: TextStyle(
                                           color: Color(
                                             0xff334d6e,
@@ -464,7 +432,8 @@ class _TransactionWidgetFirstStepState
                                         ),
                                       ),
                                       Text(
-                                        "“Platform charges...”",
+                                        AppLocalizations.of(context)
+                                            .platformcharges,
                                         style: TextStyle(
                                           color: Color(
                                             0xff334d6e,
@@ -608,7 +577,7 @@ class _DateFromDateToWidget extends StatelessWidget {
                     const SizedBox(height: 10),
                     Center(
                       child: Text(
-                        "Date From:",
+                        AppLocalizations.of(context).dateFrom,
                         style: TextStyle(
                           color: Color(
                             0xff3c4858,
@@ -738,7 +707,7 @@ class _DateFromDateToWidget extends StatelessWidget {
                     const SizedBox(height: 10),
                     Center(
                       child: Text(
-                        "Date To:",
+                        AppLocalizations.of(context).dateTo,
                         style: TextStyle(
                           color: Color(
                             0xff3c4858,
@@ -904,7 +873,7 @@ class TransactionItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "“Rent for Office ....”",
+                      AppLocalizations.of(context).rent,
                       style: TextStyle(
                         color: Color(
                           0xff334d6e,

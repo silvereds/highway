@@ -526,7 +526,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                       ),
                       HighwehButton(
                           onPress: () {
-                            Navigator.pushNamed(context, AppRoutes.changeAlias);
+                            Navigator.pushNamed(
+                                context, AppRoutes.blockDevicePage);
                           },
                           text: AppLocalizations.of(context).blockDevicebtn,
                           height: 45,

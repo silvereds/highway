@@ -1,5 +1,5 @@
 { 
-    "language" : "French",
+    "language" : "français",
     "helloWorld" : "Bonjour le monde",
 
 
@@ -98,7 +98,7 @@
     "changeAlias": "Modifier",
     "rechargeAccount": "Recharger",
 
-    "sendMoney": "Envoyer de l'argent",
+    "sendMoney": "  Envoyer de l'argent",
     "sendingAccount": "Envoyer le compte",
     "balanceTxt": "Solde : ",
     "reciverAcct": "Compte destinataire",
@@ -130,6 +130,38 @@
     "changePinCode" : "Changer le code PIN",
       "newPinCode": "Nouveau code PIN",
       "completed": "Terminé",
-      "enterNewAlias": "Enter new Account Alias below."
+     
+
+      "enterNewAlias": "Entrez le nouvel alias de compte ci-dessous.",
+      "blockDevice" : "Bloquer le périphérique",
+      "blockDeviceTxt": "Vous êtes sur le point de bloquer cet appareil.",
+      "enterPasswordConfirmTxt": "Entrez votre mot de passe pour confirmer",
+      "blockBtnTxt": "Bloquer",
+
+      "transferCompleted" : "Confirmer le transfert",
+     "aboutToSendText": "Vous êtes sur le point d'envoyer",
+     "toText": "à",
+     "withComment": "Avec commentaire",
+     "withcharges": "avec frais", 
+
+     "transferCompletedTxt": "Transfert terminé",
+     "youTxt": "Vous",
+     "haveSuccesText": "ont envoyé avec succès",
+     "closeTxt": "fermer",
+
+     "referenceNumber": "Numéro de référence",
+     "debitTxt": "DÉBIT",
+     "totaltxt": "Total :",
+     "dateTxt":"date",
+     "senderAcct": "Compte de l'expéditeur",
+     "senderName": "Nom de l'expéditeur",
+     "senderDevice": "Périphérique expéditeur",
+     "rfidCard": "CARTE RFID",
+     "recieverAcct": "compte du destinataire",
+     "reciverName": "Nom du destinataire",
+     "receiveDevice": "Périphérique récepteur",
+     "cardReader": "Lecteur de carte",
+     "commentTxt4": "“Paiement pour le service d'abonnement au bus scolaire pour les enfants”",
+     "archiveTxt": "Archive"
 
 }
