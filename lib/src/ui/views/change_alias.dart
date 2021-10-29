@@ -92,7 +92,9 @@ class _ChangeAliasViewState extends State<ChangeAliasView> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         HighwehButton(
-                            onPress: () {},
+                            onPress: () {
+                              Navigator.pop(context);
+                            },
                             text: AppLocalizations.of(context).cancel,
                             height: 47,
                             color: ThemeColors.deficiteColor,

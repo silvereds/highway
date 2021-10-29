@@ -91,7 +91,7 @@
     "dateOpened" : "Date d'ouverture : ",
     "statut": "Statut : ",
     "active": " ACTIF",
-    "linkedDevices": "Appareils liés",
+    "linkedDevices": "Appareils Liés",
     "alias": "Alias",
     "type": "Type",
     "accountBlock": "Bloquer",
@@ -162,6 +162,13 @@
      "receiveDevice": "Périphérique récepteur",
      "cardReader": "Lecteur de carte",
      "commentTxt4": "“Paiement pour le service d'abonnement au bus scolaire pour les enfants”",
-     "archiveTxt": "Archive"
+     "archiveTxt": "Archive",
+
+     "allAccount": "Tous les comptes",
+     "blockedTxt": "Bloqué",
+     "noAccount": "Vous n'avez pas de compte.",
+     "noDevice": "Vous n'avez pas d'appareil.",
+     "blockAcctLongTxt": "Vous êtes sur le point de bloquer votre compte.",
+     "rechargeMethode": "Méthode de recharge"
 
 }

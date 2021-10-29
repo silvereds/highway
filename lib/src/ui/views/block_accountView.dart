@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 
 class BlockAccountView extends StatefulWidget {
   @override
@@ -35,7 +38,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                       height: 40,
                     ),
                     Text(
-                      "Block Account",
+                      AppLocalizations.of(context).accountBlock,
                       style: TextStyle(
                         color: Color(0xFF14A09F),
                         fontSize: 30,
@@ -49,7 +52,7 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                     ),
                     SizedBox(
                       child: Text(
-                        "You are about to block your account.",
+                        AppLocalizations.of(context).blockAcctLongTxt,
                         style: TextStyle(
                           color: Color(
                             0xFF999999,
@@ -71,7 +74,8 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "Enter your password to confrim",
+                            AppLocalizations.of(context)
+                                .enterPasswordConfirmTxt,
                             style: TextStyle(
                               color: Color(
                                 0xff14a09f,
@@ -101,49 +105,24 @@ class _BlockAccountViewState extends State<BlockAccountView> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              FlatButton(
-                                  minWidth: 97,
-                                  height: 37,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  onPressed: () {
-                                    print('Cancel');
+                              HighwehButton(
+                                  onPress: () {
+                                    Navigator.pop(context);
                                   },
-                                  color: Color(0xFFF44336),
-                                  textColor: Colors.white,
-                                  child: Text(
-                                    "Cancel",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  )),
+                                  text: AppLocalizations.of(context).cancel,
+                                  height: 40,
+                                  color: ThemeColors.deficiteColor,
+                                  width: 100),
                               SizedBox(
                                 width: 20,
                               ),
-                              FlatButton(
-                                  minWidth: 100,
+                              HighwehButton(
+                                  onPress: () {},
+                                  text:
+                                      AppLocalizations.of(context).blockBtnTxt,
                                   height: 40,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  onPressed: () {
-                                    print(' Account Blocked');
-                                  },
-                                  color: Color(0xFF4EB181),
-                                  textColor: Colors.white,
-                                  child: Text(
-                                    "Block",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Roboto",
-                                    ),
-                                  ))
+                                  color: ThemeColors.RegisterCl,
+                                  width: 100)
                             ],
                           ),
                         ],

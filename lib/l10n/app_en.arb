@@ -168,7 +168,14 @@
      "receiveDevice": "Receiver device",
      "cardReader": "Card Reader",
      "commentTxt4": "“Payment for school bus subscription service for the kids”",
-     "archieveTxt": "Archive"
+     "archieveTxt": "Archive", 
+     "allAccount": "All Accounts",
+     "blockedTxt": "Blocked",
+     "noAccount": "You have not account.",
+     "noDevice": "You have not Device.",
+     "blockAcctLongTxt":   "You are about to block your account.",
+     "rechargeMethode": "Recharge Method"
+     
     
 
 

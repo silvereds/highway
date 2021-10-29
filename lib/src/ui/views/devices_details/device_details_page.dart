@@ -8,7 +8,7 @@ import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:mobile/src/ui/views/all_accounts_view/components/accounts_card_with_text.dart';
-import 'components/button_alias_history.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DeviceDetailsPage extends StatefulWidget {

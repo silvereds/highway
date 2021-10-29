@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 
 class RechargeAccountPage extends StatefulWidget {
   @override
@@ -49,34 +52,13 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 42,
-                        width: 99,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.keyboard_arrow_left_outlined),
-                              color: Color(0xFFFFFFFF),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            Text("Back",
-                                style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins'))
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            3,
-                          ),
-                        ),
+                      ButtonPrint(
+                        text: AppLocalizations.of(context).bntBackText,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        color: ThemeColors.RegisterC,
+                        icon: Icons.arrow_back_ios,
                       ),
                     ],
                   ),
@@ -86,7 +68,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                   height: 60,
                   child: Center(
                     child: Text(
-                      "Recharge Account",
+                      AppLocalizations.of(context).rechargeAccount,
                       style: TextStyle(
                         color: Color(
                           0xff14a09f,
@@ -105,7 +87,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                       child: Column(children: [
                         SizedBox(
                           child: Text(
-                            "Account Number",
+                            AppLocalizations.of(context).accountNumber,
                             style: TextStyle(
                               color: Color(
                                 0xff14a09f,
@@ -166,7 +148,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                       ),
                       child: RichText(
                         text: TextSpan(
-                          text: 'Account Name: ',
+                          text: AppLocalizations.of(context).accountName,
                           style: TextStyle(
                             color: Color(
                               0xff818e9b,
@@ -200,7 +182,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                       child: Column(children: [
                         SizedBox(
                           child: Text(
-                            "Recharge Method",
+                            AppLocalizations.of(context).rechargeMethode,
                             style: TextStyle(
                               color: Color(
                                 0xff14a09f,
@@ -246,7 +228,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                       ]),
                     )),
                 Text(
-                  "Amount",
+                  AppLocalizations.of(context).amountTxt,
                   style: TextStyle(
                     color: Color(
                       0xff14a09f,
@@ -257,9 +239,7 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                   ),
                 ),
                 TextFormField(
-                  
                   style: TextStyle(
-                    
                     color: Color(
                       0xff323c47,
                     ),
@@ -278,51 +258,26 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                   endIndent: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    FlatButton(
-                        minWidth: 97,
-                        height: 37,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.homeScreen);
-                        },
-                        color: Color(0xFFF44336),
-                        textColor: Colors.white,
-                        child: Text(
-                          "Cancel",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          ),
-                        )),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    HighwehButton(
+                        onPress: () {},
+                        text: AppLocalizations.of(context).cancel,
+                        height: 45,
+                        color: ThemeColors.deficiteColor,
+                        width: 128),
                     SizedBox(
                       width: 20,
                     ),
-                    FlatButton(
-                        minWidth: 100,
-                        height: 40,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.homeScreen);
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Colors.white,
-                        child: Text(
-                          "Recharge",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto",
-                          ),
-                        ))
+                    HighwehButton(
+                        onPress: () {},
+                        text: AppLocalizations.of(context).recharge,
+                        height: 45,
+                        color: ThemeColors.RegisterCl,
+                        width: 128)
                   ],
                 ),
               ],
