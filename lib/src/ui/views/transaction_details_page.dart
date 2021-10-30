@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/src/ui/shared/appBar.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
-import 'package:mobile/src/ui/shared/navDrawer.dart';
+import 'package:mobile/src/ui/shared/default_elevated_button.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../routes.dart';
 
 class TransactionDetailsPage extends StatefulWidget {
+  final PageController pageController;
+
+  const TransactionDetailsPage({Key key, this.pageController})
+      : super(key: key);
   @override
   _TransactionDetailsPageState createState() => _TransactionDetailsPageState();
 }
@@ -12,9 +20,6 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: NavDrawer(),
-      // backgroundColor: Color(0xFFF5F6F8),
-      // appBar: AppBarView(),
       body: Center(
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 35, 10, 15),
@@ -42,76 +47,19 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 42,
-                        decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            3,
-                          ),
-                        ),
-                        child: FlatButton(
+                      ButtonPrint(
+                          text: AppLocalizations.of(context).bntBackText,
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, AppRoutes.homeScreen);
+                          },
+                          icon: Icons.arrow_back_ios,
+                          color: ThemeColors.RegisterCl),
+                      ButtonPrint(
+                          text: AppLocalizations.of(context).print,
                           onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(
-                                Icons.keyboard_arrow_left_outlined,
-                                color: Color(0xFFFFFFFF),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "Roboto",
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 42,
-                        decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            3,
-                          ),
-                        ),
-                        child: FlatButton(
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.print,
-                                color: Color(0xFFFFFFFF),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Print",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "Roboto",
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                          icon: Icons.print,
+                          color: ThemeColors.RegisterCl)
                     ],
                   ),
                 ),
@@ -160,7 +108,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Reference Number",
+                              AppLocalizations.of(context).referenceNumber,
                               style: TextStyle(
                                 color: Color(
                                   0xff818e9b,
@@ -196,7 +144,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Type",
+                                    AppLocalizations.of(context).type,
                                     style: TextStyle(
                                       color: Color(
                                         0xff818e9b,
@@ -207,7 +155,9 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                                     ),
                                   ),
                                   Text(
-                                    "DEBIT",
+                                    AppLocalizations.of(context)
+                                        .debitTxt
+                                        .toUpperCase(),
                                     style: TextStyle(
                                       color: Color(
                                         0xff323c47,
@@ -228,7 +178,8 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: 'Amount:     12,000',
+                                      text:
+                                          '${AppLocalizations.of(context).amountTxt}    1200',
                                       style: TextStyle(
                                         color: Color(
                                           0xff818e9b,
@@ -245,7 +196,8 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: 'Charges:             25',
+                                      text:
+                                          '${AppLocalizations.of(context).charges}              25',
                                       style: TextStyle(
                                         color: Color(
                                           0xff818e9b,
@@ -276,7 +228,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                                       ),
                                     ),
                                     TextSpan(
-                                      text: '      12,025',
+                                      text: '     12,025',
                                       style: TextStyle(
                                         color: Color(
                                           0xff192a3e,
@@ -301,7 +253,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Date",
+                              AppLocalizations.of(context).dateTxt,
                               style: TextStyle(
                                 color: Color(
                                   0xff818e9b,
@@ -333,7 +285,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Status",
+                              AppLocalizations.of(context).status,
                               style: TextStyle(
                                 color: Color(
                                   0xff818e9b,
@@ -344,7 +296,9 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                               ),
                             ),
                             Text(
-                              "COMPLETED",
+                              AppLocalizations.of(context)
+                                  .completed
+                                  .toUpperCase(),
                               style: TextStyle(
                                 color: Color(
                                   0xff2ed47a,
@@ -372,7 +326,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Sender Account",
+                            AppLocalizations.of(context).senderAcct,
                             style: TextStyle(
                               color: Color(
                                 0xff818e9b,
@@ -399,7 +353,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Sender Name",
+                            AppLocalizations.of(context).accountName,
                             style: TextStyle(
                               color: Color(
                                 0xff818e9b,
@@ -434,7 +388,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Sender device",
+                            AppLocalizations.of(context).senderDevice,
                             style: TextStyle(
                               color: Color(
                                 0xff818e9b,
@@ -445,7 +399,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                             ),
                           ),
                           Text(
-                            "RFID CARD",
+                            AppLocalizations.of(context).rfidCard,
                             style: TextStyle(
                               color: Color(
                                 0xff323c47,
@@ -473,7 +427,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Reciver  Account",
+                            AppLocalizations.of(context).recieverAcct,
                             style: TextStyle(
                               color: Color(
                                 0xff818e9b,
@@ -500,7 +454,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Reciever Name",
+                            AppLocalizations.of(context).reciverName,
                             style: TextStyle(
                               color: Color(
                                 0xff818e9b,
@@ -535,7 +489,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Reciever device",
+                            AppLocalizations.of(context).receiveDevice,
                             style: TextStyle(
                               color: Color(
                                 0xff818e9b,
@@ -546,7 +500,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                             ),
                           ),
                           Text(
-                            "Card Reader",
+                            AppLocalizations.of(context).cardReader,
                             style: TextStyle(
                               color: Color(
                                 0xff323c47,
@@ -571,7 +525,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Comment",
+                        AppLocalizations.of(context).comment,
                         style: TextStyle(
                           color: Color(
                             0xff818e9b,
@@ -583,7 +537,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                       ),
                       SizedBox(
                         child: Text(
-                          "“Payment for school bus subscription service for the kids”",
+                          AppLocalizations.of(context).commentTxt4,
                           style: TextStyle(
                             color: Color(
                               0xff323c47,
@@ -603,49 +557,22 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                     SizedBox(
                       width: 20,
                     ),
-                    FlatButton(
-                        minWidth: 97,
-                        height: 37,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        onPressed: () {
-                          print('Archived');
+                    HighwehButton(
+                        onPress: () {},
+                        text: AppLocalizations.of(context).archieveTxt,
+                        height: 40.14,
+                        color: ThemeColors.archiveColor,
+                        width: 114.85),
+                    HighwehButton(
+                        onPress: () {
+                          Navigator.pop(context);
+                          Navigator.pushNamed(
+                              context, RouteGenerator.homeScreen);
                         },
-                        color: Color(0xFFFFB946),
-                        textColor: Colors.white,
-                        child: Text(
-                          "Archive",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          ),
-                        )),
-                    // SizedBox(
-                    //   width: 10,
-                    // ),
-                    FlatButton(
-                        minWidth: 100,
-                        height: 40,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        onPressed: () {
-                          // Navigator.pushNamed(context,  AppRoutes.confirmTransferPage);
-                        },
-                        color: Color(0xFF4EB181),
-                        textColor: Colors.white,
-                        child: Text(
-                          "Close",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto",
-                          ),
-                        ))
+                        text: AppLocalizations.of(context).closeTxt,
+                        height: 40.14,
+                        color: ThemeColors.RegisterCl,
+                        width: 114.85)
                   ],
                 ),
               ],

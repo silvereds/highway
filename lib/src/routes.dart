@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/src/core/common/screens_arguments.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/views/Create_password.dart';
+import 'package:mobile/src/ui/views/block_accountView.dart';
 import 'package:mobile/src/ui/views/change_password_screen.dart';
 import 'package:mobile/src/ui/views/licence_page.dart';
 import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
@@ -28,6 +29,7 @@ class RouteGenerator {
 
   static const changeDevicePage = '/changeDevicePage';
   static const blockDevicePage = '/blockDevicePage';
+  static const blockAccount = '/blockAccount';
   static const changePinPage = '/changePinPage';
   static const allTransactionsPage = '/allTransactionsPage';
   static const transferMoneyPage = '/tansferMoneyPage';
@@ -88,7 +90,9 @@ class RouteGenerator {
         );
       case devicesDetailScreen:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => DeviceDetailsPage(devices: args as Devices,),
+          builder: (_) => DeviceDetailsPage(
+            devices: args as Devices,
+          ),
         );
       case forgotPasswordScreen:
         return MaterialPageRoute<dynamic>(
@@ -195,6 +199,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NotificationScreen());
       case blockDevicePage:
         return MaterialPageRoute(builder: (_) => BlockDevicePage());
+      case blockAccount:
+        return MaterialPageRoute(builder: (_) => BlockAccountView());
 
       default:
         return _errorRoute();

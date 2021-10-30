@@ -4,6 +4,7 @@ import 'package:mobile/src/ui/views/all_accounts_view/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/block_accountView.dart';
 import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
 import 'package:mobile/src/ui/views/transactions.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BottomNavigationBarView extends StatefulWidget {
   @override
@@ -56,31 +57,31 @@ class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
             icon: Icon(
               Icons.dashboard_outlined,
             ),
-            label: 'Dashboad',
+            label: AppLocalizations.of(context).dashboard,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.credit_card,
             ),
-            label: 'Accounts',
+            label: AppLocalizations.of(context).accounts,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.local_atm_outlined,
             ),
-            label: 'Transactions',
+            label: AppLocalizations.of(context).transactions,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.credit_card,
             ),
-            label: 'Devices',
+            label: AppLocalizations.of(context).devices,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.place_outlined,
             ),
-            label: 'Map',
+            label: AppLocalizations.of(context).map,
           ),
         ],
       ),

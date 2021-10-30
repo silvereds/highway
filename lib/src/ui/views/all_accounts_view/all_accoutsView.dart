@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/screens_arguments.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'components/accounts_card_with_text.dart';
 
@@ -54,7 +55,7 @@ class _AccountsViewState extends State<AccountsView> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
-                    'All accounts',
+                    AppLocalizations.of(context).allAccount,
                     style: TextStyle(
                       color: Color(
                         0xFF3C4858,
@@ -83,9 +84,10 @@ class _AccountsViewState extends State<AccountsView> {
                         if (user.accounts.isEmpty) {
                           return Center(
                             child: Padding(
-                              padding: const EdgeInsets.only(bottom: 16),
-                              child: const Text('You have no account.'),
-                            ),
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: Text(
+                                  AppLocalizations.of(context).noAccount,
+                                )),
                           );
                         }
                         return ListView.separated(
@@ -133,7 +135,8 @@ class _AccountsViewState extends State<AccountsView> {
                                 onPressed: () async => await context
                                     .read(AuthProvider.authProvider)
                                     .getUserInfo(),
-                                child: Text('Try Again'),
+                                child:
+                                    Text(AppLocalizations.of(context).tryAgain),
                               ),
                             ],
                           ),

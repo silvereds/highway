@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/providers/providers.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NavDrawer extends StatefulWidget {
   @override
@@ -66,7 +67,7 @@ class _NavDrawerState extends State<NavDrawer> {
                     color: Color(0xFFDADADA),
                   ),
                   title: Text(
-                    "Notifications",
+                    AppLocalizations.of(context).notification,
                     style: TextStyle(
                       color: Color(
                         0xffdadada,
@@ -87,7 +88,7 @@ class _NavDrawerState extends State<NavDrawer> {
                     color: Color(0xFFDADADA),
                   ),
                   title: Text(
-                    "Support",
+                    AppLocalizations.of(context).support,
                     style: TextStyle(
                       color: Color(
                         0xffdadada,
@@ -110,7 +111,7 @@ class _NavDrawerState extends State<NavDrawer> {
                     color: Color(0xFFDADADA),
                   ),
                   title: Text(
-                    "Settings",
+                    AppLocalizations.of(context).settings,
                     style: TextStyle(
                       color: Color(
                         0xffdadada,
@@ -133,12 +134,13 @@ class _NavDrawerState extends State<NavDrawer> {
                               Navigator.pushNamed(
                                   context, '/settingPreference');
                             },
-                            text: 'Preferences',
+                            text: AppLocalizations.of(context).preferences,
                             fontSize: 16,
                           ),
                           _SubMenuTextButton(
                             onTap: () {},
-                            text: 'General Information',
+                            text:
+                                AppLocalizations.of(context).generalInformation,
                             fontSize: 16,
                           ),
                           Padding(
@@ -150,23 +152,24 @@ class _NavDrawerState extends State<NavDrawer> {
                                     Navigator.pop(context);
                                     Navigator.pushNamed(context, '/policyPage');
                                   },
-                                  text: 'Policy',
+                                  text: AppLocalizations.of(context).policy,
                                 ),
                                 _SubMenu(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(
-                                        context, '/termsAndConditions');
-                                  },
-                                  text: 'Terms & Conditions',
-                                ),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      Navigator.pushNamed(
+                                          context, '/termsAndConditions');
+                                    },
+                                    text: AppLocalizations.of(context)
+                                        .termsAndCondition),
                                 _SubMenu(
                                   onTap: () {
                                     Navigator.pop(context);
                                     Navigator.pushNamed(
                                         context, '/licenceAgreement');
                                   },
-                                  text: 'License Agreement',
+                                  text:
+                                      AppLocalizations.of(context).licenseText,
                                 ),
                                 _SubMenu(
                                   onTap: () {
@@ -174,14 +177,15 @@ class _NavDrawerState extends State<NavDrawer> {
                                     Navigator.pushNamed(
                                         context, '/productServicesPage');
                                   },
-                                  text: 'Product & Service Info',
+                                  text: AppLocalizations.of(context)
+                                      .productServices,
                                 ),
                               ],
                             ),
                           ),
                           _SubMenuTextButton(
                             onTap: () {},
-                            text: 'About',
+                            text: AppLocalizations.of(context).about,
                             fontSize: 16,
                           ),
                           Padding(
@@ -192,13 +196,13 @@ class _NavDrawerState extends State<NavDrawer> {
                                   onTap: () {
                                     Navigator.pop(context);
                                   },
-                                  text: 'About Us',
+                                  text: AppLocalizations.of(context).aboutUs,
                                 ),
                                 _SubMenu(
                                   onTap: () {
                                     Navigator.pop(context);
                                   },
-                                  text: 'Follow Us',
+                                  text: AppLocalizations.of(context).followUs,
                                 ),
                               ],
                             ),
@@ -221,7 +225,7 @@ class _NavDrawerState extends State<NavDrawer> {
                   color: Color(0xFFDADADA),
                 ),
                 title: Text(
-                  "Logout",
+                  AppLocalizations.of(context).logout,
                   style: TextStyle(
                     color: Color(
                       0xffdadada,
@@ -298,14 +302,18 @@ class _SubMenu extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                  decoration: TextDecoration.underline,
-                  fontFamily: "Poppins",
-                  color: Color(0xFFDADADA),
+              child: SizedBox(
+                width: 200,
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                    fontFamily: "Poppins",
+                    color: Color(0xFFDADADA),
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),

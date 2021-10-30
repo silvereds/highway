@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 
 class TransactionWidgetNewTransfer extends StatefulWidget {
   final PageController pageController;
@@ -53,8 +56,8 @@ class _TransactionWidgetNewTransferState
                       height: 5,
                     ),
                     Center(
-                      child: const Text(
-                        "Send Money",
+                      child: Text(
+                        AppLocalizations.of(context).sendMoney,
                         style: TextStyle(
                           color: Color(0xff14a09f),
                           fontSize: 24,
@@ -68,8 +71,8 @@ class _TransactionWidgetNewTransferState
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Sending Account",
+                          Text(
+                            AppLocalizations.of(context).sendingAccount,
                             style: TextStyle(
                               color: Color(0xff14a09f),
                               fontSize: 12,
@@ -121,7 +124,8 @@ class _TransactionWidgetNewTransferState
                                     const SizedBox(width: 10),
                                     RichText(
                                       text: TextSpan(
-                                        text: 'Account Name: ',
+                                        text: AppLocalizations.of(context)
+                                            .accountName,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -152,7 +156,8 @@ class _TransactionWidgetNewTransferState
                                     const SizedBox(width: 10),
                                     RichText(
                                       text: TextSpan(
-                                        text: 'Balance: ',
+                                        text: AppLocalizations.of(context)
+                                            .balanceTxt,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -182,8 +187,8 @@ class _TransactionWidgetNewTransferState
                             ),
                           ),
                           const SizedBox(height: 16),
-                          const Text(
-                            "Reciever Account",
+                          Text(
+                            AppLocalizations.of(context).reciverAcct,
                             style: TextStyle(
                               color: Color(0xff14a09f),
                               fontSize: 12,
@@ -236,7 +241,8 @@ class _TransactionWidgetNewTransferState
                                     ),
                                     RichText(
                                       text: TextSpan(
-                                        text: 'Account Name: ',
+                                        text: AppLocalizations.of(context)
+                                            .accountName,
                                         style: TextStyle(
                                           color: Color(
                                             0xff818e9b,
@@ -267,7 +273,7 @@ class _TransactionWidgetNewTransferState
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            "Amount",
+                            AppLocalizations.of(context).amountTxt,
                             style: TextStyle(
                               color: Color(
                                 0xff14a09f,
@@ -280,7 +286,7 @@ class _TransactionWidgetNewTransferState
                           const SizedBox(height: 8),
                           TextField(
                             decoration: InputDecoration(
-                              hintText: 'Charges',
+                              hintText: AppLocalizations.of(context).charges,
                               hintStyle: TextStyle(
                                 color: Color(
                                   0xff818e9b,
@@ -294,7 +300,7 @@ class _TransactionWidgetNewTransferState
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            "Comment",
+                            AppLocalizations.of(context).comment,
                             style: TextStyle(
                               color: Color(
                                 0xff14a09f,
@@ -306,7 +312,7 @@ class _TransactionWidgetNewTransferState
                           ),
                           TextField(
                             decoration: InputDecoration(
-                              hintText: 'School fees for the kids',
+                              hintText: AppLocalizations.of(context).commentTxt,
                               border: InputBorder.none,
                             ),
                           ),
@@ -315,7 +321,8 @@ class _TransactionWidgetNewTransferState
                             children: [
                               RichText(
                                 text: TextSpan(
-                                  text: 'Total Amount: ',
+                                  text:
+                                      AppLocalizations.of(context).totalAmount,
                                   style: TextStyle(
                                     color: Color(
                                       0xff818e9b,
@@ -350,45 +357,18 @@ class _TransactionWidgetNewTransferState
                               SizedBox(
                                 width: 20,
                               ),
-                              FlatButton(
-                                  minWidth: 97,
-                                  height: 37,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  onPressed: _moveBack,
-                                  color: Color(0xFFF44336),
-                                  textColor: Colors.white,
-                                  child: Text(
-                                    "Cancel",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "Poppins",
-                                    ),
-                                  )),
-                              // SizedBox(
-                              //   width: 10,
-                              // ),
-                              FlatButton(
-                                  minWidth: 100,
-                                  height: 40,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  onPressed: _moveToNextStep,
-                                  color: Color(0xFF4EB181),
-                                  textColor: Colors.white,
-                                  child: Text(
-                                    "Send",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Roboto",
-                                    ),
-                                  ))
+                              HighwehButton(
+                                  onPress: _moveBack,
+                                  text: AppLocalizations.of(context).cancel,
+                                  height: 40.14,
+                                  color: ThemeColors.deficiteColor,
+                                  width: 114.85),
+                              HighwehButton(
+                                  onPress: _moveToNextStep,
+                                  text: AppLocalizations.of(context).send,
+                                  height: 40.14,
+                                  color: ThemeColors.RegisterCl,
+                                  width: 114.85)
                             ],
                           ),
                         ],
