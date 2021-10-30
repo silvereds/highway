@@ -302,16 +302,19 @@ class _SubMenu extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                  decoration: TextDecoration.underline,
-                  fontFamily: "Poppins",
-                  color: Color(0xFFDADADA),
+              child: SizedBox(
+                width: 200,
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                    fontFamily: "Poppins",
+                    color: Color(0xFFDADADA),
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-                overflow: TextOverflow.fade,
               ),
             ),
           ],

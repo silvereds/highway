@@ -1,5 +1,5 @@
 { 
-    "language" : "français",
+    "language" : " Langue",
     "helloWorld" : "Bonjour le monde",
 
 
@@ -169,6 +169,17 @@
      "noAccount": "Vous n'avez pas de compte.",
      "noDevice": "Vous n'avez pas d'appareil.",
      "blockAcctLongTxt": "Vous êtes sur le point de bloquer votre compte.",
-     "rechargeMethode": "Méthode de recharge"
+     "rechargeMethode": "Méthode de recharge",
+
+     "newConversationTxt": "Nouvelle conversation",
+     "requestRfid": "Nouvelle carte RFID",
+     "updateInfo": "Mettre à jour mes informations de profil",
+     "needHelpCard": "Besoin d'aide avec la carte",
+     "needSecondAccount": "Besoin d'un deuxième compte",
+     "opentxt": "OUVERT",
+     "closetxt": "FERMÉ",
+     "date": "30 octobre 2021"
+     
+    
 
 }

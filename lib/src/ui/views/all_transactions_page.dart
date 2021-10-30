@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
 import 'package:mobile/src/ui/views/transaction_details_page.dart';
 import 'transactions/transaction_completed.dart';
 import 'transactions/transaction_confirm_transfer.dart';
@@ -14,7 +15,7 @@ class _AllTransactionsPageState extends State<AllTransactionsPage> {
   String dropdownValue = 'CMR188976560-01';
   String recieverownValue = 'CMR188976560-01';
 
-  final _pageController = PageController();
+  final _pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class _AllTransactionsPageState extends State<AllTransactionsPage> {
         ),
         TransactionDetailsPage(
           pageController: _pageController,
-        )
+        ),
       ],
     ));
   }

@@ -108,7 +108,9 @@ class _BlockDevicePageState extends State<BlockDevicePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             HighwehButton(
-                                onPress: () {},
+                                onPress: () {
+                                  Navigator.pop(context);
+                                },
                                 text: AppLocalizations.of(context).cancel,
                                 height: 40,
                                 color: ThemeColors.deficiteColor,

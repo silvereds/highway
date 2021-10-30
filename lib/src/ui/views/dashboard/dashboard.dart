@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 
 import 'package:pie_chart/pie_chart.dart';
@@ -39,7 +40,7 @@ class _DashBoardState extends State<DashBoard> {
               text: "\$",
               newTransferText: AppLocalizations.of(context).newTransfer,
               press: () {
-                Navigator.pushNamed(context, '/tansferMoneyPage');
+                Navigator.pushNamed(context, AppRoutes.transferMoneyPage);
               },
             ),
             MainCard(

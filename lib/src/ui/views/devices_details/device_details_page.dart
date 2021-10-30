@@ -82,7 +82,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                 ),
                 Container(
                     margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                    height: 250,
+                    // height: 250,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(

@@ -264,7 +264,9 @@ class _RechargeAccountPageState extends State<RechargeAccountPage> {
                       width: 8,
                     ),
                     HighwehButton(
-                        onPress: () {},
+                        onPress: () {
+                          Navigator.pop(context);
+                        },
                         text: AppLocalizations.of(context).cancel,
                         height: 45,
                         color: ThemeColors.deficiteColor,

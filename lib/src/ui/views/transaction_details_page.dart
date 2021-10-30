@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/default_elevated_button.dart';
 import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/shared/routes.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../routes.dart';
 
 class TransactionDetailsPage extends StatefulWidget {
   final PageController pageController;
@@ -46,7 +49,10 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                     children: [
                       ButtonPrint(
                           text: AppLocalizations.of(context).bntBackText,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, AppRoutes.homeScreen);
+                          },
                           icon: Icons.arrow_back_ios,
                           color: ThemeColors.RegisterCl),
                       ButtonPrint(
@@ -558,64 +564,17 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         color: ThemeColors.archiveColor,
                         width: 114.85),
                     HighwehButton(
-                        onPress: () {},
+                        onPress: () {
+                          Navigator.pop(context);
+                          Navigator.pushNamed(
+                              context, RouteGenerator.homeScreen);
+                        },
                         text: AppLocalizations.of(context).closeTxt,
                         height: 40.14,
                         color: ThemeColors.RegisterCl,
                         width: 114.85)
                   ],
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //   children: [
-                //     SizedBox(
-                //       width: 20,
-                //     ),
-                //     FlatButton(
-                //         minWidth: 97,
-                //         height: 37,
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(5.0),
-                //         ),
-                //         onPressed: () {
-                //           print('Archived');
-                //         },
-                //         color: Color(0xFFFFB946),
-                //         textColor: Colors.white,
-                //         child: Text(
-                //           "Archive",
-                //           style: TextStyle(
-                //             color: Colors.white,
-                //             fontSize: 12,
-                //             fontWeight: FontWeight.w700,
-                //             fontFamily: "Poppins",
-                //           ),
-                //         )),
-                //     // SizedBox(
-                //     //   width: 10,
-                //     // ),
-                //     FlatButton(
-                //         minWidth: 100,
-                //         height: 40,
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(5.0),
-                //         ),
-                //         onPressed: () {
-                //           // Navigator.pushNamed(context,  AppRoutes.confirmTransferPage);
-                //         },
-                //         color: Color(0xFF4EB181),
-                //         textColor: Colors.white,
-                //         child: Text(
-                //           "Close",
-                //           style: TextStyle(
-                //             color: Colors.white,
-                //             fontSize: 12,
-                //             fontWeight: FontWeight.w400,
-                //             fontFamily: "Roboto",
-                //           ),
-                //         ))
-                //   ],
-                // ),
               ],
             ),
           ),

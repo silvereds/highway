@@ -60,7 +60,10 @@ class _ConfirmTransferStepWidgetState extends State<ConfirmTransferStepWidget> {
             children: [
               ButtonPrint(
                   text: AppLocalizations.of(context).bntBackText,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, AppRoutes.homeScreen);
+                  },
                   icon: Icons.arrow_back_ios,
                   color: ThemeColors.RegisterCl),
               Center(

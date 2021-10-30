@@ -1,5 +1,5 @@
 { 
-    "language" : "English",
+    "language" : "language",
     "@language": { 
         "description" : "The current language"
 
@@ -174,7 +174,16 @@
      "noAccount": "You have not account.",
      "noDevice": "You have not Device.",
      "blockAcctLongTxt":   "You are about to block your account.",
-     "rechargeMethode": "Recharge Method"
+     "rechargeMethode": "Recharge Method",
+
+     "newConversationTxt": "New Conversation",
+     "requestRfid": "New RFID card",
+     "updateInfo": "Updte my profile info",
+     "needHelpCard":"Need help with card",
+     "needSecondAccount": "Need second Account",
+     "opentxt": "OPEN",
+     "closetxt": "CLOSED",
+     "date": "October 30,2021"
      
     
 
