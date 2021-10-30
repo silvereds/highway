@@ -57,33 +57,6 @@ class AuthCredentials {
 }
 
 @JsonSerializable()
-class Device {
-  final int id;
-  final String assignedTo;
-  final String accountId;
-  final String pin;
-  final String rentedOn;
-  final String returnedOn;
-  final String rentedState;
-  final String status;
-
-  Device({
-    this.id,
-    this.assignedTo,
-    this.accountId,
-    this.pin,
-    this.rentedOn,
-    this.returnedOn,
-    this.rentedState,
-    this.status,
-  });
-
-  factory Device.fromJson(Map<String, dynamic> json) => _$DeviceFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DeviceToJson(this);
-}
-
-@JsonSerializable()
 class Geolocation {
   int id;
   final String itemId;
@@ -542,23 +515,21 @@ class Alias {
 @JsonSerializable()
 class Devices {
   final String id;
-  final String type;
+  final String accountId;
   final String pin;
-  final AddedOn addedOn;
-  final AddedOn assignedOn;
+  final AddedOn rentedOn;
+  final String rentedState;
+  final AddedOn returnedOn;
   final String status;
-  final Location location;
-  final Alias alias;
 
-  Devices({
+  const Devices({
     this.id,
-    this.type,
     this.pin,
-    this.addedOn,
-    this.assignedOn,
     this.status,
-    this.location,
-    this.alias,
+    this.accountId,
+    this.rentedOn,
+    this.rentedState,
+    this.returnedOn,
   });
 
   factory Devices.fromJson(Map<String, dynamic> json) =>

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/ui/shared/default_elevated_button.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 
 import '../../../routes.dart';
 import 'components/linked_devices.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AccountsDetailsView extends StatefulWidget {
   final Accounts account;
@@ -47,43 +50,19 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 42,
-                        width: 99,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: const Icon(Icons.keyboard_arrow_left_outlined),
-                          label: Text('Back'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xff4eb181),
-                            onPrimary: Colors.white,
-                            elevation: 0,
-                          ),
-                        ),
+                      ButtonPrint(
+                        text: AppLocalizations.of(context).bntBackText,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        color: ThemeColors.RegisterC,
+                        icon: Icons.arrow_back_ios,
                       ),
-                      Container(
-                        height: 42,
-                        width: 99,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: const Icon(Icons.print),
-                          label: Text('Print'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xff4eb181),
-                            onPrimary: Colors.white,
-                            elevation: 0,
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(
-                            0xff4eb181,
-                          ),
-                          borderRadius: BorderRadius.circular(3),
-                        ),
+                      ButtonPrint(
+                        text: AppLocalizations.of(context).printBntTxt,
+                        onPressed: () {},
+                        color: ThemeColors.RegisterC,
+                        icon: Icons.print,
                       ),
                     ],
                   ),
@@ -116,7 +95,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                               text: TextSpan(
                                 children: <TextSpan>[
                                   TextSpan(
-                                    text: 'Account Number: ',
+                                    text: AppLocalizations.of(context)
+                                        .accountNumber,
                                     style: TextStyle(
                                       color: Color(
                                         0xff818e9b,
@@ -145,7 +125,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Account Name: \n',
+                                  text:
+                                      '${AppLocalizations.of(context).accountName}\n',
                                   style: TextStyle(
                                     color: Color(
                                       0xff818e9b,
@@ -171,7 +152,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Alias/Tag:  \n',
+                                  text: '${AppLocalizations.of(context).tag}\n',
                                   style: const TextStyle(
                                     color: Color(0xff818e9b),
                                     fontSize: 16,
@@ -196,7 +177,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Account Balance \n',
+                                  text:
+                                      '${AppLocalizations.of(context).accountBalance}\n',
                                   style: const TextStyle(
                                     color: Color(
                                       0xff818e9b,
@@ -223,7 +205,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Date Opened:    ',
+                                  text: AppLocalizations.of(context).dateOpened,
                                   style: TextStyle(
                                     color: Color(0xff818e9b),
                                     fontSize: 13,
@@ -251,7 +233,7 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Status: ',
+                                  text: AppLocalizations.of(context).status,
                                   style: TextStyle(
                                     color: Color(
                                       0xff818e9b,
@@ -279,8 +261,8 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                       ),
                     )),
                 const SizedBox(height: 20),
-                const Text(
-                  "Linked Devices",
+                Text(
+                  AppLocalizations.of(context).linkedDevices,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -292,13 +274,13 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                 Opacity(
                   opacity: 0.5,
                   child: LinkedDevicesSubTiltles(
-                    alias: 'Alias',
+                    alias: AppLocalizations.of(context).alias,
                     id: 'ID',
                   ),
                 ),
                 if (widget.account == null)
-                  const Center(
-                    child: Text('You have no devices'),
+                  Center(
+                    child: Text(AppLocalizations.of(context).noDevice),
                   ),
                 if (widget.account != null)
                   ListView.builder(
@@ -315,39 +297,33 @@ class _AccountsDetailsViewState extends State<AccountsDetailsView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    DefaultElevatedButton(
-                      text: 'Block Account',
-                      backgroundColor: const Color(0xfff44336),
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                      onPressed: () {},
-                    ),
-                    DefaultElevatedButton(
-                      text: 'Change Alias',
-                      backgroundColor: const Color(0xFF4EB181),
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, RouteGenerator.changeAlias);
-                      },
-                    ),
-                    DefaultElevatedButton(
-                      text: 'Recharge Account',
-                      backgroundColor: const Color(0xFF4EB181),
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, RouteGenerator.rechargeAccountpage);
-                      },
-                    ),
+                    HighwehButton(
+                        onPress: () {
+                          Navigator.pushNamed(
+                              context, RouteGenerator.blockAccount);
+                        },
+                        text: AppLocalizations.of(context).accountBlock,
+                        height: 40,
+                        color: ThemeColors.deficiteColor,
+                        width: 93),
+                    HighwehButton(
+                        onPress: () {
+                          Navigator.pushNamed(
+                              context, RouteGenerator.changeAlias);
+                        },
+                        text: AppLocalizations.of(context).changeAlias,
+                        height: 40,
+                        color: ThemeColors.RegisterCl,
+                        width: 93),
+                    HighwehButton(
+                        onPress: () {
+                          Navigator.pushNamed(
+                              context, RouteGenerator.rechargeAccountpage);
+                        },
+                        text: AppLocalizations.of(context).recharge,
+                        height: 40,
+                        color: ThemeColors.RegisterCl,
+                        width: 93)
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -378,9 +354,7 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
           Text(
             id,
             style: const TextStyle(
-              color: Color(
-                0xff323c47,
-              ),
+              color: ThemeColors.subtitleTxt,
               fontSize: 15,
               fontWeight: FontWeight.bold,
               fontFamily: "Poppins",
@@ -389,7 +363,7 @@ class LinkedDevicesSubTiltles extends StatelessWidget {
           Text(
             alias,
             style: const TextStyle(
-              color: Color(0xff323c47),
+              color: ThemeColors.subtitleTxt,
               fontSize: 15,
               fontWeight: FontWeight.bold,
               fontFamily: "Poppins",

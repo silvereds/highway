@@ -1,15 +1,22 @@
-
 import 'package:flutter/material.dart';
+import 'package:mobile/src/core/common/enums.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
+import 'package:mobile/src/ui/shared/highweh_checkbox.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
+import '../../ui/themes/const_color.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingPreference extends StatefulWidget {
   const SettingPreference({Key key}) : super(key: key);
   @override
   _SettingPreferenceState createState() => _SettingPreferenceState();
 }
+
 class _SettingPreferenceState extends State<SettingPreference> {
-  var _radioValue = 1;
+  var _appearOnMap = CheckBoxValues.Yes;
+
+  var _language = CheckBoxValues.English;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +46,10 @@ class _SettingPreferenceState extends State<SettingPreference> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10),
-                Center(
+                SizedBox(
+                  width: double.infinity,
                   child: Text(
-                    "User Preferences",
+                    AppLocalizations.of(context).usersPresferenceText,
                     style: TextStyle(
                       color: Color(
                         0xff14a09f,
@@ -50,66 +58,51 @@ class _SettingPreferenceState extends State<SettingPreference> {
                       fontWeight: FontWeight.w500,
                       fontFamily: "Poppins",
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 Text(
-                  "    Appear on map:",
+                  AppLocalizations.of(context).appearOnMap,
                   style: TextStyle(
-                    color: Color(
-                      0xff334d6e,
-                    ),
+                    color: ThemeColors.UnSelectedItemColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     fontFamily: "Poppins",
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 1,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "Yes",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 2,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "No",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
+                    HighwehRadio(
+                        text: AppLocalizations.of(context).yes,
+                        value: CheckBoxValues.Yes,
+                        groupValue: _appearOnMap,
+                        onChanged: (value) {
+                          setState(() {
+                            _appearOnMap = value;
+                            print('yes');
+                          });
+                        }),
+                    HighwehRadio(
+                        text: AppLocalizations.of(context).no,
+                        value: CheckBoxValues.No,
+                        groupValue: _appearOnMap,
+                        onChanged: (value) {
+                          setState(() {
+                            _appearOnMap = value;
+                            print('no');
+                          });
+                        })
                   ],
                 ),
-                  SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 20,
                 ),
                 Text(
-                  "    Languages:",
+                  AppLocalizations.of(context).language,
                   style: TextStyle(
                     color: Color(
                       0xff334d6e,
@@ -120,45 +113,31 @@ class _SettingPreferenceState extends State<SettingPreference> {
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 1,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "Yes",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 2,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "No",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
+                    HighwehRadio(
+                        text: AppLocalizations.of(context).english,
+                        value: CheckBoxValues.English,
+                        groupValue: _language,
+                        onChanged: (value) {
+                          setState(() {
+                            _language = value;
+                            print('English');
+                          });
+                        }),
+                    HighwehRadio(
+                        text: AppLocalizations.of(context).french,
+                        value: CheckBoxValues.French,
+                        groupValue: _language,
+                        onChanged: (value) {
+                          setState(() {
+                            _language = value;
+                            print('French');
+                          });
+                        })
                   ],
                 ),
-                  SizedBox(
+                SizedBox(
                   height: 30,
                 ),
                 Text(
@@ -172,46 +151,7 @@ class _SettingPreferenceState extends State<SettingPreference> {
                     fontFamily: "Poppins",
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 1,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "Yes",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 2,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "No",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
-                  ],
-                ),
-                  SizedBox(
+                SizedBox(
                   height: 30,
                 ),
                 Text(
@@ -225,70 +165,18 @@ class _SettingPreferenceState extends State<SettingPreference> {
                     fontFamily: "Poppins",
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 1,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "Yes",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
-                    Radio(
-                      activeColor: Color(0xFF4EB181),
-                      value: 2,
-                      groupValue: _radioValue,
-                      onChanged: (int inValue) {
-                        setState(() {
-                          _radioValue = inValue;
-                        });
-                      },
-                    ),
-                    Text(
-                      "No",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF334D6E)),
-                    ),
-                  ],
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
-                   mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      FlatButton(
-                          minWidth: 110,
-                          height: 45,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          onPressed: () {
-                          print('save');
-                          },
-                          color: Color(0xFF4EB181),
-                          textColor: Colors.white,
-                          child: Text(
-                            "save",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
-                            ),
-                          )),
+                      HighwehButton(
+                        text: AppLocalizations.of(context).save,
+                        onPress: () {},
+                        color: Colors.white,
+                        height: 45,
+                        width: 110,
+                      ),
                     ],
                   ),
                 ),
@@ -298,4 +186,3 @@ class _SettingPreferenceState extends State<SettingPreference> {
         ));
   }
 }
-

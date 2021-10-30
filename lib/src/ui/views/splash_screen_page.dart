@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/themes/const_color.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SplashScreenPage extends StatefulWidget {
   SplashScreenPage({Key key}) : super(key: key);
@@ -48,22 +50,18 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const SizedBox(height: 10),
-                SizedBox(
-                  child: Text(
-                    "WELCOME TO HIGHWEH ",
-                    style: TextStyle(
-                      color: Color(
-                        0xff4eb181,
-                      ),
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Poppins",
+                const SizedBox(height: 20),
+                Text(
+                  AppLocalizations.of(context).welcomeText,
+                  style: TextStyle(
+                    color: Color(
+                      0xff4eb181,
                     ),
-                    textAlign: TextAlign.center,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Poppins",
                   ),
-                  width: 327,
-                  height: 97,
+                  textAlign: TextAlign.center,
                 ),
                 // SizedBox(height: 20),
                 Container(
@@ -84,8 +82,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  child: const Text(
-                                    "Transfer Money ",
+                                  child: Text(
+                                    AppLocalizations.of(context).transferMoney,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
@@ -98,7 +96,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                 const SizedBox(height: 5),
                                 SizedBox(
                                   child: Text(
-                                    "Send free up to 100,000 FCFA to your loved ones free of charge",
+                                    AppLocalizations.of(context).subText,
                                     style: TextStyle(
                                       color: Color(
                                         0xff999999,
@@ -139,7 +137,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                               children: [
                                 SizedBox(
                                   child: Text(
-                                    "Manage Your Devices",
+                                    AppLocalizations.of(context).manageDevices,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
@@ -153,7 +151,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                 const SizedBox(height: 5),
                                 SizedBox(
                                   child: Text(
-                                    "Manage your payment card for your expenses and / or your payment reader for your receipts.",
+                                    AppLocalizations.of(context).subText2,
                                     style: TextStyle(
                                       color: Color(
                                         0xff999999,
@@ -190,7 +188,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                               children: [
                                 SizedBox(
                                   child: Text(
-                                    "Manage Your E-wallet Account",
+                                    AppLocalizations.of(context)
+                                        .manageYourEwalletAccount,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
@@ -204,7 +203,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                                 SizedBox(height: 5),
                                 SizedBox(
                                   child: Text(
-                                    "Carry out your transactions, consult your balance and follow your spending history",
+                                    AppLocalizations.of(context).subText3,
                                     style: TextStyle(
                                       color: Color(
                                         0xff999999,
@@ -224,27 +223,16 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 45,
-                ),
-                FlatButton(
-                  minWidth: 133,
-                  height: 40.02,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    side: BorderSide(color: Colors.green),
-                  ),
-                  onPressed: _isAlreadySee,
+                // SizedBox(
+                //   height: 45,
+                // ),
+                HighwehButton(
+                  text: AppLocalizations.of(context).btnNextText,
+                  onPress: _isAlreadySee,
                   color: ThemeColors.Buttons,
-                  textColor: Colors.white,
-                  child: Text(
-                    "Next",
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontFamily: 'Poppins',
-                    ),
-                  ),
-                )
+                  height: 40.32,
+                  width: 120.0,
+                ),
               ],
             ),
           ),

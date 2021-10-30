@@ -1,25 +1,37 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobile/src/core/api/http_client.dart';
-import 'package:mobile/src/core/api/json_parsers/devices/devices_list_parser.dart';
-import 'package:mobile/src/core/common/utils.dart';
+
 import 'package:mobile/src/core/entities/all.dart';
 import 'package:mobile/src/core/repository/devices_repository.dart';
+import 'package:mobile/src/core/services/services.dart';
 
 part 'devices_notifier.freezed.dart';
 
 /// *********************** Devices Infranstructre ********************** */
 
 class DevicesServices implements DevicesRepository {
-  List<Devices> _devices = [];
+  SharedPrefService _prefService;
+  static const _userKey = 'userInfo';
 
+  DevicesServices(this._prefService);
   @override
   Future<List<Devices>> getAllDevices() async {
+    List<Devices> _devices = [];
+
     try {
-      final response = await RequestREST(
-        endpoint: '/platform/devices',
-      ).executeGet<List<Devices>>(const DevicesListParser());
-      _devices = response;
+      final mapData = await _prefService.getObject(_userKey) ?? '';
+      final user = User.fromJson(mapData);
+      if (user != null) {
+        final List<Accounts> accounts = user.accounts;
+
+        for (Accounts account in accounts) {
+          _devices = List.from(_devices)..addAll(account.devices);
+        }
+
+        // for (int i = 0; i < accounts.length; i++) {
+        //   _devices = [...accounts[i].devices];
+        // }
+      }
       return _devices;
     } catch (e) {
       throw (e);
@@ -45,15 +57,13 @@ class DevicesNotifier extends StateNotifier<DevicesState> {
   final DevicesServices _devicesServices;
   DevicesNotifier(this._devicesServices) : super(DevicesState.intial());
 
-  Future<List<Devices>> getListOfDevices() async {
+  Future<void> getListOfDevices() async {
     try {
-      state = DevicesState.intial();
+      state = DevicesState.loadInProgress();
       final _listOfDevices = await _devicesServices.getAllDevices();
       state = DevicesState.loadInSuccess(_listOfDevices);
-      return _listOfDevices;
     } catch (e) {
-      state = DevicesState.loadFailure(message: parseApiError(e));
-      throw e;
+      state = DevicesState.loadFailure(message: 'Failed to load data');
     }
   }
 }

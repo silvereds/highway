@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 
 class ChangeAliasView extends StatefulWidget {
   @override
@@ -32,8 +35,8 @@ class _ChangeAliasViewState extends State<ChangeAliasView> {
             child: Column(
               children: [
                 const SizedBox(height: 40),
-                const Text(
-                  "Change Alias",
+                Text(
+                  AppLocalizations.of(context).changeAlias,
                   style: TextStyle(
                     color: Color(
                       0xff14a09f,
@@ -48,8 +51,8 @@ class _ChangeAliasViewState extends State<ChangeAliasView> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Enter new Account Alias below.",
+                    Text(
+                      AppLocalizations.of(context).enterNewAlias,
                       style: TextStyle(
                         color: Color(
                           0xff999999,
@@ -61,8 +64,8 @@ class _ChangeAliasViewState extends State<ChangeAliasView> {
                       textAlign: TextAlign.left,
                     ),
                     const SizedBox(height: 40),
-                    const Text(
-                      "Alias",
+                    Text(
+                      AppLocalizations.of(context).alias,
                       style: TextStyle(
                         color: Color(
                           0xff14a09f,
@@ -88,48 +91,23 @@ class _ChangeAliasViewState extends State<ChangeAliasView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        FlatButton(
-                            minWidth: 97,
-                            height: 37,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop();
+                        HighwehButton(
+                            onPress: () {
+                              Navigator.pop(context);
                             },
-                            color: const Color(0xFFF44336),
-                            textColor: Colors.white,
-                            child: const Text(
-                              "Cancel",
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "Poppins",
-                              ),
-                            )),
-                        const SizedBox(width: 20),
-                        FlatButton(
-                          minWidth: 100,
-                          height: 40,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          onPressed: () {
-                            print(' Account Blocked');
-                          },
-                          color: const Color(0xFF4EB181),
-                          textColor: Colors.white,
-                          child: const Text(
-                            "Save",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
-                            ),
-                          ),
-                        )
+                            text: AppLocalizations.of(context).cancel,
+                            height: 47,
+                            color: ThemeColors.deficiteColor,
+                            width: 100),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        HighwehButton(
+                            onPress: () {},
+                            text: AppLocalizations.of(context).save,
+                            height: 47,
+                            color: Color(0xFF4EB181),
+                            width: 100)
                       ],
                     ),
                   ],

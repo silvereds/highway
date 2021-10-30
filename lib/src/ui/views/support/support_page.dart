@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/src/ui/shared/appBar.dart';
-import 'package:mobile/src/ui/shared/bottomNavigationBar.dart';
+import 'package:mobile/src/ui/shared/highweh_buttons.dart';
 import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/shared/routes.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile/src/ui/themes/const_color.dart';
 
 import 'components/main_container.dart';
 
@@ -26,81 +29,90 @@ class _SupportPageState extends State<SupportPage> {
                 height: 15,
               ),
               Center(
-                child: Container(
-                  height: 42,
-                  width: 161,
-                  decoration: BoxDecoration(
-                    color: Color(
-                      0xff4eb181,
-                    ),
-                    borderRadius: BorderRadius.circular(
-                      4,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(
-                          0x3d109cf1,
-                        ),
-                        offset: Offset(
-                          0,
-                          4,
-                        ),
-                        blurRadius: 10,
-                      ),
-                    ],
+                  child: HighwehButton(
+                color: ThemeColors.RegisterCl,
+                height: 42,
+                onPress: () {
+                  Navigator.pushNamed(context, AppRoutes.newConversationPage);
+                },
+                text: AppLocalizations.of(context).newConversationTxt,
+                width: 200,
+              )
+                  // Container(
+                  //   height: 42,
+                  //   width: 161,
+                  //   decoration: BoxDecoration(
+                  //     color: Color(
+                  //       0xff4eb181,
+                  //     ),
+                  //     borderRadius: BorderRadius.circular(
+                  //       4,
+                  //     ),
+                  //     boxShadow: [
+                  //       BoxShadow(
+                  //         color: Color(
+                  //           0x3d109cf1,
+                  //         ),
+                  //         offset: Offset(
+                  //           0,
+                  //           4,
+                  //         ),
+                  //         blurRadius: 10,
+                  //       ),
+                  //     ],
+                  //   ),
+                  //   child: FlatButton(
+                  //     onPressed: () {
+                  //       Navigator.pushNamed(
+                  //           context, AppRoutes.newConversationPage);
+                  //     },
+                  //     child: Center(
+                  //       child: Text(
+                  //         "New Conversation",
+                  //         style: TextStyle(
+                  //           color: Colors.white,
+                  //           fontSize: 13,
+                  //           fontWeight: FontWeight.w600,
+                  //           fontFamily: "Poppins",
+                  //         ),
+                  //         textAlign: TextAlign.center,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   ),
-                  child: FlatButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, AppRoutes.newConversationPage);
-                    },
-                    child: Center(
-                      child: Text(
-                        "New Conversation",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Poppins",
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               SizedBox(
                 height: 10,
               ),
               MainContainer(
-                process: 'OPEN',
-                topic: 'Request New RFID Card',
-                date: 'December 23, 2018',
+                process: AppLocalizations.of(context).opentxt.toUpperCase(),
+                topic: AppLocalizations.of(context).requestRfid,
+                date: AppLocalizations.of(context).date,
                 message: 'Hello support, i would like to request...',
               ),
               MainContainer(
-                process: 'CLOSED',
-                topic: "Update my profile info",
-                date: "Date: December 23, 2018",
-                message: "Hello Support, I would like to request ....",
+                process: AppLocalizations.of(context).closeTxt.toUpperCase(),
+                topic: AppLocalizations.of(context).updateInfo,
+                date: AppLocalizations.of(context).date,
+                message: 'Hello support, i would like to request...',
               ),
               SizedBox(
                 height: 10,
               ),
               MainContainer(
-                process: 'CLOSED',
-                topic: 'Need help with card',
-                date: 'Date: December 23, 2018',
-                message: 'Helo support, i will like to request',
+                process: AppLocalizations.of(context).closeTxt.toUpperCase(),
+                topic: AppLocalizations.of(context).needHelpCard,
+                date: AppLocalizations.of(context).date,
+                message: 'Hello support, i would like to request...',
               ),
               SizedBox(
                 height: 10,
               ),
               MainContainer(
-                process: 'CLOSED',
-                topic: 'Need help with card',
-                date: 'Date: December 23, 2018',
-                message: 'Helo support, i will like to request',
+                process: AppLocalizations.of(context).closeTxt.toUpperCase(),
+                topic: AppLocalizations.of(context).needSecondAccount,
+                date: AppLocalizations.of(context).date,
+                message: 'Hello support, i would like to request...',
               ),
             ],
           ),

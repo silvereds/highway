@@ -1,10 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/l10n/l10n.dart';
 import 'package:mobile/src/core/providers/auth_notifier.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/routes.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'ui/themes/app_themes.dart';
 
@@ -54,6 +57,13 @@ class AppWidget extends StatelessWidget {
           onGenerateRoute: RouteGenerator.generateRoute,
           navigatorKey: RouteGenerator.key,
           initialRoute: RouteGenerator.splashScreenPage,
+          supportedLocales: L10n.all,
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
         ),
       ),
     );

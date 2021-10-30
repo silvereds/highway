@@ -51,30 +51,6 @@ Map<String, dynamic> _$AuthCredentialsToJson(AuthCredentials instance) =>
       'agent': instance.agent,
     };
 
-Device _$DeviceFromJson(Map<String, dynamic> json) {
-  return Device(
-    id: json['id'] as int,
-    assignedTo: json['assignedTo'] as String,
-    accountId: json['accountId'] as String,
-    pin: json['pin'] as String,
-    rentedOn: json['rentedOn'] as String,
-    returnedOn: json['returnedOn'] as String,
-    rentedState: json['rentedState'] as String,
-    status: json['status'] as String,
-  );
-}
-
-Map<String, dynamic> _$DeviceToJson(Device instance) => <String, dynamic>{
-      'id': instance.id,
-      'assignedTo': instance.assignedTo,
-      'accountId': instance.accountId,
-      'pin': instance.pin,
-      'rentedOn': instance.rentedOn,
-      'returnedOn': instance.returnedOn,
-      'rentedState': instance.rentedState,
-      'status': instance.status,
-    };
-
 Geolocation _$GeolocationFromJson(Map<String, dynamic> json) {
   return Geolocation(
     id: json['id'] as int,
@@ -498,33 +474,27 @@ Map<String, dynamic> _$AliasToJson(Alias instance) => <String, dynamic>{
 Devices _$DevicesFromJson(Map<String, dynamic> json) {
   return Devices(
     id: json['id'] as String,
-    type: json['type'] as String,
     pin: json['pin'] as String,
-    addedOn: json['addedOn'] == null
-        ? null
-        : AddedOn.fromJson(json['addedOn'] as Map<String, dynamic>),
-    assignedOn: json['assignedOn'] == null
-        ? null
-        : AddedOn.fromJson(json['assignedOn'] as Map<String, dynamic>),
     status: json['status'] as String,
-    location: json['location'] == null
+    accountId: json['accountId'] as String,
+    rentedOn: json['rentedOn'] == null
         ? null
-        : Location.fromJson(json['location'] as Map<String, dynamic>),
-    alias: json['alias'] == null
+        : AddedOn.fromJson(json['rentedOn'] as Map<String, dynamic>),
+    rentedState: json['rentedState'] as String,
+    returnedOn: json['returnedOn'] == null
         ? null
-        : Alias.fromJson(json['alias'] as Map<String, dynamic>),
+        : AddedOn.fromJson(json['returnedOn'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$DevicesToJson(Devices instance) => <String, dynamic>{
       'id': instance.id,
-      'type': instance.type,
+      'accountId': instance.accountId,
       'pin': instance.pin,
-      'addedOn': instance.addedOn,
-      'assignedOn': instance.assignedOn,
+      'rentedOn': instance.rentedOn,
+      'rentedState': instance.rentedState,
+      'returnedOn': instance.returnedOn,
       'status': instance.status,
-      'location': instance.location,
-      'alias': instance.alias,
     };
 
 Accounts _$AccountsFromJson(Map<String, dynamic> json) {

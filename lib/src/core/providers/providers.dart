@@ -6,6 +6,8 @@ import 'package:mobile/src/core/services/prefs_service.dart';
 import 'package:mobile/src/core/services/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'linked_accounts_to_device_notifier.dart';
+
 final sharedPrefsProvider = Provider((ref) => SharedPrefService());
 
 abstract class AuthProvider {
@@ -40,6 +42,9 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError();
 });
 
+final sharedPreferencesServicesProvider =
+    Provider<SharedPrefService>((ref) => SharedPrefService());
+
 // final brancheRepository = Provider((ref) => BrancheRepository());
 
 // final brancheNotifier = StateNotifierProvider<BrancheNotifier>(
@@ -51,9 +56,19 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
 /// *********************** Devices Providers ********************** */
 
 final devicesServiceProvider = Provider<DevicesServices>((ref) {
-  return DevicesServices();
+  return DevicesServices(ref.watch(sharedPreferencesServicesProvider));
 });
 
 final devicesNotifierProvider = StateNotifierProvider<DevicesNotifier>((ref) {
   return DevicesNotifier(ref.watch(devicesServiceProvider));
+});
+
+
+final linkedAccountToDeviceProvider = Provider<LinkedAccountToDevicesInfrastructure>((ref) {
+  return LinkedAccountToDevicesInfrastructure(ref.watch(sharedPreferencesServicesProvider));
+});
+
+final linkedAccountToDevicesNotifer =
+    StateNotifierProvider<LinkedAccountsToDeviceNotifier>((ref) {
+  return LinkedAccountsToDeviceNotifier(ref.watch(linkedAccountToDeviceProvider));
 });
