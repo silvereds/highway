@@ -6,7 +6,7 @@ import 'package:mobile/src/core/services/services.dart';
 part 'linked_accounts_to_device_notifier.freezed.dart';
 
 abstract class LinkedAccountToDevicesRepository {
-  Future<List<Accounts>> getAccountLinkToDevice(Devices device);
+  Future<Accounts> getAccountLinkToDevice(Devices device);
 }
 
 class LinkedAccountToDevicesInfrastructure
@@ -17,22 +17,17 @@ class LinkedAccountToDevicesInfrastructure
   LinkedAccountToDevicesInfrastructure(this._prefService);
 
   @override
-  Future<List<Accounts>> getAccountLinkToDevice(Devices deviceI) async {
-    List<Accounts> _account = [];
-
+  Future<Accounts> getAccountLinkToDevice(Devices deviceI) async {
+    Accounts _account;
     try {
       final mapData = await _prefService.getObject(_userKey) ?? '';
       final user = User.fromJson(mapData);
       if (user != null) {
         final List<Accounts> accounts = user.accounts;
 
-        // final acc =
-        //     accounts.where((account) => account.id == deviceI.accountId);
-        // acc.map((account) => _account.add(account));
         for (Accounts account in accounts) {
-          final acc = account.id == deviceI.accountId;
-          if (acc != null && !_account.contains(acc)) {
-            _account.add(account);
+          if (account.id == deviceI.accountId) {
+            _account = account;
           }
         }
       }
@@ -48,8 +43,8 @@ abstract class LinkedAccountToDevicesState with _$LinkedAccountToDevicesState {
   const LinkedAccountToDevicesState._();
   const factory LinkedAccountToDevicesState.intial() = _Init;
   const factory LinkedAccountToDevicesState.loadInProgress() = _Loading;
-  const factory LinkedAccountToDevicesState.loadInSuccess(
-      List<Accounts> accounts) = _Loaded;
+  const factory LinkedAccountToDevicesState.loadInSuccess(Accounts accounts) =
+      _Loaded;
   const factory LinkedAccountToDevicesState.loadFailure({String message}) =
       _Failed;
 }

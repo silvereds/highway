@@ -24,6 +24,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
   void initState() {
     super.initState();
 
+    print('id: ${widget.devices.toJson()}');
+
     Future.microtask(() => context
         .read(linkedAccountToDevicesNotifer)
         .getAccountLinkedToDevices(widget.devices));
@@ -47,9 +49,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
               borderRadius: BorderRadius.circular(6),
               boxShadow: [
                 BoxShadow(
-                  color: Color(
-                    0x23000000,
-                  ),
+                  color: Color(0x23000000),
                   blurRadius: 4,
                   offset: Offset(0, 1),
                 ),
@@ -202,7 +202,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -275,9 +275,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -429,73 +427,81 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                   ),
                 ),
                 SizedBox(height: 20),
-                Consumer(builder: (context, watch, __) {
-                  final deviceState =
-                      watch(linkedAccountToDevicesNotifer.state);
+                Consumer(
+                  builder: (context, watch, __) {
+                    final deviceState =
+                        watch(linkedAccountToDevicesNotifer.state);
 
-                  return deviceState.when(
-                    intial: () => Container(),
-                    loadInProgress: () => Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    loadInSuccess: (data) {
-                      if (data.isEmpty) {
-                        return Center(
-                            child: Text(
-                                AppLocalizations.of(context).noLinkedAcct));
-                      }
-                      return Expanded(
-                        child: ListView.builder(
-                          itemCount: 4,
-                          itemBuilder: (context, i) => ListView.separated(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.only(bottom: 16),
-                            itemCount: data.length,
-                            shrinkWrap: true,
-                            separatorBuilder: (context, i) => Container(
-                              height: .75,
-                              width: double.infinity,
-                              color: Colors.grey,
-                            ),
-                            itemBuilder: (context, i) => AccountsCard(
-                              onPressed: () {},
-                              status: data[i].status,
-                              text: "",
-                              balance: data[i].balance.toString(),
-                              accountNumber: data[i].number,
-                              alias: data[i].tag,
-                              type: ' - ${data[i].type}',
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                    loadFailure: (message) => Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(message),
-                            TextButton(
+                    return deviceState.when(
+                      intial: () => Container(),
+                      loadInProgress: () => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      loadInSuccess: (data) {
+                        if (data == null) {
+                          return Center(
+                              child:
+                                  Text(AppLocalizations.of(context).noAccount));
+                        }
+                        return AccountsCard(
+                          onPressed: () {},
+                          status: data.status,
+                          text: "",
+                          balance: data.balance.toString(),
+                          accountNumber: data.number,
+                          alias: data.tag,
+                          type: ' - ${data.type}',
+                        );
+
+                        // return Expanded(
+                        //   child: ListView.builder(
+                        //     itemCount: 4,
+                        //     itemBuilder: (context, i) => ListView.separated(
+                        //       physics: NeverScrollableScrollPhysics(),
+                        //       padding: const EdgeInsets.only(bottom: 16),
+                        //       itemCount: data.length,
+                        //       shrinkWrap: true,
+                        //       separatorBuilder: (context, i) => Container(
+                        //         height: .75,
+                        //         width: double.infinity,
+                        //         color: Colors.grey,
+                        //       ),
+                        //       itemBuilder: (context, i) => AccountsCard(
+                        //         onPressed: () {},
+                        //         status: data[i].status,
+                        //         text: "",
+                        //         balance: data[i].balance.toString(),
+                        //         accountNumber: data[i].number,
+                        //         alias: data[i].tag,
+                        //         type: ' - ${data[i].type}',
+                        //       ),
+                        //     ),
+                        //   ),
+                        // );
+                      },
+                      loadFailure: (message) => Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(message),
+                              TextButton(
                                 onPressed: () async {
                                   await context
                                       .read(linkedAccountToDevicesNotifer)
                                       .getAccountLinkedToDevices(
                                           widget.devices);
                                 },
-                                child: Text(
-                                  AppLocalizations.of(context).tryAgain,
-                                ))
-                          ],
+                                child: const Text('Try again'),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }),
-                SizedBox(
-                  height: 10,
+                    );
+                  },
                 ),
                 Row(
                   children: [

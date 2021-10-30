@@ -81,7 +81,6 @@ class _AccountsViewState extends State<AccountsView> {
 
                     return userDetail.when(
                       data: (user) {
-                        print(user.toJson());
                         if (user.accounts.isEmpty) {
                           return Center(
                             child: Padding(

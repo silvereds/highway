@@ -24,7 +24,7 @@ class _$LinkedAccountToDevicesStateTearOff {
   }
 
 // ignore: unused_element
-  _Loaded loadInSuccess(List<Accounts> accounts) {
+  _Loaded loadInSuccess(Accounts accounts) {
     return _Loaded(
       accounts,
     );
@@ -48,14 +48,14 @@ mixin _$LinkedAccountToDevicesState {
   TResult when<TResult extends Object>({
     @required TResult intial(),
     @required TResult loadInProgress(),
-    @required TResult loadInSuccess(List<Accounts> accounts),
+    @required TResult loadInSuccess(Accounts accounts),
     @required TResult loadFailure(String message),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult intial(),
     TResult loadInProgress(),
-    TResult loadInSuccess(List<Accounts> accounts),
+    TResult loadInSuccess(Accounts accounts),
     TResult loadFailure(String message),
     @required TResult orElse(),
   });
@@ -133,7 +133,7 @@ class _$_Init extends _Init {
   TResult when<TResult extends Object>({
     @required TResult intial(),
     @required TResult loadInProgress(),
-    @required TResult loadInSuccess(List<Accounts> accounts),
+    @required TResult loadInSuccess(Accounts accounts),
     @required TResult loadFailure(String message),
   }) {
     assert(intial != null);
@@ -148,7 +148,7 @@ class _$_Init extends _Init {
   TResult maybeWhen<TResult extends Object>({
     TResult intial(),
     TResult loadInProgress(),
-    TResult loadInSuccess(List<Accounts> accounts),
+    TResult loadInSuccess(Accounts accounts),
     TResult loadFailure(String message),
     @required TResult orElse(),
   }) {
@@ -235,7 +235,7 @@ class _$_Loading extends _Loading {
   TResult when<TResult extends Object>({
     @required TResult intial(),
     @required TResult loadInProgress(),
-    @required TResult loadInSuccess(List<Accounts> accounts),
+    @required TResult loadInSuccess(Accounts accounts),
     @required TResult loadFailure(String message),
   }) {
     assert(intial != null);
@@ -250,7 +250,7 @@ class _$_Loading extends _Loading {
   TResult maybeWhen<TResult extends Object>({
     TResult intial(),
     TResult loadInProgress(),
-    TResult loadInSuccess(List<Accounts> accounts),
+    TResult loadInSuccess(Accounts accounts),
     TResult loadFailure(String message),
     @required TResult orElse(),
   }) {
@@ -302,7 +302,7 @@ abstract class _Loading extends LinkedAccountToDevicesState {
 abstract class _$LoadedCopyWith<$Res> {
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
       __$LoadedCopyWithImpl<$Res>;
-  $Res call({List<Accounts> accounts});
+  $Res call({Accounts accounts});
 }
 
 /// @nodoc
@@ -320,7 +320,7 @@ class __$LoadedCopyWithImpl<$Res>
     Object accounts = freezed,
   }) {
     return _then(_Loaded(
-      accounts == freezed ? _value.accounts : accounts as List<Accounts>,
+      accounts == freezed ? _value.accounts : accounts as Accounts,
     ));
   }
 }
@@ -332,7 +332,7 @@ class _$_Loaded extends _Loaded {
         super._();
 
   @override
-  final List<Accounts> accounts;
+  final Accounts accounts;
 
   @override
   String toString() {
@@ -362,7 +362,7 @@ class _$_Loaded extends _Loaded {
   TResult when<TResult extends Object>({
     @required TResult intial(),
     @required TResult loadInProgress(),
-    @required TResult loadInSuccess(List<Accounts> accounts),
+    @required TResult loadInSuccess(Accounts accounts),
     @required TResult loadFailure(String message),
   }) {
     assert(intial != null);
@@ -377,7 +377,7 @@ class _$_Loaded extends _Loaded {
   TResult maybeWhen<TResult extends Object>({
     TResult intial(),
     TResult loadInProgress(),
-    TResult loadInSuccess(List<Accounts> accounts),
+    TResult loadInSuccess(Accounts accounts),
     TResult loadFailure(String message),
     @required TResult orElse(),
   }) {
@@ -422,9 +422,9 @@ class _$_Loaded extends _Loaded {
 
 abstract class _Loaded extends LinkedAccountToDevicesState {
   const _Loaded._() : super._();
-  const factory _Loaded(List<Accounts> accounts) = _$_Loaded;
+  const factory _Loaded(Accounts accounts) = _$_Loaded;
 
-  List<Accounts> get accounts;
+  Accounts get accounts;
   @JsonKey(ignore: true)
   _$LoadedCopyWith<_Loaded> get copyWith;
 }
@@ -490,7 +490,7 @@ class _$_Failed extends _Failed {
   TResult when<TResult extends Object>({
     @required TResult intial(),
     @required TResult loadInProgress(),
-    @required TResult loadInSuccess(List<Accounts> accounts),
+    @required TResult loadInSuccess(Accounts accounts),
     @required TResult loadFailure(String message),
   }) {
     assert(intial != null);
@@ -505,7 +505,7 @@ class _$_Failed extends _Failed {
   TResult maybeWhen<TResult extends Object>({
     TResult intial(),
     TResult loadInProgress(),
-    TResult loadInSuccess(List<Accounts> accounts),
+    TResult loadInSuccess(Accounts accounts),
     TResult loadFailure(String message),
     @required TResult orElse(),
   }) {
