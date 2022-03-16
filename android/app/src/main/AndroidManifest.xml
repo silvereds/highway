@@ -11,7 +11,7 @@
      
 
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        
         android:label="HighWeh"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
@@ -26,7 +26,13 @@
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
-                 to determine the Window background behind the Flutter UI. --> 
+                 to determine the Window background behind the Flutter UI. 
+                 android:name="io.flutter.app.FlutterApplication"
+                 --> 
+               <meta-data
+                    android:name="flutterEmbedding"
+                    android:value="2" 
+               />
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"

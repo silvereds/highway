@@ -28,8 +28,8 @@ apply plugin: 'com.google.gms.google-services'
 
 
 android {
-    compileSdkVersion 28
-
+    compileSdkVersion 31
+    
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -43,6 +43,7 @@ android {
         applicationId "com.highweh"
         minSdkVersion 20
         targetSdkVersion 28
+        compileSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
