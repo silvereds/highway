@@ -4,8 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/src/core/common/utils.dart';
 import 'package:mobile/src/core/providers/providers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile/src/ui/shared/Drawer/drawer_item.dart';
+import 'package:mobile/src/ui/shared/Drawer/profile_info.dart';
+import 'package:mobile/src/ui/shared/Drawer/subMenu/subMenu.dart';
 
 class NavDrawer extends StatefulWidget {
+  const NavDrawer({Key key, @required this.showInTap}) : super(key: key);
+  final Function showInTap;
+
   @override
   _NavDrawerState createState() => _NavDrawerState();
 }
@@ -42,6 +48,7 @@ class _NavDrawerState extends State<NavDrawer> {
     // var _pageSize = MediaQuery.of(context).size.height;
     // var _notifySize = MediaQuery.of(context).padding.top;
     // var _appBarSize = AppBar().preferredSize.height;
+
     return SafeArea(
       child: Drawer(
         child: Stack(
@@ -56,52 +63,33 @@ class _NavDrawerState extends State<NavDrawer> {
               ),
             ),
             _Overlay(),
-            Column(
-              mainAxisSize: MainAxisSize.min,
+            ListView(
+              //mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 24),
-                ListTile(
-                  leading: Icon(
-                    Icons.notifications_outlined,
-                    size: 30,
-                    color: Color(0xFFDADADA),
+                const SizedBox(height: 10),
+                Center(
+                  child: Image(
+                    width: 80,
+                    height: 80,
+                    image: AssetImage('assets/images/H_transparent.png'),
                   ),
-                  title: Text(
-                    AppLocalizations.of(context).notification,
-                    style: TextStyle(
-                      color: Color(
-                        0xffdadada,
-                      ),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: "Poppins",
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/notificationScreen');
-                  },
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.chat_outlined,
-                    color: Color(0xFFDADADA),
-                  ),
-                  title: Text(
-                    AppLocalizations.of(context).support,
-                    style: TextStyle(
-                      color: Color(
-                        0xffdadada,
-                      ),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: "Poppins",
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/supportPage');
-                  },
+                const SizedBox(height: 10),
+                DrawerProfileInfo(
+                    image: 'assets/images/HIGHWEH_HORIZONTAL.png',
+                    label: "silvere",
+                    icon: Icons.notifications_outlined),
+                SizedBox(height: 20),
+                DrawerItem(
+                    icon: Icons.notifications_outlined,
+                    label: AppLocalizations.of(context).notification,
+                    index: 5,
+                    onTap: widget.showInTap),
+                DrawerItem(
+                  icon: Icons.chat_outlined,
+                  label: AppLocalizations.of(context).support,
+                  index: 6,
+                  onTap: widget.showInTap, /*route: '/supportPage'*/
                 ),
                 ExpansionTile(
                   collapsedIconColor: Color(0xFFDADADA),
@@ -124,96 +112,13 @@ class _NavDrawerState extends State<NavDrawer> {
                   childrenPadding: EdgeInsets.only(bottom: 16),
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 32),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _SubMenuTextButton(
-                            onTap: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(
-                                  context, '/settingPreference');
-                            },
-                            text: AppLocalizations.of(context).preferences,
-                            fontSize: 16,
-                          ),
-                          _SubMenuTextButton(
-                            onTap: () {},
-                            text:
-                                AppLocalizations.of(context).generalInformation,
-                            fontSize: 16,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 24),
-                            child: Column(
-                              children: [
-                                _SubMenu(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(context, '/policyPage');
-                                  },
-                                  text: AppLocalizations.of(context).policy,
-                                ),
-                                _SubMenu(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                      Navigator.pushNamed(
-                                          context, '/termsAndConditions');
-                                    },
-                                    text: AppLocalizations.of(context)
-                                        .termsAndCondition),
-                                _SubMenu(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(
-                                        context, '/licenceAgreement');
-                                  },
-                                  text:
-                                      AppLocalizations.of(context).licenseText,
-                                ),
-                                _SubMenu(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(
-                                        context, '/productServicesPage');
-                                  },
-                                  text: AppLocalizations.of(context)
-                                      .productServices,
-                                ),
-                              ],
-                            ),
-                          ),
-                          _SubMenuTextButton(
-                            onTap: () {},
-                            text: AppLocalizations.of(context).about,
-                            fontSize: 16,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 24),
-                            child: Column(
-                              children: [
-                                _SubMenu(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  text: AppLocalizations.of(context).aboutUs,
-                                ),
-                                _SubMenu(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  text: AppLocalizations.of(context).followUs,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+                        padding: const EdgeInsets.only(left: 32),
+                        child: SubMenu(onTap: widget.showInTap))
                   ],
                 ),
               ],
             ),
+            SizedBox(height: 20),
             Positioned(
               left: 0,
               right: 0,
@@ -266,93 +171,6 @@ class _Overlay extends StatelessWidget {
             0.77,
             0.77,
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SubMenu extends StatelessWidget {
-  final String text;
-  final Function onTap;
-
-  const _SubMenu({
-    Key key,
-    @required this.text,
-    @required this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFFDADADA),
-              ),
-              height: 10,
-              width: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: SizedBox(
-                width: 200,
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 16,
-                    decoration: TextDecoration.underline,
-                    fontFamily: "Poppins",
-                    color: Color(0xFFDADADA),
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ),
-          ],
-          crossAxisAlignment: CrossAxisAlignment.center,
-        ),
-      ),
-    );
-  }
-}
-
-class _SubMenuTextButton extends StatelessWidget {
-  final String text;
-  final Function onTap;
-  final double fontSize;
-
-  const _SubMenuTextButton({
-    Key key,
-    @required this.text,
-    @required this.onTap,
-    this.fontSize = 16,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            decoration: TextDecoration.underline,
-            fontFamily: "Poppins",
-            color: Color(0xFFDADADA),
-          ),
         ),
       ),
     );

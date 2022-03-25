@@ -21,8 +21,8 @@ class _SettingPreferenceState extends State<SettingPreference> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFF5F6F8),
-        drawer: NavDrawer(),
-        appBar: AppBarView(),
+        //drawer: NavDrawer(),
+        //appBar: AppBarView(),
         body: Container(
           margin: EdgeInsets.fromLTRB(30, 30, 30, 30),
           width: MediaQuery.of(context).size.width,

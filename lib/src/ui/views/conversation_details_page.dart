@@ -19,8 +19,8 @@ class _ConversationDetailsState extends State<ConversationDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBarView(),
+      //drawer: NavDrawer(),
+      //appBar: AppBarView(),
       body: Container(
         margin: EdgeInsets.fromLTRB(30, 10, 30, 30),
         width: MediaQuery.of(context).size.width,

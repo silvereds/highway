@@ -9,6 +9,11 @@ import 'package:mobile/src/ui/shared/navDrawer.dart';
 import 'package:mobile/src/ui/views/all_accounts_view/all_accoutsView.dart';
 import 'package:mobile/src/ui/views/all_maps.dart';
 import 'package:mobile/src/ui/views/dashboard/dashboard.dart';
+import 'package:mobile/src/ui/views/licence_page.dart';
+import 'package:mobile/src/ui/views/navigation/custom_animated_bottom_bar.dart';
+import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
+import 'package:mobile/src/ui/views/product_services_info.dart';
+import 'package:mobile/src/ui/views/terms_page.dart';
 import 'package:mobile/src/ui/views/views.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -19,6 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex;
+  Color _inactiveColor;
 
   // List of Widget display in the body
   final List<Widget> _children = <Widget>[
@@ -27,8 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
     AllTransactionsPage(),
     AllDevicesPage(),
     AllMaps(),
+    NotificationScreen(),
+    SupportPage(),
+    SettingPreference(),
+    PolicyPage(),
+    TermsAndConditions(),
+    LicenceAgreement(),
+    ProductServicesInfo(),
+    ConversationDetails()
   ];
-
   void _getJwtToken() async {
     if ((await SharedPrefService().getString(PreferencesConstants.API_TOKEN)) ==
         null) {
@@ -41,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     _currentIndex = 0;
+    _inactiveColor = Color.fromARGB(255, 88, 86, 86);
     _getJwtToken();
   }
 
@@ -48,46 +62,65 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6F8),
-      appBar: AppBarView(),
-      drawer: NavDrawer(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70),
+        child: AppBarView(),
+      ),
+      drawer: NavDrawer(showInTap: _onTapTapped),
       body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        backgroundColor: Color(0xFFFFFFFF),
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Color(0xFF53B27F),
-        unselectedItemColor: Color(0xFF334D6E),
-        onTap: _onTapTapped,
+      bottomNavigationBar: CustomAnimatedBottomBar(
+        containerHeight: 100,
+        backgroundColor: Colors.black,
+        selectedIndex: _currentIndex,
+        showElevation: true,
+        itemCornerRadius: 24,
+        curve: Curves.easeIn,
+        onItemSelected: (index) => setState(() => _currentIndex = index),
         items: [
-          BottomNavigationBarItem(
+          BottomNavyBarItem(
             icon: const Icon(
               Icons.dashboard_outlined,
             ),
-            label: AppLocalizations.of(context).dashboard,
+            title: Text(AppLocalizations.of(context).dashboard),
+            activeColor: Color(0xFF00CDAC),
+            inactiveColor: _inactiveColor,
+            textAlign: TextAlign.center,
           ),
-          BottomNavigationBarItem(
+          BottomNavyBarItem(
             icon: const Icon(
               Icons.credit_card,
             ),
-            label: AppLocalizations.of(context).accounts,
+            title: Text(AppLocalizations.of(context).accounts),
+            activeColor: Color(0xFF00CDAC),
+            inactiveColor: _inactiveColor,
+            textAlign: TextAlign.center,
           ),
-          BottomNavigationBarItem(
+          BottomNavyBarItem(
             icon: const Icon(
               Icons.local_atm_outlined,
             ),
-            label: AppLocalizations.of(context).transactions,
+            title: Text(AppLocalizations.of(context).transactions),
+            activeColor: Color(0xFF00CDAC),
+            inactiveColor: _inactiveColor,
+            textAlign: TextAlign.center,
           ),
-          BottomNavigationBarItem(
+          BottomNavyBarItem(
             icon: const Icon(
               Icons.credit_card,
             ),
-            label: AppLocalizations.of(context).devices,
+            title: Text(AppLocalizations.of(context).devices),
+            activeColor: Color(0xFF00CDAC),
+            inactiveColor: _inactiveColor,
+            textAlign: TextAlign.center,
           ),
-          BottomNavigationBarItem(
+          BottomNavyBarItem(
             icon: const Icon(
               Icons.place_outlined,
             ),
-            label: AppLocalizations.of(context).map,
+            title: Text(AppLocalizations.of(context).map),
+            activeColor: Color(0xFF00CDAC),
+            inactiveColor: _inactiveColor,
+            textAlign: TextAlign.center,
           ),
         ],
       ),
@@ -95,8 +128,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onTapTapped(int index) {
-    setState(() {
-      _currentIndex = index;
+    Future.delayed(Duration.zero, () async {
+      setState(() {
+        _currentIndex = index;
+      });
+      Navigator.pop(context);
     });
   }
 }
