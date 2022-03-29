@@ -16,6 +16,25 @@ import 'package:mobile/src/ui/views/product_services_info.dart';
 import 'package:mobile/src/ui/views/terms_page.dart';
 import 'package:mobile/src/ui/views/views.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+
+class Style extends StyleHook {
+  @override
+  double get activeIconSize => 40;
+
+  @override
+  double get activeIconMargin => 10;
+
+  @override
+  double get iconSize => 20;
+  @override
+  TextStyle textStyle(Color color) {
+    // ignore: todo
+    // TODO: implement textStyle
+    // ignore: dead_code
+    return TextStyle(fontSize: 12, color: color);
+  }
+}
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -24,7 +43,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex;
-  Color _inactiveColor;
 
   // List of Widget display in the body
   final List<Widget> _children = <Widget>[
@@ -54,77 +72,50 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     _currentIndex = 0;
-    _inactiveColor = Color.fromARGB(255, 88, 86, 86);
     _getJwtToken();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F6F8),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70),
-        child: AppBarView(),
-      ),
-      drawer: NavDrawer(showInTap: _onTapTapped),
-      body: _children[_currentIndex],
-      bottomNavigationBar: CustomAnimatedBottomBar(
-        containerHeight: 100,
-        backgroundColor: Colors.black,
-        selectedIndex: _currentIndex,
-        showElevation: true,
-        itemCornerRadius: 24,
-        curve: Curves.easeIn,
-        onItemSelected: (index) => setState(() => _currentIndex = index),
-        items: [
-          BottomNavyBarItem(
-            icon: const Icon(
-              Icons.dashboard_outlined,
-            ),
-            title: Text(AppLocalizations.of(context).dashboard),
-            activeColor: Color(0xFF00CDAC),
-            inactiveColor: _inactiveColor,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(
-              Icons.credit_card,
-            ),
-            title: Text(AppLocalizations.of(context).accounts),
-            activeColor: Color(0xFF00CDAC),
-            inactiveColor: _inactiveColor,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(
-              Icons.local_atm_outlined,
-            ),
-            title: Text(AppLocalizations.of(context).transactions),
-            activeColor: Color(0xFF00CDAC),
-            inactiveColor: _inactiveColor,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(
-              Icons.credit_card,
-            ),
-            title: Text(AppLocalizations.of(context).devices),
-            activeColor: Color(0xFF00CDAC),
-            inactiveColor: _inactiveColor,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(
-              Icons.place_outlined,
-            ),
-            title: Text(AppLocalizations.of(context).map),
-            activeColor: Color(0xFF00CDAC),
-            inactiveColor: _inactiveColor,
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
+        backgroundColor: const Color(0xFFF5F6F8),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(70),
+          child: AppBarView(),
+        ),
+        drawer: NavDrawer(showInTap: _onTapTapped),
+        body: _children[_currentIndex],
+        bottomNavigationBar: StyleProvider(
+            style: Style(),
+            child: ConvexAppBar(
+              color: Colors.black,
+              backgroundColor: Colors.white,
+              activeColor: Color.fromARGB(255, 33, 134, 109),
+              height: 60,
+              items: [
+                TabItem(
+                    icon: Icons.dashboard_outlined,
+                    title: AppLocalizations.of(context).dashboard),
+                TabItem(
+                    icon: Icons.credit_card,
+                    title: AppLocalizations.of(context).accounts),
+                TabItem(
+                    icon: Icons.local_atm_outlined,
+                    title: AppLocalizations.of(context).transactions),
+                TabItem(
+                    icon: Icons.credit_card,
+                    title: AppLocalizations.of(context).devices),
+                TabItem(
+                    icon: Icons.place_outlined,
+                    title: AppLocalizations.of(context).map),
+              ],
+              //initialActiveIndex: 2,//optional, default as 0
+              onTap: (int i) => {
+                setState(() {
+                  _currentIndex = i;
+                })
+              },
+            )));
   }
 
   void _onTapTapped(int index) {

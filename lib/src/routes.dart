@@ -7,6 +7,7 @@ import 'package:mobile/src/ui/views/change_password_screen.dart';
 import 'package:mobile/src/ui/views/licence_page.dart';
 import 'package:mobile/src/ui/views/notification/notification_sceen.dart';
 import 'package:mobile/src/ui/views/product_services_info.dart';
+//import 'package:mobile/src/ui/views/reset_password_verify_passcode_page.dart';
 import 'package:mobile/src/ui/views/terms_page.dart';
 import 'package:mobile/src/ui/views/views.dart';
 
@@ -102,6 +103,12 @@ class RouteGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => ResetPasswordScreen(
             email: args as String,
+          ),
+        );
+      case resetPasswordVerifyPasscode:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => VerifyPasscodePage(
+            user: args as User,
           ),
         );
       case homeScreen:

@@ -95,7 +95,9 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
     String agent,
   ) async {
     FocusScope.of(context).unfocus();
-
+    print(email);
+    print(passcode);
+    print(agent);
     if (_formKey.currentState.validate()) {
       try {
         setState(() {
@@ -134,7 +136,7 @@ class _VerifyPasscodePageState extends State<VerifyPasscodePage> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                parseApiError(e),
+                "erreur " + parseApiError(e),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,

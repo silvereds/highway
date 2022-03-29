@@ -18,8 +18,8 @@ class _SupportPageState extends State<SupportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBarView(),
+      //drawer: NavDrawer(),
+      //appBar: AppBarView(),
       // bottomNavigationBar: BottomNavigationBarView(),
       body: Container(
         child: SingleChildScrollView(

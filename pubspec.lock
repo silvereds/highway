@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.41.2"
+  animated_bottom_navigation_bar:
+    dependency: "direct main"
+    description:
+      name: animated_bottom_navigation_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   archive:
     dependency: transitive
     description:
@@ -162,6 +169,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  convex_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: convex_bottom_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   crypto:
     dependency: transitive
     description:

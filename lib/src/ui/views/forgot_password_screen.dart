@@ -11,6 +11,9 @@ import 'package:mobile/src/ui/widgets/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../core/entities/all.dart';
+import '../../core/services/prefs_service.dart';
+
 class ForgotPasswordScreen extends StatefulWidget {
   @override
   _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
@@ -20,10 +23,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   // _site is the variable that recieves registerOption and keeps
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final _emailController = TextEditingController();
+  final _emailOrPhoneNumberController = TextEditingController();
   String _email = '';
+  String _userAgent = '';
+  String _phoneNumber = '';
+
   var _isLoading = false;
   final _formKey = GlobalKey<FormState>();
+
+  void _getUserAgent() async {
+    _userAgent = await SharedPrefService().getString('deviceName');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // _isPassCodeVerify();
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
+    _getUserAgent();
+  }
 
   // Reset user password
   void _resetPassword() async {
@@ -41,8 +59,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           setState(() {
             _isLoading = false;
           });
-          Navigator.of(context)
-              .pushNamed(RouteGenerator.resetPasswordVerifyPasscode);
+
+          Navigator.of(context).pushNamed(
+            RouteGenerator.resetPasswordScreen,
+            arguments: (_email.trim()
+                //phone: _phoneNumber.trim(),
+                //agent: _userAgent,
+                ),
+          );
         });
       } catch (e) {
         setState(() {
@@ -65,7 +89,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _emailOrPhoneNumberController.dispose();
     FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     super.dispose();
   }
@@ -144,10 +168,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                       child: Column(
                                         children: [
                                           TextFormField(
-                                            controller: _emailController,
-                                            onSaved: (v) => _email = v,
+                                            controller:
+                                                _emailOrPhoneNumberController,
+                                            onSaved: (val) =>
+                                                _emailOrPhoneNumberController
+                                                        .text[0]
+                                                        .contains(
+                                                            RegExp(r"^[0-9]$"))
+                                                    ? _phoneNumber = val
+                                                    : _email = val,
                                             onChanged: (v) => validation
-                                                .validateResetPasswordEmail(v),
+                                                .validateEmailOrPhoneNumber(v),
+                                            //  .validateResetPasswordEmail(v),
                                             decoration: InputDecoration(
                                               errorText: validation.email.error,
                                               prefixIcon:
@@ -193,7 +225,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                                       height: 80.32,
                                                       width: 120.0,
                                                       onPress: validation
-                                                              .isResetPasswordFormValid
+                                                              .isEmailOrPhoneIsValid
                                                           ? _resetPassword
                                                           : null,
                                                       text: AppLocalizations.of(

@@ -16,7 +16,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F8),
-      drawer: NavDrawer(),
+      //drawer: NavDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.black,

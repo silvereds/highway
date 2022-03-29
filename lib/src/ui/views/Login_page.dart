@@ -80,54 +80,53 @@ class _LoginPageState extends State<LoginPage> {
               ),
             )
             .then((_) {
-          setState(() {
-            _isLoading = false;
-          });
-
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: Text(AppLocalizations.of(context).shortCodeText),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    _emailOrPhoneNumberController.clear();
-                    _passwordController.clear();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pushNamed(
-                      RouteGenerator.verifyPasscodePage,
-                      arguments: User(
-                        email: _email.trim(),
-                        password: _password.trim(),
-                        phone: _phoneNumber.trim(),
-                        agent: _userAgent,
-                      ),
-                    );
-                  },
-                  child: Text('OK'),
-                )
-              ],
-            ),
-          );
-        });
-      } catch (e) {
-        setState(() {
-          _isLoading = false;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              parseApiError(e),
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+                        setState(() {
+                          _isLoading = false;
+                        });
+                        showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          content: Text(AppLocalizations.of(context).shortCodeText),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                _emailOrPhoneNumberController.clear();
+                                _passwordController.clear();
+                                Navigator.of(context).pop();
+                                Navigator.of(context).pushNamed(
+                                  RouteGenerator.verifyPasscodePage,
+                                  arguments: User(
+                                    email: _email.trim(),
+                                    password: _password.trim(),
+                                    phone: _phoneNumber.trim(),
+                                    agent: _userAgent,
+                                  ),
+                                );
+                              },
+                              child: Text('OK'),
+                            )
+                          ],
+                        ),
+                      );
+                        });
+            } catch (e) {
+              setState(() {
+                _isLoading = false;
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    parseApiError(e),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
     }
   }
 

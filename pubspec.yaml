@@ -41,6 +41,8 @@ dependencies:
   sqflite: ^1.3.2+1
   flash: ^2.0.1
   latlong2: ^0.8.1
+  animated_bottom_navigation_bar: ^0.3.2
+  convex_bottom_bar: ^3.0.0
 
 dev_dependencies:
   ## HTTP Client

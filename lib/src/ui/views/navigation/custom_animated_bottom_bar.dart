@@ -101,7 +101,8 @@ class _ItemWidget extends StatelessWidget {
       container: true,
       selected: isSelected,
       child: AnimatedContainer(
-        width: isSelected ? 130 : 50,
+        color: Colors.red,
+        width: isSelected ? 100 : 90,
         height: double.maxFinite,
         duration: animationDuration,
         curve: curve,
@@ -114,9 +115,9 @@ class _ItemWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           physics: NeverScrollableScrollPhysics(),
           child: Container(
-            width: isSelected ? 130 : 50,
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Row(
+            width: 50,
+            padding: EdgeInsets.symmetric(horizontal: 1),
+            child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -124,7 +125,7 @@ class _ItemWidget extends StatelessWidget {
                 IconTheme(
                   data: IconThemeData(
                     size: iconSize,
-                    color: isSelected
+                    color: !isSelected
                         ? item.activeColor.withOpacity(1)
                         : item.inactiveColor == null
                             ? item.activeColor
@@ -132,7 +133,7 @@ class _ItemWidget extends StatelessWidget {
                   ),
                   child: item.icon,
                 ),
-                if (isSelected)
+                if (!isSelected)
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 4),
@@ -141,7 +142,7 @@ class _ItemWidget extends StatelessWidget {
                           color: item.activeColor,
                           fontWeight: FontWeight.bold,
                         ),
-                        maxLines: 1,
+                        maxLines: 2,
                         textAlign: item.textAlign,
                         child: item.title,
                       ),

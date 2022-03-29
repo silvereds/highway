@@ -14,18 +14,12 @@ class DrawerProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+    return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 10),
-            child: CircleAvatar(
-              radius: 30,
-              backgroundImage: AssetImage(image),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 10),
+            padding: EdgeInsets.only(right: 10),
             child: Text(
               label,
               style: TextStyle(
@@ -36,6 +30,13 @@ class DrawerProfileInfo extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontFamily: "Poppins",
               ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(right: 10),
+            child: CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage(image),
             ),
           ),
         ],
